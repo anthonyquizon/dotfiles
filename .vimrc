@@ -48,7 +48,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'milkypostman/vim-togglelist'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'vim-scripts/sessionman.vim'
+"Bundle 'vim-scripts/sessionman.vim'
 
 
 "**Programming**
@@ -57,10 +57,12 @@ Bundle 'scrooloose/syntastic'
 "Bundle 'vim-scripts/AutoComplPop'
 Bundle 'garbas/vim-snipmate'
 Bundle 'mattn/zencoding-vim'
+Bundle 'tpope/vim-fugitive'
 
-"**nodejs**
+"**nodejs/javascript**
 "find better or delete?
 Bundle 'myhere/vim-nodejs-complete'
+"TODO code search
 
 "**C++**
 Bundle 'Rip-Rip/clang_complete'
@@ -70,6 +72,7 @@ Bundle 'Rip-Rip/clang_complete'
 "TODO refactoring
 
 "**TODO install**
+"grep search
 "minibufexplorer
 "surround
 "fugitive
@@ -155,12 +158,6 @@ noremap <F6>   :FufMruCmd<CR>
 noremap <S-F6> :FufMruCmd!<CR>
 noremap <F7>   :FufMruFile<CR>
 noremap <S-F7> :FufMruFile!<CR>
-
-
-"**Sessionman**
-nmap <leader>s :SessionList<CR>
-nmap <leader><F2> :SessionList<CR>
-
 
 "**Syntastic**
 let g:syntastic_cpp_config_file = '.clang_complete' "use same file as clang_complete - its hardcoded in the plugin so conform to that
