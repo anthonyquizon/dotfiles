@@ -48,11 +48,14 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'milkypostman/vim-togglelist'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'sjl/gundo.vim'
 "Bundle 'vim-scripts/sessionman.vim'
 
 
 "**Programming**
 Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tsaleh/vim-matchit'
 "--disable for cpp 
 "Bundle 'vim-scripts/AutoComplPop'
 Bundle 'garbas/vim-snipmate'
@@ -71,6 +74,7 @@ Bundle 'Rip-Rip/clang_complete'
 "TODO gdb step debugging
 "TODO refactoring
 
+
 "**TODO install**
 "grep search
 "minibufexplorer
@@ -88,7 +92,7 @@ set guioptions-=T
 set number
 set tabstop=4
 set shiftwidth=4
-set cindent
+"set cindent
 set mouse=a
 set completeopt=menu,menuone,longest
 set pumheight=15
@@ -98,6 +102,16 @@ set undofile
 set undodir=~/.vim/undodir
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+
+"**status line**"
+
+set statusline=%t       "tail of the filename
+set statusline+=%h      "help file flag
+set statusline+=%r      "read only flag
+set statusline+=%m      "modified flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=\ %P    "percent through file
 
 "*******************************"
 
@@ -175,7 +189,8 @@ set statusline+=%*
 nmap <script> <silent> <leader>l :call ToggleLocationList()<CR>
 nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 
-
+"**GUndo**
+noremap <F3> :GundoToggle<CR>
 
 "*******************************"
 
