@@ -18,6 +18,9 @@
 (global-linum-mode t)
 
 (set-face-attribute 'default (selected-frame) :font "Monaco-14")
+(add-to-list 'initial-frame-alist '(font . "Monaco-14"))
+(add-to-list 'default-frame-alist '(font . "Monaco-14"))
+
 
 (setq ring-bell-function 'ignore)
 (setq bell-volume 0)
