@@ -1,3 +1,6 @@
+
+
+; ==== packages =====
 (require 'package)
 (push '("marmalade" . "http://marmalade-repo.org/packages/")
     package-archives )
@@ -6,8 +9,32 @@
 
 (package-initialize)
 
-;TODO programmically use paradox to install packages?
-;(push 'paradox antho-packages))
+(require 'cl)
+
+(defvar antho/packages
+  '(ac-cider ac-helm ac-nrepl cider clojure-mode evil evil-easymotion
+    evil-escape evil-leader evil-tabs helm helm-projectile key-chord
+    neotree org colorsarenice-theme)
+  "List of packages to ensure are installed at launch")
+
+(defun antho/packages-installed-p ()
+  (loop for p in antho/packages
+	when (not (package-installed-p p)) do (return nil)
+	finally (return t)))
+
+(unless (antho/packages-installed-p)
+  (message "%s" "Emacs is now refreshing its package database...")
+  (package-refresh-contents)
+  (message "%s" " done.")
+
+  (dolist (p antho/packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
+
+(provide 'antho/packages)
+
+		   
+;=============
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -45,14 +72,9 @@
 ;==== Theme =====
 (load-theme 'colorsarenice-dark t)
 
-(require 'auto-complete)
-(require 'icomplete)
-
 ;===== Evil Mode ======
-(require 'evil)
 (evil-mode 1)
 
-(require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
 
@@ -64,14 +86,11 @@
 
 
 ;===== Helm ======
-(require 'helm)
 (require 'helm-config)
 
 (helm-mode 1)
 
 ;===== NeoTree ====
-(require 'neotree)
-
 (setq neo-theme 'ascii)
 (custom-set-faces
  '(neo-banner-face ((t . (:inherit shadow))) t)
@@ -132,8 +151,13 @@
 (global-evil-leader-mode)
 
 ;===== Cider ====
-;(require 'ac-cider)
-
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(eval-after-load "auto-complete"
+  '(progn
+     (add-to-list 'ac-modes 'cider-mode)
+     (add-to-list 'ac-modes 'cider-repl-mode)))
 
 (evil-leader/set-key
   "z" 'neotree-toggle
