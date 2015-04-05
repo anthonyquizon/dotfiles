@@ -163,3 +163,5 @@
   "z" 'neotree-toggle
   "e" 'eshell
   "p" 'mode-line-other-buffer)
+
+(define-key evil-normal-state-map (kbd "C-w c") 'elscreen-kill) ;kill tab
