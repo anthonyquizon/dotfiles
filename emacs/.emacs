@@ -139,13 +139,14 @@
 
 (defun antho/neotree-key-bindings ()
   "Set the key bindings for a neotree buffer."
+  (define-key evil-motion-state-local-map (kbd "v")   'neotree-enter-vertical-split)
+  (define-key evil-normal-state-local-map (kbd "s")   'neotree-enter-horizontal-split)
   (define-key evil-motion-state-local-map (kbd "TAB") 'neotree-stretch-toggle)
   (define-key evil-motion-state-local-map (kbd "h")   'antho/neotree-collapse-or-up)
   (define-key evil-motion-state-local-map (kbd "l")   'antho/neotree-expand-or-open)
   (key-chord-define evil-motion-state-local-map "cd"  'neotree-change-root))
 
 (add-hook 'neotree-mode-hook 'antho/neotree-key-bindings)
-      
 
 ; ==== Evil Leader ====
 (global-evil-leader-mode)
@@ -164,4 +165,10 @@
   "e" 'eshell
   "p" 'mode-line-other-buffer)
 
-(define-key evil-normal-state-map (kbd "C-w c") 'elscreen-kill) ;kill tab
+(define-key evil-normal-state-map (kbd "C-w q") 'delete-window)
+
+;=== Projectile ====
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
