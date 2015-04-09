@@ -14,7 +14,8 @@
 (defvar antho/packages
   '(ac-cider ac-helm ac-nrepl cider clojure-mode evil evil-easymotion
     evil-escape evil-leader evil-tabs helm helm-projectile key-chord
-    neotree org colorsarenice-theme)
+    neotree org colorsarenice-theme flymake flymake-css flymake-jshint 
+    flymake-json flymake-less flymake-sass)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -33,6 +34,7 @@
 
 (provide 'antho/packages)
 
+(setq-default indent-tabs-mode nil)
 		   
 ;=============
 
