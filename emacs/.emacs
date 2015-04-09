@@ -42,6 +42,7 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+(setq column-number-mode t)
 (setq inhibit-startup-message t)
 
 (global-linum-mode t)
