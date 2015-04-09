@@ -76,6 +76,14 @@
 (define-key input-decode-map "\e[1;5A" [C-up])
 (define-key input-decode-map "\e[1;5B" [C-down])
 
+
+(defun antho/dired-mode-keybindings () 
+    (define-key dired-mode-map (kbd "g") nil)
+    (define-key dired-mode-map (kbd "G") nil)
+    (define-key dired-mode-map (kbd "r") 'revert-buffer))
+   
+(add-hook 'dired-mode-hook 'antho/dired-mode-keybindings)
+
 ;==== Theme =====
 (load-theme 'colorsarenice-dark t)
 
@@ -151,6 +159,7 @@
   (define-key evil-motion-state-local-map (kbd "TAB") 'neotree-stretch-toggle)
   (define-key evil-motion-state-local-map (kbd "h")   'antho/neotree-collapse-or-up)
   (define-key evil-motion-state-local-map (kbd "l")   'antho/neotree-expand-or-open)
+  (key-chord-define evil-motion-state-local-map "CD"  'neotree-dir)
   (key-chord-define evil-motion-state-local-map "cd"  'neotree-change-root))
 
 (add-hook 'neotree-mode-hook 'antho/neotree-key-bindings)
