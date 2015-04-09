@@ -194,8 +194,6 @@
   "f"  'helm-recentf
   "p" 'mode-line-other-buffer)
 
-(define-key evil-normal-state-map (kbd "C-w q") 'delete-window)
-
 ;=== Projectile ====
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
