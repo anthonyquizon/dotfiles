@@ -71,7 +71,8 @@
 
 (define-key input-decode-map "\e[1;5A" [C-up])
 
-(global-set-key (kbd "C-x C-d") 'dired)
+;;override list buffer with dired mode
+(global-set-key (kbd "C-x C-d") 'dired) 
 
 (define-key input-decode-map "\e[1;5A" [C-up])
 (define-key input-decode-map "\e[1;5B" [C-down])
@@ -184,6 +185,7 @@
 (evil-leader/set-key
   "z" 'neotree-toggle
   "e" 'eshell
+  "f"  'helm-recentf
   "p" 'mode-line-other-buffer)
 
 (define-key evil-normal-state-map (kbd "C-w q") 'delete-window)
