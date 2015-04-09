@@ -70,6 +70,10 @@
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 (define-key input-decode-map "\e[1;5A" [C-up])
+
+(global-set-key (kbd "C-x C-d") 'dired)
+
+(define-key input-decode-map "\e[1;5A" [C-up])
 (define-key input-decode-map "\e[1;5B" [C-down])
 
 ;==== Theme =====
