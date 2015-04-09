@@ -166,7 +166,6 @@
   (define-key evil-motion-state-local-map (kbd "h") 'antho/neotree-collapse-or-up)
   (define-key evil-motion-state-local-map (kbd "l") 'antho/neotree-expand-or-open)
   (define-key evil-motion-state-local-map (kbd "RET") 'antho/neotree-enter)
-  ;;(define-key evil-motion-state-local-map (kbd "RET") 'neotree-make-executor)
   (define-key evil-motion-state-local-map (kbd "+") 'neotree-create-node)
   (define-key evil-normal-state-local-map (kbd "r") 'neotree-refresh)
   (define-key evil-normal-state-local-map (kbd "R") 'neotree-rename-node)
