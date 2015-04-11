@@ -35,6 +35,7 @@
 (provide 'antho/packages)
 
 (setq-default indent-tabs-mode nil)
+(show-paren-mode t)
 		   
 ;=============
 
