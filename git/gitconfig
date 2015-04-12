@@ -1,0 +1,15 @@
+[user]
+	name = Anthony Quizon
+	email = anthony.quizon@smartsparrow.com
+[alias]
+	ch = checkout
+	b = branch
+	s = status
+	cm = commit -m
+	unstage = reset HEAD --
+	ai = add -i
+	pu = push --set-upstream origin
+	c = commit
+	cht = checkout --track
+[push]
+	default = simple
