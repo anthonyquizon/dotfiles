@@ -11,5 +11,8 @@
 	pu = push --set-upstream origin
 	c = commit
 	cht = checkout --track
+	ca = commit --amend
 [push]
 	default = simple
+[core]
+	excludesfile = /Users/anthonyquizon/.gitignore

@@ -15,7 +15,7 @@
   '(ac-cider ac-helm ac-nrepl cider clojure-mode evil evil-easymotion
     evil-escape evil-leader evil-tabs helm helm-projectile key-chord
     neotree org colorsarenice-theme flymake flymake-css flymake-jshint 
-    flymake-json flymake-less flymake-sass)
+    flymake-json flymake-less flymake-sass emmet-mode helm-emmet)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -37,6 +37,9 @@
 (setq-default indent-tabs-mode nil)
 (show-paren-mode t)
 		   
+(setenv "PATH" (concat (getenv "PATH") ":/Users/anthonyquizon/.npm-packages/bin"))
+(setq exec-path (append exec-path '("/Users/anthonyquizon/.npm-packages/bin")))
+
 ;=============
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -68,7 +71,7 @@
 
 (add-hook 'eshell-mode-hook 'eshell-mode-hook-func)
 
-(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+;;(add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 (define-key input-decode-map "\e[1;5A" [C-up])
 
@@ -108,6 +111,11 @@
 (helm-mode 1)
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(global-set-key "\C-x\ \C-r" 'helm-recentf)
+
+;;TODO add Control-TAB to move back
+;;(define-key helm-map (kbd "C-<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
 (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
 
@@ -196,11 +204,17 @@
 (evil-leader/set-key
   "z" 'neotree-toggle
   "e" 'eshell
-  "f"  'helm-recentf
   "p" 'mode-line-other-buffer)
 
-;=== Projectile ====
+;;=== Projectile ====
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
+;;==== Emmet ====
+;;(define-key emmet-mode (kbd "C-l") 'emmet-expand-line)
+
+
+;;==== Flymake ===
+;;(add-hook 'js-mode-hook
+ ;;    (lambda () (flymake-mode t)))
