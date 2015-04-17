@@ -14,8 +14,8 @@
 (defvar antho/packages
   '(ac-cider ac-helm ac-nrepl cider clojure-mode evil evil-easymotion
     evil-escape evil-leader evil-tabs helm helm-projectile key-chord
-    neotree org colorsarenice-theme flymake flymake-css flymake-jshint 
-    flymake-json flymake-less flymake-sass emmet-mode helm-emmet)
+    neotree org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
+    flycheck magit)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -33,6 +33,9 @@
       (package-install p))))
 
 (provide 'antho/packages)
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (setq-default indent-tabs-mode nil)
 (show-paren-mode t)
@@ -216,5 +219,4 @@
 
 
 ;;==== Flymake ===
-;;(add-hook 'js-mode-hook
- ;;    (lambda () (flymake-mode t)))
+(add-hook 'after-init-hook #'global-flycheck-mode)
