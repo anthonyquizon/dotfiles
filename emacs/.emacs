@@ -14,8 +14,8 @@
 (defvar antho/packages
   '(ac-cider ac-helm ac-nrepl cider clojure-mode evil evil-easymotion
     evil-escape evil-leader evil-tabs helm helm-projectile key-chord
-    neotree org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
-    flycheck magit)
+    org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
+    flycheck magit perspective persp-projectile)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -42,6 +42,10 @@
 		   
 (setenv "PATH" (concat (getenv "PATH") ":/Users/anthonyquizon/.npm-packages/bin"))
 (setq exec-path (append exec-path '("/Users/anthonyquizon/.npm-packages/bin")))
+
+;;;=== Registers ===
+;;http://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html
+(set-register ?e (cons 'file "~/.emacs"))
 
 ;=============
 
@@ -74,7 +78,7 @@
 
 (add-hook 'eshell-mode-hook 'eshell-mode-hook-func)
 
-;;(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 (define-key input-decode-map "\e[1;5A" [C-up])
 
@@ -110,87 +114,23 @@
 
 ;===== Helm ======
 (require 'helm-config)
-
 (helm-mode 1)
 
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (global-set-key "\C-x\ \C-r" 'helm-recentf)
 
-;;TODO add Control-TAB to move back
-;;(define-key helm-map (kbd "C-<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
-;===== NeoTree ====
-(setq neo-theme 'ascii)
-(custom-set-faces
- '(neo-banner-face ((t . (:inherit shadow))) t)
- '(neo-header-face ((t . (:inherit shadow))) t)
- '(neo-root-dir-face ((t . (:inherit link-visited :underline nil))) t)
- '(neo-dir-link-face ((t . (:inherit dired-directory :underline nil))) t)
- '(neo-file-link-face ((t . (:inherit default :underline nil))) t)
- '(neo-button-face ((t . (:inherit dired-directory))) t)
- '(neo-expand-btn-face ((t . (:inherit button :underline nil))) t))
-
-(defun antho/neotree-expand-or-open ()
-  "Collapse a neotree node."
-  (interactive)
-  (let ((node (neo-buffer--get-filename-current-line)))
-    (when node
-      (if (file-directory-p node)
-	  (progn
-	    (neo-buffer--set-expand node t)
-	    (neo-buffer--refresh t)
-	    (when neo-auto-indent-point
-	      (next-line)
-	      (neo-point-auto-indent)))
-	(call-interactively 'neotree-enter)))))
-
-(defun antho/neotree-collapse ()
-  "Collapse a neotree node."
-  (interactive)
-  (let ((node (neo-buffer--get-filename-current-line)))
-    (when node
-      (when (file-directory-p node)
-	(neo-buffer--set-expand node nil)
-	(neo-buffer--refresh t))
-      (when neo-auto-indent-point
-	(neo-point-auto-indent)))))
-
-(defun antho/neotree-collapse-or-up ()
-  "Collapse an expanded directory node or go to the parent node."
-  (interactive)
-  (let ((node (neo-buffer--get-filename-current-line)))
-    (when node
-      (if (file-directory-p node)
-	  (if (neo-buffer--expanded-node-p node)
-	      (antho/neotree-collapse)
-	    (neotree-select-up-node))
-	(neotree-select-up-node)))))
-
-(defun antho/neotree-enter ()
-  (interactive)
-  (back-to-indentation)
-  (neotree-enter))
-
-(defun antho/neotree-key-bindings ()
-  "Set the key bindings for a neotree buffer."
-  (define-key evil-motion-state-local-map (kbd "v") 'neotree-enter-vertical-split)
-  (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-horizontal-split)
-  (define-key evil-motion-state-local-map (kbd "TAB") 'neotree-stretch-toggle)
-  (define-key evil-motion-state-local-map (kbd "h") 'antho/neotree-collapse-or-up)
-  (define-key evil-motion-state-local-map (kbd "l") 'antho/neotree-expand-or-open)
-  (define-key evil-motion-state-local-map (kbd "RET") 'antho/neotree-enter)
-  (define-key evil-motion-state-local-map (kbd "+") 'neotree-create-node)
-  (define-key evil-normal-state-local-map (kbd "r") 'neotree-refresh)
-  (define-key evil-normal-state-local-map (kbd "R") 'neotree-rename-node)
-  (define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
-  (define-key evil-normal-state-local-map (kbd "i") 'neotree-hidden-file-toggle)
-  (key-chord-define evil-motion-state-local-map "CD" 'neotree-dir)
-  (key-chord-define evil-motion-state-local-map "cd" 'neotree-change-root))
-
-(add-hook 'neotree-mode-hook 'antho/neotree-key-bindings)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-l") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-h") 'helm-find-files-up-one-level) 
+(define-key helm-map (kbd "C-z") 'helm-select-action)
+(define-key helm-map (kbd "C-j") 'helm-next-line)
+(define-key helm-map (kbd "C-k") 'helm-previous-line)
+    
+(define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-find-files-map (kbd "C-l") 'helm-execute-persistent-action)
+(define-key helm-find-files-map (kbd "C-h") 'helm-find-files-up-one-level) 
+(define-key helm-find-files-map (kbd "C-z") 'helm-select-action)
+(define-key helm-find-files-map (kbd "C-j") 'helm-next-line)
+(define-key helm-find-files-map (kbd "C-k") 'helm-previous-line)
 
 ; ==== Evil Leader ====
 (global-evil-leader-mode)
@@ -205,7 +145,6 @@
      (add-to-list 'ac-modes 'cider-repl-mode)))
 
 (evil-leader/set-key
-  "z" 'neotree-toggle
   "e" 'eshell
   "p" 'mode-line-other-buffer)
 
@@ -220,3 +159,12 @@
 
 ;;==== Flymake ===
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;;==== Projectile ===
+(projectile-global-mode)
+(helm-projectile-on)
+
+;;=== Perspective ====
+(persp-mode)
+
+(define-key projectile-mode-map (kbd "C-x x h") 'projectile-persp-switch-project)
