@@ -116,7 +116,7 @@
 (require 'helm-config)
 (helm-mode 1)
 
-(global-set-key "\C-x\ \C-r" 'helm-recentf)
+(global-set-key (kbd "C-x C-e") 'helm-recentf)
 
 (define-key helm-map (kbd "<tab>") nil)
 (define-key helm-map (kbd "C-l") nil)
