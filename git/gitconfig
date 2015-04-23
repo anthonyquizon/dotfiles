@@ -12,6 +12,9 @@
 	c = commit
 	cht = checkout --track
 	ca = commit --amend
+	cam = !git add -A && git commit -m
+	cad = add -A
+	aA = add -A
 [push]
 	default = simple
 [core]
