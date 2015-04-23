@@ -15,4 +15,4 @@
 [push]
 	default = simple
 [core]
-	excludesfile = /Users/anthonyquizon/.gitignore
+	excludesfile = ~/.gitignore
