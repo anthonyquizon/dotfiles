@@ -6,10 +6,13 @@ VENDOR=$DEVELOPMENT/vendor
 VENDOR_PATH=$VENDOR/bin
 VENDOR_LIB=$VENDOR/lib
 
-# NPM
+#python
+export PYTHONSTARTUP=~/.pythonrc
+
+#NPM
 NPM_PACKAGES=$HOME/.npm-packages
-NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
-NPM_PACKAGES_PATH=$NPM_PACKAGES/bin
+export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
+export NPM_PACKAGES_PATH=$NPM_PACKAGES/bin
 
 #scripts
 SCRIPTS_PATH=$HOME/scripts

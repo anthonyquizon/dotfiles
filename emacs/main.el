@@ -1,5 +1,3 @@
-
-
 ; ==== packages =====
 (require 'package)
 (push '("marmalade" . "http://marmalade-repo.org/packages/")
@@ -15,7 +13,7 @@
   '(ac-cider ac-helm ac-nrepl cider clojure-mode evil evil-easymotion
     evil-escape evil-leader evil-tabs helm helm-projectile key-chord
     org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
-    flycheck magit perspective persp-projectile)
+    flycheck magit perspective persp-projectile yaml-mode)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
