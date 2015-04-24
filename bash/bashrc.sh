@@ -30,3 +30,6 @@ export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
 #PATH setup
 export PATH=$PACKER_HOME:$SCRIPTS_PATH:$VENDOR_PATH:$NPM_PACKAGES_PATH:$PATH
 
+
+alias serve='http-server -a localhost -p'
+alias emacs=emacs-24.4
