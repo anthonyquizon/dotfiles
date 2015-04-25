@@ -1,2 +1,2 @@
-prefix=/Users/anthonyquizon/.npm-packages
+prefix=~/.npm-packages
 registry=http://npm.smartsparrow.com/

@@ -80,6 +80,7 @@
 
 (define-key input-decode-map "\e[1;5A" [C-up])
 
+
 ;;override list buffer with dired mode
 (global-set-key (kbd "C-x C-d") 'dired) 
 
@@ -88,6 +89,11 @@
 
 
 (defun antho/dired-mode-keybindings () 
+   ;;(define-key dired-mode-map (kbd "C-j") nil)
+   ;;(define-key dired-mode-map (kbd "C-k") niL)
+   ;;(define-key dired-mode-map (kbd "C-h") nil)
+   ;;(define-key dired-mode-map (kbd "C-l") nil)
+    
     (define-key dired-mode-map (kbd "g") nil)
     (define-key dired-mode-map (kbd "G") nil)
     (define-key dired-mode-map (kbd "r") 'revert-buffer))
@@ -180,3 +186,7 @@
 (persp-mode)
 
 (define-key projectile-mode-map (kbd "C-x x h") 'projectile-persp-switch-project)
+
+
+;;==== Magit =====
+(global-set-key (kbd "C-c g") 'dired) 
