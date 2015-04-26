@@ -13,7 +13,7 @@
   '(ac-cider ac-helm ac-nrepl cider clojure-mode evil evil-easymotion
     evil-escape evil-leader evil-tabs helm helm-ag helm-projectile key-chord
     org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
-    flycheck magit perspective persp-projectile yaml-mode)
+    flycheck magit perspective persp-projectile yaml-mode evil-surround)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -190,3 +190,7 @@
 
 ;;==== Magit =====
 (global-set-key (kbd "C-c g") 'dired) 
+
+
+;;==== Evil Surround ====
+(global-evil-surround-mode 1)
