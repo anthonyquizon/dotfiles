@@ -8,13 +8,14 @@
 	cm = commit -m
 	unstage = reset HEAD --
 	ai = add -i
-	pu = push --set-upstream origin
+	pu = push
 	c = commit
-	cht = checkout --track
+	cht = checkout --track -b
 	ca = commit --amend
 	cam = !git add -A && git commit -m
 	cad = add -A
 	aA = add -A
+	pups = push --set-upstream origin
 [push]
 	default = simple
 [core]

@@ -30,6 +30,32 @@ export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
 #PATH setup
 export PATH=$PACKER_HOME:$SCRIPTS_PATH:$VENDOR_PATH:$NPM_PACKAGES_PATH:$PATH
 
-
+#Aliases
 alias serve='http-server -a localhost -p'
 alias emacs=emacs-24.5
+alias l='ls'
+alias sl='ls'
+
+alias gcm=_gitcommitwithbranch
+alias gpo='git push origin '
+alias gs='git status'
+alias ga='git add'
+alias gaa='git add .'
+alias gc='git checkout'
+alias gcb='git checkout -b'
+
+function mkcd {
+    mkdir "$1" && cd "$1"
+}
+
+function serve {
+    i=8001
+    while true; do
+        http-server -a 127.0.0.1 -p $i && break;
+        i=$((i+1));
+    done
+}
+
+function _gitcommitwithbranch {
+    git commit -a -m "$(echo $(git branch | grep '*' | sed 's/* //')$(echo " ")$(echo $*))"
+}
