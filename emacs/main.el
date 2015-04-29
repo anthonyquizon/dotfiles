@@ -14,7 +14,7 @@
     evil-escape evil-leader evil-tabs helm helm-ag helm-projectile key-chord
     org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
     flycheck magit perspective persp-projectile yaml-mode evil-surround
-    json-mode json-reformat)
+    json-mode json-reformat haskell-mode)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
