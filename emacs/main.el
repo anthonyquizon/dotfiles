@@ -89,15 +89,14 @@
 (define-key input-decode-map "\e[1;5B" [C-down])
 
 
-(defun antho/dired-mode-keybindings () 
-   ;;(define-key dired-mode-map (kbd "C-j") nil)
-   ;;(define-key dired-mode-map (kbd "C-k") niL)
-   ;;(define-key dired-mode-map (kbd "C-h") nil)
-   ;;(define-key dired-mode-map (kbd "C-l") nil)
-    
-    (define-key dired-mode-map (kbd "g") nil)
-    (define-key dired-mode-map (kbd "G") nil)
-    (define-key dired-mode-map (kbd "r") 'revert-buffer))
+(defun antho/dired-mode-keybindings ()
+  (define-key dired-mode-map (kbd "C-j") 'evil-next-line)
+  (define-key dired-mode-map (kbd "C-k") 'evil-previous-line)
+  (define-key dired-mode-map (kbd "C-h") 'evil-backward-char)
+  (define-key dired-mode-map (kbd "C-l") 'evil-forward-char)
+  (define-key dired-mode-map (kbd "g") nil)
+  (define-key dired-mode-map (kbd "G") nil)
+  (define-key dired-mode-map (kbd "r") 'revert-buffer))
    
 (add-hook 'dired-mode-hook 'antho/dired-mode-keybindings)
 
