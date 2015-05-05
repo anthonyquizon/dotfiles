@@ -59,3 +59,8 @@ function serve {
 function _gitcommitwithbranch {
     git commit -a -m "$(echo $(git branch | grep '*' | sed 's/* //')$(echo " ")$(echo $*))"
 }
+
+function psetup {
+    npm install;
+    bower install;
+}
