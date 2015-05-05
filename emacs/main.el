@@ -14,7 +14,7 @@
     evil-escape evil-leader evil-tabs helm helm-ag helm-projectile key-chord
     org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
     flycheck magit perspective persp-projectile yaml-mode evil-surround
-    json-mode json-reformat haskell-mode less-css-mode)
+    json-mode json-reformat haskell-mode less-css-mode evil-easymotion)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -81,6 +81,8 @@
 
 (define-key input-decode-map "\e[1;5A" [C-up])
 
+(setq make-backup-files nil)
+
 
 ;;override list buffer with dired mode
 (global-set-key (kbd "C-x C-d") 'dired) 
@@ -109,11 +111,33 @@
 (key-chord-mode 1)
 (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
 
+(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
 (setq evil-emacs-state-cursor '(box))
 (setq evil-normal-state-cursor '(box))
 (setq evil-visual-state-cursor '(box))
 (setq evil-insert-state-cursor '(bar))
 (setq evil-replace-state-cursor '(hollow))
+
+;; esc quits
+(defun minibuffer-keyboard-quit ()
+  "Abort recursive edit.
+In Delete Selection mode, if the mark is active, just deactivate it;
+then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(global-set-key [escape] 'evil-exit-emacs-state)
 
 
 ;===== Helm ======
