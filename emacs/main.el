@@ -14,7 +14,7 @@
     evil-escape evil-leader evil-tabs helm helm-ag helm-projectile key-chord
     org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
     flycheck magit perspective persp-projectile yaml-mode evil-surround
-    json-mode json-reformat haskell-mode less-css-mode evil-easymotion)
+    json-mode json-reformat haskell-mode less-css-mode evil-easymotion powerline)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -213,8 +213,29 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 
 ;;==== Magit =====
-(global-set-key (kbd "C-c g") 'dired) 
+(global-set-key (kbd "C-c g") 'magit-status)
+
+;; copied from https://github.com/tarleb/evil-rebellion
+;; Start to insert mode when editing commit messages
+(evil-set-initial-state 'magit-log-edit-mode 'insert)
+(evil-set-initial-state 'git-commit-mode 'insert)
+
+(evil-add-hjkl-bindings magit-branch-manager-mode-map 'emacs
+  "K" 'magit-discard-item
+  "L" 'magit-key-mode-popup-logging)
+(evil-add-hjkl-bindings magit-status-mode-map 'emacs
+  "K" 'magit-discard-item
+  "l" 'magit-key-mode-popup-logging
+  "h" 'magit-toggle-diff-refine-hunk)
+(evil-add-hjkl-bindings magit-log-mode-map 'emacs)
+(evil-add-hjkl-bindings magit-commit-mode-map 'emacs)
+(evil-add-hjkl-bindings occur-mode 'emacs)
 
 
 ;;==== Evil Surround ====
 (global-evil-surround-mode 1)
+
+(powerline-default-theme)
+
+;; ===== Evil Easy motion ======
+(evilem-default-keybindings "SPC")
