@@ -196,8 +196,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (helm-projectile-on)
 
 ;;==== Emmet ====
-;;(define-key emmet-mode (kbd "C-l") 'emmet-expand-line)
-
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 
 ;;==== Flymake ===
 (add-hook 'after-init-hook #'global-flycheck-mode)
