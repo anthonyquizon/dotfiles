@@ -20,6 +20,9 @@ SCRIPTS_PATH=$HOME/scripts
 #Smart Sparrow plaform
 export PLATFORM=$PROJECTS/platform/core
 
+#GHC
+export CABAL_PATH=$HOME/.cabal/bin
+
 #JAVA
 export JAVA_HOME=$(/usr/libexec/java_home)
 export ANT_HOME=$VENDOR_LIB/apache-ant-1.9.4
@@ -28,7 +31,7 @@ export PACKER_HOME=$VENDOR_LIB/packer-0.7.2
 export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
 
 #PATH setup
-export PATH=$PACKER_HOME:$SCRIPTS_PATH:$VENDOR_PATH:$NPM_PACKAGES_PATH:$PATH
+export PATH=$PACKER_HOME:$SCRIPTS_PATH:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$PATH
 
 #Aliases
 alias serve='http-server -a localhost -p'
