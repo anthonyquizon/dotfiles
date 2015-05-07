@@ -113,6 +113,8 @@
 
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+(define-key evil-motion-state-map (kbd "K") nil)
+(define-key evil-normal-state-map (kbd "K") nil)
 
 (setq evil-emacs-state-cursor '(box))
 (setq evil-normal-state-cursor '(box))
@@ -187,6 +189,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
      (add-to-list 'ac-modes 'cider-repl-mode)))
 
 (evil-leader/set-key
+  "l" 'evil-lookup
   "e" 'eshell
   "p" 'mode-line-other-buffer)
 
