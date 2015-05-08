@@ -14,3 +14,4 @@ emacs-config.el
 *.swp
 __assets__
 __coding__
+output/
