@@ -82,6 +82,8 @@
 (define-key input-decode-map "\e[1;5A" [C-up])
 
 (setq make-backup-files nil)
+(setq auto-save-default nil)
+;; (setq backup-directory-alist `(("." . "~/.emacs-backup")))
 
 
 ;;override list buffer with dired mode
@@ -242,3 +244,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; ===== Evil Easy motion ======
 (evilem-default-keybindings "SPC")
+
+
+;;==== less mode =====
+
+;; (defun antho/less-css-mode-hook() 
+;;   (electric-indent-mode nil))
+
+;; (add-hook 'less-css-mode 'antho/less-css-mode-hook)
