@@ -84,6 +84,7 @@
 
 (setq make-backup-files nil)
 (setq auto-save-default nil)
+(setq create-lockfiles nil)
 ;; (setq backup-directory-alist `(("." . "~/.emacs-backup")))
 
 
