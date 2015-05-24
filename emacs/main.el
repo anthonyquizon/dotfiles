@@ -237,6 +237,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-add-hjkl-bindings magit-commit-mode-map 'emacs)
 (evil-add-hjkl-bindings occur-mode 'emacs)
 
+;; This should already exist in your custom.el file.
+(custom-set-variables
+ ;; This should also already exist, you'll want to append onto the
+ ;; long list of modes.
+ '(evil-emacs-state-modes (quote (magit-commit-mode magit-log-mode magit-stash-mode magit-status-mode))))
+
 
 ;;==== Evil Surround ====
 (global-evil-surround-mode 1)

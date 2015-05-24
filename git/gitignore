@@ -14,4 +14,6 @@ emacs-config.el
 *.swp
 __assets__
 __coding__
+__ref__
 output/
+TAGS
