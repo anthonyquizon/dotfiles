@@ -48,6 +48,7 @@
 (set-register ?e (cons 'file "~/.emacs"))
 
 ;=============
+(evil-mode 1)
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -72,11 +73,16 @@
       scroll-conservatively 9999
       scroll-step 1)
 
-(defun eshell-mode-hook-func ()
-  (setq eshell-path-env (concat "/usr/local/bin:" eshell-path-env))
-  (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH"))))
+(eval-after-load 'esh-opt
+  '(progn
+    (defun antho/eshell-mode-hook()
+      (setq eshell-path-env (concat "/usr/local/bin:" eshell-path-env))
+      
+      (define-key eshell-mode-map (kbd "C-j") 'eshell-next-input)
+      (define-key eshell-mode-map (kbd "C-k") 'eshell-previous-input)
+      (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH"))))
 
-(add-hook 'eshell-mode-hook 'eshell-mode-hook-func)
+    (add-hook 'eshell-mode-hook 'antho/eshell-mode-hook)))
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
@@ -110,7 +116,6 @@
 (load-theme 'colorsarenice-dark t)
 
 ;===== Evil Mode ======
-(evil-mode 1)
 
 (key-chord-mode 1)
 (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
@@ -119,6 +124,13 @@
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 (define-key evil-motion-state-map (kbd "K") nil)
 (define-key evil-normal-state-map (kbd "K") nil)
+
+(define-key evil-insert-state-map (kbd "C-j") nil)
+(define-key evil-motion-state-map (kbd "C-j") nil)
+(define-key evil-normal-state-map (kbd "C-j") nil)
+(define-key evil-insert-state-map (kbd "C-k") nil)
+(define-key evil-motion-state-map (kbd "C-k") nil)
+(define-key evil-normal-state-map (kbd "C-k") nil)
 
 (setq evil-emacs-state-cursor '(box))
 (setq evil-normal-state-cursor '(box))
@@ -180,17 +192,25 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key helm-read-file-map (kbd "C-j") 'helm-next-line)
 (define-key helm-read-file-map (kbd "C-k") 'helm-previous-line)
 
-; ==== Evil Leader ====
+;; ==== Evil Leader ====
 (global-evil-leader-mode)
 
-;===== Cider ====
+;;===== Cider ====
+
+(defun antho/cider-repl-mode-keybindings()
+    (define-key cider-repl-mode-map (kbd "C-j") 'cider-repl-next-input)
+    (define-key cider-repl-mode-map (kbd "C-k") 'cider-repl-previous-input))
+    
 (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
 (add-hook 'cider-mode-hook 'ac-cider-setup)
 (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'antho/cider-repl-mode-keybindings)
+
 (eval-after-load "auto-complete"
   '(progn
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
+
 
 (evil-leader/set-key
   "l" 'evil-lookup
