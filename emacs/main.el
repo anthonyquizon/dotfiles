@@ -1,4 +1,7 @@
-; ==== packages =====
+
+;; NOTE: use M-x `eval-buffer` to reload config
+
+;;==== packages =====
 (require 'package)
 (push '("marmalade" . "http://marmalade-repo.org/packages/")
     package-archives )
@@ -85,6 +88,7 @@
     (add-hook 'eshell-mode-hook 'antho/eshell-mode-hook)))
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
+(add-hook 'dired-mode-hook 'auto-revert-mode)
 
 (define-key input-decode-map "\e[1;5A" [C-up])
 
@@ -93,6 +97,9 @@
 (setq create-lockfiles nil)
 ;; (setq backup-directory-alist `(("." . "~/.emacs-backup")))
 
+(setq mac-command-modifier 'super)
+(global-set-key (kbd "s-<right>") 'move-end-of-line)
+(global-set-key (kbd "s-<left>") 'move-beginning-of-line)
 
 ;;override list buffer with dired mode
 (global-set-key (kbd "C-x C-d") 'dired) 
@@ -162,7 +169,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'helm-config)
 (helm-mode 1)
 
-(global-set-key (kbd "C-x C-e") 'helm-recentf)
+(global-set-key (kbd "C-x f") 'helm-recentf)
 
 (define-key helm-map (kbd "<tab>") nil)
 (define-key helm-map (kbd "C-l") nil)
@@ -205,6 +212,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'cider-mode-hook 'ac-cider-setup)
 (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
 (add-hook 'cider-repl-mode-hook 'antho/cider-repl-mode-keybindings)
+(setq cider-show-error-buffer 'only-in-repl)
 
 (eval-after-load "auto-complete"
   '(progn
