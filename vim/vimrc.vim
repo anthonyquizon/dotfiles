@@ -1,3 +1,4 @@
+set nu
 
 inoremap jk <Esc>
 vnoremap <Space> <Esc>

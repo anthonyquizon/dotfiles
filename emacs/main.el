@@ -1,4 +1,3 @@
-
 ;; NOTE: use M-x `eval-buffer` to reload config
 
 ;;==== packages =====
@@ -18,7 +17,7 @@
     org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
     flycheck magit perspective persp-projectile yaml-mode evil-surround
     json-mode json-reformat haskell-mode less-css-mode evil-easymotion powerline
-    purescript-mode psci)
+    purescript-mode psci multiple-cursors)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -288,3 +287,40 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;   (electric-indent-mode nil))
 
 ;; (add-hook 'less-css-mode 'antho/less-css-mode-hook)
+
+
+(defun open-finder-1 (dir file)
+  (let ((script
+		 (if file
+			 (concat
+			  "tell application \"Finder\"\n"
+			  "    set frontmost to true\n"
+			  "    make new Finder window to (POSIX file \"" dir "\")\n" 
+			  "    select file \"" file "\"\n"
+			  "end tell\n")
+		   (concat
+			"tell application \"Finder\"\n"
+			"    set frontmost to true\n"
+			"    make new Finder window to {path to desktop folder}\n"
+			"end tell\n"))))
+    (start-process "osascript-getinfo" nil "osascript" "-e" script)))
+ 
+ 
+(defun open-finder ()
+  (interactive)
+  (let ((path (buffer-file-name))
+		dir file)
+	(when path
+	  (setq dir (file-name-directory path))
+	  (setq file (file-name-nondirectory path)))
+	(open-finder-1 dir file)))
+  
+(defalias 'e 'open-finder)
+
+
+;; ==== multiple cursors ======
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
