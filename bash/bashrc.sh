@@ -15,7 +15,7 @@ export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
 export NPM_PACKAGES_PATH=$NPM_PACKAGES/bin
 
 #scripts
-SCRIPTS_PATH=$HOME/scripts
+SCRIPTS_PATH=$HOME/
 
 #Smart Sparrow plaform
 export PLATFORM=$PROJECTS/platform/core
@@ -34,7 +34,6 @@ export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
 export PATH=$PACKER_HOME:$SCRIPTS_PATH:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$PATH
 
 #Aliases
-alias serve='http-server -a localhost -p'
 alias emacs=emacs-24.5
 alias l='ls'
 alias sl='ls'
@@ -52,7 +51,7 @@ function mkcd {
 }
 
 function serve {
-    i=8001
+    i=8000
     while true; do
         http-server -a 127.0.0.1 -p $i && break;
         i=$((i+1));
@@ -66,4 +65,51 @@ function _gitcommitwithbranch {
 function psetup {
     npm install;
     bower install;
+}
+
+function start {
+    cd $PLATFORM && vagrant up && ./gradlew runServices $@
+}
+
+function stop {
+    cd $PLATFORM && ./gradlew stopServices $@
+}
+
+function clean {
+    cd $PLATFORM/testing/build && rm startInteractionProcessRunner.err
+}
+
+function build {
+    cd $PLATFORM && ./gradlew setup && ./gradlew build
+    # TODO setup database
+}
+
+function update {
+    cd $PLATFORM && git pull
+    build
+}
+
+function platform {
+    case $1 in
+        up)
+            shift 1
+            start $@
+            ;;
+        down)
+            shift 1
+            stop $@
+            clean
+            ;;
+        clean)
+            clean
+            ;;
+        update)
+            update
+            ;;
+        reset)
+            stop
+            clean
+            start
+            ;;
+    esac
 }

@@ -138,6 +138,8 @@
 (define-key evil-motion-state-map (kbd "C-k") nil)
 (define-key evil-normal-state-map (kbd "C-k") nil)
 
+(define-key evil-visual-state-map (kbd "u") nil)
+
 (setq evil-emacs-state-cursor '(box))
 (setq evil-normal-state-cursor '(box))
 (setq evil-visual-state-cursor '(box))
