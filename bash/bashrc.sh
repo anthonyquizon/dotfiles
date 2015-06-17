@@ -14,9 +14,6 @@ NPM_PACKAGES=$HOME/.npm-packages
 export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
 export NPM_PACKAGES_PATH=$NPM_PACKAGES/bin
 
-#scripts
-SCRIPTS_PATH=$HOME/
-
 #Smart Sparrow plaform
 export PLATFORM=$PROJECTS/platform/core
 
@@ -31,7 +28,7 @@ export PACKER_HOME=$VENDOR_LIB/packer-0.7.2
 export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
 
 #PATH setup
-export PATH=$PACKER_HOME:$SCRIPTS_PATH:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$PATH
+export PATH=$PACKER_HOME:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$PATH
 
 #Aliases
 alias emacs=emacs-24.5
