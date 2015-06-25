@@ -48,11 +48,16 @@ function mkcd {
 }
 
 function serve {
-    i=8000
-    while true; do
-        http-server -a 127.0.0.1 -p $i && break;
-        i=$((i+1));
-    done
+    if [ $# -eq 0 ]
+    then
+        i=8000
+        while true; do
+            http-server -a 127.0.0.1 -p $i && break;
+            i=$((i+1));
+        done
+    else
+        http-server -a 127.0.0.1 -p $1;
+    fi
 }
 
 function _gitcommitwithbranch {
