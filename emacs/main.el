@@ -17,7 +17,7 @@
     org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
     flycheck magit perspective persp-projectile yaml-mode evil-surround
     json-mode json-reformat haskell-mode less-css-mode evil-easymotion powerline
-    multiple-cursors)
+    multiple-cursors relative-line-numbers)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -360,3 +360,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; ===== haskell-mode ====
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+
+
+;; === relative line numbers
+(add-hook 'prog-mode-hook 'relative-line-numbers-mode t)
+(add-hook 'prog-mode-hook 'line-number-mode t)
+(add-hook 'prog-mode-hook 'column-number-mode t)
+
+;;; .emacs ends here
