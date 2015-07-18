@@ -17,7 +17,7 @@
     org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
     flycheck magit perspective persp-projectile yaml-mode evil-surround
     json-mode json-reformat haskell-mode less-css-mode evil-easymotion powerline
-    purescript-mode psci multiple-cursors)
+    multiple-cursors)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -220,10 +220,23 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
 
+(defun antho/search-keybinding()
+  (interactive)
+  ;;TODO check if visual mode
+  (evil-ex (concat "%s/" (thing-at-point 'word) "/")))
+
+(defun antho/search-keybinding-empty()
+  (interactive)
+  ;;TODO check if visual mode
+  (evil-ex (concat "%s/")))
+
 
 (evil-leader/set-key
   "l" 'evil-lookup
   "e" 'eshell
+  "b" 'eval-buffer
+  "s" 'antho/search-keybinding
+  "S" 'antho/search-keybinding-empty
   "p" 'mode-line-other-buffer)
 
 ;;=== Projectile ====
@@ -256,6 +269,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-set-initial-state 'magit-log-edit-mode 'insert)
 (evil-set-initial-state 'git-commit-mode 'insert)
 
+
 (evil-add-hjkl-bindings magit-branch-manager-mode-map 'emacs
   "K" 'magit-discard-item
   "L" 'magit-key-mode-popup-logging)
@@ -263,9 +277,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "K" 'magit-discard-item
   "l" 'magit-key-mode-popup-logging
   "h" 'magit-toggle-diff-refine-hunk)
+(evil-add-hjkl-bindings magit-status-mode-map 'emacs)
 (evil-add-hjkl-bindings magit-log-mode-map 'emacs)
 (evil-add-hjkl-bindings magit-commit-mode-map 'emacs)
 (evil-add-hjkl-bindings occur-mode 'emacs)
+
+(eval-after-load "magit"
+  '(progn
+     (define-key evil-normal-state-map (kbd "C-w h") 'evil-window-left)
+     (define-key evil-normal-state-map (kbd "C-w j") 'evil-window-down)
+     (define-key evil-normal-state-map (kbd "C-w k") 'evil-window-up)
+     (define-key evil-normal-state-map (kbd "C-w l") 'evil-window-right)))
 
 ;; This should already exist in your custom.el file.
 (custom-set-variables
@@ -326,3 +348,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+
+
+
+;; ==== purescript ====
+(setq auto-mode-alist 
+      (append '((".*\\.purs\\'" . haskell-mode))
+              auto-mode-alist))
+
+;; ===== haskell-mode ====
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)

@@ -17,8 +17,10 @@ export NPM_PACKAGES_PATH=$NPM_PACKAGES/bin
 #Smart Sparrow plaform
 export PLATFORM=$PROJECTS/platform/core
 
-#GHC
+#CABAL
 export CABAL_PATH=$HOME/.cabal/bin
+export STACKAGE_PATH=$HOME/.local/bin
+export STACKAGE_GHC_7_84_PATH=$HOME/.stack/programs/x86_64-osx/ghc-7.8.4/bin
 
 #JAVA
 export JAVA_HOME=$(/usr/libexec/java_home)
@@ -28,7 +30,7 @@ export PACKER_HOME=$VENDOR_LIB/packer-0.7.2
 export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
 
 #PATH setup
-export PATH=$PACKER_HOME:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$PATH
+export PATH=$PACKER_HOME:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$STACKAGE_PATH:$STACKAGE_GHC_7_84_PATH:$PATH
 
 #Aliases
 alias emacs=emacs-24.5
