@@ -7,7 +7,9 @@ target_dir=~
 dotfiles=(
     bash/bashrc.sh .bashrc
     bash/bash_profile.sh .bash_profile
-    emacs/main.el .emacs
+    emacs/.emacs .emacs
+    'emacs/config/*.el' .emacs.d/config
+    'emacs/config/packages/*.el' .emacs.d/config/packages
     git/gitconfig .gitconfig
     git/gitignore .gitignore
     lein/profiles.clj .lein/profiles.clj 
@@ -17,6 +19,7 @@ dotfiles=(
     zsh/zshrc.sh .zshrc
 )
 
+mkdir -p $target_dir/.emacs.d/config/packages
 mkdir -p $backup_dir
 
 for ((i=0; i<${#dotfiles[@]}; i+=2)); do
