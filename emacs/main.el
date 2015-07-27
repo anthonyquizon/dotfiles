@@ -17,7 +17,7 @@
     org colorsarenice-theme emmet-mode helm-emmet exec-path-from-shell
     flycheck magit perspective persp-projectile yaml-mode evil-surround
     json-mode json-reformat haskell-mode less-css-mode evil-easymotion powerline
-    multiple-cursors relative-line-numbers)
+    multiple-cursors linum-relative auto-complete)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -233,6 +233,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (evil-leader/set-key
   "l" 'evil-lookup
+  "n" 'linum-relative-toggle
   "e" 'eshell
   "b" 'eval-buffer
   "s" 'antho/search-keybinding
@@ -349,9 +350,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-
-
-
 ;; ==== purescript ====
 (setq auto-mode-alist 
       (append '((".*\\.purs\\'" . haskell-mode))
@@ -363,8 +361,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 
 ;; === relative line numbers
-(add-hook 'prog-mode-hook 'relative-line-numbers-mode t)
-(add-hook 'prog-mode-hook 'line-number-mode t)
-(add-hook 'prog-mode-hook 'column-number-mode t)
+(linum-on)
+
+;; autocomplete
+(ac-config-default)
 
 ;;; .emacs ends here
