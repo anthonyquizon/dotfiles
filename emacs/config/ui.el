@@ -36,4 +36,4 @@
 ;; Open finder
 (defun open-finder()
   (interactive)
-  (shell-command-on-buffer 'open .'))
+  (shell-command-on-buffer "open ."))
