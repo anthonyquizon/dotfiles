@@ -9,4 +9,9 @@
 (evil-set-initial-state 'magit-diff-mode 'normal)
 (evil-set-initial-state 'magit-log-mode 'normal)
 
-;;TODO remap magit keys
+(evil-define-key 'normal magit-status-mode-map
+  (kbd "C-m") 'magit-stage-item
+  (kbd "u") 'magit-unstage-item
+  (kbd "o") 'magit-visit-item
+  (kbd "c") 'magit-key-mode-popup-committing)
+  
