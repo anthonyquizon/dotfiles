@@ -18,5 +18,5 @@
   (kbd "f") 'magit-fetch
   (kbd "u") 'magit-unstage-item
   (kbd "o") 'magit-visit-item
+  (kbd "d") 'magit-ediff
   (kbd "c") 'magit-key-mode-popup-committing)
-
