@@ -7,9 +7,9 @@
   "b" 'eval-buffer
   "d" 'dired
   "e" 'eshell
+  "f" 'find-file
   "g" 'magit-status
   "l" 'evil-lookup
-  "mf" 'find-file
   "n" 'linum-relative-toggle
   "o" 'mode-line-other-buffer
   "r" 'open-finder
