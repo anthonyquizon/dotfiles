@@ -14,6 +14,7 @@
   (kbd "r") 'magit-refresh
   (kbd "P") 'magit-push
   (kbd "p") 'magit-pull
+  (kbd "f") 'magit-fetch
   (kbd "u") 'magit-unstage-item
   (kbd "o") 'magit-visit-item
   (kbd "c") 'magit-key-mode-popup-committing)
