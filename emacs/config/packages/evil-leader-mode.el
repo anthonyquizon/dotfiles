@@ -9,6 +9,11 @@
   "b" 'eval-buffer
   "s" 'antho/search-keybinding
   "S" 'antho/search-keybinding-empty
-  "f" 'open-finder
+  "r" 'open-finder
   "g" 'magit-status
-  "p" 'mode-line-other-buffer)
+  "o" 'mode-line-other-buffer
+  "<SPC>f" 'helm-projectile-find-file
+  "<SPC>s" 'helm-projectile-ag
+  "<SPC>d" 'helm-projectile-find-dir
+  "<SPC>r" 'helm-projectile-recentf
+  "<SPC>p" 'helm-projectile-switch-project)
