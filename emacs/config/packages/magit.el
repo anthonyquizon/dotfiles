@@ -11,6 +11,7 @@
 (evil-define-key 'normal magit-status-mode-map
   (kbd "C-m") 'magit-stage-item
   (kbd "s") 'magit-stage-item
+  (kbd "S") 'magit-stage-all
   (kbd "r") 'magit-refresh
   (kbd "P") 'magit-push
   (kbd "p") 'magit-pull
