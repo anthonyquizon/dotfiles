@@ -8,6 +8,7 @@
   "d" 'dired
   "e" 'eshell
   "f" 'find-file
+  "b" 'switch-to-buffer
   "g" 'magit-status
   "l" 'evil-lookup
   "n" 'linum-relative-toggle
@@ -16,6 +17,8 @@
   "s" 'antho/search-keybinding
   "x" 'execute-extended-command
   "z" 'repeat
+  
+  "cj" 'cider-jack-in
   
   "<SPC>f" 'helm-projectile-find-file
   "<SPC>s" 'helm-projectile-ag
