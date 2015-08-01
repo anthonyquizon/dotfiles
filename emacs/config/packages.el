@@ -12,33 +12,35 @@
   '(ac-cider
     ac-helm
     ac-nrepl
+    auto-complete
     cider
     clojure-mode
-    evil
-    evil-escape
-    evil-leader
-    evil-tabs
-    helm
-    helm-ag
-    helm-projectile
-    key-chord
-    org
     colorsarenice-theme
     emmet-mode
-    helm-emmet
+    evil
+    evil-easymotion
+    evil-escape
+    evil-leader
+    evil-surround
+    evil-tabs
     exec-path-from-shell
     flycheck
-    magit
-    yaml-mode
-    evil-surround
+    haskell-mode
+    helm
+    helm-ag
+    helm-emmet
+    helm-projectile
+    js2-mode
     json-mode
     json-reformat
-    haskell-mode
+    key-chord
     less-css-mode
-    evil-easymotion
-    powerline
     linum-relative
-    auto-complete)
+    magit
+    org
+    powerline
+    rainbow-delimiters
+    yaml-mode)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -70,7 +72,9 @@
 (load "~/.emacs.d/config/packages/flymake-mode.el")
 (load "~/.emacs.d/config/packages/haskell-mode.el")
 (load "~/.emacs.d/config/packages/helm.el")
+(load "~/.emacs.d/config/packages/js2-mode.el")
 (load "~/.emacs.d/config/packages/magit.el")
 (load "~/.emacs.d/config/packages/powerline.el")
 (load "~/.emacs.d/config/packages/projectile.el")
+(load "~/.emacs.d/config/packages/rainbow-delimiters.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")
