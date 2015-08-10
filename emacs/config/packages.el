@@ -21,6 +21,8 @@
     evil-easymotion
     evil-escape
     evil-leader
+    smartparens
+    evil-smartparens
     evil-surround
     evil-tabs
     exec-path-from-shell
@@ -40,6 +42,7 @@
     org
     powerline
     rainbow-delimiters
+    web-mode
     yaml-mode)
   "List of packages to ensure are installed at launch")
 
@@ -63,6 +66,7 @@
 (load "~/.emacs.d/config/packages/autocomplete.el")
 (load "~/.emacs.d/config/packages/cider.el")
 (load "~/.emacs.d/config/packages/dired-mode.el")
+(load "~/.emacs.d/config/packages/web-mode.el")
 (load "~/.emacs.d/config/packages/emmet-mode.el")
 (load "~/.emacs.d/config/packages/eshell-mode.el")
 (load "~/.emacs.d/config/packages/evil-leader-mode.el")
@@ -77,4 +81,5 @@
 (load "~/.emacs.d/config/packages/powerline.el")
 (load "~/.emacs.d/config/packages/projectile.el")
 (load "~/.emacs.d/config/packages/rainbow-delimiters.el")
+(load "~/.emacs.d/config/packages/evil-smartparens.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")

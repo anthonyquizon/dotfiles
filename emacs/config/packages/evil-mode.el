@@ -43,16 +43,3 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
-
-;; Evil leader
-(global-evil-leader-mode)
-
-
-(evil-leader/set-key
-  "l" 'evil-lookup
-  "n" 'linum-relative-toggle
-  "e" 'eshell
-  "b" 'eval-buffer
-  "s" 'antho/search-keybinding
-  "S" 'antho/search-keybinding-empty
-  "p" 'mode-line-other-buffer)
