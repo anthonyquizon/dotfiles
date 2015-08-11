@@ -82,4 +82,5 @@
 (load "~/.emacs.d/config/packages/projectile.el")
 (load "~/.emacs.d/config/packages/rainbow-delimiters.el")
 (load "~/.emacs.d/config/packages/evil-smartparens.el")
+(load "~/.emacs.d/config/packages/electric-indent-mode.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")
