@@ -37,3 +37,5 @@
 (defun open-finder()
   (interactive)
   (shell-command "open ."))
+
+(set-default 'truncate-lines t)
