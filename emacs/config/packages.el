@@ -21,8 +21,8 @@
     evil-easymotion
     evil-escape
     evil-leader
-    smartparens
-    evil-smartparens
+    ;; smartparens
+    ;; evil-smartparens
     evil-surround
     evil-tabs
     exec-path-from-shell
@@ -81,5 +81,6 @@
 (load "~/.emacs.d/config/packages/powerline.el")
 (load "~/.emacs.d/config/packages/projectile.el")
 (load "~/.emacs.d/config/packages/rainbow-delimiters.el")
-(load "~/.emacs.d/config/packages/evil-smartparens.el")
+(load "~/.emacs.d/config/packages/ac-cider.el")
+;; (load "~/.emacs.d/config/packages/evil-smartparens.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")

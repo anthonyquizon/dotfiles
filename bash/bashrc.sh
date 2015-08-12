@@ -29,6 +29,15 @@ export TOMCAT_HOME=$VENDOR_LIB/apache-tomcat-7.0.56
 export PACKER_HOME=$VENDOR_LIB/packer-0.7.2
 export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
 
+#CLOJURE
+export BOOT_JVM_OPTIONS="-client 
+-XX:+TieredCompilation 
+-XX:TieredStopAtLevel=1 
+-Xmx2g 
+-XX:+UseConcMarkSweepGC 
+-XX:+CMSClassUnloadingEnabled 
+-Xverify:none"
+
 #PATH setup
 export PATH=$PACKER_HOME:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$STACKAGE_PATH:$STACKAGE_GHC_7_84_PATH:$PATH
 
