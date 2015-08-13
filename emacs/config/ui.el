@@ -39,3 +39,5 @@
   (shell-command "open ."))
 
 (set-default 'truncate-lines t)
+
+(setq auto-mode-alist (append '((".*\\.boot\\'" . clojure-mode)) auto-mode-alist))
