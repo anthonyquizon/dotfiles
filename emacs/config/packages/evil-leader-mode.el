@@ -20,6 +20,18 @@
   
   "cj" 'cider-jack-in
   
+  "wc" 'evil-window-delete
+  "ws" 'evil-window-split
+  "wv" 'evil-window-vsplit
+  "wl" 'evil-window-right
+  "wh" 'evil-window-left
+  "wk" 'evil-window-up
+  "wj" 'evil-window-down
+  "wL" 'evil-window-move-far-right
+  "wH" 'evil-window-move-far-left
+  "wK" 'evil-window-move-very-top
+  "wJ" 'evil-window-move-very-bottom
+  
   "<SPC>f" 'helm-projectile-find-file
   "<SPC>s" 'helm-projectile-ag
   "<SPC>d" 'helm-projectile-find-dir
