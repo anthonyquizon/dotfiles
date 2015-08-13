@@ -1,5 +1,3 @@
-
-
 (evil-set-initial-state 'magit-log-edit-mode 'insert)
 (evil-set-initial-state 'git-commit-mode 'insert)
 
@@ -21,3 +19,8 @@
   (kbd "o") 'magit-visit-item
   (kbd "d") 'magit-ediff
   (kbd "c") 'magit-key-mode-popup-committing)
+
+(setq magit-auto-revert-mode nil)
+(setq magit-last-seen-setup-instructions "1.4.0")
+
+;;TODO remove save prompt on status
