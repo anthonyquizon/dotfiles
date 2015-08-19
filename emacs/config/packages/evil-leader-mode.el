@@ -17,6 +17,7 @@
   "s" 'antho/search-keybinding
   "x" 'execute-extended-command
   "z" 'repeat
+  ":" 'helm-emmet
   
   "cj" 'cider-jack-in
   
