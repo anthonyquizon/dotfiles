@@ -80,6 +80,10 @@ function psetup {
     bower install;
 }
 
+function git-clean-branches {
+    git checkout master; git branch | sed -e '/master/d' -e 's/^/git branch -D /' | bash
+}
+
 function start {
     cd $PLATFORM && vagrant up && ./gradlew runServices $@
 }
