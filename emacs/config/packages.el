@@ -9,10 +9,10 @@
 (require 'cl)
 
 (defvar antho/packages
-  '(ac-cider
-    ac-helm
-    ac-nrepl
-    auto-complete
+  '(
+    ;; evil-smartparens
+    ;; smartparens
+    company
     cider
     clojure-mode
     colorsarenice-theme
@@ -21,8 +21,6 @@
     evil-easymotion
     evil-escape
     evil-leader
-    ;; smartparens
-    ;; evil-smartparens
     evil-surround
     evil-tabs
     exec-path-from-shell
@@ -43,7 +41,8 @@
     powerline
     rainbow-delimiters
     web-mode
-    yaml-mode)
+    yaml-mode
+    )
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -63,10 +62,9 @@
 (provide 'antho/packages)
 
 
-(load "~/.emacs.d/config/packages/autocomplete.el")
 (load "~/.emacs.d/config/packages/cider.el")
 (load "~/.emacs.d/config/packages/dired-mode.el")
-(load "~/.emacs.d/config/packages/web-mode.el")
+(load "~/.emacs.d/config/packages/electric-indent-mode.el")
 (load "~/.emacs.d/config/packages/emmet-mode.el")
 (load "~/.emacs.d/config/packages/eshell-mode.el")
 (load "~/.emacs.d/config/packages/evil-leader-mode.el")
@@ -81,6 +79,7 @@
 (load "~/.emacs.d/config/packages/powerline.el")
 (load "~/.emacs.d/config/packages/projectile.el")
 (load "~/.emacs.d/config/packages/rainbow-delimiters.el")
-(load "~/.emacs.d/config/packages/ac-cider.el")
-(load "~/.emacs.d/config/packages/electric-indent-mode.el")
+(load "~/.emacs.d/config/packages/web-mode.el")
+(load "~/.emacs.d/config/packages/company-mode.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")
+

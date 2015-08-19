@@ -9,8 +9,8 @@
   "f" 'find-file
   "b" 'switch-to-buffer
   "g" 'magit-status
-  "l" 'evil-lookup
   "n" 'linum-relative-toggle
+  "u" 'universal-argument
   "o" 'mode-line-other-buffer
   "r" 'open-finder
   "s" 'antho/search-keybinding
@@ -19,12 +19,17 @@
   ":" 'helm-emmet
   "k" 'kill-buffer
   
+  "ls" 'sort-lines
+  "ll" 'evil-lookup
+  
   "cj" 'cider-jack-in
   
-  "en" 'eshell
+  "E" 'eshell
+  "en" 'eshell ;;TODO make new eshell command
   "ek" 'eshell-kill-process
   "ec" 'eshell-interrupt-process
   "ed" 'eshell-send-eof-to-process
+  "eh" 'helm-eshell-history
   
   "wc" 'evil-window-delete
   "ws" 'evil-window-split
