@@ -71,62 +71,68 @@ function serve {
     fi
 }
 
-function _gitcommitwithbranch {
-    git commit -a -m "$(echo $(git branch | grep '*' | sed 's/* //')$(echo " ")$(echo $*))"
-}
 
-function psetup {
+function project-setup {
     npm install;
     bower install;
 }
 
-function git-clean-branches {
-    git checkout master; git branch | sed -e '/master/d' -e 's/^/git branch -D /' | bash
-}
-
-function start {
+function platform-start {
     cd $PLATFORM && vagrant up && ./gradlew runServices $@
 }
 
-function stop {
+function platform-stop {
     cd $PLATFORM && ./gradlew stopServices $@
 }
 
-function clean {
+function platform-clean {
     cd $PLATFORM/testing/build && rm startInteractionProcessRunner.err
 }
 
-function build {
+function platform-build {
     cd $PLATFORM && ./gradlew setup && ./gradlew build
     # TODO setup database
 }
 
-function update {
+function platform-update {
     cd $PLATFORM && git pull
-    build
+    platform-build
 }
 
 function platform {
     case $1 in
         up)
             shift 1
-            start $@
+            platform-start $@
             ;;
         down)
             shift 1
-            stop $@
-            clean
+            platform-stop $@
+            platform-clean
             ;;
         clean)
-            clean
+            platform-clean
             ;;
         update)
-            update
+            platform-update
             ;;
         reset)
-            stop
-            clean
-            start
+            platform-stop
+            platform-clean
+            platform-start
             ;;
     esac
+}
+
+
+function git-commit-with-branch {
+    git commit -a -m "$(echo $(git branch | grep '*' | sed 's/* //')$(echo " ")$(echo $*))"
+}
+
+function git-clean-branches {
+    git checkout master; git branch | sed -e '/master/d' -e 's/^/git branch -D /' | bash
+}
+
+function git-origin-branch {
+    git fetch; git checkout -b $1 origin/$1 
 }
