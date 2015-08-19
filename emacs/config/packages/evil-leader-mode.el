@@ -6,7 +6,6 @@
   "S" 'antho/search-keybinding-empty
   "b" 'eval-buffer
   "d" 'dired
-  "e" 'eshell
   "f" 'find-file
   "b" 'switch-to-buffer
   "g" 'magit-status
@@ -18,8 +17,14 @@
   "x" 'execute-extended-command
   "z" 'repeat
   ":" 'helm-emmet
+  "k" 'kill-buffer
   
   "cj" 'cider-jack-in
+  
+  "en" 'eshell
+  "ek" 'eshell-kill-process
+  "ec" 'eshell-interrupt-process
+  "ed" 'eshell-send-eof-to-process
   
   "wc" 'evil-window-delete
   "ws" 'evil-window-split
@@ -38,5 +43,6 @@
   "<SPC>d" 'helm-projectile-find-dir
   "<SPC>r" 'helm-projectile-recentf
   "<SPC>p" 'helm-projectile-switch-project
+  "<SPC>b" 'helm-buffers-list
   "<SPC>x" 'execute-extended-command
   )
