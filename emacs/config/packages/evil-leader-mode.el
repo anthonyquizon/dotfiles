@@ -3,24 +3,35 @@
 (evil-leader/set-leader "<SPC>")
 
 (evil-leader/set-key
-  "S" 'antho/search-keybinding-empty
-  "b" 'eval-buffer
   "d" 'dired
   "f" 'find-file
-  "b" 'switch-to-buffer
-  "g" 'magit-status
   "n" 'linum-relative-toggle
-  "u" 'universal-argument
+  "U" 'universal-argument
   "o" 'mode-line-other-buffer
   "r" 'open-finder
-  "s" 'antho/search-keybinding
   "x" 'execute-extended-command
   "z" 'repeat
   ":" 'helm-emmet
-  "k" 'kill-buffer
+
+  "T" 'multi-term
+  "tt" 'multi-term
+  "tn" 'multi-next
+  "tp" 'multi-prev
+  "tk" 'term-kill-subjob
+  "tc" 'term-interrupt-subjob
+  "td" 'term-send-eof
+  
+  "bb" 'switch-to-buffer
+  "be" 'eval-buffer
+  "bk" 'kill-buffer
   
   "ls" 'sort-lines
   "ll" 'evil-lookup
+  
+  "ss" 'antho/search-keybinding-empty
+  "sr" 'antho/search-keybinding
+  
+  "gg" 'magit-status
   
   "cj" 'cider-jack-in
   

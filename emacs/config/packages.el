@@ -37,6 +37,7 @@
     less-css-mode
     linum-relative
     magit
+    multi-term
     org
     powerline
     rainbow-delimiters
@@ -81,5 +82,6 @@
 (load "~/.emacs.d/config/packages/rainbow-delimiters.el")
 (load "~/.emacs.d/config/packages/web-mode.el")
 (load "~/.emacs.d/config/packages/company-mode.el")
+(load "~/.emacs.d/config/packages/term.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")
 
