@@ -63,11 +63,11 @@ function serve {
     then
         i=8000
         while true; do
-            http-server -a 127.0.0.1 -p $i && break;
+            http-server -p $i && break;
             i=$((i+1));
         done
     else
-        http-server -a 127.0.0.1 -p $1;
+        http-server -p $1;
     fi
 }
 

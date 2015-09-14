@@ -5,6 +5,7 @@
 	ch = checkout
 	b = branch
 	s = status
+	f = fetch
 	cm = commit -m
 	unstage = reset HEAD --
 	ai = add -i
