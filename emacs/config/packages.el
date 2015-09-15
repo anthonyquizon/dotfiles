@@ -10,17 +10,16 @@
 
 (defvar antho/packages
   '(
-    ;; evil-smartparens
-    ;; smartparens
-    company
     cider
     clojure-mode
     colorsarenice-theme
+    company
     emmet-mode
     evil
     evil-easymotion
     evil-escape
     evil-leader
+    evil-smartparens
     evil-surround
     evil-tabs
     exec-path-from-shell
@@ -41,6 +40,8 @@
     org
     powerline
     rainbow-delimiters
+    sass-mode
+    smartparens
     web-mode
     yaml-mode
     )
@@ -83,5 +84,6 @@
 (load "~/.emacs.d/config/packages/web-mode.el")
 (load "~/.emacs.d/config/packages/company-mode.el")
 (load "~/.emacs.d/config/packages/term.el")
+(load "~/.emacs.d/config/packages/evil-smartparens.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")
 
