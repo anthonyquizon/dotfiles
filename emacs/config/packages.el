@@ -29,6 +29,7 @@
     helm-ag
     helm-emmet
     helm-projectile
+    idris-mode
     js2-mode
     json-mode
     json-reformat
@@ -39,6 +40,7 @@
     multi-term
     org
     powerline
+    purescript-mode
     rainbow-delimiters
     sass-mode
     smartparens
@@ -85,5 +87,6 @@
 (load "~/.emacs.d/config/packages/company-mode.el")
 (load "~/.emacs.d/config/packages/term.el")
 (load "~/.emacs.d/config/packages/evil-smartparens.el")
+(load "~/.emacs.d/config/packages/purescript-mode.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")
 
