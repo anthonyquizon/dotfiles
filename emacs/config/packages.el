@@ -84,4 +84,3 @@
 (load "~/.emacs.d/config/packages/company-mode.el")
 (load "~/.emacs.d/config/packages/term.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")
-
