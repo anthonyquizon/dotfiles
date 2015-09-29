@@ -30,7 +30,7 @@
   
   "ss" 'antho/search-keybinding-empty
   "sr" 'antho/search-keybinding
-  
+
   "gg" 'magit-status
   
   "cj" 'cider-jack-in

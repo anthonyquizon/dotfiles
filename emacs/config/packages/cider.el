@@ -6,7 +6,8 @@
 (add-hook 'cider-mode-hook 'ac-cider-setup)
 (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
 (add-hook 'cider-repl-mode-hook 'antho/cider-repl-mode-keybindings)
-(setq cider-show-error-buffer 'only-in-repl)
+;; (setq cider-show-error-buffer 'only-in-repl)
+(setq cider-show-error-buffer nil)
 
 (eval-after-load "auto-complete"
   '(progn
