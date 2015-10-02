@@ -89,4 +89,3 @@
 (load "~/.emacs.d/config/packages/evil-smartparens.el")
 (load "~/.emacs.d/config/packages/purescript-mode.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")
-

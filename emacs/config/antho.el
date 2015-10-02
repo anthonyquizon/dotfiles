@@ -1,0 +1,25 @@
+
+;;TODO unit test to source file quick switching -> if in unit test, quickly open up source file and vice versa
+;;get current file
+
+;; SMART SPARROW workflow
+
+;; (message (concat (split-string (buffer-file-name) "/")))
+
+
+;; lib/[path][file].js
+;; test/[path][file].spec.js
+
+;; (defun antho/source-spec-switch ()
+;;   (let (filepath buffer-file-name))
+;;   ;;
+;;     ()
+;;     ))
+  
+
+;;TODO rename:
+;; lib/**/component.js
+;; test/**/component.spec.js
+;; componentName in components.js
+;; componentName in test/test.js
+

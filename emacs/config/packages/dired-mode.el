@@ -8,6 +8,7 @@
 (defun antho/dired-mode-keybindings ()
   ;; TODO add file
   ;; TODO add folder
+  (define-key dired-mode-map (kbd "V") 'evil-visual-line)
   (define-key dired-mode-map (kbd "v") 'evil-visual-char)
   (define-key dired-mode-map (kbd "g") nil)
   (define-key dired-mode-map (kbd "G") nil)
