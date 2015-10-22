@@ -6,6 +6,16 @@
 
 ;; (message (concat (split-string (buffer-file-name) "/")))
 
+;; generate files with functions
+;; * spec
+;; * source in folder
+;; * functions for spec and source
+;; * add to components
+
+;; Emmet
+;; scene config
+;;  * components
+;;  * entities
 
 ;; lib/[path][file].js
 ;; test/[path][file].spec.js

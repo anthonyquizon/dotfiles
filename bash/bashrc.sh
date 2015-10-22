@@ -136,3 +136,7 @@ function git-clean-branches {
 function git-origin-branch {
     git fetch; git checkout -b $1 origin/$1 
 }
+
+function ipaddr {
+    ifconfig | grep 'inet.*broadcast';
+}
