@@ -23,3 +23,19 @@
   (interactive)
   ;;TODO check if visual mode
   (evil-ex (concat "%s/")))
+
+;;TODO user evil-leader
+(defun cider-figwheel-repl ()
+  (interactive)
+  (save-some-buffers)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert "(require 'figwheel-sidecar.repl-api)
+             (figwheel-sidecar.repl-api/cljs-repl)")
+    (cider-repl-return)))
+
+(defun figwheel-repl ()
+  (interactive)
+  (run-clojure "lein figwheel"))
+
+;; (add-hook 'clojure-mode-hook #'inf-clojure-minor-mode)

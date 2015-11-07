@@ -54,10 +54,11 @@
   "wK" 'evil-window-move-very-top
   "wJ" 'evil-window-move-very-bottom
   
+  "<SPC>r" 'projectile-replace
   "<SPC>f" 'helm-projectile-find-file
   "<SPC>s" 'helm-projectile-ag
   "<SPC>d" 'helm-projectile-find-dir
-  "<SPC>r" 'helm-projectile-recentf
+  "<SPC>w" 'helm-projectile-recentf
   "<SPC>p" 'helm-projectile-switch-project
   "<SPC>b" 'helm-buffers-list
   "<SPC>x" 'execute-extended-command

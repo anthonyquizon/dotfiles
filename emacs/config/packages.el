@@ -24,6 +24,8 @@
     evil-tabs
     exec-path-from-shell
     flycheck
+    flycheck-clojure
+    flycheck-pos-tip
     haskell-mode
     helm
     helm-ag
