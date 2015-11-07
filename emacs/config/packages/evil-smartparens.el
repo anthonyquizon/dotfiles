@@ -24,3 +24,5 @@
 (define-key smartparens-mode-map (kbd "C-k") 'sp-up-sexp)
 (define-key smartparens-mode-map (kbd "C-M-J") 'sp-add-to-next-sexp)
 (define-key smartparens-mode-map (kbd "C-M-K") 'sp-add-to-previous-sexp)
+
+(define-key smartparens-mode-map (kbd "C-M-v") 'sp-highlight-current-sexp)
