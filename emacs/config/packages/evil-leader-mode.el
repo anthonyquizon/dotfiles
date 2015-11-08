@@ -30,7 +30,6 @@
   "ss" 'antho/search-keybinding-empty
   "sr" 'antho/search-keybinding
 
-  "gg" 'magit-status
   
   "cj" 'cider-jack-in
   
@@ -53,20 +52,15 @@
   "wK" 'evil-window-move-very-top
   "wJ" 'evil-window-move-very-bottom
 
-  ;;TODO better mappings
-  "pr" 'projectile-replace
-  "pf" 'helm-projectile-find-file
-  "ps" 'helm-projectile-ag
-  "pd" 'helm-projectile-find-dir
-  "pw" 'helm-projectile-recentf
-  "pp" 'helm-projectile-switch-project
-  
   "<SPC>r" 'projectile-replace
+  "<SPC>m" 'helm-projectile-recentf
   "<SPC>f" 'helm-projectile-find-file
   "<SPC>p" 'helm-projectile-switch-project
   "<SPC>b" 'helm-buffers-list
   "<SPC>s" 'helm-projectile-ag
   "<SPC>d" 'helm-projectile-find-dir
+  
+  "<SPC>g" 'magit-status
   )
 
 
