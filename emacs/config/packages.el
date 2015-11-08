@@ -10,6 +10,7 @@
 
 (defvar antho/packages
   '(
+    ;; yasexpand
     cider
     clojure-mode
     colorsarenice-theme
@@ -39,6 +40,7 @@
     less-css-mode
     linum-relative
     magit
+    markdown-mode
     multi-term
     org
     powerline
@@ -48,7 +50,6 @@
     smartparens
     web-mode
     yaml-mode
-    ;; yasexpand
     )
   "List of packages to ensure are installed at launch")
 
@@ -92,5 +93,4 @@
 (load "~/.emacs.d/config/packages/evil-smartparens.el")
 (load "~/.emacs.d/config/packages/purescript-mode.el")
 ;; (load "~/.emacs.d/config/packages/yasexpand-mode.el")
-(load "~/Development/env/dotfiles/emacs/config/packages/agda-mode/agda2.el")
 ;;(load "~/.emacs.d/config/packages/linum.el")
