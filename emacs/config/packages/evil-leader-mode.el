@@ -8,7 +8,6 @@
   "n" 'linum-relative-toggle
   "U" 'universal-argument
   "o" 'mode-line-other-buffer
-  "r" 'open-finder
   "x" 'execute-extended-command
   "z" 'repeat
   ":" 'helm-emmet
@@ -52,6 +51,7 @@
   "wK" 'evil-window-move-very-top
   "wJ" 'evil-window-move-very-bottom
 
+  "<SPC>j" 'open-finder
   "<SPC>r" 'projectile-replace
   "<SPC>m" 'helm-projectile-recentf
   "<SPC>f" 'helm-projectile-find-file
