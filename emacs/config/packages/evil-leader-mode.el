@@ -61,6 +61,7 @@
   "pw" 'helm-projectile-recentf
   "pp" 'helm-projectile-switch-project
   
+  "<SPC>r" 'projectile-replace
   "<SPC>f" 'helm-projectile-find-file
   "<SPC>p" 'helm-projectile-switch-project
   "<SPC>b" 'helm-buffers-list
