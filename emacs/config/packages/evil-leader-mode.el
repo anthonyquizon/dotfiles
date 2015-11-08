@@ -54,12 +54,13 @@
   "wK" 'evil-window-move-very-top
   "wJ" 'evil-window-move-very-bottom
   
-  "<SPC>r" 'projectile-replace
-  "<SPC>f" 'helm-projectile-find-file
-  "<SPC>s" 'helm-projectile-ag
-  "<SPC>d" 'helm-projectile-find-dir
-  "<SPC>w" 'helm-projectile-recentf
-  "<SPC>p" 'helm-projectile-switch-project
-  "<SPC>b" 'helm-buffers-list
-  "<SPC>x" 'execute-extended-command
+  "pr" 'projectile-replace
+  "pf" 'helm-projectile-find-file
+  "ps" 'helm-projectile-ag
+  "pd" 'helm-projectile-find-dir
+  "pw" 'helm-projectile-recentf
+  "pp" 'helm-projectile-switch-project
+  "pb" 'helm-buffers-list
   )
+
+
