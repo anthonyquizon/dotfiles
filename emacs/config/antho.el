@@ -33,3 +33,13 @@
 ;; componentName in components.js
 ;; componentName in test/test.js
 
+
+(defun antho/search-keybinding()
+  (interactive)
+  ;;TODO check if visual mode
+  (evil-ex (concat "%s/" (thing-at-point 'word) "/")))
+
+(defun antho/search-keybinding-empty()
+  (interactive)
+  ;;TODO check if visual mode
+  (evil-ex (concat "%s/")))

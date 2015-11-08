@@ -10,7 +10,6 @@
 
 (defvar antho/packages
   '(
-    ;; yasexpand
     cider
     clojure-mode
     colorsarenice-theme
@@ -79,7 +78,9 @@
 (load "~/.emacs.d/config/packages/evil-mode.el")
 (load "~/.emacs.d/config/packages/evil-surround-mode.el")
 (load "~/.emacs.d/config/packages/exec-path-from-shell.el")
-(load "~/.emacs.d/config/packages/flymake-mode.el")
+(load "~/.emacs.d/config/packages/flycheck-mode.el")
+(load "~/.emacs.d/config/packages/flycheck-pos-tip.el")
+(load "~/.emacs.d/config/packages/flycheck-clojure.el")
 (load "~/.emacs.d/config/packages/haskell-mode.el")
 (load "~/.emacs.d/config/packages/helm.el")
 (load "~/.emacs.d/config/packages/js2-mode.el")
