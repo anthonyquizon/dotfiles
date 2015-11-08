@@ -140,3 +140,7 @@ function git-origin-branch {
 function ipaddr {
     ifconfig | grep 'inet.*broadcast';
 }
+
+function include-if-exists () {
+    [[ -f "$1" ]] && source "$1"
+}

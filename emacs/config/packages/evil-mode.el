@@ -1,3 +1,14 @@
+(defvar evil-normal-state-map)
+(defvar evil-motion-state-map)
+(defvar evil-insert-state-map)
+(defvar evil-visual-state-map)
+
+(defvar evil-emacs-state-cursor)
+(defvar evil-normal-state-cursor)
+(defvar evil-visual-state-cursor)
+(defvar evil-insert-state-cursor)
+(defvar evil-replace-state-cursor)
+
 (evil-mode 1)
 
 ;; key bindings
@@ -16,6 +27,7 @@
 (define-key evil-motion-state-map (kbd "C-k") nil)
 (define-key evil-normal-state-map (kbd "C-k") nil)
 
+(define-key evil-visual-state-map (kbd ".") 'repeat)
 (define-key evil-visual-state-map (kbd "u") nil)
 
 (setq evil-emacs-state-cursor '(box))
@@ -43,3 +55,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
+
+
