@@ -21,7 +21,6 @@
   "tc" 'term-interrupt-subjob
   "td" 'term-send-eof
   
-  "bb" 'switch-to-buffer
   "be" 'eval-buffer
   "bk" 'kill-buffer
   
@@ -53,14 +52,20 @@
   "wH" 'evil-window-move-far-left
   "wK" 'evil-window-move-very-top
   "wJ" 'evil-window-move-very-bottom
-  
+
+  ;;TODO better mappings
   "pr" 'projectile-replace
   "pf" 'helm-projectile-find-file
   "ps" 'helm-projectile-ag
   "pd" 'helm-projectile-find-dir
   "pw" 'helm-projectile-recentf
   "pp" 'helm-projectile-switch-project
-  "pb" 'helm-buffers-list
+  
+  "<SPC>f" 'helm-projectile-find-file
+  "<SPC>p" 'helm-projectile-switch-project
+  "<SPC>b" 'helm-buffers-list
+  "<SPC>s" 'helm-projectile-ag
+  "<SPC>d" 'helm-projectile-find-dir
   )
 
 
