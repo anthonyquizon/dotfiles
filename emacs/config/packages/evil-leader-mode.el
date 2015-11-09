@@ -29,8 +29,7 @@
   "ss" 'antho/search-keybinding-empty
   "sr" 'antho/search-keybinding
 
-  
-  "cj" 'cider-jack-in
+  "cj" 'cider-jack-in-clojurescript
   
   "E" 'eshell
   "en" 'eshell ;;TODO make new eshell command

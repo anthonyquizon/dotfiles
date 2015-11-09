@@ -9,8 +9,7 @@
 (require 'cl)
 
 (defvar antho/packages
-  '(
-    cider
+  '(cider
     clojure-mode
     colorsarenice-theme
     company
@@ -48,8 +47,7 @@
     sass-mode
     smartparens
     web-mode
-    yaml-mode
-    )
+    yaml-mode)
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
