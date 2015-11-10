@@ -9,18 +9,17 @@
 (require 'cl)
 
 (defvar antho/packages
-  '(cider
+  '(
+    cider
     clojure-mode
     colorsarenice-theme
     company
     emmet-mode
     evil
-    evil-easymotion
     evil-escape
     evil-leader
     evil-smartparens
     evil-surround
-    evil-tabs
     exec-path-from-shell
     flycheck
     flycheck-clojure
@@ -28,7 +27,6 @@
     haskell-mode
     helm
     helm-ag
-    helm-emmet
     helm-projectile
     idris-mode
     js2-mode
@@ -47,7 +45,9 @@
     sass-mode
     smartparens
     web-mode
-    yaml-mode)
+    helm-descbinds
+    yaml-mode
+    )
   "List of packages to ensure are installed at launch")
 
 (defun antho/packages-installed-p ()
@@ -68,28 +68,26 @@
 
 
 (load "~/.emacs.d/config/packages/cider.el")
+(load "~/.emacs.d/config/packages/company-mode.el")
 (load "~/.emacs.d/config/packages/dired-mode.el")
 (load "~/.emacs.d/config/packages/electric-indent-mode.el")
 (load "~/.emacs.d/config/packages/emmet-mode.el")
 (load "~/.emacs.d/config/packages/eshell-mode.el")
 (load "~/.emacs.d/config/packages/evil-leader-mode.el")
 (load "~/.emacs.d/config/packages/evil-mode.el")
+(load "~/.emacs.d/config/packages/evil-smartparens.el")
 (load "~/.emacs.d/config/packages/evil-surround-mode.el")
 (load "~/.emacs.d/config/packages/exec-path-from-shell.el")
+(load "~/.emacs.d/config/packages/flycheck-clojure.el")
 (load "~/.emacs.d/config/packages/flycheck-mode.el")
 (load "~/.emacs.d/config/packages/flycheck-pos-tip.el")
-(load "~/.emacs.d/config/packages/flycheck-clojure.el")
 (load "~/.emacs.d/config/packages/haskell-mode.el")
 (load "~/.emacs.d/config/packages/helm.el")
 (load "~/.emacs.d/config/packages/js2-mode.el")
 (load "~/.emacs.d/config/packages/magit.el")
 (load "~/.emacs.d/config/packages/powerline.el")
 (load "~/.emacs.d/config/packages/projectile.el")
-(load "~/.emacs.d/config/packages/rainbow-delimiters.el")
-(load "~/.emacs.d/config/packages/web-mode.el")
-(load "~/.emacs.d/config/packages/company-mode.el")
-(load "~/.emacs.d/config/packages/term.el")
-(load "~/.emacs.d/config/packages/evil-smartparens.el")
 (load "~/.emacs.d/config/packages/purescript-mode.el")
-;; (load "~/.emacs.d/config/packages/yasexpand-mode.el")
-;;(load "~/.emacs.d/config/packages/linum.el")
+(load "~/.emacs.d/config/packages/rainbow-delimiters.el")
+(load "~/.emacs.d/config/packages/term.el")
+(load "~/.emacs.d/config/packages/web-mode.el")

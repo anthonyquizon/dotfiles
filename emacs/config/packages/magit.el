@@ -1,3 +1,7 @@
+(defvar magit-auto-revert-mode)
+(defvar magit-last-seen-setup-instructions)
+(defvar magit-status-mode-map)
+
 (evil-set-initial-state 'magit-log-edit-mode 'insert)
 (evil-set-initial-state 'git-commit-mode 'insert)
 

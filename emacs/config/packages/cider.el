@@ -7,12 +7,12 @@
     (define-key cider-repl-mode-map (kbd "C-j") 'cider-repl-next-input)
     (define-key cider-repl-mode-map (kbd "C-k") 'cider-repl-previous-input))
     
-(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-(add-hook 'cider-mode-hook 'ac-cider-setup)
-(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
 (add-hook 'cider-repl-mode-hook 'antho/cider-repl-mode-keybindings)
 (setq cider-repl-tab-command #'indent-for-tab-command)
 (setq cider-repl-pop-to-buffer-on-connect nil)
+
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
 
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
@@ -23,7 +23,7 @@
 ;;TODO user evil-leader
 ;;TODO newline in nrepl with smartparens
 
-(defun cider-figwheel-repl ()
+(defun antho/cider-figwheel-repl ()
   (interactive)
   (save-some-buffers)
   (with-current-buffer (cider-current-repl-buffer)
@@ -31,9 +31,4 @@
     (insert "(require 'figwheel-sidecar.repl-api)
              (figwheel-sidecar.repl-api/cljs-repl)")
     (cider-repl-return)))
-
-(defun figwheel-repl ()
-  (interactive)
-  (run-clojure "lein figwheel"))
-
 

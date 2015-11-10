@@ -1,5 +1,6 @@
 (require 'helm-config)
 
+
 (helm-mode 1)
 
 (global-set-key (kbd "C-x f") 'helm-recentf)
@@ -31,3 +32,6 @@
 (define-key helm-read-file-map (kbd "C-z") 'helm-select-action)
 (define-key helm-read-file-map (kbd "C-j") 'helm-next-line)
 (define-key helm-read-file-map (kbd "C-k") 'helm-previous-line)
+
+;; extensions
+(helm-descbinds-mode)
