@@ -1,3 +1,5 @@
+(defvar flycheck-display-errors-function)
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 (with-eval-after-load 'flycheck

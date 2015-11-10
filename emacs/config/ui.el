@@ -43,3 +43,7 @@
 (setq auto-mode-alist (append '((".*\\.boot\\'" . clojure-mode)) auto-mode-alist))
 
 (setq redisplay-dont-pause t)
+
+(global-set-key (kbd "s-t") nil)
+
+
