@@ -37,7 +37,7 @@
 (defun antho/search-keybinding()
   (interactive)
   ;;TODO check if visual mode
-  (evil-ex (concat "%s/" (thing-at-point 'word) "/")))
+  (evil-ex (concat "%s/" (thing-at-point 'symbol) "/")))
 
 (defun antho/search-keybinding-empty()
   (interactive)

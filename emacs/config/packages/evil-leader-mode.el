@@ -5,13 +5,9 @@
 (evil-leader/set-key
   "d" 'dired
   "f" 'find-file
-  "n" 'linum-relative-toggle
-  "U" 'universal-argument
   "o" 'mode-line-other-buffer
   "x" 'execute-extended-command
-  "z" 'repeat
-  ":" 'helm-emmet
-
+  
   "T" 'multi-term
   "tt" 'multi-term
   "tn" 'multi-next
@@ -20,6 +16,14 @@
   "tc" 'term-interrupt-subjob
   "td" 'term-send-eof
   
+  "E" 'eshell
+  "en" 'eshell ;;TODO make new eshell command
+  "ek" 'eshell-kill-process
+  "ec" 'eshell-interrupt-process
+  "ed" 'eshell-send-eof-to-process
+  "eh" 'helm-eshell-history
+  
+  "bl" 'helm-buffers-list
   "be" 'eval-buffer
   "bk" 'kill-buffer
   
@@ -29,14 +33,7 @@
   "ss" 'antho/search-keybinding-empty
   "sr" 'antho/search-keybinding
 
-  "cj" 'cider-jack-in-clojurescript
-  
-  "E" 'eshell
-  "en" 'eshell ;;TODO make new eshell command
-  "ek" 'eshell-kill-process
-  "ec" 'eshell-interrupt-process
-  "ed" 'eshell-send-eof-to-process
-  "eh" 'helm-eshell-history
+  "gg" 'magit-status
   
   "wc" 'evil-window-delete
   "ws" 'evil-window-split
@@ -58,8 +55,63 @@
   "<SPC>b" 'helm-buffers-list
   "<SPC>s" 'helm-projectile-ag
   "<SPC>d" 'helm-projectile-find-dir
-  
   "<SPC>g" 'magit-status
+  
+  "<RET>" 'helm-descbinds
   )
 
+;;TODO remove duplication with modes
+
+;;emacs-lisp-mode
+(evil-leader/set-key-for-mode 'emacs-lisp-mode
+  "," 'eval-last-sexp
+  "." 'eval-defun
+  "b," 'eval-buffer
+  "b." 'eval-buffer
+  )
+
+;;lisp-mode
+(evil-leader/set-key-for-mode 'lisp-mode
+  "," 'eval-last-sexp
+  "." 'eval-defun
+  "b," 'eval-buffer
+  "b." 'eval-buffer
+  )
+
+;; clojure
+(evil-leader/set-key-for-mode 'clojure-mode
+  "," 'cider-eval-last-sexp
+  "." 'cider-eval-defun-at-point
+  "b." 'cider-eval-file
+  "b," 'cider-eval-file
+  "cq" 'cider-quit
+  "cr" 'cider-refresh
+  "cR" 'cider-restart
+  "cj" 'cider-switch-to-relevant-repl-buffer
+  "cJ" 'cider-jack-in-clojurescript
+  "ct" 'cider-test-run-test
+  "cf" 'antho/cider-figwheel-repl
+ )
+
+(evil-leader/set-key-for-mode 'clojurescript-mode
+  "," 'cider-eval-last-sexp
+  "." 'cider-eval-defun-at-point
+  "b." 'cider-eval-file
+  "b," 'cider-eval-file
+  "cq" 'cider-quit
+  "cr" 'cider-refresh
+  "cR" 'cider-restart
+  "cj" 'cider-switch-to-relevant-repl-buffer
+  "cJ" 'cider-jack-in-clojurescript
+  "ct" 'cider-test-run-test
+  "cf" 'antho/cider-figwheel-repl
+ )
+
+;; cider
+(evil-leader/set-key-for-mode 'cider-repl-mode
+  "cj" 'cider-switch-to-last-clojure-buffer
+  "cq" 'cider-quit
+  "cr" 'cider-refresh
+  "cR" 'cider-restart
+  )
 
