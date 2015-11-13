@@ -144,3 +144,7 @@ function ipaddr {
 function include-if-exists () {
     [[ -f "$1" ]] && source "$1"
 }
+
+function blender() {
+    ~/Applications/Blender.app/Contents/MacOS/blender "$@"
+}
