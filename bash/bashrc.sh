@@ -42,6 +42,7 @@ export BOOT_JVM_OPTIONS="-client
 export PATH=$PACKER_HOME:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$STACKAGE_PATH:$STACKAGE_GHC_7_84_PATH:$PATH
 
 #Aliases
+alias blender=~/Applications/Blender.app/Contents/MacOS/blender
 alias emacs=emacs-24.5
 alias l='ls'
 alias sl='ls'
@@ -143,8 +144,4 @@ function ipaddr {
 
 function include-if-exists () {
     [[ -f "$1" ]] && source "$1"
-}
-
-function blender() {
-    ~/Applications/Blender.app/Contents/MacOS/blender "$@"
 }

@@ -7,6 +7,8 @@
   "f" 'find-file
   "o" 'mode-line-other-buffer
   "x" 'execute-extended-command
+  "m" 'helm-recentf
+  
   
   "T" 'multi-term
   "tt" 'multi-term
@@ -115,4 +117,11 @@
   "cR" 'cider-restart
   )
 
+;;hy mode -- TODO consolidate with lisp mode
+(evil-leader/set-key-for-mode 'hy-mode
+  "," 'lisp-eval-last-sexp
+  "." 'lisp-eval-defun
+  "cj" 'switch-to-lisp
+  "cJ" 'inferior-lisp
+  )
 
