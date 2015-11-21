@@ -12,5 +12,4 @@
 * grunt runner
 * javascript
     * swank-js
-    * es6
 
