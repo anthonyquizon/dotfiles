@@ -7,8 +7,8 @@
   "f" 'find-file
   "o" 'mode-line-other-buffer
   "x" 'execute-extended-command
+  ";" 'eval-expression
   "m" 'helm-recentf
-  
   
   "T" 'multi-term
   "tt" 'multi-term

@@ -5,6 +5,7 @@
     * delete old branches
 * flycheck-clojure fixes
 * cider bindings and features
+* eval buffer C-j C-k
 
 
 ## work

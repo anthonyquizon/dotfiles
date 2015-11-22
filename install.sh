@@ -4,7 +4,15 @@ backup_dir=~/.dotfiles.bak
 source_dir=$(pwd)
 target_dir=~
 
+# TODO
+ignore=(README.md
+        .git
+        .gitignore
+        .DS_Store)
+
 dotfiles=(
+    .eslinrc .eslintrc
+    .jshintrc .jshintrc
     bash/bashrc.sh .bashrc
     bash/bash_profile.sh .bash_profile
     emacs/.emacs .emacs
