@@ -34,6 +34,7 @@
 ;; componentName in test/test.js
 
 
+;; TODO interactive "r"
 (defun antho/search-keybinding()
   (interactive)
   ;;TODO check if visual mode
