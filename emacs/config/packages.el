@@ -20,7 +20,6 @@
     evil-leader
     evil-smartparens
     evil-surround
-    evil-easymotion
     hy-mode
     exec-path-from-shell
     flycheck
