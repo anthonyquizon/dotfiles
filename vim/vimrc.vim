@@ -72,8 +72,9 @@ function! s:unite_my_settings()
 	nmap <silent> <buffer> <C-l> <CR>
 	nmap <silent> <buffer> <C-h> <Plug>(unite_delete_backward_path)
 
-	imap <silent> <buffer> <Esc> <Plug>(unite_exit)
-	nmap <silent> <buffer> <Esc> <Plug>(unite_exit)
+	imap <silent> <buffer> <Esc><Esc> <Plug>(unite_insert_leave) :q<cr>
+	nmap <silent> <buffer> <Esc><Esc> <Plug>(unite_all_exit)
+
 	call unite#filters#matcher_default#use(['matcher_fuzzy'])
 	call unite#filters#sorter_default#use(['sorter_rank'])
 	call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '(\.meta$|\.tmp)')
