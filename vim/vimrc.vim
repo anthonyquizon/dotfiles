@@ -1,7 +1,18 @@
+" TODO separate into files
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug '29decibel/codeschool-vim-theme'
+Plug 'Shougo/unite.vim'
+call plug#end()
+
+if has("gui_running")
+    colorscheme codeschool
+endif
+
 set nu
 
 inoremap jk <Esc>
-vnoremap <Space> <Esc>
+let mapleader = "\<Space>"
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -22,8 +33,6 @@ vnoremap <right> <nop>
 vmap < <gv
 vmap > >gv
 
-"Set current buffer to directory
-nnoremap ,cd :cd %:p:h<CR>
 
 "tabs
 nnoremap tc :tabc<CR>
@@ -39,8 +48,14 @@ inoremap <C-S-tab> <Esc>:tabprevious<CR>i
 inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
 
-nnoremap <Leader>T :set softtabstop=4<CR>
-nnoremap <Leader>t :set softtabstop=2<CR>
+" ==== LEADER ====
 
-nnoremap <Leader>e :setlocal spell spelllang=en_us<CR>
-nnoremap <Leader>E :set nospell<CR>
+"Set current buffer to directory
+nnoremap <leader>vd :cd %:p:h<CR>
+
+" Apply file
+nnoremap <leader>vr :so %<CR>
+
+nnoremap <Leader>f :Unite -start-insert file<CR>
+nnoremap <Leader>d :Unite -start-insert directory<CR>
+

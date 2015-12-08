@@ -24,6 +24,7 @@ dotfiles=(
     node/npmrc.sh .npmrc
     python/pythonrc .pythonrc
     vim/vimrc.vim .vimrc
+    vim/vimrc.vim .config/nvim/init.vim
     zsh/zshrc.sh .zshrc
 )
 

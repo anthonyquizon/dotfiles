@@ -1,9 +1,25 @@
 #!/usr/bin/env hy
 
-(import plumbum)
 (import os)
 
-;; TODO remove all files from HOME dir that matches the files in the dotfile folder
-;; TODO sys everything in dotfiles folder to HOME dir
+(def HOME (get os.environ "HOME"))
+(def items (os.listdir "./dotfiles"))
 
+(defn clean [f]
+  (let [path (+ HOME "/" f)] 
+   (if (os.path.lexists dest-dir)
+     (do
+      (print "removing: " path)
+      (os.remove path)))))
+
+(defn syslink[]
+  ;;clean
+  ;;syslink
+  )
+
+(defn install[]
+  (for )
+  )
+
+;; for each find if exists in HOME
 
