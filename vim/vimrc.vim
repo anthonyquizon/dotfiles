@@ -10,6 +10,7 @@ if has("gui_running")
 endif
 
 set nu
+set nowrap
 
 inoremap jk <Esc>
 let mapleader = "\<Space>"
@@ -58,4 +59,23 @@ nnoremap <leader>vr :so %<CR>
 
 nnoremap <Leader>f :Unite -start-insert file<CR>
 nnoremap <Leader>d :Unite -start-insert directory<CR>
+
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+	imap <silent> <buffer> <C-k> <C-p>
+	imap <silent> <buffer> <C-j> <C-n>
+	nmap <silent> <buffer> <C-k> k
+	nmap <silent> <buffer> <C-j> j
+
+	imap <silent> <buffer> <C-l> <CR>
+	imap <silent> <buffer> <C-h> <Plug>(unite_delete_backward_path)
+	nmap <silent> <buffer> <C-l> <CR>
+	nmap <silent> <buffer> <C-h> <Plug>(unite_delete_backward_path)
+
+	imap <silent> <buffer> <Esc> <Plug>(unite_exit)
+	nmap <silent> <buffer> <Esc> <Plug>(unite_exit)
+	call unite#filters#matcher_default#use(['matcher_fuzzy'])
+	call unite#filters#sorter_default#use(['sorter_rank'])
+	call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '(\.meta$|\.tmp)')
+endfunction
 
