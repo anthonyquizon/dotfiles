@@ -61,7 +61,8 @@ nnoremap <leader>vr :so %<CR>
 
 nnoremap <Leader>f :Unite -start-insert file<CR>
 nnoremap <leader>d :Unite -start-insert directory<CR>
-nnoremap <leader>m :Unite -buffer-name=mru -start-insert file_mru<cr>
+nnoremap <leader>m :Unite -buffer-name=mru -start-insert file_mru<CR>
+nnoremap <leader>l :Unite -start-insert<CR>
 
 
 autocmd FileType unite call s:unite_my_settings()
