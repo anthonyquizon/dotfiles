@@ -3,6 +3,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug '29decibel/codeschool-vim-theme'
 Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
 call plug#end()
 
 if has("gui_running")
@@ -13,6 +14,7 @@ set nu
 set nowrap
 
 inoremap jk <Esc>
+
 let mapleader = "\<Space>"
 
 nnoremap <up> <nop>
@@ -58,7 +60,9 @@ nnoremap <leader>vd :cd %:p:h<CR>
 nnoremap <leader>vr :so %<CR>
 
 nnoremap <Leader>f :Unite -start-insert file<CR>
-nnoremap <Leader>d :Unite -start-insert directory<CR>
+nnoremap <leader>d :Unite -start-insert directory<CR>
+nnoremap <leader>m :Unite -buffer-name=mru -start-insert file_mru<cr>
+
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
