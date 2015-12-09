@@ -40,12 +40,14 @@ export BOOT_JVM_OPTIONS="-client
 
 #PATH setup
 export PATH=$PACKER_HOME:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$STACKAGE_PATH:$STACKAGE_GHC_7_84_PATH:$PATH
+export EDITOR=nvim
 
 #Aliases
 alias blender=~/Applications/Blender.app/Contents/MacOS/blender
 alias emacs=emacs-24.5
 alias l='ls'
 alias sl='ls'
+alias vim=nvim
 
 alias gcm=_gitcommitwithbranch
 alias gpo='git push origin '
