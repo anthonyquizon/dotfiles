@@ -2,8 +2,12 @@
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug '29decibel/codeschool-vim-theme'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/neomru.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdcommenter'
+"Plug 'Shougo/unite.vim'
+"Plug 'Shougo/neomru.vim'
+"Plug 'Shougo/vimproc.vim'
+"Plug 'dbakker/vim-projectroot'
 call plug#end()
 
 if has("gui_running")
@@ -59,29 +63,39 @@ nnoremap <leader>vd :cd %:p:h<CR>
 " Apply file
 nnoremap <leader>vr :so %<CR>
 
-nnoremap <Leader>f :Unite -start-insert file<CR>
-nnoremap <leader>d :Unite -start-insert directory<CR>
-nnoremap <leader>m :Unite -buffer-name=mru -start-insert file_mru<CR>
-nnoremap <leader>l :Unite -start-insert<CR>
+noremap … :call NERDComment(1, 'toggle')<CR>
 
 
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
-	imap <silent> <buffer> <C-k> <C-p>
-	imap <silent> <buffer> <C-j> <C-n>
-	nmap <silent> <buffer> <C-k> k
-	nmap <silent> <buffer> <C-j> j
+"nnoremap <Leader>f :Unite -start-insert file<CR>
+"nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
+"nnoremap <leader>d :Unite -start-insert directory<CR>
+"nnoremap <leader>m :Unite -buffer-name=mru -start-insert file_mru<CR>
+"nnoremap <leader>l :Unite -start-insert<CR>
 
-	imap <silent> <buffer> <C-l> <CR>
-	imap <silent> <buffer> <C-h> <Plug>(unite_delete_backward_path)
-	nmap <silent> <buffer> <C-l> <CR>
-	nmap <silent> <buffer> <C-h> <Plug>(unite_delete_backward_path)
+"function! Unite_project_file()
+  "execute ':Unite  -buffer-name=files -start-insert buffer file_rec/async:'.ProjectRootGuess().'/'
+"endfunction
 
-	imap <silent> <buffer> <Esc><Esc> <Plug>(unite_insert_leave) :q<cr>
-	nmap <silent> <buffer> <Esc><Esc> <Plug>(unite_all_exit)
+"nnoremap <leader><leader>f :call Unite_project_file()<cr>
 
-	call unite#filters#matcher_default#use(['matcher_fuzzy'])
-	call unite#filters#sorter_default#use(['sorter_rank'])
-	call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '(\.meta$|\.tmp)')
-endfunction
+
+"autocmd FileType unite call s:unite_my_settings()
+"function! s:unite_my_settings()
+	"imap <silent> <buffer> <C-k> <C-p>
+	"imap <silent> <buffer> <C-j> <C-n>
+	"nmap <silent> <buffer> <C-k> k
+	"nmap <silent> <buffer> <C-j> j
+
+	"imap <silent> <buffer> <C-l> <CR>
+	"imap <silent> <buffer> <C-h> <Plug>(unite_delete_backward_path)
+	"nmap <silent> <buffer> <C-l> <CR>
+	"nmap <silent> <buffer> <C-h> <Plug>(unite_delete_backward_path)
+
+	"imap <silent> <buffer> <Esc><Esc> <Plug>(unite_insert_leave) :q<cr>
+	"nmap <silent> <buffer> <Esc><Esc> <Plug>(unite_all_exit)
+
+	"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+	"call unite#filters#sorter_default#use(['sorter_rank'])
+	"call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '(\.meta$|\.tmp)')
+"endfunction
 
