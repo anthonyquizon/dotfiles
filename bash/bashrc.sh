@@ -147,3 +147,5 @@ function ipaddr {
 function include-if-exists () {
     [[ -f "$1" ]] && source "$1"
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -2,12 +2,10 @@
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug '29decibel/codeschool-vim-theme'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'Shougo/unite.vim'
-"Plug 'Shougo/neomru.vim'
-"Plug 'Shougo/vimproc.vim'
-"Plug 'dbakker/vim-projectroot'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 if has("gui_running")
@@ -65,37 +63,16 @@ nnoremap <leader>vr :so %<CR>
 
 noremap … :call NERDComment(1, 'toggle')<CR>
 
+nnoremap <leader>o <C-^>
 
-"nnoremap <Leader>f :Unite -start-insert file<CR>
-"nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
-"nnoremap <leader>d :Unite -start-insert directory<CR>
-"nnoremap <leader>m :Unite -buffer-name=mru -start-insert file_mru<CR>
-"nnoremap <leader>l :Unite -start-insert<CR>
+"FZF
+nnoremap <leader>f :FZF<CR>
+nnoremap <leader>w :Windows<CR>
+nnoremap <leader>m :History<CR>
+nnoremap <leader>c :History:<CR>
+nnoremap <leader>hd :Helptags<CR>
+nnoremap <leader>hk :Maps<CR>
 
-"function! Unite_project_file()
-  "execute ':Unite  -buffer-name=files -start-insert buffer file_rec/async:'.ProjectRootGuess().'/'
-"endfunction
-
-"nnoremap <leader><leader>f :call Unite_project_file()<cr>
-
-
-"autocmd FileType unite call s:unite_my_settings()
-"function! s:unite_my_settings()
-	"imap <silent> <buffer> <C-k> <C-p>
-	"imap <silent> <buffer> <C-j> <C-n>
-	"nmap <silent> <buffer> <C-k> k
-	"nmap <silent> <buffer> <C-j> j
-
-	"imap <silent> <buffer> <C-l> <CR>
-	"imap <silent> <buffer> <C-h> <Plug>(unite_delete_backward_path)
-	"nmap <silent> <buffer> <C-l> <CR>
-	"nmap <silent> <buffer> <C-h> <Plug>(unite_delete_backward_path)
-
-	"imap <silent> <buffer> <Esc><Esc> <Plug>(unite_insert_leave) :q<cr>
-	"nmap <silent> <buffer> <Esc><Esc> <Plug>(unite_all_exit)
-
-	"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-	"call unite#filters#sorter_default#use(['sorter_rank'])
-	"call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '(\.meta$|\.tmp)')
-"endfunction
+" TODO FZF autocomplete
+" TODO set FZF of project root
 
