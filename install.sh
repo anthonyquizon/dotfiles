@@ -14,7 +14,8 @@ dotfiles=(
     .eslinrc .eslintrc
     .jshintrc .jshintrc
     bash/bashrc.sh .bashrc
-    bash/bash_profile.sh .bash_profile
+    bash/bashrc.sh .bash_profile
+    bash/bashrc.sh .profile
     emacs/.emacs .emacs
     'emacs/config/*.el' .emacs.d/config
     'emacs/config/packages/*.el' .emacs.d/config/packages

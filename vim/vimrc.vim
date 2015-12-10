@@ -1,4 +1,5 @@
 " TODO separate into files
+" TODO follow sym links
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug '29decibel/codeschool-vim-theme'
@@ -6,6 +7,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'benekastah/neomake'
+" TODO sexp
 call plug#end()
 
 if has("gui_running")
@@ -52,6 +56,10 @@ nnoremap <C-t>     :tabnew<CR>
 inoremap <C-S-tab> <Esc>:tabprevious<CR>i
 inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
+
+" Neomake
+autocmd! BufWritePost * Neomake
+let g:neomake_javascript_enabled_makers = ['jshint']
 
 " ==== LEADER ====
 
