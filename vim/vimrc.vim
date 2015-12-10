@@ -90,7 +90,6 @@ nnoremap <leader>hk :Maps<CR>
 
 " TODO directory by directory search for file
 function AnthoFZFFileByDirectory()
-	" 
 	" sink -> recusive until single filename
 endfunction
 
@@ -101,7 +100,7 @@ function! AnthoFZFProjectFiles()
   endif
   " TODO default properties eg height
   call fzf#run({
-  \ 'source':  'git ls-files -c -o',
+  \ 'source':  'git ls-files -c -o --exclude-standard',
   \ 'dir':     root,
   \ 'options': '-m --prompt "GitFiles> "'
   \})
@@ -115,13 +114,6 @@ nnoremap <leader><leader>f :call AnthoFZFProjectFiles()<CR>
 " TODO FZF autocomplete
 " TODO set FZF of project root 
 "
-"function! s:MyFollowSymlink()
-    "silent! let s:fname = resolve(expand('%:p'))
-    "silent! bwipeout
-    "silent! exec "edit " .s:fname
-"endfunction
+autocmd BufEnter * silent! lcd %:p:h
 
-" TODO find in project
-	" if in git -> use git project
-	
 " TODO fzf in project directory patterns
