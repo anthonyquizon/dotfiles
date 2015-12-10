@@ -64,9 +64,11 @@ nnoremap <leader>vr :so %<CR>
 noremap … :call NERDComment(1, 'toggle')<CR>
 
 nnoremap <leader>o <C-^>
+nnoremap <leader>d :Explore<CR>
 
 "FZF
 nnoremap <leader>f :FZF<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>
 nnoremap <leader>m :History<CR>
 nnoremap <leader>c :History:<CR>
@@ -74,5 +76,4 @@ nnoremap <leader>hd :Helptags<CR>
 nnoremap <leader>hk :Maps<CR>
 
 " TODO FZF autocomplete
-" TODO set FZF of project root
-
+" TODO set FZF of project root 
