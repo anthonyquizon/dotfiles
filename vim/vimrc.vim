@@ -9,6 +9,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'benekastah/neomake'
+Plug 'junegunn/rainbow_parentheses.vim'
 " TODO sexp
 call plug#end()
 
@@ -58,8 +59,8 @@ inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Neomake
-autocmd! BufWritePost * Neomake
-let g:neomake_javascript_enabled_makers = ['jshint']
+"autocmd! BufWritePost * Neomake
+"let g:neomake_javascript_enabled_makers = ['jshint']
 
 " ==== LEADER ====
 
@@ -80,8 +81,47 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>
 nnoremap <leader>m :History<CR>
 nnoremap <leader>c :History:<CR>
+
+" TODO ag in git repo
+nnoremap <leader>s :Ag<CR> 
+
 nnoremap <leader>hd :Helptags<CR>
 nnoremap <leader>hk :Maps<CR>
 
+" TODO directory by directory search for file
+function AnthoFZFFileByDirectory()
+	" 
+	" sink -> recusive until single filename
+endfunction
+
+function! AnthoFZFProjectFiles()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  if v:shell_error
+    return s:warn('Not in git repo')
+  endif
+  " TODO default properties eg height
+  call fzf#run({
+  \ 'source':  'git ls-files -c -o',
+  \ 'dir':     root,
+  \ 'options': '-m --prompt "GitFiles> "'
+  \})
+endfunction
+
+nnoremap <leader><leader>f :call AnthoFZFProjectFiles()<CR>
+
+" TODO git root directory
+" git rev-parse --show-toplevel 
+
 " TODO FZF autocomplete
 " TODO set FZF of project root 
+"
+"function! s:MyFollowSymlink()
+    "silent! let s:fname = resolve(expand('%:p'))
+    "silent! bwipeout
+    "silent! exec "edit " .s:fname
+"endfunction
+
+" TODO find in project
+	" if in git -> use git project
+	
+" TODO fzf in project directory patterns
