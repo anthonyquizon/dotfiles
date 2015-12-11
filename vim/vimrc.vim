@@ -19,6 +19,9 @@ endif
 
 set nu
 set nowrap
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 inoremap jk <Esc>
 
@@ -59,8 +62,10 @@ inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Neomake
-"autocmd! BufWritePost * Neomake
-"let g:neomake_javascript_enabled_makers = ['jshint']
+let g:neomake_javascript_enabled_makers = ['jshint']
+autocmd! BufWritePost * Neomake
+
+autocmd! BufEnter * silent! lcd %:p:h
 
 " ==== LEADER ====
 
@@ -89,23 +94,38 @@ nnoremap <leader>hd :Helptags<CR>
 nnoremap <leader>hk :Maps<CR>
 
 " TODO directory by directory search for file
-function AnthoFZFFileByDirectory()
-	" sink -> recusive until single filename
+function! AnthoFZFFilesByDirectory()
+	" if file open
+	" if directory append to root and recurse
+
+	call fzf#run({
+				\ 'source':  'ls',
+				\ 'options': '-m --prompt "Files> "',
+				\ 'sink': 'echo'
+				\})
+endfunction
+
+function! s:warn(message)
+  echohl WarningMsg
+  echom a:message
+  echohl None
+  return 0
 endfunction
 
 function! AnthoFZFProjectFiles()
-  let root = systemlist('git rev-parse --show-toplevel')[0]
-  if v:shell_error
-    return s:warn('Not in git repo')
-  endif
-  " TODO default properties eg height
-  call fzf#run({
-  \ 'source':  'git ls-files -c -o --exclude-standard',
-  \ 'dir':     root,
-  \ 'options': '-m --prompt "GitFiles> "'
-  \})
+	let root = systemlist('git rev-parse --show-toplevel')[0]
+	if v:shell_error
+		return s:warn('Not in git repo')
+	endif
+	" TODO default properties eg height
+	call fzf#run({
+				\ 'source':  'git ls-files -c -o --exclude-standard',
+				\ 'dir':     root,
+				\ 'options': '-m --prompt "GitFiles> "'
+				\})
 endfunction
 
+nnoremap <leader>f :call AnthoFZFFilesByDirectory()<CR>
 nnoremap <leader><leader>f :call AnthoFZFProjectFiles()<CR>
 
 " TODO git root directory
@@ -114,6 +134,5 @@ nnoremap <leader><leader>f :call AnthoFZFProjectFiles()<CR>
 " TODO FZF autocomplete
 " TODO set FZF of project root 
 "
-autocmd BufEnter * silent! lcd %:p:h
 
 " TODO fzf in project directory patterns
