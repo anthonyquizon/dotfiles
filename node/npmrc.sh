@@ -1,2 +1,2 @@
 prefix=~/.npm-packages
-# registry=http://npm.smartsparrow.com/
+registry=http://npm.smartsparrow.com/
