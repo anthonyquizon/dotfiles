@@ -19,8 +19,6 @@ export PLATFORM=$PROJECTS/platform/core
 
 #CABAL
 export CABAL_PATH=$HOME/.cabal/bin
-export STACKAGE_PATH=$HOME/.local/bin
-export STACKAGE_GHC_7_84_PATH=$HOME/.stack/programs/x86_64-osx/ghc-7.8.4/bin
 
 #JAVA
 export JAVA_HOME=$(/usr/libexec/java_home)
@@ -28,6 +26,8 @@ export ANT_HOME=$VENDOR_LIB/apache-ant-1.9.4
 export TOMCAT_HOME=$VENDOR_LIB/apache-tomcat-7.0.56
 export PACKER_HOME=$VENDOR_LIB/packer-0.7.2
 export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
+
+export LOCAL_PATH=$HOME/.local/bin
 
 #CLOJURE
 export BOOT_JVM_OPTIONS="-client 
@@ -39,7 +39,7 @@ export BOOT_JVM_OPTIONS="-client
 -Xverify:none"
 
 #PATH setup
-export PATH=$PACKER_HOME:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$STACKAGE_PATH:$STACKAGE_GHC_7_84_PATH:$PATH
+export PATH=$PACKER_HOME:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$LOCAL_PATH:$PATH
 export EDITOR=nvim
 
 #Aliases

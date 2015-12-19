@@ -13,7 +13,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " TODO sexp
 call plug#end()
 
-let antho_configPath = fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
+let s:configPath = fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
 
 if has("gui_running")
     colorscheme codeschool
@@ -82,6 +82,5 @@ noremap … :call NERDComment(1, 'toggle')<CR>
 nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
 
-exec "source ".g:antho_configPath."/fzf.vim"
-
+exec "source ".s:configPath."/fzf.vim"
 

@@ -4,11 +4,8 @@ backup_dir=~/.dotfiles.bak
 source_dir=$(pwd)
 target_dir=~
 
-# TODO
-ignore=(README.md
-        .git
-        .gitignore
-        .DS_Store)
+# TODO replace with haskell turtle
+# override \r to override terminal line
 
 dotfiles=(
     .eslinrc .eslintrc
@@ -24,8 +21,7 @@ dotfiles=(
     lein/profiles.clj .lein/profiles.clj 
     node/npmrc.sh .npmrc
     python/pythonrc .pythonrc
-    vim/vimrc.vim .vimrc
-    vim/vimrc.vim .config/nvim/init.vim
+    nvim/init.vim .config/nvim/init.vim
     zsh/zshrc.sh .zshrc
 )
 

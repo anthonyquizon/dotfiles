@@ -16,7 +16,7 @@
 
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
-(add-hook 'cider-repl-mode-hook #'smartparens-strict-mode)
+;; (add-hook 'cider-repl-mode-hook #'smartparens-strict-mode)
 
 (setq cider-show-error-buffer nil)
 
