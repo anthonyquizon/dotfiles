@@ -1,5 +1,5 @@
-let s:developmentDir = '~/Development'
-let s:projectDir = '~/Development/Projects'
+let s:developmentDir = '~/Development/'
+let s:projectDir = '~/Development/Projects/'
 
 function! s:warn(message)
 	echohl WarningMsg
@@ -34,21 +34,19 @@ endfunction
 
 function! ListDevelopmentDir()
 	call fzf#run({
-				\ 'source': 'find . -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname | sed "s/.\///"',
-				\ 'dir': s:developmentDir,
+				\ 'source': 'find '.s:developmentDir.' -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname',
 				\ 'down': '40%',
 				\ 'sink': 'Explore',
-				\ 'options': '-m --prompt "GitFiles> "'
+				\ 'options': '-m --prompt "Development> "'
 				\})
 endfunction
 
 function! ListProjects()
 	call fzf#run({
-				\ 'source': 'find . -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname | sed "s/.\///"',
-				\ 'dir': s:projectDir,
+				\ 'source': 'find '.s:projectDir.' -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname',
 				\ 'down': '40%',
 				\ 'sink': 'Explore',
-				\ 'options': '-m --prompt "GitFiles> "'
+				\ 'options': '-m --prompt "Projects> "'
 				\})
 endfunction
 
