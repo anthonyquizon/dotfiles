@@ -42,6 +42,9 @@ export BOOT_JVM_OPTIONS="-client
 export PATH=$PACKER_HOME:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$LOCAL_PATH:$PATH
 export EDITOR=nvim
 
+#FZF
+export FZF_DEFAULT_COMMAND="find -L * -path '*/\.*' -prune -o -type f -print -o -type l -print 2> /dev/null"
+
 #Aliases
 alias blender=~/Applications/Blender.app/Contents/MacOS/blender
 alias emacs=emacs-24.5
@@ -146,6 +149,14 @@ function ipaddr {
 
 function include-if-exists () {
     [[ -f "$1" ]] && source "$1"
+}
+
+function isGit() {
+    if [ -d .git ]; then
+        echo True;
+    else
+        git rev-parse --git-dir 2> /dev/null;
+    fi;
 }
 
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash

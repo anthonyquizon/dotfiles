@@ -13,7 +13,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " TODO sexp
 call plug#end()
 
-let s:configPath = fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
+exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
 
 if has("gui_running")
     colorscheme codeschool
@@ -82,5 +82,5 @@ noremap … :call NERDComment(1, 'toggle')<CR>
 nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
 
-exec "source ".s:configPath."/fzf.vim"
+runtime fzf.vim
 

@@ -1,3 +1,6 @@
+let s:developmentDir = '~/Development'
+let s:projectDir = '~/Development/Projects'
+
 function! s:warn(message)
 	echohl WarningMsg
 	echom a:message
@@ -5,7 +8,7 @@ function! s:warn(message)
 	return 0
 endfunction
 
-function! s:project_ag()
+function! ProjectAg()
 	let root = systemlist('git rev-parse --show-toplevel')[0]
 	if v:shell_error
 		return s:warn('Not in git repo')
@@ -14,12 +17,12 @@ function! s:project_ag()
 	exec 'Ag '.root
 endfunction
 
-function! Project_files()
+function! ProjectFiles()
 	let root = systemlist('git rev-parse --show-toplevel')[0]
 	if v:shell_error
 		return s:warn('Not in git repo')
 	endif
-	" TODO default properties eg height
+
 	call fzf#run({
 				\ 'source': 'git ls-files -c -o --exclude-standard',
 				\ 'dir': root,
@@ -29,8 +32,30 @@ function! Project_files()
 				\})
 endfunction
 
-nnoremap <leader>f :call Project_files()<CR>
-nnoremap <leader>s :call Project_ag()<CR>
+function! ListDevelopmentDir()
+	call fzf#run({
+				\ 'source': 'find . -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname | sed "s/.\///"',
+				\ 'dir': s:developmentDir,
+				\ 'down': '40%',
+				\ 'sink': 'Explore',
+				\ 'options': '-m --prompt "GitFiles> "'
+				\})
+endfunction
+
+function! ListProjects()
+	call fzf#run({
+				\ 'source': 'find . -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname | sed "s/.\///"',
+				\ 'dir': s:projectDir,
+				\ 'down': '40%',
+				\ 'sink': 'Explore',
+				\ 'options': '-m --prompt "GitFiles> "'
+				\})
+endfunction
+
+nnoremap <leader>f :call ProjectFiles()<CR>
+nnoremap <leader>s :call ProjectAg()<CR>
+nnoremap <leader>p :call ListDevelopmentDir()<CR>
+nnoremap <leader><leader>p :call ListProjects()<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>
 nnoremap <leader>m :History<CR>
