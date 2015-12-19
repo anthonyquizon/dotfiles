@@ -58,8 +58,9 @@ nnoremap <leader>p :call ListDevelopmentDir()<CR>
 nnoremap <leader><leader>p :call ListProjects()<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>
-nnoremap <leader>m :History<CR>
-nnoremap <leader>c :History:<CR>
+nnoremap <leader>mm :History<CR>
+nnoremap <leader>mc :History:<CR>
+nnoremap <leader>ms :History/<CR>
 nnoremap <leader>hd :Helptags<CR>
 nnoremap <leader>hk :Maps<CR>
 
