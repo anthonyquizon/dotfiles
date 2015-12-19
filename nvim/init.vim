@@ -1,33 +1,36 @@
 " TODO follow sym links
 call plug#begin()
 Plug 'tpope/vim-sensible'
-Plug '29decibel/codeschool-vim-theme'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'benekastah/neomake'
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'guns/vim-clojure-static'
+Plug 'flazz/vim-colorschemes'
+
 " TODO sexp
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
 
-if has("gui_running")
-    colorscheme codeschool
-endif
+" TODO better clojure syntax highlighting
+colorscheme Tomorrow-Night
 
 set nu
 set nowrap
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+" TODO set path
 
 inoremap jk <Esc>
 
 let mapleader = "\<Space>"
+
+syntax on
+filetype plugin indent on
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -77,4 +80,5 @@ runtime fzf.vim
 runtime fugitive.vim
 runtime neomake.vim
 runtime netrw.vim
+
 

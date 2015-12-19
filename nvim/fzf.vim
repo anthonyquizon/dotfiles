@@ -1,5 +1,5 @@
 let s:developmentDir = '~/Development/'
-let s:projectDir = '~/Development/Projects/'
+let s:projectDir = 'Projects/'
 
 function! s:warn(message)
 	echohl WarningMsg
@@ -32,20 +32,33 @@ function! ProjectFiles()
 				\})
 endfunction
 
+function! DirOpen(name) 
+	let dir_name = s:developmentDir . a:name
+	" TODO cd into directory
+	exec 'Explore ' . dir_name
+endfunction
+
+function! ProjectOpen(name) 
+	let project_name = s:projectDir . a:name
+	call DirOpen(project_name)
+endfunction
+
 function! ListDevelopmentDir()
 	call fzf#run({
-				\ 'source': 'find '.s:developmentDir.' -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname',
+				\ 'source': 'find . -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname | sed "s/.\///"',
+				\ 'dir': s:developmentDir,
 				\ 'down': '40%',
-				\ 'sink': 'Explore',
+				\ 'sink': function('DirOpen'),
 				\ 'options': '-m --prompt "Development> "'
 				\})
 endfunction
 
 function! ListProjects()
 	call fzf#run({
-				\ 'source': 'find '.s:projectDir.' -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname',
+				\ 'source': 'find . -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname | sed "s/.\///"',
+				\ 'dir': s:developmentDir.s:projectDir,
 				\ 'down': '40%',
-				\ 'sink': 'Explore',
+				\ 'sink': function('ProjectOpen'),
 				\ 'options': '-m --prompt "Projects> "'
 				\})
 endfunction
