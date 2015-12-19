@@ -1,4 +1,3 @@
-" TODO separate into files
 " TODO follow sym links
 call plug#begin()
 Plug 'tpope/vim-sensible'
@@ -48,7 +47,6 @@ vnoremap <right> <nop>
 vmap < <gv
 vmap > >gv
 
-
 "tabs
 nnoremap tc :tabc<CR>
 nnoremap tn :tabe<CR>
@@ -63,14 +61,6 @@ inoremap <C-S-tab> <Esc>:tabprevious<CR>i
 inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
 
-" Neomake
-let g:neomake_javascript_enabled_makers = ['jshint']
-autocmd! BufWritePost * Neomake
-
-autocmd! BufEnter * silent! lcd %:p:h
-
-" ==== LEADER ====
-
 "Set current buffer to directory
 nnoremap <leader>vd :cd %:p:h<CR>
 
@@ -83,4 +73,6 @@ nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
 
 runtime fzf.vim
+runtime fugitive.vim
+runtime neomake.vim
 
