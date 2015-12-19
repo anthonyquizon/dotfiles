@@ -9,6 +9,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'benekastah/neomake'
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'guns/vim-clojure-static'
 " TODO sexp
 call plug#end()
 
@@ -75,4 +76,5 @@ nnoremap <leader>d :Explore<CR>
 runtime fzf.vim
 runtime fugitive.vim
 runtime neomake.vim
+runtime netrw.vim
 
