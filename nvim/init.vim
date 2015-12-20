@@ -7,10 +7,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'benekastah/neomake'
-Plug 'guns/vim-clojure-static'
 Plug 'flazz/vim-colorschemes'
-
-" TODO sexp
+Plug 'guns/vim-sexp'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
@@ -23,6 +21,7 @@ set nowrap
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set nohlsearch
 " TODO set path
 
 inoremap jk <Esc>
@@ -80,5 +79,5 @@ runtime fzf.vim
 runtime fugitive.vim
 runtime neomake.vim
 runtime netrw.vim
-
+runtime clojure.vim
 

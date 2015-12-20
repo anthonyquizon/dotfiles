@@ -14,10 +14,13 @@ function! ProjectAg()
 		return s:warn('Not in git repo')
 	endif
 
-	exec 'Ag '.root
+	" TODO set dir to git root
+
+	exec 'Ag'
 endfunction
 
 function! ProjectFiles()
+	" TODO cannot do gdiff after using this command
 	let root = systemlist('git rev-parse --show-toplevel')[0]
 	if v:shell_error
 		return s:warn('Not in git repo')
@@ -35,7 +38,7 @@ endfunction
 function! DirOpen(name) 
 	let dir_name = s:developmentDir . a:name
 	" TODO cd into directory
-	exec 'Explore ' . dir_name
+	exec 'Explore ' . dir_name . '/'
 endfunction
 
 function! ProjectOpen(name) 
