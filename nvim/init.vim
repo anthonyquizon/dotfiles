@@ -23,7 +23,8 @@ set shiftwidth=4
 set softtabstop=4
 set nohlsearch
 set smartcase
-" TODO set path
+let s:npm_packages = '~/.npm-packages/bin'
+let $PATH .= ':' . s:npm_packages
 
 inoremap jk <Esc>
 
@@ -75,6 +76,8 @@ noremap … :call NERDComment(1, 'toggle')<CR>
 
 nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
+
+autocmd! BufEnter * silent! lcd %:p:h
 
 runtime fzf.vim
 runtime fugitive.vim
