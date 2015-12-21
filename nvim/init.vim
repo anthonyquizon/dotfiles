@@ -23,8 +23,6 @@ set shiftwidth=4
 set softtabstop=4
 set nohlsearch
 set smartcase
-let s:npm_packages = '~/.npm-packages/bin'
-let $PATH .= ':' . s:npm_packages
 
 inoremap jk <Esc>
 
@@ -84,4 +82,5 @@ runtime fugitive.vim
 runtime neomake.vim
 runtime netrw.vim
 runtime clojure.vim
+runtime surround.vim
 
