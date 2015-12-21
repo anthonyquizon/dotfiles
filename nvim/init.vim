@@ -9,6 +9,7 @@ Plug 'tpope/vim-surround'
 Plug 'benekastah/neomake'
 Plug 'flazz/vim-colorschemes'
 Plug 'guns/vim-sexp'
+Plug 'osyo-manga/vim-over'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
@@ -74,6 +75,7 @@ noremap … :call NERDComment(1, 'toggle')<CR>
 
 nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
+nnoremap <leader>; :OverCommandLine<CR>
 
 autocmd! BufEnter * silent! lcd %:p:h
 

@@ -1,6 +1,10 @@
 let s:developmentDir = '~/Development/'
 let s:projectDir = 'Projects/'
 
+" TODO create ignore array variable
+" TODO ignore images
+" TODO ignore __
+
 function! s:warn(message)
 	echohl WarningMsg
 	echom a:message
@@ -46,9 +50,10 @@ function! ProjectOpen(name)
 	call DirOpen(project_name)
 endfunction
 
+
 function! ListDevelopmentDir()
 	call fzf#run({
-				\ 'source': 'find . -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname | sed "s/.\///"',
+				\ 'source': 'find . -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname | sed "s/.\///"', 
 				\ 'dir': s:developmentDir,
 				\ 'down': '40%',
 				\ 'sink': function('DirOpen'),
