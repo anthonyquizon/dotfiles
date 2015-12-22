@@ -73,7 +73,7 @@ nnoremap <leader>vd :cd %:p:h<CR>
 " Apply file
 nnoremap <leader>vr :so %<CR>
 
-noremap <leader>, :call NERDComment(1, 'toggle')<CR>
+noremap … :call NERDComment(1, 'toggle')<CR>
 
 nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
