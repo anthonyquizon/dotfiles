@@ -25,6 +25,7 @@ set shiftwidth=4
 set softtabstop=4
 set nohlsearch
 set smartcase
+set cursorline
 
 inoremap jk <Esc>
 

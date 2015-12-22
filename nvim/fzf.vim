@@ -12,15 +12,42 @@ function! s:warn(message)
 	return 0
 endfunction
 
-function! ProjectAg()
-	let root = systemlist('git rev-parse --show-toplevel')[0]
-	if v:shell_error
-		return s:warn('Not in git repo')
-	endif
+function! s:function(name)
+    return function(substitute(a:name, '^s:', matchstr(expand('<sfile>'), '<SNR>\d\+_\zefunction$'), ''))
+endfunction
 
-	" TODO set dir to git root
+function! s:escape(path)
+  return escape(a:path, ' %#''"\')
+endfunction
 
-	exec 'Ag'
+
+function! s:ag_to_qf(line)
+    let parts = split(a:line, ':')
+    return {'filename': &acd ? fnamemodify(parts[0], ':p') : parts[0], 'lnum': parts[1], 'col': parts[2],
+                \ 'text': join(parts[3:], ':')}
+endfunction
+
+function! s:ag_handler(line)
+    let info = s:ag_to_qf(a:line)
+    echom info.filename
+
+    execute 'e' info.filename
+    execute info.lnum
+    execute 'normal!' info.col.'|zz'
+endfunction
+
+function! ProjectAg() "TODO populate quickfix file
+    let root = systemlist('git rev-parse --show-toplevel')[0]
+
+    if v:shell_error
+        return s:warn('Not in git repo')
+    endif
+
+    return fzf#run({
+                \ 'source':  'ag --nogroup --column "^(?=.)"', 
+                \ 'dir': root,
+                \ 'sink': s:function('s:ag_handler'),
+				\ 'options': '--multi --prompt "Search Files> "'})
 endfunction
 
 function! ProjectFiles()
@@ -39,15 +66,16 @@ function! ProjectFiles()
 				\})
 endfunction
 
-function! DirOpen(name) 
+function! s:dirOpen(name) 
+    " TODO set current working directory to project folder
 	let dir_name = s:developmentDir . a:name
-	" TODO cd into directory
-	exec 'Explore ' . dir_name . '/'
+    
+    execute 'Explore' dir_name
 endfunction
 
-function! ProjectOpen(name) 
+function! s:projectOpen(name) 
 	let project_name = s:projectDir . a:name
-	call DirOpen(project_name)
+	call s:dirOpen(project_name)
 endfunction
 
 
@@ -56,7 +84,7 @@ function! ListDevelopmentDir()
 				\ 'source': 'find . -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname | sed "s/.\///"', 
 				\ 'dir': s:developmentDir,
 				\ 'down': '40%',
-				\ 'sink': function('DirOpen'),
+				\ 'sink': s:function('s:dirOpen'), 
 				\ 'options': '-m --prompt "Development> "'
 				\})
 endfunction
@@ -66,7 +94,7 @@ function! ListProjects()
 				\ 'source': 'find . -maxdepth 4 -name .git -type d  -prune -not -path "**/__*" | xargs -n 1 dirname | sed "s/.\///"',
 				\ 'dir': s:developmentDir.s:projectDir,
 				\ 'down': '40%',
-				\ 'sink': function('ProjectOpen'),
+				\ 'sink': s:function('s:projectOpen'),
 				\ 'options': '-m --prompt "Projects> "'
 				\})
 endfunction
