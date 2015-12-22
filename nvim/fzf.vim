@@ -71,6 +71,7 @@ function! s:dirOpen(name)
 	let dir_name = s:developmentDir . a:name
     
     execute 'Explore' dir_name
+    execute 'normal!' 'j'
 endfunction
 
 function! s:projectOpen(name) 
