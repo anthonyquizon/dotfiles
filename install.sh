@@ -4,18 +4,12 @@ backup_dir=~/.dotfiles.bak
 source_dir=$(pwd)
 target_dir=~
 
-# TODO replace with haskell turtle
-# override \r to override terminal line
-
 dotfiles=(
     .eslinrc .eslintrc
     .jshintrc .jshintrc
     bash/bashrc.sh .bashrc
     bash/bashrc.sh .bash_profile
     bash/bashrc.sh .profile
-    emacs/.emacs .emacs
-    'emacs/config/*.el' .emacs.d/config
-    'emacs/config/packages/*.el' .emacs.d/config/packages
     git/gitconfig .gitconfig
     git/gitignore .gitignore
     lein/profiles.clj .lein/profiles.clj 
