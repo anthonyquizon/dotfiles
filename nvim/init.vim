@@ -50,13 +50,6 @@ vnoremap <down> <nop>
 vnoremap <left> <nop>
 vnoremap <right> <nop>
 
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
-
 "stay selected when visual mode indenting
 vmap < <gv
 vmap > >gv
@@ -73,11 +66,11 @@ nnoremap <leader>vd :cd %:p:h<CR>
 " Apply file
 nnoremap <leader>vr :so %<CR>
 
-noremap … :call NERDComment(1, 'toggle')<CR>
+noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
 nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
-nnoremap <leader>; :OverCommandLine<CR>
+nnoremap <leader>: :OverCommandLine<CR>
 
 let g:airline_powerline_fonts=1 " TODO move to airline file
 
