@@ -10,6 +10,7 @@ Plug 'benekastah/neomake'
 Plug 'flazz/vim-colorschemes'
 Plug 'guns/vim-sexp'
 Plug 'osyo-manga/vim-over'
+Plug 'bling/vim-airline'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
@@ -77,6 +78,8 @@ noremap … :call NERDComment(1, 'toggle')<CR>
 nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
 nnoremap <leader>; :OverCommandLine<CR>
+
+let g:airline_powerline_fonts=1 " TODO move to airline file
 
 autocmd! BufEnter * silent! lcd %:p:h
 
