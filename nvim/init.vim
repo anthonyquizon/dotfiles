@@ -61,18 +61,10 @@ vmap < <gv
 vmap > >gv
 
 "tabs
-nnoremap tc :tabc<CR>
-nnoremap tn :tabe<CR>
-nnoremap <C-w>> gt
-nnoremap <C-w>< gT
-
-" tab navigation like browser
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
+nnoremap <C-w>t :tabe<CR>
+nnoremap <C-w>C :tabc<CR>
+nnoremap <C-w>\> gt
+nnoremap <C-w>\< gT
 
 "Set current buffer to directory
 nnoremap <leader>vd :cd %:p:h<CR>

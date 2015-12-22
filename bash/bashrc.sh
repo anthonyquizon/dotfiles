@@ -14,18 +14,8 @@ NPM_PACKAGES=$HOME/.npm-packages
 export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
 export NPM_PACKAGES_PATH=$NPM_PACKAGES/bin
 
-#Smart Sparrow plaform
-export PLATFORM=$PROJECTS/platform/core
-
 #CABAL
 export CABAL_PATH=$HOME/.cabal/bin
-
-#JAVA
-export JAVA_HOME=$(/usr/libexec/java_home)
-export ANT_HOME=$VENDOR_LIB/apache-ant-1.9.4
-export TOMCAT_HOME=$VENDOR_LIB/apache-tomcat-7.0.56
-export PACKER_HOME=$VENDOR_LIB/packer-0.7.2
-export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
 
 export LOCAL_PATH=$HOME/.local/bin
 
@@ -82,54 +72,6 @@ function project-setup {
     npm install;
     bower install;
 }
-
-function platform-start {
-    cd $PLATFORM && vagrant up && ./gradlew runServices $@
-}
-
-function platform-stop {
-    cd $PLATFORM && ./gradlew stopServices $@
-}
-
-function platform-clean {
-    cd $PLATFORM/testing/build && rm startInteractionProcessRunner.err
-}
-
-function platform-build {
-    cd $PLATFORM && ./gradlew setup && ./gradlew build
-    # TODO setup database
-}
-
-function platform-update {
-    cd $PLATFORM && git pull
-    platform-build
-}
-
-function platform {
-    case $1 in
-        up)
-            shift 1
-            platform-start $@
-            ;;
-        down)
-            shift 1
-            platform-stop $@
-            platform-clean
-            ;;
-        clean)
-            platform-clean
-            ;;
-        update)
-            platform-update
-            ;;
-        reset)
-            platform-stop
-            platform-clean
-            platform-start
-            ;;
-    esac
-}
-
 
 function git-commit-with-branch {
     git commit -a -m "$(echo $(git branch | grep '*' | sed 's/* //')$(echo " ")$(echo $*))"
