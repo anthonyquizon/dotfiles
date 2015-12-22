@@ -19,6 +19,7 @@ colorscheme Tomorrow-Night
 
 set nu
 set nowrap
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -46,6 +47,13 @@ vnoremap <up> <nop>
 vnoremap <down> <nop>
 vnoremap <left> <nop>
 vnoremap <right> <nop>
+
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
 
 "stay selected when visual mode indenting
 vmap < <gv
