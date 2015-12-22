@@ -73,6 +73,11 @@ function project-setup {
     bower install;
 }
 
+function project-up {
+    serve &
+    grunt --force
+}
+
 function git-commit-with-branch {
     git commit -a -m "$(echo $(git branch | grep '*' | sed 's/* //')$(echo " ")$(echo $*))"
 }
