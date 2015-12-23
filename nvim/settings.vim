@@ -34,12 +34,15 @@ nnoremap <leader>vr :so %<CR>
 
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
+
 nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
 nnoremap <leader>: :OverCommandLine<CR>
 nnoremap <leader>n :set relativenumber!<CR>
+nnoremap <leader>he <Esc>:call ToggleHardMode()<CR>
 
 autocmd! BufEnter * silent! lcd %:p:h
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 au WinLeave * set norelativenumber
 au FocusLost * set norelativenumber
