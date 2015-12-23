@@ -7,7 +7,6 @@ set softtabstop=4
 set nohlsearch
 set smartcase
 set cursorline
-set relativenumber
 
 inoremap jk <Esc>
 
@@ -39,13 +38,13 @@ nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
 nnoremap <leader>: :OverCommandLine<CR>
 nnoremap <leader>n :set relativenumber!<CR>
-nnoremap <leader>he <Esc>:call ToggleHardMode()<CR>
+nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
 
 autocmd! BufEnter * silent! lcd %:p:h
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
-au WinLeave * set norelativenumber
-au FocusLost * set norelativenumber
+colorscheme Tomorrow-Night
 
-au WinEnter * set relativenumber
-au FocusGained * set relativenumber
+let g:hardtime_default_on=1 
+let g:hardtime_showmsg = 1
+let g:airline_powerline_fonts=1
+
