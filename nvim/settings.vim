@@ -22,17 +22,15 @@ vmap > >gv
 "tabs
 nnoremap <C-w>t :tabe<CR>
 nnoremap <C-w>C :tabc<CR>
-nnoremap <C-w>\> gt
-nnoremap <C-w>\< gT
+nnoremap <C-w>> gt
+nnoremap <C-w>< gT
 
 "Set current buffer to directory
 nnoremap <leader>vd :cd %:p:h<CR>
 
 " Apply file
 nnoremap <leader>vr :so %<CR>
-
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
-
 
 nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
@@ -47,4 +45,13 @@ colorscheme Tomorrow-Night
 let g:hardtime_default_on=1 
 let g:hardtime_showmsg = 1
 let g:airline_powerline_fonts=1
+
+"function! Sexp_mappings()
+    "" TODO get cursor position
+    "" ((()))
+    "" TODO find closing function
+    "nnoremap <buffer> D v%d
+"endfunction
+
+"autocmd! FileType *clojure* call Sexp_mappings()
 
