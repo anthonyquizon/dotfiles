@@ -7,6 +7,7 @@ set softtabstop=4
 set nohlsearch
 set smartcase
 set cursorline
+set noswapfile
 
 inoremap jk <Esc>
 
@@ -45,13 +46,4 @@ colorscheme Tomorrow-Night
 let g:hardtime_default_on=1 
 let g:hardtime_showmsg = 1
 let g:airline_powerline_fonts=1
-
-"function! Sexp_mappings()
-    "" TODO get cursor position
-    "" ((()))
-    "" TODO find closing function
-    "nnoremap <buffer> D v%d
-"endfunction
-
-"autocmd! FileType *clojure* call Sexp_mappings()
 

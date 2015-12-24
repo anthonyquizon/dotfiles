@@ -11,6 +11,9 @@ Plug 'flazz/vim-colorschemes'
 Plug 'osyo-manga/vim-over'
 Plug 'bling/vim-airline'
 Plug 'takac/vim-hardtime'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'tpope/vim-repeat'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
