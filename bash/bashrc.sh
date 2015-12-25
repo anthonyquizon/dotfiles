@@ -19,15 +19,6 @@ export CABAL_PATH=$HOME/.cabal/bin
 
 export LOCAL_PATH=$HOME/.local/bin
 
-#CLOJURE
-export BOOT_JVM_OPTIONS="-client 
--XX:+TieredCompilation 
--XX:TieredStopAtLevel=1 
--Xmx2g 
--XX:+UseConcMarkSweepGC 
--XX:+CMSClassUnloadingEnabled 
--Xverify:none"
-
 #PATH setup
 export PATH=$PACKER_HOME:$VENDOR_PATH:$NPM_PACKAGES_PATH:$CABAL_PATH:$LOCAL_PATH:$PATH
 export EDITOR=nvim
@@ -106,6 +97,10 @@ function isGit() {
     else
         git rev-parse --git-dir 2> /dev/null;
     fi;
+}
+
+function cljs-lein {
+    rlwrap lein trampoline $1
 }
 
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
