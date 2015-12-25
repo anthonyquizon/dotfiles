@@ -40,6 +40,7 @@ alias ga='git add'
 alias gaa='git add .'
 alias gc='git checkout'
 alias gcb='git checkout -b'
+alias cljslein='rlwrap lein'
 
 function mkcd {
     mkdir "$1" && cd "$1"
@@ -99,8 +100,5 @@ function isGit() {
     fi;
 }
 
-function cljs-lein {
-    rlwrap lein trampoline $1
-}
 
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
