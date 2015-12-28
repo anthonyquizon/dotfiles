@@ -49,8 +49,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/Users/anthonyquizon/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 
