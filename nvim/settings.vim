@@ -47,6 +47,12 @@ let g:hardtime_default_on=1
 let g:hardtime_showmsg = 1
 let g:airline_powerline_fonts=1
 
+" Rainbow parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 1, 4)<CR>

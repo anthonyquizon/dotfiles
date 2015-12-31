@@ -41,6 +41,7 @@ alias gaa='git add .'
 alias gc='git checkout'
 alias gcb='git checkout -b'
 alias cljslein='rlwrap lein'
+alias scheme='rlwrap scheme'
 
 function mkcd {
     mkdir "$1" && cd "$1"
