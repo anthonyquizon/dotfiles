@@ -1,5 +1,0 @@
-
-" Neomake
-autocmd! BufWritePost * Neomake
-
-

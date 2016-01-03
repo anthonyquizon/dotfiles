@@ -16,12 +16,10 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'justinmk/vim-sneak'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
 
 runtime settings.vim
 runtime plugin/fzf.vim
-runtime plugin/fugitive.vim
-runtime plugin/neomake.vim
-runtime plugin/netrw.vim
