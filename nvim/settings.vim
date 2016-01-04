@@ -50,6 +50,7 @@ let g:airline_powerline_fonts=1
 "autocomplete
 inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
+noremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Rainbow parens
 au VimEnter * RainbowParenthesesToggle
