@@ -15,7 +15,7 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-smooth-scroll'
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow'
 Plug 'justinmk/vim-sneak'
 Plug 'vim-scripts/AutoComplPop'
 call plug#end()

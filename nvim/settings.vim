@@ -5,6 +5,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set nohlsearch
+set ignorecase
 set smartcase
 set cursorline
 set noswapfile
@@ -53,10 +54,7 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 noremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Rainbow parens
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+let g:rainbow_active = 1
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 2)<CR>
