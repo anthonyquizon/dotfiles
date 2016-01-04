@@ -17,6 +17,7 @@ Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'vim-scripts/AutoComplPop'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')

@@ -47,6 +47,10 @@ let g:hardtime_default_on=1
 let g:hardtime_showmsg = 1
 let g:airline_powerline_fonts=1
 
+"autocomplete
+inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
+
 " Rainbow parens
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
@@ -88,3 +92,4 @@ autocmd! BufWritePost * Neomake
 "netrw
 let g:netrw_list_hide= '.git/,.DS_Store*,.*\.swp$'
 let g:netrw_localrmdir='rm -r'
+

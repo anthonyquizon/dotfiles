@@ -103,7 +103,6 @@ endfunction
 nnoremap <leader>f :call ProjectFiles()<CR>
 nnoremap <leader>s :call ProjectAg()<CR>
 nnoremap <leader>p :call ListDevelopmentDir()<CR>
-nnoremap <leader><leader>p :call ListProjects()<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>
 nnoremap <leader>m :History<CR>
@@ -111,5 +110,3 @@ nnoremap <leader>hc :History:<CR>
 nnoremap <leader>hs :History/<CR>
 nnoremap <leader>hd :Helptags<CR>
 nnoremap <leader>hk :Maps<CR>
-
-" TODO FZF autocomplete
