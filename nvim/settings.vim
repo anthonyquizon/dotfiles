@@ -21,6 +21,12 @@ filetype plugin indent on
 vmap < <gv
 vmap > >gv
 
+nnoremap <C-J> <C-N>
+nnoremap <C-K> <C-P>
+
+inoremap <C-J> <C-N>
+inoremap <C-K> <C-P>
+
 "tabs
 nnoremap <C-w>t :tabe<CR>
 nnoremap <C-w>C :tabc<CR>
@@ -49,8 +55,6 @@ let g:hardtime_showmsg = 1
 let g:airline_powerline_fonts=1
 
 "autocomplete
-inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 noremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Rainbow parens
