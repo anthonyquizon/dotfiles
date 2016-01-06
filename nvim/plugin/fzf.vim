@@ -100,6 +100,16 @@ function! ListProjects()
 				\})
 endfunction
 
+
+function! NetrwMapping()
+    nnoremap <buffer> s :call ProjectAg()<CR>
+endfunction
+
+augroup netrw_fzf
+    autocmd!
+    autocmd filetype netrw call NetrwMapping()
+augroup END
+
 nnoremap <leader>f :call ProjectFiles()<CR>
 nnoremap <leader>s :call ProjectAg()<CR>
 nnoremap <leader>p :call ListDevelopmentDir()<CR>
