@@ -46,6 +46,8 @@ nnoremap <leader>: :OverCommandLine<CR>
 nnoremap <leader>n :set relativenumber!<CR>
 nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
 
+nnoremap <leader>/ :%s/\(<c-r>=expand("<cword>")<cr>\)/
+
 autocmd! BufEnter * silent! lcd %:p:h
 
 colorscheme Tomorrow-Night
