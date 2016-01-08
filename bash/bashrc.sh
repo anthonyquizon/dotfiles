@@ -54,7 +54,7 @@ function serve {
         while true; do
             echo -en "\e[1A"
             echo -e "\e[0K\r serving on http://localhost:" $i 
-            http-server -s -p $i 2>/dev/null && break;
+            http-server --cors -s -p $i 2>/dev/null && break;
             i=$((i+1));
         done
     else
