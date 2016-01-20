@@ -26,8 +26,11 @@ export EDITOR=nvim
 #FZF
 export FZF_DEFAULT_COMMAND="find -L * -path '*/\.*' -prune -o -type f -print -o -type l -print 2> /dev/null"
 
+export MORSE_BLENDER=$HOME/Applications/Blender.app/Contents/MacOS/blender
+
 #Aliases
 alias blender=~/Applications/Blender.app/Contents/MacOS/blender
+alias finder=open
 alias emacs=emacs-24.5
 alias l='ls'
 alias sl='ls'
