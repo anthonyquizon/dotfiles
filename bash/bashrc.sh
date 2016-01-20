@@ -58,7 +58,7 @@ function serve {
             i=$((i+1));
         done
     else
-        http-server -p $1;
+        http-server --cors -s -p $1;
     fi
 }
 
