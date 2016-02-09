@@ -12,7 +12,6 @@ Plug 'osyo-manga/vim-over'
 Plug 'bling/vim-airline'
 Plug 'takac/vim-hardtime'
 Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'justinmk/vim-sneak'
@@ -23,3 +22,4 @@ exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
 
 runtime settings.vim
 runtime plugin/fzf.vim
+runtime plugin/sexp.vim
