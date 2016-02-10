@@ -10,6 +10,7 @@ dotfiles=(
     bash/bashrc.sh .bashrc
     bash/bashrc.sh .bash_profile
     bash/bashrc.sh .profile
+    bash/spr.sh .spr
     git/gitconfig .gitconfig
     git/gitignore .gitignore
     lein/profiles.clj .lein/profiles.clj 
