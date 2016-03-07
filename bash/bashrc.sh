@@ -111,3 +111,5 @@ function isGit() {
 }
 
 source $HOME/.spr
+
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash

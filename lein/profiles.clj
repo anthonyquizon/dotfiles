@@ -1,1 +1,1 @@
-{:user {:plugins [[venantius/ultra "0.4.0"]]}}
+{:user {:plugins [[cider/cider-nrepl "0.10.2"]]}}
