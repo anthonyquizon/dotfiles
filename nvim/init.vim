@@ -18,6 +18,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'vim-scripts/AutoComplPop'
 Plug 'solarnz/thrift.vim'
 Plug 'lambdatoast/elm.vim'
+Plug 'endel/actionscript.vim'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
