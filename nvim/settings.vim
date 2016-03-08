@@ -56,9 +56,6 @@ let g:hardtime_default_on=1
 let g:hardtime_showmsg = 1
 let g:airline_powerline_fonts=1
 
-" Rainbow parens
-let g:rainbow_active = 1
-
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 2)<CR>
