@@ -18,11 +18,15 @@ Plug 'justinmk/vim-sneak'
 Plug 'vim-scripts/AutoComplPop'
 Plug 'solarnz/thrift.vim'
 Plug 'lambdatoast/elm.vim'
+Plug 'endel/actionscript.vim'
 Plug 'tpope/vim-fireplace'
+Plug 'mattn/emmet-vim'
+Plug 'vim-scripts/TagHighlight'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
 
+runtime mappings.vim
 runtime settings.vim
 runtime plugin/fzf.vim
 runtime plugin/sexp.vim

@@ -2,10 +2,6 @@
 DEVELOPMENT=$HOME/Development
 PROJECTS=$DEVELOPMENT/Projects
 
-VENDOR=$DEVELOPMENT/vendor
-VENDOR_PATH=$VENDOR/bin
-VENDOR_LIB=$VENDOR/lib
-
 #python
 export PYTHONSTARTUP=~/.pythonrc
 
@@ -26,6 +22,10 @@ export EDITOR=nvim
 #FZF
 export FZF_DEFAULT_COMMAND="find -L * -path '*/\.*' -prune -o -type f -print -o -type l -print 2> /dev/null"
 
+#LEIN
+export LEIN_REPL_PORT=50001
+
+
 #Aliases
 alias blender=~/Applications/Blender.app/Contents/MacOS/blender
 alias finder=open
@@ -43,6 +43,7 @@ alias gc='git checkout'
 alias gcb='git checkout -b'
 alias cljslein='rlwrap lein'
 alias scheme='rlwrap scheme'
+alias ctags="`brew --prefix`/bin/ctags"
 
 function mkcd {
     mkdir "$1" && cd "$1"
@@ -50,13 +51,15 @@ function mkcd {
 
 # https://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server
 # http://www.hacksparrow.com/node-js-https-ssl-certificate.html
+
 function serve {
     if [ $# -eq 0 ]
     then
         i=8000
         while true; do
             echo -en "\e[1A"
-            echo -e "\e[0K\r serving on https://localhost:" $i 
+            echo -e "\e[0K\r serving on https://localhost:"$i 
+            # TODO ssh flag
             http-server --ssl --cert $HOME/.ssh/localhost/cert.pem --key $HOME/.ssh/localhost/key.pem --cors -s -p $i 2>/dev/null && break;
             i=$((i+1));
         done
