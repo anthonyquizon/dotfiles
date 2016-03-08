@@ -17,7 +17,9 @@ dotfiles=(
     node/npmrc.sh .npmrc
     python/pythonrc .pythonrc
     nvim/init.vim .config/nvim/init.vim
+    nvim/mappings.vim .ideavimrc
     zsh/zshrc.sh .zshrc
+    ctags/ctags.sh .ctags
 )
 
 mkdir -p $target_dir/.emacs.d/config/packages
