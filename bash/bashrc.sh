@@ -2,10 +2,6 @@
 DEVELOPMENT=$HOME/Development
 PROJECTS=$DEVELOPMENT/Projects
 
-VENDOR=$DEVELOPMENT/vendor
-VENDOR_PATH=$VENDOR/bin
-VENDOR_LIB=$VENDOR/lib
-
 #python
 export PYTHONSTARTUP=~/.pythonrc
 
@@ -47,6 +43,7 @@ alias gc='git checkout'
 alias gcb='git checkout -b'
 alias cljslein='rlwrap lein'
 alias scheme='rlwrap scheme'
+alias ctags="`brew --prefix`/bin/ctags"
 
 function mkcd {
     mkdir "$1" && cd "$1"

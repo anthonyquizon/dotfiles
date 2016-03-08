@@ -1,4 +1,10 @@
-export PLATFORM=~/Development/Projects/platform/core/
+export PLATFORM=~/Development/Projects/platform/
+export CORE=$PLATFORM/core
+
+VENDOR=$PLATFORM/vendor
+VENDOR_PATH=$VENDOR/bin
+VENDOR_LIB=$VENDOR/lib
+
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export ANT_HOME=$VENDOR_LIB/apache-ant-1.9.4
 export TOMCAT_HOME=$VENDOR_LIB/apache-tomcat-7.0.56
@@ -8,24 +14,24 @@ export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
 export PATH=$PATH:$PACKER_HOME
 
 function platform-start {
-    cd $PLATFORM && vagrant up && ./gradlew runServices $@
+    cd $CORE && vagrant up && ./gradlew runServices $@
 }
 
 function platform-stop {
-    cd $PLATFORM && ./gradlew stopServices $@
+    cd $CORE && ./gradlew stopServices $@
 }
 
 function platform-clean {
-    cd $PLATFORM/testing/build && rm startInteractionProcessRunner.err
+    cd $CORE/testing/build && rm startInteractionProcessRunner.err
 }
 
 function platform-build {
-    cd $PLATFORM && ./gradlew setup && ./gradlew build
+    cd $CORE && ./gradlew setup && ./gradlew build
     # TODO setup database
 }
 
 function platform-update {
-    cd $PLATFORM && git pull
+    cd $CORE && git pull
     platform-build
 }
 
