@@ -1,4 +1,3 @@
-" TODO follow sym links
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
