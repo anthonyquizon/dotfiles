@@ -1,4 +1,4 @@
-export PLATFORM=~/Development/Projects/platform/
+export PLATFORM=$PROJECTS/platform
 export CORE=$PLATFORM/core
 
 VENDOR=$PLATFORM/vendor
@@ -11,7 +11,7 @@ export TOMCAT_HOME=$VENDOR_LIB/apache-tomcat-7.0.56
 export PACKER_HOME=$VENDOR_LIB/packer-0.7.2
 export FLEX_HOME=$VENDOR_LIB/adobe-flex-sdk-4.6
 
-export PATH=$PATH:$PACKER_HOME
+export PATH=$PACKER_HOME:$VENDOR_PATH:$PATH
 
 function platform-start {
     cd $CORE && vagrant up && ./gradlew runServices $@
