@@ -47,7 +47,7 @@ function! ProjectAg() "TODO populate quickfix file
                 \ 'source':  'ag --nogroup --column "^(?=.)"', 
                 \ 'dir': root,
                 \ 'sink': s:function('s:ag_handler'),
-				\ 'options': '--multi --prompt "Search Files> "'})
+				\ 'options': '--delimiter : --nth 4.. --multi --prompt "Search Files> "'})
 endfunction
 
 function! ProjectFiles()
