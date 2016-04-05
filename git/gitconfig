@@ -17,7 +17,7 @@
 	cad = add -A
 	aA = add -A
 	mr = merge
-	pups = push --set-upstream origin
+	push-up = push --set-upstream origin
 [push]
 	default = simple
 [core]
