@@ -1,4 +1,4 @@
-" Apply file
+
 nnoremap <leader>vr :so %<CR>
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
@@ -9,6 +9,8 @@ nnoremap <leader>n :set relativenumber!<CR>
 nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
 
 nnoremap <leader>/ :%s/\(<c-r>=expand("<cword>")<cr>\)/
+inoremap <expr> <CR> pumvisible() ? "\<C-e>" : "<CR>"
+inoremap <expr> <NUL> pumvisible() ? "\<C-y>" : ""
 
 autocmd! BufEnter * silent! lcd %:p:h
 
@@ -17,8 +19,6 @@ colorscheme Tomorrow-Night
 let g:hardtime_default_on=1 
 let g:hardtime_showmsg = 1
 let g:airline_powerline_fonts=1
-
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 2)<CR>
@@ -61,3 +61,5 @@ augroup BgHighlight
     autocmd WinEnter * set cul
     autocmd WinLeave * set nocul
 augroup END
+
+
