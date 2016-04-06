@@ -56,3 +56,8 @@ autocmd! BufWritePost * Neomake
 let g:netrw_list_hide= '.git/,.DS_Store*,.*\.swp$'
 let g:netrw_localrmdir='rm -r'
 
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
+augroup END
