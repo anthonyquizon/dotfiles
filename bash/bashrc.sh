@@ -6,6 +6,7 @@ PROJECTS=$DEVELOPMENT/Projects
 export PYTHONSTARTUP=~/.pythonrc
 
 #NPM
+NODE_PATH='/usr/local/lib/jsctags:${NODE_PATH}'
 NPM_PACKAGES=$HOME/.npm-packages
 export NODE_PATH=$NPM_PACKAGES/lib/node_modules:$NODE_PATH
 export NPM_PACKAGES_PATH=$NPM_PACKAGES/bin
@@ -110,3 +111,4 @@ function isGit() {
 source $HOME/.spr
 
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH

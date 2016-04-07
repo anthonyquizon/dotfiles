@@ -22,6 +22,8 @@ Plug 'mattn/emmet-vim'
 Plug 'snoe/nvim-parinfer.js'
 Plug 'neovim/node-host'
 Plug 'guns/vim-sexp'
+Plug 'jeroenbourgois/vim-actionscript'
+"Plug 'ternjs/tern_for_vim'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
