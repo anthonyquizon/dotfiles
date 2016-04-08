@@ -9,7 +9,7 @@ nnoremap <leader>n :set relativenumber!<CR>
 nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
 
 nnoremap <leader>/ :%s/\(<c-r>=expand("<cword>")<cr>\)/
-inoremap <expr> <^[> pumvisible() ? "\<C-e>" : "<CR>"
+inoremap <expr> <C-Space> pumvisible() ? "\<C-e>" : "<CR>"
 inoremap <expr> <NUL> pumvisible() ? "\<C-y>" : ""
 
 autocmd! BufEnter * silent! lcd %:p:h
