@@ -21,6 +21,7 @@ Plug 'eagletmt/ghcmod-vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'neovimhaskell/haskell-vim'
 Plug 'vim-scripts/AutoComplPop'
+Plug 'derekelkins/agda-vim'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
