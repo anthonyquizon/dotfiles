@@ -1,4 +1,3 @@
-
 autocmd! BufEnter * silent! lcd %:p:h
 
 colorscheme Tomorrow-Night
