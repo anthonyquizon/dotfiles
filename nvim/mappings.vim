@@ -1,15 +1,3 @@
-set nu
-set nowrap
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set nohlsearch
-set ignorecase
-set smartcase
-set cursorline
-set noswapfile
-
 inoremap jk <Esc>
 
 let mapleader = "\<Space>"

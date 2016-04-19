@@ -1,5 +1,17 @@
 autocmd! BufEnter * silent! lcd %:p:h
 
+set nu
+set nowrap
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set nohlsearch
+set ignorecase
+set smartcase
+set cursorline
+set noswapfile
+
 colorscheme Tomorrow-Night
 
 let g:hardtime_default_on=1 
@@ -21,3 +33,4 @@ augroup END
 let g:NERDCustomDelimiters = {
             \ 'agda': { 'left': '--', 'leftAlt': '{-', 'rightAlt': '-}' },
             \ }
+
