@@ -1,43 +1,14 @@
 #! /bin/bash
 
-backup_dir=~/.dotfiles.bak
-source_dir=$(pwd)
+source_dir=home
 target_dir=~
 
-dotfiles=(
-    .eslinrc .eslintrc
-    .jshintrc .jshintrc
-    bash/bashrc.sh .bashrc
-    bash/bashrc.sh .bash_profile
-    bash/bashrc.sh .profile
-    bash/spr.sh .spr
-    git/gitconfig .gitconfig
-    git/gitignore .gitignore
-    lein/profiles.clj .lein/profiles.clj 
-    node/npmrc.sh .npmrc
-    python/pythonrc .pythonrc
-    nvim/init.vim .config/nvim/init.vim
-    nvim/mappings.vim .ideavimrc
-    zsh/zshrc.sh .zshrc
-    ctags/ctags.sh .ctags
-)
+find $source_dir -type f | while read file; do 
+    source_file=${file/$source_dir\//$(pwd)\/$source_dir/};
+    target_file=${file/$source_dir\//$target_dir/};
 
-mkdir -p $target_dir/.emacs.d/config/packages
-mkdir -p $backup_dir
-
-for ((i=0; i<${#dotfiles[@]}; i+=2)); do
-    source=${dotfiles[i]}
-    target=${dotfiles[i+1]}
-    dir=$(dirname $target)
-    
-    echo "linking $target"
-
-    cp -R $source $backup_dir/$target 2>/dev/null
-
-    if [[ $dir != "." ]]; then
-        mkdir -p $target_dir/$dir
-    fi
-
-    rm $target_dir/$target 2>/dev/null
-    ln -s $source_dir/$source $target_dir/$target 
+    mkdir -p "`dirname $target_file`"
+    rm $target_file 2>/dev/null
+    echo "linking" $source_file "to" $target_file;
+    ln -s $source_file $target_file 2>/dev/null
 done
