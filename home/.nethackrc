@@ -1,1 +1,3 @@
-OPTIONS=!autopickup, color
+OPTIONS=!autopickup, color, gender:female
+NAME=frankie
+DOGNAME=mark ruffalo
