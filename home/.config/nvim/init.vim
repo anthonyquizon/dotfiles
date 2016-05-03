@@ -22,6 +22,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'neovimhaskell/haskell-vim'
 Plug 'vim-scripts/AutoComplPop'
 Plug 'derekelkins/agda-vim'
+Plug 'raichoo/purescript-vim'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
