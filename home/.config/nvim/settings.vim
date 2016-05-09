@@ -1,3 +1,20 @@
+set nu
+set nowrap
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set nohlsearch
+set ignorecase
+set smartcase
+set cursorline
+set noswapfile
+
+set relativenumber
+
+syntax on
+filetype plugin indent on
+
 autocmd! BufEnter * silent! lcd %:p:h
 
 colorscheme Tomorrow-Night
