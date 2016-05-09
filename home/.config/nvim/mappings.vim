@@ -51,9 +51,11 @@ nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
 nnoremap <leader>1 :colorscheme Tomorrow-Night<CR>
 nnoremap <leader>2 :colorscheme Tomorrow<CR>
 
-"TODO visual mode search expand
+vnoremap <leader>./ :s///g<LEFT><LEFT><LEFT>
+vnoremap <leader>/ y :%s/\(<C-R>"\)//g<LEFT><LEFT>
 nnoremap <leader>/ :%s/\(<c-r>=expand("<cword>")<cr>\)//g<Left><Left>
 nnoremap <leader>b/ :bufdo %s/\(<c-r>=expand("<cword>")<cr>\)//g \| update <S-LEFT><S-LEFT><LEFT><LEFT><LEFT>
+" TODO argument list
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 2)<CR>
