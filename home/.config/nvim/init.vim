@@ -25,6 +25,7 @@ Plug 'derekelkins/agda-vim'
 Plug 'raichoo/purescript-vim'
 Plug 'frigoeu/psc-ide-vim' "TODO need to add maker to neomake
 " TODO hdevtools
+Plug 'XadillaX/json-formatter.vim'
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
