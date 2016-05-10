@@ -23,6 +23,8 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'vim-scripts/AutoComplPop'
 Plug 'derekelkins/agda-vim'
 Plug 'raichoo/purescript-vim'
+Plug 'frigoeu/psc-ide-vim' "TODO need to add maker to neomake
+" TODO hdevtools
 call plug#end()
 
 exec 'set rtp+=' . fnamemodify(resolve(expand('~/.config/nvim/init.vim')), ':h')
