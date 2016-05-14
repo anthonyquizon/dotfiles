@@ -1,3 +1,7 @@
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -19,8 +23,8 @@ Plug 'neovim/node-host'
 Plug 'guns/vim-sexp'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'neovimhaskell/haskell-vim'
-Plug 'vim-scripts/AutoComplPop'
 Plug 'derekelkins/agda-vim'
 Plug 'raichoo/purescript-vim'
 Plug 'frigoeu/psc-ide-vim' "TODO need to add maker to neomake

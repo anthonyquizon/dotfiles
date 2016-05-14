@@ -38,3 +38,6 @@ augroup END
 let g:NERDCustomDelimiters = {
             \ 'agda': { 'left': '--', 'leftAlt': '{-', 'rightAlt': '-}' },
             \ }
+
+let g:deoplete#enable_at_startup = 1
+
