@@ -17,6 +17,18 @@ filetype plugin indent on
 
 autocmd! BufEnter * silent! lcd %:p:h
 
+set nu
+set nowrap
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set nohlsearch
+set ignorecase
+set smartcase
+set cursorline
+set noswapfile
+
 colorscheme Tomorrow-Night
 
 let g:hardtime_default_on=1 
@@ -40,4 +52,3 @@ let g:NERDCustomDelimiters = {
             \ }
 
 let g:deoplete#enable_at_startup = 1
-

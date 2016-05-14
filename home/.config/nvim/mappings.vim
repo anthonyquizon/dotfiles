@@ -46,7 +46,7 @@ noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 nnoremap <leader>o <C-^>
 nnoremap <leader>d :Explore<CR>
 nnoremap <leader>: :OverCommandLine<CR>
-nnoremap <leader>n :set relativenumber!<CR>
+nnoremap ` :set relativenumber!<CR>
 nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
 nnoremap <leader>1 :colorscheme Tomorrow-Night<CR>
 nnoremap <leader>2 :colorscheme Tomorrow<CR>
