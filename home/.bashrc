@@ -65,7 +65,7 @@ function serve {
             i=$((i+1));
         done
     else
-        http-server --ssl --cert $HOME/.ssh/localhost/cert.pem --key $HOME/.ssh/localhost/key.pem --cors -p $1;
+        http-server -p $1;
     fi
 }
 
