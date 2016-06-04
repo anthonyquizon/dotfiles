@@ -54,5 +54,10 @@ let g:NERDCustomDelimiters = {
 
 let g:deoplete#enable_at_startup = 1
 let g:surround_no_mappings = 1
+let g:NERDCreateDefaultMappings = 0
 
 autocmd filetype make setlocal noexpandtab
+
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif

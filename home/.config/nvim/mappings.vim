@@ -55,6 +55,13 @@ vnoremap <leader><leader>/ :s///g<LEFT><LEFT><LEFT>
 vnoremap <leader>/ y :%s/\(<C-R>"\)//g<LEFT><LEFT>
 nnoremap <leader>/ :%s/\(<c-r>=expand("<cword>")<cr>\)//g<Left><Left>
 nnoremap <leader>b/ :bufdo %s/\(<c-r>=expand("<cword>")<cr>\)//g \| update <S-LEFT><S-LEFT><LEFT><LEFT><LEFT>
+
+:command! -nargs=+ SearchAndReplace :call SearchAndReplace(<f-args>)
+:command! -nargs=+ Search :call Search(<f-args>)
+nnoremap <leader>./ :SearchAndReplace 
+" TODO highlighted word
+nnoremap <leader><leader>s :Search 
+nnoremap <leader>.s :Search 
 " TODO argument list
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 2)<CR>
@@ -64,6 +71,7 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 1, 4)<CR>
 noremap <silent> <pageup> :call smooth_scroll#up(&scroll*2, 1, 4)<CR>
 noremap <silent> <pagedown> :call smooth_scroll#down(&scroll*2, 1, 4)<CR>
 
+command! Qa qa
 command! WQ wq
 command! Wq wq
 command! W w
@@ -83,3 +91,17 @@ noremap <leader>'C <Plug>CSurround
 "nmap ySS <Plug>YSsurround
 xmap <leader>'   <Plug>VSurround
 xmap <leader>'g <Plug>VgSurround
+
+" Quickfix
+noremap <leader>ll :call ToggleLocationList()<CR>
+noremap <leader>l :call ToggleLocationList()<CR>
+noremap <leader>ln :lN<CR>
+noremap <leader>lp :lp<CR>
+noremap <leader>qq :call ToggleQuickfixList()<CR>
+noremap <leader>q :call ToggleQuickfixList()<CR>
+noremap <leader>qn :cn<CR>
+noremap <leader>qp :cp<CR>
+noremap <leader>qp :cp<CR>
+
+
+
