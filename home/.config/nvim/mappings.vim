@@ -40,7 +40,7 @@ omap T <Plug>Sneak_T
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
 
-nnoremap <leader>vr :so %<CR>
+nnoremap <leader><leader><leader> :so %<CR>
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
 nnoremap <leader>o <C-^>
@@ -51,7 +51,7 @@ nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
 nnoremap <leader>1 :colorscheme Tomorrow-Night<CR>
 nnoremap <leader>2 :colorscheme Tomorrow<CR>
 
-vnoremap <leader>./ :s///g<LEFT><LEFT><LEFT>
+vnoremap <leader><leader>/ :s///g<LEFT><LEFT><LEFT>
 vnoremap <leader>/ y :%s/\(<C-R>"\)//g<LEFT><LEFT>
 nnoremap <leader>/ :%s/\(<c-r>=expand("<cword>")<cr>\)//g<Left><Left>
 nnoremap <leader>b/ :bufdo %s/\(<c-r>=expand("<cword>")<cr>\)//g \| update <S-LEFT><S-LEFT><LEFT><LEFT><LEFT>
@@ -68,3 +68,4 @@ command! WQ wq
 command! Wq wq
 command! W w
 command! Q q
+nnoremap Q <nop>

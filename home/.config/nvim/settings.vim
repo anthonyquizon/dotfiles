@@ -52,3 +52,4 @@ let g:NERDCustomDelimiters = {
             \ }
 
 let g:deoplete#enable_at_startup = 1
+autocmd filetype make setlocal noexpandtab
