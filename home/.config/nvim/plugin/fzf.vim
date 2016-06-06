@@ -111,7 +111,8 @@ augroup netrw_fzf
 augroup END
 
 nnoremap <leader>f :call ProjectFiles()<CR>
-nnoremap <leader>s :call ProjectAg()<CR>
+nnoremap <leader>s :call ProjectAg()<CR> 
+"TODO search under cursor
 nnoremap <leader>p :call ListDevelopmentDir()<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>

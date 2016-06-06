@@ -59,9 +59,8 @@ function serve {
         i=8000
         while true; do
             echo -en "\e[1A"
-            echo -e "\e[0K\r serving on https://localhost:"$i 
-            # TODO ssh flag
-            http-server --ssl --cert $HOME/.ssh/localhost/cert.pem --key $HOME/.ssh/localhost/key.pem --cors -s -p $i 2>/dev/null && break;
+            echo -e "\e[0K\r serving on http://localhost:"$i 
+            http-server --cors -s -p $i 2>/dev/null && break;
             i=$((i+1));
         done
     else
