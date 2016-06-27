@@ -119,7 +119,7 @@ function search-and-replace() {
             ;;
         1) search-and-replace-fn './' '*' $1
             ;;
-        *) echo "usage: search-and-replace [dir] [pattern] replacement"
+        *) echo "usage: search-and-replace [dir] [file] [pattern]"
             ;;
     esac
 }
