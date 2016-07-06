@@ -80,16 +80,16 @@ nnoremap Q <nop>
 
 nnoremap <leader>d :Explore<CR>
 
-noremap <leader>'d <Plug>Dsurround
-noremap <leader>'c <Plug>Csurround
-noremap <leader>'C <Plug>CSurround
+nmap <leader>'d <Plug>Dsurround
+nmap <leader>'c <Plug>Csurround
+nmap <leader>'C <Plug>CSurround
 "nmap <leader>'y <Plug>Ysurround
 "nmap <leader>Y  <Plug>YSurround
 "TODO
 "nmap yss <Plug>Yssurround
 "nmap ySs <Plug>YSsurround
 "nmap ySS <Plug>YSsurround
-xmap <leader>'   <Plug>VSurround
+xmap <leader>'  <Plug>VSurround
 xmap <leader>'g <Plug>VgSurround
 
 " Quickfix

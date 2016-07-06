@@ -61,3 +61,8 @@ autocmd filetype make setlocal noexpandtab
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
+
+au BufRead,BufNewFile *.lvl set filetype=yaml
+
+let g:netrw_list_hide='.*\.o$,.*\.hi$'
+

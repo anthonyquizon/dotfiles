@@ -29,4 +29,5 @@ Plug 'derekelkins/agda-vim'
 Plug 'raichoo/purescript-vim'
 " TODO hdevtools
 Plug 'XadillaX/json-formatter.vim'
+Plug 'avakhov/vim-yaml'
 call plug#end()
