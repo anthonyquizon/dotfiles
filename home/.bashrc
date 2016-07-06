@@ -107,6 +107,23 @@ function isGit() {
     fi;
 }
 
+function search-and-replace-fn() {
+    find $1 -name $2 -type f -exec sed -i '' -e $3 {} \;
+}
+
+function search-and-replace() {
+    case $# in
+        3) search-and-replace-fn $1 $2 $3 
+            ;;
+        2) search-and-replace-fn './' $1 $2
+            ;;
+        1) search-and-replace-fn './' '*' $1
+            ;;
+        *) echo "usage: search-and-replace [dir] [file] [pattern]"
+            ;;
+    esac
+}
+
 source $HOME/.spr
 
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
