@@ -64,5 +64,5 @@ endif
 
 au BufRead,BufNewFile *.lvl set filetype=yaml
 
-let g:netrw_list_hide='.*\.o$,.*\.hi$'
+let g:netrw_list_hide='.*\.o$,.*\.hi$,\.DS_Store$'
 
