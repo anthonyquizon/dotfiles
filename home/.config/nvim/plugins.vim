@@ -30,4 +30,5 @@ Plug 'raichoo/purescript-vim'
 " TODO hdevtools
 Plug 'XadillaX/json-formatter.vim'
 Plug 'avakhov/vim-yaml'
+Plug 'kovisoft/slimv'
 call plug#end()
