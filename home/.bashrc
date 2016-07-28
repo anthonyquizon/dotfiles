@@ -16,8 +16,6 @@ export CABAL_PATH=$HOME/.cabal/bin
 
 export LOCAL_PATH=$HOME/.local/bin
 
-#PATH setup
-export PATH=$NPM_PACKAGES_PATH:$CABAL_PATH:$LOCAL_PATH:$PATH
 export EDITOR=nvim
 
 #FZF
@@ -26,6 +24,12 @@ export FZF_DEFAULT_COMMAND="find -L * -path '*/\.*' -prune -o -type f -print -o 
 #LEIN
 export LEIN_REPL_PORT=50001
 
+#ANDROID
+#export ANDROID_HOME=$HOME/Development/vendor/android-sdk/
+export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1 
+
+#PATH setup
+export PATH=$NPM_PACKAGES_PATH:$CABAL_PATH:$LOCAL_PATH:$ANDROID_HOME:$PATH
 
 #Aliases
 alias blender=~/Applications/Blender.app/Contents/MacOS/blender
@@ -124,6 +128,10 @@ function search-and-replace() {
         *) echo "usage: search-and-replace [dir] [file] [pattern]"
             ;;
     esac
+}
+
+function port-user() {
+    lsof -i tcp:$1
 }
 
 source $HOME/.spr
