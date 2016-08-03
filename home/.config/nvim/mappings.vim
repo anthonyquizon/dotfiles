@@ -79,6 +79,8 @@ command! Q q
 nnoremap Q <nop>
 
 nnoremap <leader>d :Explore<CR>
+nnoremap <leader>wdd :windo diffthis<CR>
+nnoremap <leader>wdf :windo diffoff<CR>
 
 nmap <leader>'d <Plug>Dsurround
 nmap <leader>'c <Plug>Csurround

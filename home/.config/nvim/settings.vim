@@ -66,4 +66,3 @@ au BufRead,BufNewFile *.lvl set filetype=yaml
 
 let g:netrw_list_hide='.*\.o$,.*\.hi$,\.DS_Store$'
 
-"let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"scheme --load ~/.vim/slime/start-swank.lisp\""'
