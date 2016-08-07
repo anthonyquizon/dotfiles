@@ -35,6 +35,8 @@ function! s:sexp_mappings() abort
   nmap <buffer> <)  <Plug>(sexp_emit_tail_element)
   nmap <buffer> <(  <Plug>(sexp_capture_prev_element)
   nmap <buffer> >)  <Plug>(sexp_capture_next_element)
+  nmap <buffer> (  <Plug>(sexp_move_to_prev_bracket)
+  nmap <buffer> )  <Plug>(sexp_move_to_next_bracket)
 endfunction
 
 function! s:setup() abort

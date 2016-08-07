@@ -50,6 +50,8 @@ alias cljslein='rlwrap lein'
 alias sml='rlwrap sml'
 alias smlnj='rlwrap sml'
 alias scheme='rlwrap scheme'
+alias ocaml='rlwrap ocaml'
+alias prolog='swipl'
 alias ctags="`brew --prefix`/bin/ctags"
 
 function mkcd {

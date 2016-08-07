@@ -31,4 +31,5 @@ Plug 'raichoo/purescript-vim'
 Plug 'XadillaX/json-formatter.vim'
 Plug 'avakhov/vim-yaml'
 Plug 'kovisoft/slimv'
+Plug 'luisjure/csound'
 call plug#end()
