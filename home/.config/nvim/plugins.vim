@@ -21,13 +21,11 @@ Plug 'mattn/emmet-vim'
 Plug 'snoe/nvim-parinfer.js'
 Plug 'neovim/node-host'
 Plug 'guns/vim-sexp'
-Plug 'eagletmt/ghcmod-vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'neovimhaskell/haskell-vim'
 Plug 'derekelkins/agda-vim'
 Plug 'raichoo/purescript-vim'
-" TODO hdevtools
 Plug 'XadillaX/json-formatter.vim'
 Plug 'avakhov/vim-yaml'
 Plug 'kovisoft/slimv'

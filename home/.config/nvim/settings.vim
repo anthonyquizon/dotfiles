@@ -36,6 +36,7 @@ let g:hardtime_showmsg = 1
 let g:airline_powerline_fonts=1
 " Neomake
 autocmd! BufWritePost * Neomake
+let g:neomake_haskell_enabled_makers = ['hlint', 'ghcmod']
 
 "netrw
 let g:netrw_list_hide= '.git/,.DS_Store*,.*\.swp$'
