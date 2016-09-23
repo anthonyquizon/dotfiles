@@ -1,15 +1,3 @@
-set nu
-set nowrap
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set nohlsearch
-set ignorecase
-set smartcase
-set cursorline
-set noswapfile
-
 set relativenumber
 
 syntax on
@@ -68,6 +56,7 @@ au BufRead,BufNewFile *.lvl set filetype=yaml
 
 let g:netrw_list_hide='.*\.o$,.*\.hi$,\.DS_Store$'
 let g:paredit_mode = 0
+let g:sexp_enable_insert_mode_mappings = 0
 
 set rtp^="/Users/anthony/.opam/system/share/ocp-indent/vim"
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')

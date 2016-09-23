@@ -108,3 +108,4 @@ noremap <leader>qp :cp<CR>
 tnoremap jk <C-\><C-n>
 
 "autocmd Filetype scheme vmap <leader><leader>r :Scheme<CR>
+

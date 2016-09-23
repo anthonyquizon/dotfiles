@@ -3,6 +3,8 @@ function! DoRemote(arg)
 endfunction
 
 call plug#begin()
+Plug 'snoe/nvim-parinfer.js'
+Plug 'neovim/node-host'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -18,8 +20,6 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-fireplace'
 Plug 'mattn/emmet-vim'
-Plug 'snoe/nvim-parinfer.js'
-Plug 'neovim/node-host'
 Plug 'guns/vim-sexp'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
