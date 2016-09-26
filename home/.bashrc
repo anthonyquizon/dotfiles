@@ -50,7 +50,6 @@ alias cljslein='rlwrap lein'
 alias sml='rlwrap sml'
 alias smlnj='rlwrap sml'
 alias scheme='rlwrap scheme'
-alias ocaml='rlwrap ocaml'
 alias prolog='swipl'
 alias ctags="`brew --prefix`/bin/ctags"
 
@@ -60,32 +59,6 @@ function mkcd {
 
 # https://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server
 # http://www.hacksparrow.com/node-js-https-ssl-certificate.html
-
-function serve {
-    if [ $# -eq 0 ]
-    then
-        i=8000
-        while true; do
-            echo -en "\e[1A"
-            echo -e "\e[0K\r serving on http://localhost:"$i 
-            http-server -s -p $i 2>/dev/null && break;
-            i=$((i+1));
-        done
-    else
-        http-server -s -p $1;
-    fi
-}
-
-
-function project-setup {
-    npm install;
-    bower install;
-}
-
-function project-up {
-    serve &
-    grunt --force
-}
 
 function git-commit-with-branch {
     git commit -a -m "$(echo $(git branch | grep '*' | sed 's/* //')$(echo " ")$(echo $*))"
@@ -135,8 +108,6 @@ function search-and-replace() {
 function port-user() {
     lsof -i tcp:$1
 }
-
-source $HOME/.spr
 
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH

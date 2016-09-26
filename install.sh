@@ -1,5 +1,7 @@
 #! /bin/bash
 
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 source_dir=home
 target_dir=~
 
@@ -12,3 +14,13 @@ find $source_dir -type f | while read file; do
     echo "linking" $source_file "to" $target_file;
     ln -s $source_file $target_file 2>/dev/null
 done
+
+echo $DOTFILES_DIR
+
+if [ $@ = "all" ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+    . "$DOTFILES_DIR/install/brew.sh"
+    . "$DOTFILES_DIR/install/brew-cask.sh"
+    . "$DOTFILES_DIR/install/node"
+fi
