@@ -19,7 +19,7 @@ set noswapfile
 
 colorscheme Tomorrow-Night
 
-let g:hardtime_default_on=1 
+let g:hardtime_default_on=0
 let g:hardtime_showmsg = 1
 let g:airline_powerline_fonts=1
 " Neomake
