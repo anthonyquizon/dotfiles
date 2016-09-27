@@ -9,6 +9,7 @@ apps=(
     vlc
     sizeup
     steam
+    java
 )
 
 brew cask install "${apps[@]}"

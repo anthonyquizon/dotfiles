@@ -34,7 +34,6 @@ export PATH=$NPM_PACKAGES_PATH:$CABAL_PATH:$LOCAL_PATH:$ANDROID_HOME:$PATH
 #Aliases
 alias blender=~/Applications/Blender.app/Contents/MacOS/blender
 alias finder=open
-alias emacs=emacs-24.5
 alias l='ls'
 alias sl='ls'
 alias vim=nvim
