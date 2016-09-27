@@ -7,6 +7,7 @@ apps=(
     google-chrome
     google-drive
     vlc
+    steam
 )
 
 brew cask install "${apps[@]}"
