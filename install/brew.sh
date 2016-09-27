@@ -5,7 +5,7 @@ brew upgrade
 
 apps=(
     ag
-    neovim
+    neovim/neovim/neovim
     agda
     darcs
     node
@@ -17,6 +17,7 @@ apps=(
     git
     swi-prolog
     leiningen
+    python3
     nethack
 )
 

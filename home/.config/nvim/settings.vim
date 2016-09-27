@@ -58,8 +58,4 @@ let g:netrw_list_hide='.*\.o$,.*\.hi$,\.DS_Store$'
 let g:paredit_mode = 0
 let g:sexp_enable_insert_mode_mappings = 0
 
-set rtp^="/Users/anthony/.opam/system/share/ocp-indent/vim"
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-
 let g:filetype_pl="prolog"

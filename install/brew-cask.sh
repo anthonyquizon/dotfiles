@@ -7,6 +7,7 @@ apps=(
     google-chrome
     google-drive
     vlc
+    sizeup
     steam
 )
 
