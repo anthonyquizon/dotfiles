@@ -7,7 +7,6 @@ apps=(
     ag
     neovim/neovim/neovim
     agda
-    darcs
     node
     postgresql
     mit-scheme
