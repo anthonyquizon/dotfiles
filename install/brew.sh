@@ -18,7 +18,7 @@ apps=(
     swi-prolog
     leiningen
     python3
-    nethack
+    homebrew/games/nethack
 )
 
 brew install "${apps[@]}"
