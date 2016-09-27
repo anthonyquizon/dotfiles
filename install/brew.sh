@@ -9,7 +9,6 @@ apps=(
     agda
     node
     postgresql
-    mit-scheme
     haskell-stack
     smlnj
     rlwrap
