@@ -16,6 +16,8 @@ set ignorecase
 set smartcase
 set cursorline
 set noswapfile
+set undofile
+set undodir=~/.nvim/undodir
 
 colorscheme Tomorrow-Night
 
@@ -59,3 +61,4 @@ let g:paredit_mode = 0
 let g:sexp_enable_insert_mode_mappings = 0
 
 let g:filetype_pl="prolog"
+

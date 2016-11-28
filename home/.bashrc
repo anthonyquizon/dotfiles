@@ -108,5 +108,9 @@ function port-user() {
     lsof -i tcp:$1
 }
 
+function download-images() {
+    wget `lynx -image_links -dump $1 | grep '\. https\?://.*\.\(gif\|jpg\|png\)$' | cut -d . -f 2- | cut -d ' ' -f 2- `
+}
+
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH

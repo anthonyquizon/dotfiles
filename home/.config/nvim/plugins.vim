@@ -30,4 +30,7 @@ Plug 'XadillaX/json-formatter.vim'
 Plug 'avakhov/vim-yaml'
 Plug 'kovisoft/slimv'
 Plug 'luisjure/csound'
+Plug 'FrigoEU/psc-ide-vim'
+Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
+Plug 'mbbill/undotree'
 call plug#end()
