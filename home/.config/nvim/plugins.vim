@@ -33,4 +33,6 @@ Plug 'luisjure/csound'
 Plug 'FrigoEU/psc-ide-vim'
 Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
 Plug 'mbbill/undotree'
+Plug 'kchmck/vim-coffee-script'
+Plug 'tikhomirov/vim-glsl'
 call plug#end()
