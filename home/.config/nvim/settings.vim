@@ -62,3 +62,6 @@ let g:sexp_enable_insert_mode_mappings = 0
 
 let g:filetype_pl="prolog"
 
+let g:slimv_lisp = '/usr/local/bin/sbcl'
+let g:slimv_impl = 'sbcl'
+

@@ -37,6 +37,7 @@ alias finder=open
 alias l='ls'
 alias sl='ls'
 alias vim=nvim
+alias lisp='rlwrap sbcl'
 
 alias gcm=_gitcommitwithbranch
 alias gpo='git push origin '
