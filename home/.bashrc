@@ -48,6 +48,7 @@ alias gc='git checkout'
 alias gcb='git checkout -b'
 alias cljslein='rlwrap lein'
 alias smlr='rlwrap sml'
+alias racketr='rlwrap racket'
 alias schemer='rlwrap scheme'
 alias prolog='swipl'
 alias ctags="`brew --prefix`/bin/ctags"

@@ -5,6 +5,6 @@ runtime plugins.vim
 runtime functions.vim
 runtime mappings.vim
 runtime settings.vim
-runtime plugin/fzf.vim
-runtime plugin/sexp.vim
+runtime plugins/fzf.vim
+runtime plugins/sexp.vim
 
