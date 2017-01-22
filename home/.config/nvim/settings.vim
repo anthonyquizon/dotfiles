@@ -57,11 +57,12 @@ endif
 au BufRead,BufNewFile *.lvl set filetype=yaml
 
 let g:netrw_list_hide='.*\.o$,.*\.hi$,\.DS_Store$'
-let g:paredit_mode = 0
 let g:sexp_enable_insert_mode_mappings = 0
 
 let g:filetype_pl="prolog"
 
 let g:slimv_lisp = '/usr/local/bin/sbcl'
 let g:slimv_impl = 'sbcl'
+
+let g:paredit_mode = 1
 

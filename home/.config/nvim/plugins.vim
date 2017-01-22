@@ -30,4 +30,6 @@ Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
 Plug 'mbbill/undotree'
 Plug 'tikhomirov/vim-glsl'
 Plug 'adolenc/cl-neovim'
+Plug 'vim-scripts/paredit.vim'
+Plug 'wlangstroth/vim-racket'
 call plug#end()

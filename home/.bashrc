@@ -38,6 +38,7 @@ alias l='ls'
 alias sl='ls'
 alias vim=nvim
 alias lisp='rlwrap sbcl'
+alias tmux="TERM=screen-256color-bce tmux"
 
 alias gcm=_gitcommitwithbranch
 alias gpo='git push origin '
