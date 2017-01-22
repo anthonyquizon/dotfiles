@@ -90,3 +90,7 @@ export NVM_DIR="/Users/anthonyquizon/.nvm"
 
 # OPAM configuration
 . /Users/anthony/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+set -o vi
+bindkey -M viins 'jk' vi-cmd-mode 
+
