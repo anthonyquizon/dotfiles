@@ -3,6 +3,7 @@ function! DoRemote(arg)
 endfunction
 
 call plug#begin()
+Plug 'flazz/vim-colorschemes'
 Plug 'neovim/node-host'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -10,7 +11,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'benekastah/neomake'
-Plug 'flazz/vim-colorschemes'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'justinmk/vim-sneak'
@@ -27,7 +27,7 @@ Plug 'FrigoEU/psc-ide-vim'
 Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
 Plug 'mbbill/undotree'
 Plug 'adolenc/cl-neovim'
-Plug 'vim-scripts/paredit.vim'
+Plug 'kovisoft/paredit'
 Plug 'wlangstroth/vim-racket'
 Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()

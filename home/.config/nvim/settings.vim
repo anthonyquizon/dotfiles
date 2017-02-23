@@ -64,6 +64,8 @@ let g:slimv_lisp = '/usr/local/bin/sbcl'
 let g:slimv_impl = 'sbcl'
 
 let g:julia_blocks = 0
+let g:paredit_mode = 0
 
-autocmd BufEnter * let g:paredit_mode = 1
-autocmd BufEnter *.jl let g:paredit_mode = 0
+autocmd filetype julia let g:paredit_mode = 0
+autocmd filetype racket let g:paredit_mode = 1
+
