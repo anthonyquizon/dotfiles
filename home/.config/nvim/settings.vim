@@ -65,5 +65,5 @@ let g:slimv_impl = 'sbcl'
 
 let g:julia_blocks = 0
 
-autocmd BufRead,BufNewFile * let g:paredit_mode = 1
-autocmd BufRead,BufNewFile *.jl let g:paredit_mode = 0
+autocmd BufEnter * let g:paredit_mode = 1
+autocmd BufEnter *.jl let g:paredit_mode = 0

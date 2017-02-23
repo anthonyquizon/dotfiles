@@ -21,16 +21,13 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'neovimhaskell/haskell-vim'
 Plug 'derekelkins/agda-vim'
 Plug 'raichoo/purescript-vim'
-Plug 'XadillaX/json-formatter.vim'
 Plug 'avakhov/vim-yaml'
-Plug 'kovisoft/slimv'
 Plug 'luisjure/csound'
 Plug 'FrigoEU/psc-ide-vim'
 Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
 Plug 'mbbill/undotree'
-Plug 'tikhomirov/vim-glsl'
 Plug 'adolenc/cl-neovim'
 Plug 'vim-scripts/paredit.vim'
 Plug 'wlangstroth/vim-racket'
-Plug 'aqui8/julia-vim'
+Plug 'JuliaEditorSupport/julia-vim'
 call plug#end()
