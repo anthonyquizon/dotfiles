@@ -65,4 +65,5 @@ let g:slimv_lisp = '/usr/local/bin/sbcl'
 let g:slimv_impl = 'sbcl'
 
 let g:paredit_mode = 1
+let g:julia_blocks = 0
 

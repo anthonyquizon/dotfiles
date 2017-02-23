@@ -1,11 +1,28 @@
 export PYTHONSTARTUP=~/.pythonrc
+export EDITOR=nvim
+export FZF_DEFAULT_COMMAND="find -L * -path '*/\.*' -prune -o -type f -print -o -type l -print 2> /dev/null"
+
 export NODE_PATH=$HOME/.npm-packages/lib/node_modules:$NODE_PATH
 export NPM_PACKAGES_PATH=$HOME/.npm-packages/bin
 export CABAL_PATH=$HOME/.cabal/bin
 export LOCAL_PATH=$HOME/.local/bin
-export EDITOR=nvim
-export FZF_DEFAULT_COMMAND="find -L * -path '*/\.*' -prune -o -type f -print -o -type l -print 2> /dev/null"
-export PATH=$NPM_PACKAGES_PATH:$CABAL_PATH:$LOCAL_PATH:$ANDROID_HOME:$PATH
+
+export ANT_HOME=/usr/local/opt/ant
+export MAVEN_HOME=/usr/local/opt/maven
+export GRADLE_HOME=/usr/local/opt/gradle
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
+
+export PATH=$NPM_PACKAGES_PATH:$PATH
+export PATH=$CABAL_PATH:$PATH
+export PATH=$LOCAL_PATH:$PATH
+export PATH=$ANT_HOME/bin:$PATH
+export PATH=$MAVEN_HOME/bin:$PATH
+export PATH=$GRADLE_HOME/bin:$PATH
+export PATH=$ANDROID_HOME/tools:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/build-tools/19.1.0:$PATH
+
 
 #Aliases
 alias blender=~/Applications/Blender.app/Contents/MacOS/blender
@@ -31,3 +48,5 @@ alias prolog='swipl'
 alias ctags="`brew --prefix`/bin/ctags"
 
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
+
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash

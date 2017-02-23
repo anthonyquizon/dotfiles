@@ -32,4 +32,5 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'adolenc/cl-neovim'
 Plug 'vim-scripts/paredit.vim'
 Plug 'wlangstroth/vim-racket'
+Plug 'aqui8/julia-vim'
 call plug#end()
