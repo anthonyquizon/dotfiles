@@ -75,18 +75,6 @@ nnoremap <leader>d :Explore<CR>
 nnoremap <leader>wdd :windo diffthis<CR>
 nnoremap <leader>wdf :windo diffoff<CR>
 
-nmap <leader>'d <Plug>Dsurround
-nmap <leader>'c <Plug>Csurround
-nmap <leader>'C <Plug>CSurround
-"nmap <leader>'y <Plug>Ysurround
-"nmap <leader>Y  <Plug>YSurround
-"TODO
-"nmap yss <Plug>Yssurround
-"nmap ySs <Plug>YSsurround
-"nmap ySS <Plug>YSsurround
-xmap <leader>'  <Plug>VSurround
-xmap <leader>'g <Plug>VgSurround
-
 " Quickfix
 noremap <leader>ll :call ToggleLocationList()<CR>
 noremap <leader>l :call ToggleLocationList()<CR>

@@ -19,7 +19,7 @@ set noswapfile
 set undofile
 set undodir=~/.nvim/undodir
 
-colorscheme Tomorrow-Night
+colorscheme jellybeans
 
 let g:hardtime_default_on=0
 let g:hardtime_showmsg = 1
@@ -45,7 +45,7 @@ let g:NERDCustomDelimiters = {
             \ }
 
 let g:deoplete#enable_at_startup = 1
-let g:surround_no_mappings = 1
+let g:surround_no_mappings = 0
 let g:NERDCreateDefaultMappings = 0
 
 autocmd filetype make setlocal noexpandtab
@@ -54,7 +54,6 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-au BufRead,BufNewFile *.lvl set filetype=yaml
 
 let g:netrw_list_hide='.*\.o$,.*\.hi$,\.DS_Store$'
 let g:sexp_enable_insert_mode_mappings = 0
@@ -64,6 +63,7 @@ let g:filetype_pl="prolog"
 let g:slimv_lisp = '/usr/local/bin/sbcl'
 let g:slimv_impl = 'sbcl'
 
-let g:paredit_mode = 1
 let g:julia_blocks = 0
 
+autocmd BufRead,BufNewFile * let g:paredit_mode = 1
+autocmd BufRead,BufNewFile *.jl let g:paredit_mode = 0
