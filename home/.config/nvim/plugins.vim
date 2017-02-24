@@ -30,4 +30,5 @@ Plug 'adolenc/cl-neovim'
 Plug 'kovisoft/paredit'
 Plug 'wlangstroth/vim-racket'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'luochen1990/rainbow'
 call plug#end()
