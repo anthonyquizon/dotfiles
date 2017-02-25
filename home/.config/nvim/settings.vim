@@ -23,7 +23,6 @@ colorscheme jellybeans
 
 let g:hardtime_default_on=0
 let g:hardtime_showmsg = 1
-let g:airline_powerline_fonts=1
 " Neomake
 autocmd! BufWritePost * Neomake
 let g:neomake_haskell_enabled_makers = ['hlint', 'ghcmod']
@@ -90,3 +89,7 @@ let g:rainbow_conf = {
             \       'css': 0,
             \   }
             \}
+
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ }
