@@ -68,6 +68,8 @@ let g:paredit_mode = 0
 " paredit messes with julia vim plugin
 autocmd filetype julia let g:paredit_mode = 0 
 autocmd filetype racket let g:paredit_mode = 1
+autocmd filetype racket :RainbowToggleOn
+autocmd filetype haskell :RainbowToggleOff
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
