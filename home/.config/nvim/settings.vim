@@ -65,12 +65,6 @@ let g:slimv_impl = 'sbcl'
 let g:julia_blocks = 0
 let g:paredit_mode = 0
 
-" paredit messes with julia vim plugin
-autocmd filetype julia let g:paredit_mode = 0 
-autocmd filetype racket let g:paredit_mode = 1
-autocmd filetype racket :RainbowToggleOn
-autocmd filetype haskell :RainbowToggleOff
-
 let g:rainbow_active = 1
 let g:rainbow_conf = {
             \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -95,3 +89,11 @@ let g:rainbow_conf = {
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ }
+
+" paredit messes with julia vim plugin
+autocmd filetype julia let g:paredit_mode = 0 
+autocmd filetype racket let g:paredit_mode = 1
+autocmd filetype clojure let g:paredit_mode = 1
+autocmd filetype racket :RainbowToggleOn
+autocmd filetype haskell :RainbowToggleOff
+
