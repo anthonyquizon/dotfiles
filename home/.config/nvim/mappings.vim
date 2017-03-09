@@ -1,6 +1,7 @@
 inoremap jk <Esc>
 
 let mapleader = "\<Space>"
+let maplocalleader = ","
 
 "stay selected when visual mode indenting
 vmap < <gv

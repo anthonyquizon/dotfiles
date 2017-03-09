@@ -29,4 +29,5 @@ Plug 'kovisoft/paredit'
 Plug 'wlangstroth/vim-racket'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'luochen1990/rainbow'
+Plug 'the-lambda-church/coquille'
 call plug#end()

@@ -96,4 +96,4 @@ autocmd filetype racket let g:paredit_mode = 1
 autocmd filetype clojure let g:paredit_mode = 1
 autocmd filetype racket :RainbowToggleOn
 autocmd filetype haskell :RainbowToggleOff
-
+autocmd FileType coq call coquille#FNMapping()
