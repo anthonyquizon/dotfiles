@@ -94,6 +94,7 @@ let g:lightline = {
 
 " paredit messes with julia vim plugin
 au BufNewFile,BufRead *.z3 set filetype=lisp
+au BufNewFile,BufRead *.lvl set filetype=lisp
 au BufNewFile,BufRead *.lvl let g:paredit_mode = 1
 au BufNewFile,BufRead *.lvl :RainbowToggleOn
 au filetype lisp let g:paredit_mode = 1
