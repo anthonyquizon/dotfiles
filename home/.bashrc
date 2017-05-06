@@ -1,11 +1,13 @@
 export PYTHONSTARTUP=~/.pythonrc
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND="find -L * -path '*/\.*' -prune -o -type f -print -o -type l -print 2> /dev/null"
+export PATH=/Library/Frameworks/Python.framework/Versions/3.3/bin:$PATH
 
 export NODE_PATH=$HOME/.npm-packages/lib/node_modules:$NODE_PATH
 export NPM_PACKAGES_PATH=$HOME/.npm-packages/bin
 export CABAL_PATH=$HOME/.cabal/bin
 export LOCAL_PATH=$HOME/.local/bin
+export MONO_GAC_PREFIX="/usr/local"
 
 export ANT_HOME=/usr/local/opt/ant
 export MAVEN_HOME=/usr/local/opt/maven

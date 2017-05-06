@@ -1,9 +1,10 @@
 set relativenumber
 
 syntax on
+filetype on
 filetype plugin indent on
 
-autocmd! BufEnter * silent! lcd %:p:h
+au! BufEnter * silent! lcd %:p:h
 
 set nu
 set nowrap
@@ -24,17 +25,18 @@ colorscheme jellybeans
 let g:hardtime_default_on=0
 let g:hardtime_showmsg = 1
 " Neomake
-autocmd! BufWritePost * Neomake
+au! BufWritePost * Neomake
 let g:neomake_haskell_enabled_makers = ['hlint', 'ghcmod']
+
 
 "netrw
 let g:netrw_list_hide= '.git/,.DS_Store*,.*\.swp$'
 let g:netrw_localrmdir='rm -r'
 
 augroup BgHighlight
-    autocmd!
-    autocmd WinEnter * set cul
-    autocmd WinLeave * set nocul
+    au!
+    au WinEnter * set cul
+    au WinLeave * set nocul
 augroup END
 
 let g:NERDCustomDelimiters = {
@@ -47,7 +49,7 @@ let g:deoplete#enable_at_startup = 1
 let g:surround_no_mappings = 0
 let g:NERDCreateDefaultMappings = 0
 
-autocmd filetype make setlocal noexpandtab
+au filetype make setlocal noexpandtab
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
@@ -91,9 +93,19 @@ let g:lightline = {
       \ }
 
 " paredit messes with julia vim plugin
-autocmd filetype julia let g:paredit_mode = 0 
-autocmd filetype racket let g:paredit_mode = 1
-autocmd filetype clojure let g:paredit_mode = 1
-autocmd filetype racket :RainbowToggleOn
-autocmd filetype haskell :RainbowToggleOff
-autocmd FileType coq call coquille#FNMapping()
+au BufNewFile,BufRead *.z3 set filetype=lisp
+au BufNewFile,BufRead *.lvl let g:paredit_mode = 1
+au BufNewFile,BufRead *.lvl :RainbowToggleOn
+au filetype lisp let g:paredit_mode = 1
+au filetype julia let g:paredit_mode = 0 
+au filetype racket let g:paredit_mode = 1
+au filetype clojure let g:paredit_mode = 1
+au filetype racket :RainbowToggleOn
+au FileType coq call coquille#FNMapping()
+
+let g:haskell_indent_if               = 3
+let g:haskell_indent_case             = 2
+let g:haskell_indent_let              = 4
+let g:haskell_indent_where            = 6
+let g:haskell_indent_do               = 3
+let g:haskell_indent_in               = 1

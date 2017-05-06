@@ -18,7 +18,6 @@ Plug 'guns/vim-sexp'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'neovimhaskell/haskell-vim'
-Plug 'derekelkins/agda-vim'
 Plug 'raichoo/purescript-vim'
 Plug 'avakhov/vim-yaml'
 Plug 'luisjure/csound'
@@ -29,5 +28,7 @@ Plug 'kovisoft/paredit'
 Plug 'wlangstroth/vim-racket'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'luochen1990/rainbow'
-Plug 'the-lambda-church/coquille'
+Plug 'aqui8/agda-vim'
+Plug 'tpope/vim-vinegar'
+Plug 'tikhomirov/vim-glsl'
 call plug#end()

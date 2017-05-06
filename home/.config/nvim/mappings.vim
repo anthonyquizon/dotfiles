@@ -89,6 +89,6 @@ noremap <leader>qp :cp<CR>
 
 tnoremap jk <C-\><C-n>
 
-"autocmd Filetype scheme vmap <leader><leader>r :Scheme<CR>
-
 nnoremap <leader>u :UndotreeToggle<CR>
+
+nmap <buffer> _ <Plug>NetrwTreeSqueeze
