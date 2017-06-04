@@ -28,6 +28,7 @@ let g:hardtime_showmsg = 1
 au! BufWritePost * Neomake
 let g:neomake_haskell_enabled_makers = ['hlint', 'ghcmod']
 
+let g:haskell_indent_disable = 1
 
 "netrw
 let g:netrw_list_hide= '.git/,.DS_Store*,.*\.swp$'
@@ -42,6 +43,7 @@ augroup END
 let g:NERDCustomDelimiters = {
             \ 'agda': { 'left': '--', 'leftAlt': '{-', 'rightAlt': '-}' },
             \ 'haskell': { 'left': '--', 'leftAlt': '{-', 'rightAlt': '-}' },
+            \ 'lvl': { 'left': ';;' },
             \ 'csound': { 'left': ';;', 'leftAlt': '/*', 'rightAlt': '*/' },
             \ }
 
@@ -94,19 +96,20 @@ let g:lightline = {
 
 " paredit messes with julia vim plugin
 au BufNewFile,BufRead *.z3 set filetype=lisp
-au BufNewFile,BufRead *.lvl set filetype=lisp
-au BufNewFile,BufRead *.lvl let g:paredit_mode = 1
-au BufNewFile,BufRead *.lvl :RainbowToggleOn
+au BufNewFile,BufRead *.sld set filetype=scheme
 au filetype lisp let g:paredit_mode = 1
 au filetype julia let g:paredit_mode = 0 
 au filetype racket let g:paredit_mode = 1
 au filetype clojure let g:paredit_mode = 1
+au filetype scheme let g:paredit_mode = 1
 au filetype racket :RainbowToggleOn
 au FileType coq call coquille#FNMapping()
 
-let g:haskell_indent_if               = 3
-let g:haskell_indent_case             = 2
-let g:haskell_indent_let              = 4
-let g:haskell_indent_where            = 6
-let g:haskell_indent_do               = 3
-let g:haskell_indent_in               = 1
+function! s:RequireHaskellHost(name)
+    return jobstart(['stack', 'exec', 'nvim-hs', a:name.name], {'rpc': v:true, 'cwd': expand('$HOME') . '/.config/nvim/nvim-plugin'})
+endfunction
+call remote#host#Register('haskell', "*.l\?hs", function('s:RequireHaskellHost'))
+let hc=remote#host#Require('haskell')
+
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc

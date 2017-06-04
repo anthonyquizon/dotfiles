@@ -24,11 +24,15 @@ Plug 'luisjure/csound'
 Plug 'FrigoEU/psc-ide-vim'
 Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
 Plug 'mbbill/undotree'
-Plug 'kovisoft/paredit'
+"Plug 'kovisoft/paredit'
+Plug 'kovisoft/slimv'
 Plug 'wlangstroth/vim-racket'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'luochen1990/rainbow'
 Plug 'aqui8/agda-vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tikhomirov/vim-glsl'
+Plug 'alx741/vim-hindent'
+Plug 'eagletmt/neco-ghc'
+"TODO Ripgrep
 call plug#end()
