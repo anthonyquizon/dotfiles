@@ -41,28 +41,26 @@ omap T <Plug>Sneak_T
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
 
-nnoremap <leader><leader><leader> :so %<CR>
+nnoremap <leader>r :so %<CR>
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
-nnoremap <leader>o <C-^>
-nnoremap <leader>d :Explore<CR>
-nnoremap <leader>: :OverCommandLine<CR>
 nnoremap ` :set relativenumber!<CR>
 nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
 nnoremap <leader>1 :colorscheme Tomorrow-Night<CR>
 nnoremap <leader>2 :colorscheme Tomorrow<CR>
 
-vnoremap <leader><leader>/ :s///g<LEFT><LEFT><LEFT>
-vnoremap <leader>/ y :%s/\(<C-R>"\)//g<LEFT><LEFT>
-nnoremap <leader>/ :%s/\(<c-r>=expand("<cword>")<cr>\)//g<Left><Left>
-nnoremap <leader>b/ :bufdo %s/\(<c-r>=expand("<cword>")<cr>\)//g \| update <S-LEFT><S-LEFT><LEFT><LEFT><LEFT>
+"TODO fix
+"vnoremap <leader>/ :s///g<LEFT><LEFT><LEFT>
+"vnoremap <leader>/ y :%s/\(<C-R>"\)//g<LEFT><LEFT>
+"nnoremap <leader>/ :%s/\(<c-r>=expand("<cword>")<cr>\)//g<Left><Left>
+"nnoremap <leader>b/ :bufdo %s/\(<c-r>=expand("<cword>")<cr>\)//g \| update <S-LEFT><S-LEFT><LEFT><LEFT><LEFT>
 
-:command! -nargs=+ SearchAndReplace :call SearchAndReplace(<f-args>)
-:command! -nargs=+ Search :call Search(<f-args>)
-nnoremap <leader>./ :SearchAndReplace 
-" TODO highlighted word
-nnoremap <leader><leader>s :Search 
-nnoremap <leader>.s :Search 
+":command! -nargs=+ SearchAndReplace :call SearchAndReplace(<f-args>)
+":command! -nargs=+ Search :call Search(<f-args>)
+"nnoremap <leader>./ :SearchAndReplace 
+"" TODO highlighted word
+"nnoremap <leader><leader>s :Search 
+"nnoremap <leader>.s :Search 
 " TODO argument list
 
 command! Qa qa
@@ -72,7 +70,6 @@ command! W w
 command! Q q
 nnoremap Q <nop>
 
-nnoremap <leader>d :Explore<CR>
 nnoremap <leader>wdd :windo diffthis<CR>
 nnoremap <leader>wdf :windo diffoff<CR>
 
@@ -92,3 +89,42 @@ tnoremap jk <C-\><C-n>
 nnoremap <leader>u :UndotreeToggle<CR>
 
 nmap <buffer> _ <Plug>NetrwTreeSqueeze
+
+call denite#custom#var('file_rec', 'command',
+	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts',
+            \ ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+	call denite#custom#var('file_rec/git', 'command',
+	      \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
+call denite#custom#option('default', 'prompt', '>')
+
+call denite#custom#map(
+            \ 'insert',
+            \ '<C-j>',
+            \ '<denite:move_to_next_line>',
+            \ 'noremap'
+            \)
+call denite#custom#map(
+            \ 'insert',
+            \ '<C-k>',
+            \ '<denite:move_to_previous_line>',
+            \ 'noremap'
+            \)
+
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+            \ [ '.git/', '.ropeproject/', '__pycache__/',
+            \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+
+noremap <leader>/ :Denite grep<CR>
+noremap <leader>, :Denite directory_rec<CR>
+noremap <leader>. :Denite tag<CR>
+noremap <leader><leader> :Denite file_rec/git<CR>

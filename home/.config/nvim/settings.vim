@@ -57,7 +57,6 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-
 let g:netrw_list_hide='.*\.o$,.*\.hi$,\.DS_Store$'
 let g:sexp_enable_insert_mode_mappings = 0
 
@@ -94,6 +93,12 @@ let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ }
 
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+
 " paredit messes with julia vim plugin
 au BufNewFile,BufRead *.z3 set filetype=lisp
 au BufNewFile,BufRead *.sld set filetype=scheme
@@ -105,11 +110,7 @@ au filetype scheme let g:paredit_mode = 1
 au filetype racket :RainbowToggleOn
 au FileType coq call coquille#FNMapping()
 
-function! s:RequireHaskellHost(name)
-    return jobstart(['stack', 'exec', 'nvim-hs', a:name.name], {'rpc': v:true, 'cwd': expand('$HOME') . '/.config/nvim/nvim-plugin'})
-endfunction
-call remote#host#Register('haskell', "*.l\?hs", function('s:RequireHaskellHost'))
-let hc=remote#host#Require('haskell')
-
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+
