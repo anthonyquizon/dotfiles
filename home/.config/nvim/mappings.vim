@@ -39,7 +39,7 @@ omap T <Plug>Sneak_T
 
 " fugitive
 nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gc :Gcommit<CR>
 
 nnoremap <leader>r :so %<CR>
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
@@ -48,12 +48,6 @@ nnoremap ` :set relativenumber!<CR>
 nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
 nnoremap <leader>1 :colorscheme Tomorrow-Night<CR>
 nnoremap <leader>2 :colorscheme Tomorrow<CR>
-
-"TODO fix
-"vnoremap <leader>/ :s///g<LEFT><LEFT><LEFT>
-"vnoremap <leader>/ y :%s/\(<C-R>"\)//g<LEFT><LEFT>
-"nnoremap <leader>/ :%s/\(<c-r>=expand("<cword>")<cr>\)//g<Left><Left>
-"nnoremap <leader>b/ :bufdo %s/\(<c-r>=expand("<cword>")<cr>\)//g \| update <S-LEFT><S-LEFT><LEFT><LEFT><LEFT>
 
 command! Qa qa
 command! WQ wq
