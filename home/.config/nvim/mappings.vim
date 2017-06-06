@@ -38,8 +38,7 @@ omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 
 " fugitive
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>g :Gstatus<CR>
 
 nnoremap <leader>r :so %<CR>
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
