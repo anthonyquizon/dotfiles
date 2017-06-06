@@ -4,8 +4,6 @@ syntax on
 filetype on
 filetype plugin indent on
 
-au! BufEnter * silent! lcd %:p:h
-
 set nu
 set nowrap
 set expandtab

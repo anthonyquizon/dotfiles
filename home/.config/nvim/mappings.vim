@@ -55,14 +55,6 @@ nnoremap <leader>2 :colorscheme Tomorrow<CR>
 "nnoremap <leader>/ :%s/\(<c-r>=expand("<cword>")<cr>\)//g<Left><Left>
 "nnoremap <leader>b/ :bufdo %s/\(<c-r>=expand("<cword>")<cr>\)//g \| update <S-LEFT><S-LEFT><LEFT><LEFT><LEFT>
 
-":command! -nargs=+ SearchAndReplace :call SearchAndReplace(<f-args>)
-":command! -nargs=+ Search :call Search(<f-args>)
-"nnoremap <leader>./ :SearchAndReplace 
-"" TODO highlighted word
-"nnoremap <leader><leader>s :Search 
-"nnoremap <leader>.s :Search 
-" TODO argument list
-
 command! Qa qa
 command! WQ wq
 command! Wq wq

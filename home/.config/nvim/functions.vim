@@ -62,15 +62,3 @@ function! ToggleQuickfixList()
         wincmd p
     endif
 endfunction
-
-function! Search(search, files)
-    let root = systemlist('git rev-parse --show-toplevel')[0]
-
-    exec 'vimgrep ' . a:search  . ' ' . root . '/' . a:files
-endfunction
-
-function! SearchAndReplace(search, replace, files)
-    call Search(a:search, a:files)
-
-    exec 'silent cdo! %s/' . a:search . '/' . a:replace . '/g | update'
-endfunction
