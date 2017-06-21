@@ -75,41 +75,20 @@ nnoremap <leader>u :UndotreeToggle<CR>
 
 nmap <buffer> _ <Plug>NetrwTreeSqueeze
 
-call denite#custom#var('file_rec', 'command',
-	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts',
-            \ ['-i', '--vimgrep'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-	call denite#custom#var('file_rec/git', 'command',
-	      \ ['git', 'ls-files', '-co', '--exclude-standard'])
-
-call denite#custom#option('default', 'prompt', '>')
-
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-j>',
-            \ '<denite:move_to_next_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-k>',
-            \ '<denite:move_to_previous_line>',
-            \ 'noremap'
-            \)
-
-call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-            \ [ '.git/', '.ropeproject/', '__pycache__/',
-            \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
 noremap <leader>/ :Denite grep<CR>
-noremap <leader>, :Denite directory_rec<CR>
+noremap <leader>, :Denite directory_rec/git:$HOME/Development<CR>
 noremap <leader>. :Denite tag<CR>
 noremap <leader><leader> :Denite file_rec/git<CR>
+noremap <leader>b :Denite buffer<CR>
+
+"let g:neoterm_position = 'horizontal'
+"let g:neoterm_automap_keys = '<>tt'
+
+nnoremap <silent> <leader>tf :TREPLSendFile<cr>
+nnoremap <silent> <leader>tl :TREPLSendLine<cr>
+vnoremap <silent> <leader>ts :TREPLSendSelection<cr>
+
+nnoremap <silent> <leader>th :call neoterm#close()<cr>
+nnoremap <silent> <leader>tc :call neoterm#clear()<cr>
+nnoremap <silent> <leader>tk :call neoterm#kill()<cr>

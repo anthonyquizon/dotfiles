@@ -60,9 +60,6 @@ let g:sexp_enable_insert_mode_mappings = 0
 
 let g:filetype_pl="prolog"
 
-let g:slimv_lisp = '/usr/local/bin/sbcl'
-let g:slimv_impl = 'sbcl'
-
 let g:julia_blocks = 0
 let g:paredit_mode = 0
 
@@ -118,4 +115,47 @@ au FileType coq call coquille#FNMapping()
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
+let dev_projects = '~/Development'
+
+call denite#custom#var('file_rec', 'command',
+	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts',
+            \ ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+call denite#custom#var('file_rec/git', 'command',
+            \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
+call denite#custom#alias('source', 'directory_rec_/git', 'directory_rec')
+call denite#custom#var('directory_rec_/git', 'command',
+            \ ['find', ':directory', 
+            \  '-maxdepth', '4', 
+            \  '-type', 'd', 
+            \  '-name', '.git', 
+            \  '-exec', 'dirname', '{}', '\\;'])
+
+call denite#custom#option('default', 'prompt', '>')
+
+call denite#custom#map(
+            \ 'insert',
+            \ '<C-j>',
+            \ '<denite:move_to_next_line>',
+            \ 'noremap'
+            \)
+call denite#custom#map(
+            \ 'insert',
+            \ '<C-k>',
+            \ '<denite:move_to_previous_line>',
+            \ 'noremap'
+            \)
+
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+            \ [ '.git/', '.ropeproject/', '__pycache__/', 'build/',
+            \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 

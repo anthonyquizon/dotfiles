@@ -24,6 +24,8 @@ export PATH=$ANDROID_HOME/tools:$PATH
 export PATH=$ANDROID_HOME/platform-tools:$PATH
 export PATH=$ANDROID_HOME/build-tools/19.1.0:$PATH
 
+export DEVELOPMENT=$HOME/Development
+
 
 #Aliases
 alias blender=~/Applications/Blender.app/Contents/MacOS/blender
@@ -49,5 +51,3 @@ alias prolog='swipl'
 alias ctags="`brew --prefix`/bin/ctags"
 
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
-
-#[ -f ~/.fzf.bash ] && source ~/.fzf.bash

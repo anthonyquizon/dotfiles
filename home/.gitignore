@@ -17,6 +17,7 @@ __coding__
 __ref__
 __wiki__
 __extern__
+__pycache__/
 TAGS
 tags
 .project/
