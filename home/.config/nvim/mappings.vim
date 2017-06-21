@@ -85,7 +85,7 @@ noremap <leader>b :Denite buffer<CR>
 "let g:neoterm_position = 'horizontal'
 "let g:neoterm_automap_keys = '<>tt'
 
-nnoremap <silent> <leader>tt :Topen<cr>
+nnoremap <silent> <leader>tt :Ttoggle<cr>
 nnoremap <silent> <leader>tf :TREPLSendFile<cr>
 nnoremap <silent> <leader>tl :TREPLSendLine<cr>
 vnoremap <silent> <leader>ts :TREPLSendSelection<cr>
