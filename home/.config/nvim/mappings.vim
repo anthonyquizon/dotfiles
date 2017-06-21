@@ -77,14 +77,15 @@ nmap <buffer> _ <Plug>NetrwTreeSqueeze
 
 
 noremap <leader>/ :Denite grep<CR>
-noremap <leader>, :Denite directory_rec/git:$HOME/Development<CR>
-noremap <leader>. :Denite tag<CR>
+noremap <leader>. :Denite directory_rec/git:$HOME/Development<CR>
+noremap <leader>, :Denite tag<CR>
 noremap <leader><leader> :Denite file_rec/git<CR>
 noremap <leader>b :Denite buffer<CR>
 
 "let g:neoterm_position = 'horizontal'
 "let g:neoterm_automap_keys = '<>tt'
 
+nnoremap <silent> <leader>tt :Topen<cr>
 nnoremap <silent> <leader>tf :TREPLSendFile<cr>
 nnoremap <silent> <leader>tl :TREPLSendLine<cr>
 vnoremap <silent> <leader>ts :TREPLSendSelection<cr>
