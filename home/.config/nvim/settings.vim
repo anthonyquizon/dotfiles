@@ -115,8 +115,6 @@ au FileType coq call coquille#FNMapping()
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-let dev_projects = '~/Development'
-
 call denite#custom#var('file_rec', 'command',
 	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
@@ -159,3 +157,8 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
             \ [ '.git/', '.ropeproject/', '__pycache__/', 'build/',
             \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
+
+au FileType racket
+            \ if executable('racket') |
+            \   call neoterm#repl#set('racket') |
+            \ end
