@@ -22,7 +22,7 @@ class Source(Base):
         if not context['is_windows'] and not self.vars['command']:
             self.vars['command'] = [
                 'find', '-L', ':directory',
-                '-maxdepth', '6', 
+                '-maxdepth', '5', 
                 '-type', 'd',
                 '-name', '.git',
                 ]
