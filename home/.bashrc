@@ -28,7 +28,6 @@ export DEVELOPMENT=$HOME/Development
 
 
 #Aliases
-alias blender=~/Applications/Blender.app/Contents/MacOS/blender
 alias finder=open
 alias l='ls'
 alias sl='ls'
@@ -45,8 +44,9 @@ alias gc='git checkout'
 alias gcb='git checkout -b'
 alias cljslein='rlwrap lein'
 alias smlr='rlwrap sml'
-alias racketr='rlwrap racket'
-alias schemer='rlwrap scheme'
+alias racketrl='rlwrap racket'
+alias schemerl='rlwrap scheme'
+alias ocamlrl='rlwrap ocaml'
 alias prolog='swipl'
 alias ctags="`brew --prefix`/bin/ctags"
 

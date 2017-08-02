@@ -69,7 +69,7 @@ noremap <leader>qn :cn<CR>
 noremap <leader>qp :cp<CR>
 noremap <leader>qp :cp<CR>
 
-tnoremap jk <C-\><C-n>
+tnoremap <C-j><C-k> <C-\><C-n>
 
 nnoremap <leader>u :UndotreeToggle<CR>
 
@@ -87,8 +87,8 @@ noremap <leader>b :Denite buffer<CR>
 
 nnoremap <silent> <leader>tt :Ttoggle<cr>
 nnoremap <silent> <leader>tf :TREPLSendFile<cr>
-nnoremap <silent> <leader>tl :TREPLSendLine<cr>
-vnoremap <silent> <leader>ts :TREPLSendSelection<cr>
+nnoremap <silent> <leader>tr :TREPLSendLine<cr>
+vnoremap <silent> <leader>tr :TREPLSendSelection<cr>
 
 nnoremap <silent> <leader>th :call neoterm#close()<cr>
 nnoremap <silent> <leader>tc :call neoterm#clear()<cr>

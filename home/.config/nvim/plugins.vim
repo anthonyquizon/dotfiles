@@ -36,4 +36,6 @@ Plug 'wlangstroth/vim-racket'
 Plug 'brooth/far.vim'
 Plug 'aqui18/iad-vim'
 Plug 'kassio/neoterm'
+"Plug 'reasonml-editor/vim-reason'
+"Plug 'flowtype/vim-flow'
 call plug#end()
