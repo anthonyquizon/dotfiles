@@ -25,8 +25,16 @@ let g:hardtime_showmsg = 1
 " Neomake
 au! BufWritePost * Neomake
 let g:neomake_haskell_enabled_makers = ['hlint', 'ghcmod']
-
+let g:neomake_javascript_enabled_makers = ['eslint']
 let g:haskell_indent_disable = 1
+
+let g:neoterm_autoinsert = 0
+let g:neoterm_split_on_tnew = 1
+let g:neoterm_use_relative_path = 1
+
+
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 "netrw
 let g:netrw_list_hide= '.git/,.DS_Store*,.*\.swp$'
@@ -41,7 +49,8 @@ augroup END
 let g:NERDCustomDelimiters = {
             \ 'agda': { 'left': '--', 'leftAlt': '{-', 'rightAlt': '-}' },
             \ 'haskell': { 'left': '--', 'leftAlt': '{-', 'rightAlt': '-}' },
-            \ 'lvl': { 'left': ';;' },
+            \ 'hy': { 'left': ';;' },
+            \ 'iad': { 'left': ';;' },
             \ 'csound': { 'left': ';;', 'leftAlt': '/*', 'rightAlt': '*/' },
             \ }
 
@@ -60,8 +69,8 @@ let g:sexp_enable_insert_mode_mappings = 0
 
 let g:filetype_pl="prolog"
 
-let g:julia_blocks = 0
 let g:paredit_mode = 0
+let g:merlin_completion_dwim = 0
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
@@ -88,7 +97,7 @@ let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'relativepath' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
@@ -104,11 +113,16 @@ endif
 " paredit messes with julia vim plugin
 au BufNewFile,BufRead *.z3 set filetype=lisp
 au BufNewFile,BufRead *.sld set filetype=scheme
+au BufNewFile,BufRead *.re set filetype=reason
 au filetype lisp let g:paredit_mode = 1
 au filetype julia let g:paredit_mode = 0 
 au filetype racket let g:paredit_mode = 1
 au filetype clojure let g:paredit_mode = 1
 au filetype scheme let g:paredit_mode = 1
+au filetype hy call PareditInitBuffer()
+au filetype hy let g:paredit_mode=1
+au filetype iad call PareditInitBuffer()
+au filetype iad let g:paredit_mode=1
 au filetype racket :RainbowToggleOn
 au FileType coq call coquille#FNMapping()
 
@@ -157,8 +171,5 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
             \ [ '.git/', '.ropeproject/', '__pycache__/', 'build/',
             \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
-
-au FileType racket
-            \ if executable('racket') |
-            \   call neoterm#repl#set('racket') |
-            \ end
+au BufRead,BufNewFile *.hy set filetype=hy
+au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

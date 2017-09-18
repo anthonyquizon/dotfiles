@@ -40,7 +40,6 @@ omap T <Plug>Sneak_T
 " fugitive
 nnoremap <leader>g :Gstatus<CR>
 
-nnoremap <leader>r :so %<CR>
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
 nnoremap ` :set relativenumber!<CR>
@@ -85,11 +84,9 @@ noremap <leader>b :Denite buffer<CR>
 "let g:neoterm_position = 'horizontal'
 "let g:neoterm_automap_keys = '<>tt'
 
-nnoremap <silent> <leader>tt :Ttoggle<cr>
-nnoremap <silent> <leader>tf :TREPLSendFile<cr>
-nnoremap <silent> <leader>tr :TREPLSendLine<cr>
-vnoremap <silent> <leader>tr :TREPLSendSelection<cr>
+nnoremap <silent> <leader>t :Ttoggle<cr>
+nnoremap <silent> <leader>f :TREPLSendFile<cr>
+nnoremap <silent> <leader>r :TREPLSendLine<cr>
+vnoremap <silent> <leader>r :TREPLSendSelection<cr>
 
-nnoremap <silent> <leader>th :call neoterm#close()<cr>
-nnoremap <silent> <leader>tc :call neoterm#clear()<cr>
-nnoremap <silent> <leader>tk :call neoterm#kill()<cr>
+

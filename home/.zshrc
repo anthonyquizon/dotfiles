@@ -1,4 +1,3 @@
-
 export ZSH=~/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 plugins=(git)
@@ -12,3 +11,5 @@ fi
 export NVM_DIR="/Users/anthonyquizon/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# OPAM configuration
+. /Users/anthonyquizon/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
