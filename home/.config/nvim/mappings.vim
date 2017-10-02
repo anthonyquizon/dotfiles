@@ -88,5 +88,7 @@ nnoremap <silent> <leader>t :Ttoggle<cr>
 nnoremap <silent> <leader>f :TREPLSendFile<cr>
 nnoremap <silent> <leader>r :TREPLSendLine<cr>
 vnoremap <silent> <leader>r :TREPLSendSelection<cr>
+vnoremap <silent> <leader>R :TREPLSendSelection<cr>
 
+nnoremap <silent> <leader>m :make<cr>
 

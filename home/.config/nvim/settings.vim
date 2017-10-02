@@ -31,7 +31,7 @@ let g:haskell_indent_disable = 1
 let g:neoterm_autoinsert = 0
 let g:neoterm_split_on_tnew = 1
 let g:neoterm_use_relative_path = 1
-
+let g:neoterm_position = 'vertical'
 
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
@@ -114,6 +114,7 @@ endif
 au BufNewFile,BufRead *.z3 set filetype=lisp
 au BufNewFile,BufRead *.sld set filetype=scheme
 au BufNewFile,BufRead *.re set filetype=reason
+au BufNewFile,BufRead *.rei set filetype=reason
 au filetype lisp let g:paredit_mode = 1
 au filetype julia let g:paredit_mode = 0 
 au filetype racket let g:paredit_mode = 1

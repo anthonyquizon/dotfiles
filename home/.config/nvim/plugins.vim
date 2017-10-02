@@ -37,4 +37,6 @@ Plug 'brooth/far.vim'
 Plug 'kassio/neoterm'
 "Plug 'reasonml-editor/vim-reason'
 Plug 'kovisoft/paredit'
+Plug 'vim-scripts/taglist.vim'
+Plug 'aqui18/iad-vim'
 call plug#end()
