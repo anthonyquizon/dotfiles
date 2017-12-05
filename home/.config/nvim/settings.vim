@@ -33,8 +33,8 @@ let g:neoterm_split_on_tnew = 1
 let g:neoterm_use_relative_path = 1
 let g:neoterm_position = 'vertical'
 
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+"execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 "netrw
 let g:netrw_list_hide= '.git/,.DS_Store*,.*\.swp$'
