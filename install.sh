@@ -20,7 +20,5 @@ done
 echo $DOTFILES_DIR
 
 if [[ $@ = "all" ]]; then
-    . "$DOTFILES_DIR/install/zsh.sh"
-    . "$DOTFILES_DIR/install/brew.sh"
-    . "$DOTFILES_DIR/install/brew-cask.sh"
+    . "$DOTFILES_DIR/brew-cask.sh"
 fi
