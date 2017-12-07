@@ -145,14 +145,6 @@ call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
             \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
-call denite#custom#alias('source', 'directory_rec_/git', 'directory_rec')
-call denite#custom#var('directory_rec_/git', 'command',
-            \ ['find', ':directory', 
-            \  '-maxdepth', '4', 
-            \  '-type', 'd', 
-            \  '-name', '.git', 
-            \  '-exec', 'dirname', '{}', '\\;'])
-
 call denite#custom#option('default', 'prompt', '>')
 
 call denite#custom#map(

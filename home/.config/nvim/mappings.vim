@@ -71,13 +71,11 @@ noremap <leader>qp :cp<CR>
 tnoremap <C-j><C-k> <C-\><C-n>
 
 nnoremap <leader>u :UndotreeToggle<CR>
-nnoremap - :VimFiler<CR>
 
 noremap <leader>/ :Denite grep<CR>
-noremap <leader>. :Denite directory_rec/git:$HOME/Development<CR>
-noremap <leader>, :Denite tag<CR>
+noremap <leader>. :Denite tag<CR>
+noremap <leader>, :Denite buffer<CR>
 noremap <leader><leader> :Denite file_rec/git<CR>
-noremap <leader>b :Denite buffer<CR>
 
 "let g:neoterm_position = 'horizontal'
 "let g:neoterm_automap_keys = '<>tt'
@@ -89,4 +87,9 @@ vnoremap <silent> <leader>r :TREPLSendSelection<cr>
 vnoremap <silent> <leader>R :TREPLSendSelection<cr>
 
 nnoremap <silent> <leader>m :make<cr>
+
+nnoremap <BS> :VimFilerBufferDir<CR>
+nnoremap - :VimFiler<CR>
+autocmd FileType vimfiler nunmap <buffer> <space>
+autocmd FileType vimfiler vunmap <buffer> <space>
 
