@@ -71,9 +71,7 @@ noremap <leader>qp :cp<CR>
 tnoremap <C-j><C-k> <C-\><C-n>
 
 nnoremap <leader>u :UndotreeToggle<CR>
-
-nmap <buffer> _ <Plug>NetrwTreeSqueeze
-
+nnoremap - :VimFiler<CR>
 
 noremap <leader>/ :Denite grep<CR>
 noremap <leader>. :Denite directory_rec/git:$HOME/Development<CR>
