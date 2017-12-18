@@ -26,4 +26,4 @@ alias ocamlrl='rlwrap ocaml'
 alias prolog='swipl'
 alias ctags="`brew --prefix`/bin/ctags"
 
-export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
+

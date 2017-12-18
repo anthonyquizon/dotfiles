@@ -167,3 +167,5 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
 au BufRead,BufNewFile *.hy set filetype=hy
 au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+let g:vimfiler_as_default_explorer = 1
+
