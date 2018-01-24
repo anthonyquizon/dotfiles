@@ -24,6 +24,7 @@ alias racketrl='rlwrap racket'
 alias schemerl='rlwrap scheme'
 alias ocamlrl='rlwrap ocaml'
 alias prolog='swipl'
-alias ctags="`brew --prefix`/bin/ctags"
 
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias firefox="/Applications/Firefox.app/Contents/MacOS/firefox"
 
