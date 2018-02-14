@@ -20,8 +20,10 @@ nnoremap <C-w>> gt
 nnoremap <C-w>< gT
 
 " Sneak manual key (should delete later)
-nmap S <Plug>Sneak_S
-xmap S <Plug>Sneak_S
+nmap <leader>F <Plug>Sneak_S
+xmap <leader>F <Plug>Sneak_S
+nmap <leader>f <Plug>Sneak_s
+xmap <leader>f <Plug>Sneak_s
 "replace 'f' with 1-char Sneak
 nmap f <Plug>Sneak_f
 nmap F <Plug>Sneak_F
@@ -77,11 +79,7 @@ noremap <leader>. :Denite tag<CR>
 noremap <leader>, :Denite buffer<CR>
 noremap <leader><leader> :Denite file_rec/git<CR>
 
-"let g:neoterm_position = 'horizontal'
-"let g:neoterm_automap_keys = '<>tt'
-
 nnoremap <silent> <leader>t :Ttoggle<cr>
-nnoremap <silent> <leader>f :TREPLSendFile<cr>
 nnoremap <silent> <leader>r :TREPLSendLine<cr>
 vnoremap <silent> <leader>r :TREPLSendSelection<cr>
 vnoremap <silent> <leader>R :TREPLSendSelection<cr>
