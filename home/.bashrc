@@ -1,6 +1,6 @@
 export PYTHONSTARTUP=~/.pythonrc
 export EDITOR=nvim
-
+export PATH=$PATH:/Users/anthonyquizon/.cargo/bin:/Users/anthonyquizon/.local/bin
 export DEVELOPMENT=$HOME/Development
 
 #Aliases

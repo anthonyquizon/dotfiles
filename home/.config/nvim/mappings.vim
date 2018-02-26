@@ -19,7 +19,6 @@ nnoremap <C-w>C :tabc<CR>
 nnoremap <C-w>> gt
 nnoremap <C-w>< gT
 
-" Sneak manual key (should delete later)
 nmap <leader>F <Plug>Sneak_S
 xmap <leader>F <Plug>Sneak_S
 nmap <leader>f <Plug>Sneak_s
