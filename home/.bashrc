@@ -8,6 +8,8 @@ alias finder=open
 alias l='ls'
 alias sl='ls'
 alias vim=nvim
+alias vi=nvim
+alias v=nvim
 alias lisp='rlwrap sbcl'
 alias tmux="TERM=screen-256color-bce tmux"
 
@@ -24,6 +26,7 @@ alias racketrl='rlwrap racket'
 alias schemerl='rlwrap scheme'
 alias ocamlrl='rlwrap ocaml'
 alias prolog='swipl'
+
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias firefox="/Applications/Firefox.app/Contents/MacOS/firefox"
