@@ -90,3 +90,5 @@ nnoremap - :VimFiler<CR>
 autocmd FileType vimfiler nunmap <buffer> <space>
 autocmd FileType vimfiler vunmap <buffer> <space>
 
+vmap U <Nop>
+vmap u <Nop>
