@@ -29,7 +29,6 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 let g:haskell_indent_disable = 1
 
 let g:neoterm_autoinsert = 0
-"let g:neoterm_split_on_tnew = 1
 let g:neoterm_use_relative_path = 1
 let g:neoterm_position = 'vertical'
 

@@ -78,7 +78,8 @@ noremap <leader>. :Denite tag<CR>
 noremap <leader>, :Denite buffer<CR>
 noremap <leader><leader> :Denite file_rec/git<CR>
 
-nnoremap <silent> <leader>t :Ttoggle<cr>
+nnoremap <silent> <leader>t :enew \| Tnew<cr> i
+nnoremap <silent> <leader>T :Ttoggle<cr>
 nnoremap <silent> <leader>r :TREPLSendLine<cr>
 vnoremap <silent> <leader>r :TREPLSendSelection<cr>
 vnoremap <silent> <leader>R :TREPLSendSelection<cr>
