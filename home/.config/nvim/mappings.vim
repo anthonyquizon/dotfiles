@@ -93,3 +93,5 @@ autocmd FileType vimfiler vunmap <buffer> <space>
 
 vmap U <Nop>
 vmap u <Nop>
+
+nnoremap <leader>json :%!python -m json.tool<cr>

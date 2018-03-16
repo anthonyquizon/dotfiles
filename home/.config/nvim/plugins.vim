@@ -42,4 +42,5 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'LnL7/vim-nix'
 Plug 'lfe-support/vim-lfe'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'mhartington/nvim-typescript'
 call plug#end()
