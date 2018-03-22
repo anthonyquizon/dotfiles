@@ -19,10 +19,10 @@ nnoremap <C-w>C :tabc<CR>
 nnoremap <C-w>> gt
 nnoremap <C-w>< gT
 
-nmap <leader>F <Plug>Sneak_S
-xmap <leader>F <Plug>Sneak_S
-nmap <leader>f <Plug>Sneak_s
-xmap <leader>f <Plug>Sneak_s
+nmap Z <Plug>Sneak_S
+xmap Z <Plug>Sneak_S
+nmap z <Plug>Sneak_s
+xmap z <Plug>Sneak_s
 "replace 'f' with 1-char Sneak
 nmap f <Plug>Sneak_f
 nmap F <Plug>Sneak_F
@@ -78,7 +78,7 @@ noremap <leader>. :Denite tag<CR>
 noremap <leader>, :Denite buffer<CR>
 noremap <leader><leader> :Denite file_rec/git<CR>
 
-nnoremap <silent> <leader>t :enew \| Tnew<cr> i
+nnoremap <silent> <leader>t :enew \| Tnew<cr>
 nnoremap <silent> <leader>T :Ttoggle<cr>
 nnoremap <silent> <leader>r :TREPLSendLine<cr>
 vnoremap <silent> <leader>r :TREPLSendSelection<cr>
