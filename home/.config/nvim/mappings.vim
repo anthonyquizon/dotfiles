@@ -86,8 +86,8 @@ vnoremap <silent> <leader>R :TREPLSendSelection<cr>
 
 nnoremap <silent> <leader>m :make<cr>
 
-nnoremap <BS> :VimFilerBufferDir<CR>
-nnoremap - :VimFiler<CR>
+nnoremap <BS> :enew \| VimFilerBufferDir<CR>
+nnoremap - :enew \| VimFiler<CR>
 autocmd FileType vimfiler nunmap <buffer> <space>
 autocmd FileType vimfiler vunmap <buffer> <space>
 

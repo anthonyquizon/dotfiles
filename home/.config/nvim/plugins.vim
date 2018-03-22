@@ -5,7 +5,6 @@ endfunction
 call plug#begin()
 Plug 'neovim/node-host', { 'do': 'npm install -g neovim' }
 Plug 'FrigoEU/psc-ide-vim'
-Plug 'JuliaEditorSupport/julia-vim'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
