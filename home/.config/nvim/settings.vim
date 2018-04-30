@@ -30,7 +30,7 @@ let g:haskell_indent_disable = 1
 
 let g:neoterm_autoinsert = 0
 let g:neoterm_use_relative_path = 1
-let g:neoterm_position = 'vertical'
+"let g:neoterm_position = 'vertical'
 
 "let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 "execute "set rtp+=" . g:opamshare . "/merlin/vim"
@@ -164,6 +164,9 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
             \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
 au BufRead,BufNewFile *.hy set filetype=hy
+au BufNewFile,BufRead *.py set tabstop=2
+au BufNewFile,BufRead *.py set softtabstop=2
+au BufNewFile,BufRead *.py set shiftwidth=2
 au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 let g:vimfiler_as_default_explorer = 1
@@ -180,3 +183,4 @@ endfunc
 func! Multiple_cursors_after()
   call deoplete#init#_enable()
 endfunc
+

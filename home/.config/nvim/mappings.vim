@@ -19,10 +19,10 @@ nnoremap <C-w>C :tabc<CR>
 nnoremap <C-w>> gt
 nnoremap <C-w>< gT
 
-nmap Z <Plug>Sneak_S
-xmap Z <Plug>Sneak_S
-nmap z <Plug>Sneak_s
-xmap z <Plug>Sneak_s
+nmap <S-Z> <Plug>Sneak_S
+xmap <S-Z> <Plug>Sneak_S
+nmap <S-z> <Plug>Sneak_s
+xmap <S-z> <Plug>Sneak_s
 "replace 'f' with 1-char Sneak
 nmap f <Plug>Sneak_f
 nmap F <Plug>Sneak_F
@@ -78,7 +78,7 @@ noremap <leader>. :Denite tag<CR>
 noremap <leader>, :Denite buffer<CR>
 noremap <leader><leader> :Denite file_rec/git<CR>
 
-nnoremap <silent> <leader>t :enew \| Tnew<cr>
+nnoremap <leader>t :Tnew<cr>
 nnoremap <silent> <leader>T :Ttoggle<cr>
 nnoremap <silent> <leader>r :TREPLSendLine<cr>
 vnoremap <silent> <leader>r :TREPLSendSelection<cr>
@@ -86,7 +86,7 @@ vnoremap <silent> <leader>R :TREPLSendSelection<cr>
 
 nnoremap <silent> <leader>m :make<cr>
 
-nnoremap <BS> :enew \| VimFilerBufferDir<CR>
+nnoremap <BS> :VimFilerBufferDir<CR>
 nnoremap - :enew \| VimFiler<CR>
 autocmd FileType vimfiler nunmap <buffer> <space>
 autocmd FileType vimfiler vunmap <buffer> <space>
