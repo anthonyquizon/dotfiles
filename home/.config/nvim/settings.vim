@@ -32,9 +32,6 @@ let g:neoterm_autoinsert = 0
 let g:neoterm_use_relative_path = 1
 "let g:neoterm_position = 'vertical'
 
-"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-"execute "set rtp+=" . g:opamshare . "/merlin/vim"
-
 "netrw
 let g:netrw_list_hide= '.git/,.DS_Store*,.*\.swp$'
 let g:netrw_localrmdir='rm -r'
@@ -183,4 +180,13 @@ endfunc
 func! Multiple_cursors_after()
   call deoplete#init#_enable()
 endfunc
+
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
+
 

@@ -4,6 +4,10 @@ endfunction
 
 call plug#begin()
 Plug 'neovim/node-host', { 'do': 'npm install -g neovim' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'FrigoEU/psc-ide-vim'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
@@ -33,9 +37,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'wlangstroth/vim-racket'
-Plug 'brooth/far.vim'
+Plug 'skwp/greplace.vim'
 Plug 'kassio/neoterm'
-Plug 'reasonml-editor/vim-reason'
+Plug 'reasonml-editor/vim-reason-plus'
 Plug 'kovisoft/paredit'
 Plug 'vim-scripts/taglist.vim'
 Plug 'LnL7/vim-nix'

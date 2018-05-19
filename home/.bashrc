@@ -1,9 +1,10 @@
-export PYTHON2_PATH=$(python3 -m site --user-base)/bin
-export PYTHON3_PATH=$(python3 -m site --user-base)/bin
 export PYTHONSTARTUP=~/.pythonrc
 export EDITOR=nvim
-export PATH=$PATH:/Users/anthonyquizon/.cargo/bin:/Users/anthonyquizon/.local/bin:/usr/local/bin:/usr/local/sbin:$PYTHON3_PATH:$PYTHON2_PATH
 export DEVELOPMENT=$HOME/Development
+
+export PYTHON2_PATH=$(python3 -m site --user-base)/bin
+export PYTHON3_PATH=$(python3 -m site --user-base)/bin
+export PATH=$PATH:/Users/anthonyquizon/.cargo/bin:/Users/anthonyquizon/.local/bin:/usr/local/bin:/usr/local/sbin:$PYTHON3_PATH:$PYTHON2_PATH
 
 #Aliases
 alias finder=open
