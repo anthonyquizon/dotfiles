@@ -17,6 +17,8 @@ set cursorline
 set noswapfile
 set undofile
 set undodir=~/.nvim/undodir
+set nobackup
+set nowritebackup
 
 colorscheme jellybeans
 
