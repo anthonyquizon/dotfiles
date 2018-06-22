@@ -18,11 +18,6 @@ fd() {
 #Aliases
 alias e=kak
 alias finder=open
-alias l='ls'
-alias sl='ls'
-alias vim=nvim
-alias vi=nvim
-alias v=nvim
 alias lisp='rlwrap sbcl'
 alias tmux="TERM=screen-256color-bce tmux"
 alias tree="tree -I 'node_modules|__assets__'"
