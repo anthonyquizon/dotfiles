@@ -19,10 +19,10 @@ nnoremap <C-w>C :tabc<CR>
 nnoremap <C-w>> gt
 nnoremap <C-w>< gT
 
-nmap <S-Z> <Plug>Sneak_S
-xmap <S-Z> <Plug>Sneak_S
-nmap <S-z> <Plug>Sneak_s
-xmap <S-z> <Plug>Sneak_s
+nmap S <Plug>Sneak_S
+xmap S <Plug>Sneak_S
+nmap s <Plug>Sneak_s
+xmap s <Plug>Sneak_s
 "replace 'f' with 1-char Sneak
 nmap f <Plug>Sneak_f
 nmap F <Plug>Sneak_F
@@ -85,6 +85,7 @@ vnoremap <silent> <leader>r :TREPLSendSelection<cr>
 vnoremap <silent> <leader>R :TREPLSendSelection<cr>
 
 nnoremap <silent> <leader>m :make<cr>
+nnoremap <silent> <leader>w :make<cr>
 
 nnoremap <BS> :VimFilerBufferDir<CR>
 nnoremap - :enew \| VimFiler<CR>
