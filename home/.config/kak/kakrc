@@ -1,10 +1,27 @@
 set global ui_options ncurses_assistant=none
 
+set-face global DiagnosticError red
+set-face global DiagnosticWarning yellow
+
 hook global InsertChar k %{ try %{
   exec -draft hH <a-k>jk<ret> d
   exec <esc>
 }}
 
+hook global InsertChar \t %{ exec -draft -itersel h@ }
+set global tabstop 2
+set global indentwidth 2
+
+def ide %{
+	rename-client main
+	set global jumpclient main
+
+	new rename-client tools
+	set global toolsclient tools
+
+	new rename-client docs
+	set global docsclient docs
+}
 
 def find -params 1 -shell-candidates %{ find -type f } %{ edit %arg{1} }
 def git-edit -params 1 -shell-candidates %{ git ls-files } %{ edit %arg{1} }
@@ -40,3 +57,9 @@ map global user b ':fzf-buffer<ret>'
 map global normal <space> , -docstring 'leader'
 map global normal <backspace> <space> -docstring 'remove all sels except main'
 map global normal <a-backspace> <a-space> -docstring 'remove main sel'
+
+%sh{kak-lsp --kakoune -s $kak_session}
+lsp-start
+lsp-auto-hover-enable
+add-highlighter global number_lines -relative -hlcursor
+

@@ -17,6 +17,7 @@ fd() {
 
 #Aliases
 alias e=kak
+alias r=ranger
 alias finder=open
 alias lisp='rlwrap sbcl'
 alias tmux="TERM=screen-256color-bce tmux"
@@ -39,4 +40,6 @@ alias prolog='swipl'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias firefox="/Applications/Firefox.app/Contents/MacOS/firefox"
 
-[ -z "$TMUX"  ] && exec tmux
+[ -z "$TMUX"  ] && exec `tmux attach`
+
+. /usr/local/etc/profile.d/z.sh
