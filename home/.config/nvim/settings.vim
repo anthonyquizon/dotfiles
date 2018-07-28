@@ -22,7 +22,7 @@ set nowritebackup
 
 colorscheme jellybeans
 
-let g:hardtime_default_on=0
+"let g:hardtime_default_on=1
 let g:hardtime_showmsg = 1
 " Neomake
 au! BufWritePost * Neomake
@@ -191,4 +191,5 @@ let g:LanguageClient_serverCommands = {
     \ 'ocaml': ['ocaml-language-server', '--stdio'],
     \ }
 
+let g:LanguageClient_autoStart = 1
 

@@ -12,17 +12,6 @@ hook global InsertChar \t %{ exec -draft -itersel h@ }
 set global tabstop 2
 set global indentwidth 2
 
-def ide %{
-	rename-client main
-	set global jumpclient main
-
-	new rename-client tools
-	set global toolsclient tools
-
-	new rename-client docs
-	set global docsclient docs
-}
-
 def find -params 1 -shell-candidates %{ find -type f } %{ edit %arg{1} }
 def git-edit -params 1 -shell-candidates %{ git ls-files } %{ edit %arg{1} }
 
@@ -31,7 +20,8 @@ def -docstring 'invoke fzf to open a git file' \
     if [ -z "$TMUX" ]; then
       echo echo only works inside tmux
     else
-      FILE=$(git ls-files | fzf-tmux -d 15)
+      ROOT=$(git rev-parse --show-toplevel)
+      FILE=$(git ls-files $ROOT | fzf-tmux -d 15)
       if [ -n "$FILE" ]; then
         printf 'eval -client %%{%s} edit %%{%s}\n' "${kak_client}" "${FILE}" | kak -p "${kak_session}"
       fi

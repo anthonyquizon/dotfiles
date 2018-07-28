@@ -4,10 +4,7 @@ endfunction
 
 call plug#begin()
 Plug 'neovim/node-host', { 'do': 'npm install -g neovim' }
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 Plug 'FrigoEU/psc-ide-vim'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
@@ -46,5 +43,6 @@ Plug 'LnL7/vim-nix'
 Plug 'lfe-support/vim-lfe'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'takac/vim-hardtime'
-Plug 'mhartington/nvim-typescript'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
