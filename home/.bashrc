@@ -6,16 +6,13 @@ fd() {
   cd "$dir"
 }
 
-e() {
-  kak -c default $@ || kak -s default $@
-}
-
 #Aliases
 alias r=ranger
 alias finder=open
 alias lisp='rlwrap sbcl'
 alias tmux="TERM=screen-256color-bce tmux"
 alias tree="tree -I 'node_modules|__assets__'"
+alias vim=nvim
 
 alias gcm=_gitcommitwithbranch
 alias gpo='git push origin '
@@ -34,11 +31,8 @@ alias prolog='swipl'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias firefox="/Applications/Firefox.app/Contents/MacOS/firefox"
 
-alias k='f -e kak'
-
-
 export PYTHONSTARTUP=~/.pythonrc
-export EDITOR=kak
+export EDITOR=nvim
 export DEVELOPMENT=$HOME/Development
 
 export PYTHON2_PATH=$(python3 -m site --user-base)/bin
