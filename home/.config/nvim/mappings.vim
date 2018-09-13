@@ -22,10 +22,10 @@ nnoremap <C-w>C :tabc<CR>
 nnoremap <C-w>> gt
 nnoremap <C-w>< gT
 
-nmap S <Plug>Sneak_S
-xmap S <Plug>Sneak_S
-nmap s <Plug>Sneak_s
-xmap s <Plug>Sneak_s
+nmap Z <Plug>Sneak_S
+xmap Z <Plug>Sneak_S
+nmap z <Plug>Sneak_s
+xmap z <Plug>Sneak_s
 "replace 'f' with 1-char Sneak
 nmap f <Plug>Sneak_f
 nmap F <Plug>Sneak_F
