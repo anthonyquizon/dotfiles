@@ -13,6 +13,9 @@ nnoremap <C-K> <C-P>
 inoremap <C-J> <C-N>
 inoremap <C-K> <C-P>
 
+vnoremap <leader>s y :s/<C-R>"//<Left>
+nnoremap <leader>s :s/<C-R><C-W>//<Left>
+
 "tabs
 nnoremap <C-w>t :tabe<CR>
 nnoremap <C-w>C :tabc<CR>
@@ -78,12 +81,6 @@ noremap <leader>. :Denite tag<CR>
 noremap <leader>, :Denite buffer<CR>
 noremap <leader><leader> :Denite file_rec/git<CR>
 
-nnoremap <leader>t :Tnew<cr>
-nnoremap <silent> <leader>T :Ttoggle<cr>
-nnoremap <silent> <leader>r :TREPLSendLine<cr>
-vnoremap <silent> <leader>r :TREPLSendSelection<cr>
-vnoremap <silent> <leader>R :TREPLSendSelection<cr>
-
 nnoremap <silent> <leader>m :make<cr>
 nnoremap <silent> <leader>w :make<cr>
 
@@ -100,3 +97,9 @@ nnoremap <leader>json :%!python -m json.tool<cr>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
 nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
 nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
+
+" Vimux
+map <Leader>vv :VimuxPromptCommand<CR>
+map <Leader>vq :VimuxCloseRunner<CR>
+map <Leader>vz :call VimuxZoomRunner()<CR>
+map <Leader>vz :call VimuxZoomRunner()<CR>
