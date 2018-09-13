@@ -192,4 +192,4 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 let g:LanguageClient_autoStart = 1
-
+let g:sneak#label = 1

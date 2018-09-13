@@ -13,8 +13,8 @@ nnoremap <C-K> <C-P>
 inoremap <C-J> <C-N>
 inoremap <C-K> <C-P>
 
-vnoremap <leader>s y :s/<C-R>"//<Left>
-nnoremap <leader>s :s/<C-R><C-W>//<Left>
+vnoremap <leader>s "vy :s/<C-R>v//g<Left><Left>
+nnoremap <leader>s :s/<C-R><C-W>//g<Left><Left>
 
 "tabs
 nnoremap <C-w>t :tabe<CR>
@@ -99,7 +99,10 @@ nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
 nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
 
 " Vimux
-map <Leader>vv :VimuxPromptCommand<CR>
-map <Leader>vq :VimuxCloseRunner<CR>
-map <Leader>vz :call VimuxZoomRunner()<CR>
-map <Leader>vz :call VimuxZoomRunner()<CR>
+noremap <Leader>vv :VimuxPromptCommand<CR>
+noremap <Leader>vq :VimuxCloseRunner<CR>
+noremap <Leader>vz :call VimuxZoomRunner()<CR>
+noremap <Leader>vz :call VimuxZoomRunner()<CR>
+nnoremap <silent> <Leader>z :call VimuxRunCommand(getline('.'))<CR>
+vnoremap <silent> <Leader>z "vy :call VimuxRunCommand(@v)<CR>
+
