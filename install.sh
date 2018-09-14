@@ -18,7 +18,3 @@ find $source_dir -type f | while read file; do
 done
 
 echo $DOTFILES_DIR
-
-if [[ $@ = "all" ]]; then
-    . "$DOTFILES_DIR/brew-cask.sh"
-fi
