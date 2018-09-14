@@ -7,8 +7,6 @@ fd() {
 }
 
 #Aliases
-alias r=ranger
-alias finder=open
 alias lisp='rlwrap sbcl'
 alias tmux="TERM=screen-256color-bce tmux"
 alias tree="tree -I 'node_modules|__assets__'"
@@ -41,4 +39,4 @@ export PATH=$PATH:/Users/anthonyquizon/.cargo/bin:/Users/anthonyquizon/.local/bi
 
 eval "$(fasd --init auto)"
 
-[ -z "$TMUX"  ] && exec `tmux attach`
+[ -z "$TMUX"  ] && exec `tmux attach -d`
