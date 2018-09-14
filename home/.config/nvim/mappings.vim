@@ -13,8 +13,8 @@ nnoremap <C-K> <C-P>
 inoremap <C-J> <C-N>
 inoremap <C-K> <C-P>
 
-vnoremap <leader>s "vy :s/<C-R>v//g<Left><Left>
-nnoremap <leader>s :s/<C-R><C-W>//g<Left><Left>
+vnoremap <leader>s "vy :%s/<C-R>v//g<Left><Left>
+nnoremap <leader>s :%s/<C-R><C-W>//g<Left><Left>
 
 "tabs
 nnoremap <C-w>t :tabe<CR>
@@ -22,10 +22,10 @@ nnoremap <C-w>C :tabc<CR>
 nnoremap <C-w>> gt
 nnoremap <C-w>< gT
 
-nmap + <Plug>Sneak_S
-xmap + <Plug>Sneak_S
-nmap = <Plug>Sneak_s
-xmap = <Plug>Sneak_s
+nmap <leader>F <Plug>Sneak_S
+xmap <leader>F <Plug>Sneak_S
+nmap <leader>f <Plug>Sneak_s
+xmap <leader>f <Plug>Sneak_s
 "ace 'f' with 1-char Sneak
 nmap f <Plug>Sneak_f
 nmap F <Plug>Sneak_F
@@ -103,6 +103,6 @@ noremap <Leader>vv :VimuxPromptCommand<CR>
 noremap <Leader>vq :VimuxCloseRunner<CR>
 noremap <Leader>vz :call VimuxZoomRunner()<CR>
 noremap <Leader>vz :call VimuxZoomRunner()<CR>
-nnoremap <silent> <Leader>z :call VimuxRunCommand(getline('.'))<CR>
-vnoremap <silent> <Leader>z "vy :call VimuxRunCommand(@v)<CR>
+nnoremap <silent> <Leader>x :call VimuxRunCommand(getline('.'))<CR>
+vnoremap <silent> <Leader>x "vy :call VimuxRunCommand(@v)<CR>
 
