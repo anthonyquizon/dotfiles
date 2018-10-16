@@ -5,6 +5,7 @@ endfunction
 call plug#begin()
 Plug 'neovim/node-host', { 'do': 'npm install -g neovim' }
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+"TODO w0rp/ale
 Plug 'FrigoEU/psc-ide-vim'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
@@ -36,4 +37,6 @@ Plug 'kovisoft/paredit'
 Plug 'takac/vim-hardtime'
 Plug 'junegunn/fzf.vim'
 Plug 'benmills/vimux'
+Plug 'leafgarland/typescript-vim'
+Plug 'jparise/vim-graphql'
 call plug#end()
