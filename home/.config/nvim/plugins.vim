@@ -39,4 +39,5 @@ Plug 'junegunn/fzf.vim'
 Plug 'benmills/vimux'
 Plug 'leafgarland/typescript-vim'
 Plug 'jparise/vim-graphql'
+Plug 'LnL7/vim-nix'
 call plug#end()
