@@ -175,14 +175,6 @@ call vimfiler#custom#profile('default', 'context', {
       \ 'create' : 1
       \ })
 
-" multiple cursors and deocomplete conflict
-func! Multiple_cursors_before()
-  call deoplete#init#_disable()
-endfunc
-func! Multiple_cursors_after()
-  call deoplete#init#_enable()
-endfunc
-
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
