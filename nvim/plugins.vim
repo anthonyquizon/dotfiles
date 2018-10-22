@@ -3,7 +3,6 @@ function! DoRemote(arg)
 endfunction
 
 call plug#begin()
-Plug 'neovim/node-host', { 'do': 'npm install -g neovim' }
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 "TODO w0rp/ale
 Plug 'FrigoEU/psc-ide-vim'
