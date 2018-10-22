@@ -1,13 +1,17 @@
 dotfiles=$(PWD)/dotfiles
 
 install:
-	mkdir -p $(HOME)/.config
-	ln -s $(dotfiles)/bash_profile $(HOME)/.bash_profile
-	ln -s $(dotfiles)/bashrc $(HOME)/.bashrc
-	ln -s $(dotfiles)/eslintrc $(HOME)/.eslintrc
-	ln -s $(dotfiles)/gitconfig $(HOME)/.gitconfig
-	ln -s $(dotfiles)/jshintrc $(HOME)/.jshintrc
-	ln -s $(dotfiles)/nethackrc $(HOME)/.nethackrc
-	ln -s $(dotfiles)/pythonrc $(HOME)/.pythonrc
-	ln -s $(dotfiles)/tmux.conf $(HOME)/.tmux.conf
-	ln -s $(PWD)/nvim $(HOME)/.config/nvim
+	mkdir -p $(HOME)/.config/nvim
+	mkdir -p $(HOME)/.config/nvim/ftplugin
+
+	ln -sFf $(dotfiles)/bash_profile $(HOME)/.bash_profile
+	ln -sFf $(dotfiles)/bashrc $(HOME)/.bashrc
+	ln -sFf $(dotfiles)/eslintrc $(HOME)/.eslintrc
+	ln -sFf $(dotfiles)/gitconfig $(HOME)/.gitconfig
+	ln -sFf $(dotfiles)/jshintrc $(HOME)/.jshintrc
+	ln -sFf $(dotfiles)/nethackrc $(HOME)/.nethackrc
+	ln -sFf $(dotfiles)/pythonrc $(HOME)/.pythonrc
+	ln -sFf $(dotfiles)/tmux.conf $(HOME)/.tmux.conf
+
+	ln -sFf $(PWD)/nvim/*.vim $(HOME)/.config/nvim
+	ln -sFf $(PWD)/nvim/ftplugin/*.vim $(HOME)/.config/nvim/ftplugin
