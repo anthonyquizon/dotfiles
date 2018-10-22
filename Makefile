@@ -12,6 +12,7 @@ install:
 	ln -sFf $(dotfiles)/nethackrc $(HOME)/.nethackrc
 	ln -sFf $(dotfiles)/pythonrc $(HOME)/.pythonrc
 	ln -sFf $(dotfiles)/tmux.conf $(HOME)/.tmux.conf
+	ln -sFf $(dotfiles)/zshrc $(HOME)/.zshrc
 
 	ln -sFf $(PWD)/nvim/*.vim $(HOME)/.config/nvim
 	ln -sFf $(PWD)/nvim/ftplugin/*.vim $(HOME)/.config/nvim/ftplugin
