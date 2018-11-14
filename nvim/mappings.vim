@@ -22,11 +22,6 @@ nnoremap <C-w>C :tabc<CR>
 nnoremap <C-w>> gt
 nnoremap <C-w>< gT
 
-nmap <leader>F <Plug>Sneak_S
-xmap <leader>F <Plug>Sneak_S
-nmap <leader>f <Plug>Sneak_s
-xmap <leader>f <Plug>Sneak_s
-"ace 'f' with 1-char Sneak
 nmap f <Plug>Sneak_f
 nmap F <Plug>Sneak_F
 xmap f <Plug>Sneak_f
@@ -105,4 +100,6 @@ noremap <Leader>vz :call VimuxZoomRunner()<CR>
 noremap <Leader>vz :call VimuxZoomRunner()<CR>
 nnoremap <silent> <Leader>x :call VimuxRunCommand(getline('.'))<CR>
 vnoremap <silent> <Leader>x "vy :call VimuxRunCommand(@v)<CR>
+
+
 

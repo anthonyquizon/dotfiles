@@ -22,18 +22,6 @@ set nowritebackup
 
 colorscheme jellybeans
 
-"let g:hardtime_default_on=1
-let g:hardtime_showmsg = 1
-" Neomake
-au! BufWritePost * Neomake
-let g:neomake_haskell_enabled_makers = ['hlint', 'ghcmod']
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:haskell_indent_disable = 1
-
-let g:neoterm_autoinsert = 0
-let g:neoterm_use_relative_path = 1
-"let g:neoterm_position = 'vertical'
-
 "netrw
 let g:netrw_list_hide= '.git/,.DS_Store*,.*\.swp$'
 let g:netrw_localrmdir='rm -r'
@@ -125,8 +113,6 @@ au filetype iad let g:paredit_mode=1
 au filetype racket :RainbowToggleOn
 au FileType coq call coquille#FNMapping()
 
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 call denite#custom#var('file_rec', 'command',
 	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
@@ -162,12 +148,6 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
             \ [ '.git/', '.ropeproject/', '__pycache__/', 'build/',
             \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
-au BufRead,BufNewFile *.hy set filetype=hy
-au BufNewFile,BufRead *.py set tabstop=2
-au BufNewFile,BufRead *.py set softtabstop=2
-au BufNewFile,BufRead *.py set shiftwidth=2
-au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
 let g:vimfiler_as_default_explorer = 1
 
 call vimfiler#custom#profile('default', 'context', {
@@ -178,10 +158,12 @@ call vimfiler#custom#profile('default', 'context', {
 "let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 "execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
-let g:LanguageClient_serverCommands = {
-    \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ }
-
 let g:LanguageClient_autoStart = 1
 let g:sneak#label = 1
+
+let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_disabled_keys = []
+let g:hardtime_default_on = 1
+let g:hardtime_showmsg = 1
