@@ -158,7 +158,6 @@ call vimfiler#custom#profile('default', 'context', {
 "let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 "execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
-let g:LanguageClient_autoStart = 1
 let g:sneak#label = 1
 
 let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
