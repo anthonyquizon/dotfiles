@@ -7,12 +7,6 @@ let maplocalleader = ","
 vmap < <gv
 vmap > >gv
 
-nnoremap <C-J> <C-N>
-nnoremap <C-K> <C-P>
-
-inoremap <C-J> <C-N>
-inoremap <C-K> <C-P>
-
 vnoremap <leader>s "vy :%s/<C-R>v//g<Left><Left>
 nnoremap <leader>s :%s/<C-R><C-W>//g<Left><Left>
 
@@ -97,5 +91,16 @@ noremap <Leader>vz :call VimuxZoomRunner()<CR>
 nnoremap <silent> <Leader>x :call VimuxRunCommand(getline('.'))<CR>
 vnoremap <silent> <Leader>x "vy :call VimuxRunCommand(@v)<CR>
 
-
+call denite#custom#map(
+            \ 'insert',
+            \ '<C-n>',
+            \ '<denite:move_to_next_line>',
+            \ 'noremap'
+            \)
+call denite#custom#map(
+            \ 'insert',
+            \ '<C-p>',
+            \ '<denite:move_to_previous_line>',
+            \ 'noremap'
+            \)
 

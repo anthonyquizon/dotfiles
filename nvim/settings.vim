@@ -130,20 +130,6 @@ call denite#custom#var('file_rec/git', 'command',
             \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
 call denite#custom#option('default', 'prompt', '>')
-
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-j>',
-            \ '<denite:move_to_next_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-k>',
-            \ '<denite:move_to_previous_line>',
-            \ 'noremap'
-            \)
-
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
             \ [ '.git/', '.ropeproject/', '__pycache__/', 'build/',
             \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
@@ -166,3 +152,9 @@ let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 let g:list_of_disabled_keys = []
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 1
+
+let g:ale_linters = {
+\  'javascript': ['flow']
+\}
+
+hi CursorLine ctermbg=236
