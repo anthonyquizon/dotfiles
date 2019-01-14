@@ -154,7 +154,7 @@ let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 1
 
 let g:ale_linters = {
-\  'javascript': ['flow']
+\  'racket': ['raco'],
 \}
 
 hi CursorLine ctermbg=236

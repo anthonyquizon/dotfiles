@@ -3,7 +3,8 @@ function! DoRemote(arg)
 endfunction
 
 call plug#begin()
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
+Plug 'aqui18/ale'
 Plug 'FrigoEU/psc-ide-vim'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
