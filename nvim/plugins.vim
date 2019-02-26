@@ -35,4 +35,5 @@ Plug 'benmills/vimux'
 Plug 'jparise/vim-graphql'
 Plug 'LnL7/vim-nix'
 Plug 'takac/vim-hardtime'
+Plug 'lfe-support/vim-lfe'
 call plug#end()

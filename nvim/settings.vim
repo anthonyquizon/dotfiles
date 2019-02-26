@@ -108,8 +108,7 @@ au filetype clojure let g:paredit_mode = 1
 au filetype scheme let g:paredit_mode = 1
 au filetype hy call PareditInitBuffer()
 au filetype hy let g:paredit_mode=1
-au filetype iad call PareditInitBuffer()
-au filetype iad let g:paredit_mode=1
+au filetype lfe let g:paredit_mode=1
 au filetype racket :RainbowToggleOn
 au FileType coq call coquille#FNMapping()
 
@@ -158,3 +157,5 @@ let g:ale_linters = {
 \}
 
 hi CursorLine ctermbg=236
+
+let g:vimfiler_ignore_pattern = ["^\.git$", "^\.DS_Store$", ".bs.js$"]
