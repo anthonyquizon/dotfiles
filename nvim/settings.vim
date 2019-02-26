@@ -158,4 +158,5 @@ let g:ale_linters = {
 
 hi CursorLine ctermbg=236
 
-let g:vimfiler_ignore_pattern = ["^\.git$", "^\.DS_Store$", ".bs.js$"]
+let g:vimfiler_ignore_pattern = ['^\.', ".bs.js$"]
+
