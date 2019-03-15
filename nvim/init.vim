@@ -13,14 +13,13 @@ Plug 'itchyny/lightline.vim'
 Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'kovisoft/paredit'
+Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'justinmk/vim-sneak'
 Plug 'takac/vim-hardtime'
 Plug 'benmills/vimux'
 Plug 'takac/vim-hardtime'
 Plug 'sheerun/vim-polyglot'
 call plug#end()
-
 set relativenumber
 
 syntax on
@@ -41,7 +40,6 @@ set noswapfile
 set undofile
 set undodir=~/.nvim/undodir
 set nobackup
-set nowritebackup
 
 colorscheme jellybeans
 
@@ -84,12 +82,6 @@ let g:lightline = {
       \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'relativepath' ] ]
       \ }
       \ }
-
-au filetype lisp let g:paredit_mode = 1
-au filetype racket let g:paredit_mode = 1
-au filetype clojure let g:paredit_mode = 1
-au filetype scheme let g:paredit_mode = 1
-au filetype racket :RainbowToggleOn
 
 call denite#custom#var('file_rec', 'command',
 	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
@@ -154,15 +146,10 @@ xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 
-" fugitive
-nnoremap <leader>g :Gstatus<CR>
-
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
 nnoremap ` :set relativenumber!<CR>
 nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
-nnoremap <leader>1 :colorscheme Tomorrow-Night<CR>
-nnoremap <leader>2 :colorscheme Tomorrow<CR>
 
 command! Qa qa
 command! WQ wq
@@ -174,22 +161,12 @@ nnoremap Q <nop>
 nnoremap <leader>wdd :windo diffthis<CR>
 nnoremap <leader>wdf :windo diffoff<CR>
 
-" Quickfix
-noremap <leader>ln :lN<CR>
-noremap <leader>lp :lp<CR>
-noremap <leader>qn :cn<CR>
-noremap <leader>qp :cp<CR>
-noremap <leader>qp :cp<CR>
-
 tnoremap <C-j><C-k> <C-\><C-n>
 
 noremap <leader>/ :Denite grep<CR>
 noremap <leader>. :Denite tag<CR>
 noremap <leader>, :Denite buffer<CR>
 noremap <leader><leader> :Denite file_rec/git<CR>
-
-nnoremap <silent> <leader>m :make<cr>
-nnoremap <silent> <leader>w :make<cr>
 
 noremap <C-h> :Defx `expand('%:p:h')` -search=`expand('%:p')` <CR>
 
@@ -265,9 +242,8 @@ vmap u <Nop>
 nnoremap <leader>jj :%!python -m json.tool<cr>
 
 " Vimux
-noremap <Leader>vv :VimuxPromptCommand<CR>
-nnoremap <silent> <Leader>x :call VimuxRunCommand(getline('.'))<CR>
-vnoremap <silent> <Leader>x "vy :call VimuxRunCommand(@v)<CR>
+noremap - :VimuxRunCommand('')<CR>
+noremap _ :VimuxPromptCommand<CR>
 
 call denite#custom#map(
             \ 'insert',
@@ -282,6 +258,7 @@ call denite#custom#map(
             \ 'noremap'
             \)
 
+" shuffle line one up or down
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 inoremap <C-j> <Esc>:m .+1<CR>==gi
