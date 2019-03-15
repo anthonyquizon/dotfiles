@@ -3,29 +3,29 @@ function! DoRemote(arg)
 endfunction
 
 call plug#begin()
-Plug 'w0rp/ale'
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Shougo/unite.vim'
-Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'nanotech/jellybeans.vim'
+Plug 'benmills/vimux'
+Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'itchyny/lightline.vim'
+Plug 'justinmk/vim-sneak'
 Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
+Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
-Plug 'justinmk/vim-sneak'
-Plug 'takac/vim-hardtime'
-Plug 'benmills/vimux'
-Plug 'takac/vim-hardtime'
 Plug 'sheerun/vim-polyglot'
+Plug 'takac/vim-hardtime'
+Plug 'tpope/vim-fugitive'
+Plug 'w0rp/ale'
 call plug#end()
-set relativenumber
 
 syntax on
 filetype on
 filetype plugin indent on
 
+set relativenumber
 set nu
 set nowrap
 set expandtab
@@ -51,6 +51,7 @@ augroup END
 
 let g:deoplete#enable_at_startup = 1
 let g:surround_no_mappings = 0
+let loaded_matchit = 1
 
 au filetype make setlocal noexpandtab
 
@@ -80,6 +81,9 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'relativepath' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
       \ }
       \ }
 
@@ -111,6 +115,7 @@ let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 let g:list_of_disabled_keys = []
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 1
+let g:hardtime_ignore_buffer_patterns = ["**/.git/.*"]
 
 hi CursorLine ctermbg=236
 
@@ -158,17 +163,13 @@ command! W w
 command! Q q
 nnoremap Q <nop>
 
-nnoremap <leader>wdd :windo diffthis<CR>
-nnoremap <leader>wdf :windo diffoff<CR>
-
 tnoremap <C-j><C-k> <C-\><C-n>
 
 noremap <leader>/ :Denite grep<CR>
-noremap <leader>. :Denite tag<CR>
-noremap <leader>, :Denite buffer<CR>
 noremap <leader><leader> :Denite file_rec/git<CR>
 
-noremap <C-h> :Defx `expand('%:p:h')` -search=`expand('%:p')` <CR>
+noremap <silent> <C-h> :Defx `expand('%:p:h')` -search=`expand('%:p')` <CR>
+noremap <silent> <BS> :Defx `expand('%:p:h')` -search=`expand('%:p')` <CR>
 
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
@@ -240,6 +241,7 @@ vmap U <Nop>
 vmap u <Nop>
 
 nnoremap <leader>jj :%!python -m json.tool<cr>
+nnoremap <leader>g :Gstatus<CR>
 
 " Vimux
 noremap - :VimuxRunCommand('')<CR>
