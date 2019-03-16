@@ -1,5 +1,28 @@
 
-source $HOME/.bash_aliases.sh
-source $HOME/.bash_exports.sh
+export PYTHONSTARTUP=~/.pythonrc
+export EDITOR=nvim
+export DEVELOPMENT=$HOME/Development
+export NPM_PATH=$HOME/.npm-packages/bin
+
+export PYTHON2_PATH=$(python3 -m site --user-base)/bin
+export PYTHON3_PATH=$(python3 -m site --user-base)/bin
+export YARN_PATH=$HOME/.config/yarn/global/node_modules/.bin
+export PATH=$PATH:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PYTHON3_PATH:$PYTHON2_PATH:$YARN_PATH:$NPM_PATH
+
+
+alias tmux="TERM=screen-256color-bce tmux"
+alias vi=nvim
+alias vim=nvim
+
+#git 
+alias git_remove_feature='git branch | grep "feature/" | xargs -I {} git branch -D {}'
+
+alias lisp='rlwrap sbcl'
+alias cljslein='rlwrap lein'
+alias smlr='rlwrap sml'
+alias racketrl='rlwrap racket'
+alias schemerl='rlwrap scheme'
+alias ocamlrl='rlwrap ocaml'
+alias prolog='swipl'
 
 [ -z "$TMUX"  ] && exec `tmux attach -d`

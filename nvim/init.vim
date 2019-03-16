@@ -223,10 +223,9 @@ nnoremap <leader>g :Gstatus<CR>
 noremap - :VimuxRunCommand('')<CR>
 noremap _ :VimuxPromptCommand<CR>
 
-
 noremap <silent> <leader>/ :Denite -buffer-name=grep -default-action=quickfix grep:::!<CR><CR>
 noremap <leader><leader> :Denite file_rec<CR>
-nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
+nnoremap <silent> / :<C-u>Denite -winheight=5 -cursor-wrap=true -buffer-name=search -auto-highlight line<CR>
 
 let g:fruzzy#usenative = 1
 
