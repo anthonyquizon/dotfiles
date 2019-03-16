@@ -1,4 +1,3 @@
-
 export PYTHONSTARTUP=~/.pythonrc
 export EDITOR=nvim
 export DEVELOPMENT=$HOME/Development
@@ -11,7 +10,7 @@ export PATH=$PATH:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sb
 
 
 alias tmux="TERM=screen-256color-bce tmux"
-alias vi=nvim
+
 alias vim=nvim
 
 #git 
