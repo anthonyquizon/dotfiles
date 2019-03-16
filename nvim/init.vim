@@ -18,6 +18,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'takac/vim-hardtime'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
 Plug 'w0rp/ale'
 call plug#end()
 
@@ -51,7 +53,6 @@ augroup END
 
 let g:deoplete#enable_at_startup = 1
 let g:surround_no_mappings = 0
-let loaded_matchit = 1
 
 au filetype make setlocal noexpandtab
 
@@ -86,26 +87,6 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head'
       \ }
       \ }
-
-call denite#custom#var('file_rec', 'command',
-	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts',
-            \ ['-i', '--vimgrep'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command',
-            \ ['git', 'ls-files', '-co', '--exclude-standard'])
-
-call denite#custom#option('default', 'prompt', '>')
-call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-            \ [ '.git/', '.ropeproject/', '__pycache__/', 'build/',
-            \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
 let g:sneak#label = 1
 
@@ -162,11 +143,6 @@ command! Wq wq
 command! W w
 command! Q q
 nnoremap Q <nop>
-
-tnoremap <C-j><C-k> <C-\><C-n>
-
-noremap <leader>/ :Denite grep<CR>
-noremap <leader><leader> :Denite file_rec/git<CR>
 
 noremap <silent> <C-h> :Defx `expand('%:p:h')` -search=`expand('%:p')` <CR>
 noremap <silent> <BS> :Defx `expand('%:p:h')` -search=`expand('%:p')` <CR>
@@ -247,6 +223,29 @@ nnoremap <leader>g :Gstatus<CR>
 noremap - :VimuxRunCommand('')<CR>
 noremap _ :VimuxPromptCommand<CR>
 
+
+noremap <silent> <leader>/ :Denite -buffer-name=grep -default-action=quickfix grep:::!<CR><CR>
+noremap <leader><leader> :Denite file_rec<CR>
+nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
+
+let g:fruzzy#usenative = 1
+
+call denite#custom#source('grep',
+\ 'converters', ['converter/abbr_word'])
+
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts',
+            \ ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+call denite#custom#var('file_rec', 'command', 
+      \ ['ag', '-l', '--nocolor', ''])
+
+call denite#custom#option('default', 'prompt', '>')
+
 call denite#custom#map(
             \ 'insert',
             \ '<C-n>',
@@ -257,6 +256,25 @@ call denite#custom#map(
             \ 'insert',
             \ '<C-p>',
             \ '<denite:move_to_previous_line>',
+            \ 'noremap'
+            \)
+
+call denite#custom#map(
+            \ 'insert',
+            \ '<C-u>',
+            \ '<denite:scroll_page_backwards>',
+            \ 'noremap'
+            \)
+call denite#custom#map(
+            \ 'insert',
+            \ '<C-d>',
+            \ '<denite:scroll_page_forwards>',
+            \ 'noremap'
+            \)
+call denite#custom#map(
+            \ 'insert',
+            \ 'jk',
+            \ '<denite:enter_mode:normal>',
             \ 'noremap'
             \)
 
