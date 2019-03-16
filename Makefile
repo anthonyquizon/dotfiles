@@ -17,7 +17,7 @@ install:
 	ln -sFf $(dotfiles)/zshrc $(HOME)/.zshrc
 	ln -sFf $(dotfiles)/npmrc $(HOME)/.npmrc
 	ln -sFf $(dotfiles)/tigrc $(HOME)/.tigrc
-	ln -sFf $(dotfiles)/rashrc $(HOME)/.config/rash/rashrc
+	ln -sFf $(dotfiles)/rashrc.rkt $(HOME)/.config/rash/rashrc.rkt
 
 	ln -sFf $(nvim)/*.vim $(HOME)/.config/nvim
 	ln -sFf $(nvim)/ftplugin/*.vim $(HOME)/.config/nvim/ftplugin
