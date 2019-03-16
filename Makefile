@@ -1,4 +1,5 @@
 dotfiles=$(PWD)/dotfiles
+nvim=$(PWD)/nvim
 
 install:
 	mkdir -p $(HOME)/.config/nvim
@@ -18,5 +19,5 @@ install:
 	ln -sFf $(dotfiles)/tigrc $(HOME)/.tigrc
 	ln -sFf $(dotfiles)/rashrc $(HOME)/.config/rash/rashrc
 
-	ln -sFf $(PWD)/nvim/*.vim $(HOME)/.config/nvim
-	ln -sFf $(PWD)/nvim/ftplugin/*.vim $(HOME)/.config/nvim/ftplugin
+	ln -sFf $(nvim)/*.vim $(HOME)/.config/nvim
+	ln -sFf $(nvim)/ftplugin/*.vim $(HOME)/.config/nvim/ftplugin
