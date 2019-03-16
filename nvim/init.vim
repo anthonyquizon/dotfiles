@@ -216,7 +216,6 @@ endfunction
 vmap U <Nop>
 vmap u <Nop>
 
-nnoremap <leader>jj :%!python -m json.tool<cr>
 nnoremap <leader>g :Gstatus<CR>
 
 " Vimux
@@ -225,7 +224,8 @@ noremap _ :VimuxPromptCommand<CR>
 
 noremap <silent> <leader>/ :Denite -buffer-name=grep -default-action=quickfix grep:::!<CR><CR>
 noremap <leader><leader> :Denite file_rec<CR>
-nnoremap <silent> ' :<C-u>Denite -winheight=5 -cursor-wrap=true -buffer-name=search -auto-highlight line<CR>
+nnoremap <silent> \ :<C-u>Denite -cursor-wrap=true -buffer-name=search -auto-highlight line<CR>
+nnoremap <silent> <leader>. :Denite command<CR>
 
 let g:fruzzy#usenative = 1
 
@@ -276,6 +276,9 @@ call denite#custom#map(
             \ '<denite:enter_mode:normal>',
             \ 'noremap'
             \)
+
+
+:command FormatJson %!python -m json.tool
 
 " shuffle line one up or down
 nnoremap <C-j> :m .+1<CR>==
