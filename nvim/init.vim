@@ -144,8 +144,8 @@ command! W w
 command! Q q
 nnoremap Q <nop>
 
-noremap <silent> <C-h> :Defx `expand('%:p:h')` -search=`expand('%:p')` <CR>
-noremap <silent> <BS> :Defx `expand('%:p:h')` -search=`expand('%:p')` <CR>
+noremap <silent> <C-h> :Defx -new=true `expand('%:p:h')` -search=`expand('%:p')` <CR>
+noremap <silent> <BS> :Defx -new=true `expand('%:p:h')` -search=`expand('%:p')` <CR>
 
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
