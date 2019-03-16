@@ -18,6 +18,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'takac/vim-hardtime'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'w0rp/ale'
@@ -224,7 +225,7 @@ noremap _ :VimuxPromptCommand<CR>
 
 noremap <silent> <leader>/ :Denite -buffer-name=grep -default-action=quickfix grep:::!<CR><CR>
 noremap <leader><leader> :Denite file_rec<CR>
-nnoremap <silent> \ :<C-u>Denite -cursor-wrap=true -buffer-name=search -auto-highlight line<CR>
+nnoremap <silent> \ :<C-u>Denite -winheight=10 -cursor-wrap=true -buffer-name=search -auto-highlight line<CR>
 nnoremap <silent> <leader>. :Denite command<CR>
 
 let g:fruzzy#usenative = 1
