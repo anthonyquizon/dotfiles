@@ -97,7 +97,7 @@ let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 let g:list_of_disabled_keys = []
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 1
-let g:hardtime_ignore_buffer_patterns = ["**/.git/.*"]
+let g:hardtime_ignore_buffer_patterns = [".git/.*", "**/.git/.*"]
 
 hi CursorLine ctermbg=236
 

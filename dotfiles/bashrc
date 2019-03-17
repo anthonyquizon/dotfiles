@@ -25,4 +25,6 @@ alias ocamlrl='rlwrap ocaml'
 alias prolog='swipl'
 alias rash='racket -l rash/repl --'
 
+alias devbox='mosh dev'
+
 [ -z "$TMUX"  ] && exec `tmux attach -d`
