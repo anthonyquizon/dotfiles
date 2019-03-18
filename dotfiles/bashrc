@@ -8,7 +8,6 @@ export PYTHON3_PATH=$(python3 -m site --user-base)/bin
 export YARN_PATH=$HOME/.config/yarn/global/node_modules/.bin
 export PATH=$PATH:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PYTHON3_PATH:$PYTHON2_PATH:$YARN_PATH:$NPM_PATH
 
-
 alias tmux="TERM=screen-256color-bce tmux"
 
 alias vim=nvim
@@ -26,5 +25,9 @@ alias prolog='swipl'
 alias rash='racket -l rash/repl --'
 
 alias devbox='mosh dev'
+
+function search_replace () { 
+  ag -0 -l $1 | xargs -0 sed -i -e "s/$1/$2/g" 
+}
 
 [ -z "$TMUX"  ] && exec `tmux attach -d`
