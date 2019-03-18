@@ -8,8 +8,7 @@ export PYTHON3_PATH=$(python3 -m site --user-base)/bin
 export YARN_PATH=$HOME/.config/yarn/global/node_modules/.bin
 export PATH=$PATH:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PYTHON3_PATH:$PYTHON2_PATH:$YARN_PATH:$NPM_PATH
 
-alias tmux="TERM=screen-256color-bce tmux"
-
+export TERM=screen-256color-bce
 alias vim=nvim
 
 #git 
@@ -30,4 +29,8 @@ function search_replace () {
   ag -0 -l $1 | xargs -0 sed -i -e "s/$1/$2/g" 
 }
 
-[ -z "$TMUX"  ] && exec `tmux attach -d`
+# TMUX
+if which tmux >/dev/null 2>&1; then
+  [[ $- != *i* ]] && return
+  [[ -z "$TMUX" ]] && exec tmux attach -d
+fi
