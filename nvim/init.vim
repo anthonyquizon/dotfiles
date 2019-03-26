@@ -370,10 +370,10 @@ function! PareditSmartJumpClosing( select )
 endfunction
 
 
-nnoremap <buffer> <silent> (  :<C-U>call PareditSmartJumpOpening(0)<CR>
-nnoremap <buffer> <silent> )  :<C-U>call PareditSmartJumpClosing(0)<CR>
+nnoremap <silent> (  :<C-U>call PareditSmartJumpOpening(0)<CR>
+nnoremap <silent> )  :<C-U>call PareditSmartJumpClosing(0)<CR>
 
-vnoremap <buffer> <silent> (  <Esc>:<C-U>call PareditSmartJumpOpening(1)<CR>
-vnoremap <buffer> <silent> )  <Esc>:<C-U>call PareditSmartJumpClosing(1)<CR>
+vnoremap <silent> (  <Esc>:<C-U>call PareditSmartJumpOpening(1)<CR>
+vnoremap <silent> )  <Esc>:<C-U>call PareditSmartJumpClosing(1)<CR>
 
 
