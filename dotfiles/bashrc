@@ -30,7 +30,7 @@ alias rash='racket -l rash/repl --'
 alias devbox='mosh dev'
 
 function search_replace () { 
-  ag -0 -l $1 | xargs -0 sed -i -e "s/$1/$2/g" 
+  ag -0 -l $1 | xargs -0 sed -i -e "s/$2/$3/g" 
 }
 
 # TMUX

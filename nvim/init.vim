@@ -105,6 +105,18 @@ inoremap jk <Esc>
 let mapleader = "\<Space>"
 let maplocalleader = ","
 
+function! VisualSelectionLines()
+  let [line_start, column_start] = getpos("'<")[1:2]
+  let [line_end, column_end] = getpos("'>")[1:2]
+  let lines = getline(line_start, line_end)
+  if len(lines) == 0
+    return ''
+  endif
+  let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][column_start - 1:]
+  return join(lines, "\n")
+endfunction
+
 "stay selected when visual mode indenting
 vmap < <gv
 vmap > >gv
@@ -219,8 +231,12 @@ vmap u <Nop>
 nnoremap <leader>g :Gstatus<CR>
 
 " Vimux
-noremap - :VimuxRunCommand('')<CR>
+noremap - :call VimuxOpenRunner()<CR>
 noremap _ :VimuxPromptCommand<CR>
+noremap <leader>- :call VimuxSendText(getline('.'))<CR>
+noremap <leader>_ :call VimuxSendText(getline('.'))<CR>
+vnoremap <leader>- :call VimuxSendText(VisualSelectionLines() . "\n")<CR>
+vnoremap <leader>_ :call VimuxSendText(VisualSelectionLines() . "\n")<CR>
 
 noremap <silent> <leader>/ :Denite -buffer-name=grep -default-action=quickfix grep:::!<CR><CR>
 noremap <leader><leader> :Denite file_rec<CR>
@@ -255,19 +271,6 @@ call denite#custom#map(
             \ 'insert',
             \ '<C-p>',
             \ '<denite:move_to_previous_line>',
-            \ 'noremap'
-            \)
-
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-u>',
-            \ '<denite:scroll_page_backwards>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-d>',
-            \ '<denite:scroll_page_forwards>',
             \ 'noremap'
             \)
 call denite#custom#map(
@@ -375,5 +378,4 @@ nnoremap <silent> )  :<C-U>call PareditSmartJumpClosing(0)<CR>
 
 vnoremap <silent> (  <Esc>:<C-U>call PareditSmartJumpOpening(1)<CR>
 vnoremap <silent> )  <Esc>:<C-U>call PareditSmartJumpClosing(1)<CR>
-
 
