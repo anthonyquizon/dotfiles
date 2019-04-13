@@ -231,10 +231,11 @@ vmap u <Nop>
 nnoremap <leader>g :Gstatus<CR>
 
 " Vimux
-noremap - :call VimuxOpenRunner()<CR>
-noremap _ :VimuxPromptCommand<CR>
-noremap <leader>- :call VimuxSendText(getline('.'))<CR>
-noremap <leader>_ :call VimuxSendText(getline('.'))<CR>
+noremap -- :call VimuxOpenRunner()<CR>
+noremap -_ :VimuxPromptCommand<CR>
+noremap __ :VimuxPromptCommand<CR>
+noremap <leader>- :call VimuxSendText(getline('.') . "\n")<CR>
+noremap <leader>_ :call VimuxSendText(getline('.')) . "\n"<CR>
 vnoremap <leader>- :call VimuxSendText(VisualSelectionLines() . "\n")<CR>
 vnoremap <leader>_ :call VimuxSendText(VisualSelectionLines() . "\n")<CR>
 
