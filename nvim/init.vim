@@ -114,7 +114,7 @@ function! VisualSelectionLines()
   endif
   let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
   let lines[0] = lines[0][column_start - 1:]
-  return join(lines, "\n")
+  return lines
 endfunction
 
 "stay selected when visual mode indenting
@@ -228,6 +228,12 @@ endfunction
 vmap U <Nop>
 vmap u <Nop>
 
+
+function! VimuxSendVisualText() range
+  let lines = join(VisualSelectionLines(), "\n") . "\n"
+  call VimuxSendText(lines)
+endfunction
+
 nnoremap <leader>g :Gstatus<CR>
 
 " Vimux
@@ -236,8 +242,8 @@ noremap -_ :VimuxPromptCommand<CR>
 noremap __ :VimuxPromptCommand<CR>
 noremap <leader>- :call VimuxSendText(getline('.') . "\n")<CR>
 noremap <leader>_ :call VimuxSendText(getline('.')) . "\n"<CR>
-vnoremap <leader>- :call VimuxSendText(VisualSelectionLines() . "\n")<CR>
-vnoremap <leader>_ :call VimuxSendText(VisualSelectionLines() . "\n")<CR>
+vnoremap <leader>- :call VimuxSendVisualText()<CR>
+vmap <leader>_ <leader>-
 
 noremap <silent> <leader>/ :Denite -buffer-name=grep -default-action=quickfix grep:::!<CR><CR>
 noremap <leader><leader> :Denite file_rec<CR>
