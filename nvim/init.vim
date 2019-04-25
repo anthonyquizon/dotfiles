@@ -182,7 +182,7 @@ function! s:defx_my_settings() abort
   \ defx#do_action('open_or_close_tree')
   nnoremap <silent><buffer><expr> K
   \ defx#do_action('new_directory')
-  nnoremap <silent><buffer><expr> N
+  nnoremap <silent><buffer><expr> J
   \ defx#do_action('new_file')
   nnoremap <silent><buffer><expr> M
   \ defx#do_action('new_multiple_files')
@@ -386,3 +386,4 @@ nnoremap <silent> )  :<C-U>call PareditSmartJumpClosing(0)<CR>
 vnoremap <silent> (  <Esc>:<C-U>call PareditSmartJumpOpening(1)<CR>
 vnoremap <silent> )  <Esc>:<C-U>call PareditSmartJumpClosing(1)<CR>
 
+let g:ale_linters = {'javascript': ['eslint', 'flow']}
