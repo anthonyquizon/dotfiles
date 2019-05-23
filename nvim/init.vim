@@ -4,9 +4,8 @@ endfunction
 
 call plug#begin()
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/denite.nvim'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'Shougo/unite.vim'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'benmills/vimux'
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'itchyny/lightline.vim'
@@ -21,6 +20,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'w0rp/ale'
+Plug 'jparise/vim-graphql'
 call plug#end()
 
 syntax on
@@ -245,48 +245,10 @@ noremap <leader>_ :call VimuxSendText(getline('.')) . "\n"<CR>
 vnoremap <leader>- :call VimuxSendVisualText()<CR>
 vmap <leader>_ <leader>-
 
-noremap <silent> <leader>/ :Denite -buffer-name=grep -default-action=quickfix grep:::!<CR><CR>
-noremap <leader><leader> :Denite file_rec<CR>
-nnoremap <silent> \ :<C-u>Denite -winheight=10 -cursor-wrap=true -buffer-name=search -auto-highlight line<CR>
-nnoremap <silent> <leader>. :Denite command<CR>
-
-let g:fruzzy#usenative = 1
-
-call denite#custom#source('grep',
-\ 'converters', ['converter/abbr_word'])
-
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts',
-            \ ['-i', '--vimgrep'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
-call denite#custom#var('file_rec', 'command', 
-      \ ['ag', '-l', '--nocolor', ''])
-
-call denite#custom#option('default', 'prompt', '>')
-
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-n>',
-            \ '<denite:move_to_next_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ '<C-p>',
-            \ '<denite:move_to_previous_line>',
-            \ 'noremap'
-            \)
-call denite#custom#map(
-            \ 'insert',
-            \ 'jk',
-            \ '<denite:enter_mode:normal>',
-            \ 'noremap'
-            \)
-
+noremap <silent> <leader>/ :Leaderf rg<CR>
+noremap <silent> <leader>. :LeaderfMruCwd<CR>
+noremap <leader><leader> :LeaderfFile<CR>
+noremap <leader>F :LeaderfFileFullScreen<CR>
 
 :command FormatJson %!python -m json.tool
 :command LightTheme colorscheme shine
@@ -387,3 +349,7 @@ vnoremap <silent> (  <Esc>:<C-U>call PareditSmartJumpOpening(1)<CR>
 vnoremap <silent> )  <Esc>:<C-U>call PareditSmartJumpClosing(1)<CR>
 
 let g:ale_linters = {'javascript': ['eslint', 'flow']}
+
+autocmd BufRead,BufNewFile *.pl set filetype=prolog
+autocmd BufRead,BufNewFile *.rkt set filetype=racket
+
