@@ -246,9 +246,8 @@ vnoremap <leader>- :call VimuxSendVisualText()<CR>
 vmap <leader>_ <leader>-
 
 noremap <silent> <leader>/ :Leaderf rg<CR>
-noremap <silent> <leader>. :LeaderfMruCwd<CR>
-noremap <leader><leader> :LeaderfFile<CR>
-noremap <leader>F :LeaderfFileFullScreen<CR>
+noremap <silent> <leader>. :Leaderf mru<CR>
+noremap <leader><leader> :Leaderf file<CR>
 
 :command FormatJson %!python -m json.tool
 :command LightTheme colorscheme shine
