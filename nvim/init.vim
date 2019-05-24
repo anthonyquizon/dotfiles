@@ -284,6 +284,8 @@ autocmd BufRead,BufNewFile *.pl set filetype=prolog
 autocmd BufRead,BufNewFile *.rkt set filetype=racket
 
 
+let g:netrw_banner = 0
+
 augroup netrw_maps
   autocmd!
   autocmd filetype netrw call NetrwKeyMaps()
@@ -292,4 +294,9 @@ augroup END
 function NetrwKeyMaps()
   nmap <buffer> h -
   nmap <buffer> l <ENTER>
+  nmap <buffer> J %
+  nmap <buffer> K d
 endfunction
+
+nmap <silent> <leader>> :ALENextWrap<cr>
+nmap <silent> <leader>< :ALEPreviousWrap<cr>
