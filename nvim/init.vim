@@ -52,6 +52,7 @@ augroup END
 
 let g:deoplete#enable_at_startup = 1
 let g:surround_no_mappings = 0
+let g:netrw_localrmdir='rm -r'
 
 au filetype make setlocal noexpandtab
 
@@ -300,3 +301,4 @@ endfunction
 
 nmap <silent> <leader>> :ALENextWrap<cr>
 nmap <silent> <leader>< :ALEPreviousWrap<cr>
+
