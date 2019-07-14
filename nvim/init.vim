@@ -6,7 +6,7 @@ call plug#begin()
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'benmills/vimux'
-Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+Plug 'vim-scripts/paredit.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'luochen1990/rainbow'
@@ -20,6 +20,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'w0rp/ale'
 Plug 'jparise/vim-graphql'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 syntax on
@@ -181,8 +182,8 @@ noremap <silent> <leader>/ :Leaderf rg<CR>
 noremap <silent> <leader>. :Leaderf mru<CR>
 noremap <leader><leader> :Leaderf file<CR>
 
-:command FormatJson %!python -m json.tool
-:command LightTheme colorscheme shine
+:command! FormatJson %!python -m json.tool
+:command! LightTheme colorscheme shine
 
 " shuffle line one up or down
 nnoremap <C-j> :m .+1<CR>==
@@ -192,97 +193,11 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-
-" ==== Parens (From Paredit) ====
-
-" Skip matches inside string or comment or after '\'
-let s:skip_sc = '(synIDattr(synID(line("."), col("."), 0), "name") =~ "[Ss]tring\\|[Cc]omment\\|[Ss]pecial\\|clojureRegexp\\|clojurePattern" || getline(line("."))[col(".")-2] == "\\")'
-
-" Find opening matched character
-function! PareditFindOpening( open, close, select )
-    let open  = escape( a:open , '[]' )
-    let close = escape( a:close, '[]' )
-    call searchpair( open, '', close, 'bW', s:skip_sc )
-    if a:select
-        call searchpair( open, '', close, 'W', s:skip_sc )
-        let save_ve = &ve
-        set ve=all 
-        normal! lvh
-        let &ve = save_ve
-        call searchpair( open, '', close, 'bW', s:skip_sc )
-        if &selection == 'inclusive'
-            " Trim last character from the selection, it will be included anyway
-            normal! oho
-        endif
-    endif
-endfunction
-
-" Find closing matched character
-function! PareditFindClosing( open, close, select )
-    let open  = escape( a:open , '[]' )
-    let close = escape( a:close, '[]' )
-    if a:select
-        let line = getline( '.' )
-        if line[col('.')-1] != a:open
-            normal! h
-        endif
-        call searchpair( open, '', close, 'W', s:skip_sc )
-        call searchpair( open, '', close, 'bW', s:skip_sc )
-        normal! v
-        call searchpair( open, '', close, 'W', s:skip_sc )
-        if &selection != 'inclusive'
-            normal! l
-        endif
-    else
-        call searchpair( open, '', close, 'W', s:skip_sc )
-    endif
-endfunction
-
-" Returns the nearest opening character to the cursor
-" Used for smart jumping in Clojure
-function! PareditSmartJumpOpening( select )
-    let [paren_line, paren_col] = searchpairpos('(', '', ')', 'bWn', s:skip_sc)
-    let [bracket_line, bracket_col] = searchpairpos('\[', '', '\]', 'bWn', s:skip_sc)
-    let [brace_line, brace_col] = searchpairpos('{', '', '}', 'bWn', s:skip_sc)
-    let paren_score = paren_line * 10000 + paren_col
-    let bracket_score = bracket_line * 10000 + bracket_col
-    let brace_score = brace_line * 10000 + brace_col
-    if (brace_score > paren_score || paren_score == 0) && (brace_score > bracket_score || bracket_score == 0) && brace_score != 0
-	call PareditFindOpening('{','}', a:select)
-    elseif (bracket_score > paren_score || paren_score == 0) && bracket_score != 0
-	call PareditFindOpening('[',']', a:select)
-    else
-	call PareditFindOpening('(',')', a:select)
-    endif
-endfunction
-
-function! PareditSmartJumpClosing( select )
-    let [paren_line, paren_col] = searchpairpos('(', '', ')', 'Wn', s:skip_sc)
-    let [bracket_line, bracket_col] = searchpairpos('\[', '', '\]', 'Wn', s:skip_sc)
-    let [brace_line, brace_col] = searchpairpos('{', '', '}', 'Wn', s:skip_sc)
-    let paren_score = paren_line * 10000 + paren_col
-    let bracket_score = bracket_line * 10000 + bracket_col
-    let brace_score = brace_line * 10000 + brace_col
-    if (brace_score < paren_score || paren_score == 0) && (brace_score < bracket_score || bracket_score == 0) && brace_score != 0
-	call PareditFindClosing('{','}', a:select)
-    elseif (bracket_score < paren_score || paren_score == 0) && bracket_score != 0
-	call PareditFindClosing('[',']', a:select)
-    else
-	call PareditFindClosing('(',')', a:select)
-    endif
-endfunction
-
-
-nnoremap <silent> (  :<C-U>call PareditSmartJumpOpening(0)<CR>
-nnoremap <silent> )  :<C-U>call PareditSmartJumpClosing(0)<CR>
-
-vnoremap <silent> (  <Esc>:<C-U>call PareditSmartJumpOpening(1)<CR>
-vnoremap <silent> )  <Esc>:<C-U>call PareditSmartJumpClosing(1)<CR>
-
 let g:ale_linters = {'javascript': ['eslint', 'flow']}
 
 autocmd BufRead,BufNewFile *.pl set filetype=prolog
 autocmd BufRead,BufNewFile *.rkt set filetype=racket
+autocmd BufRead,BufNewFile *.lfe set filetype=lisp
 
 
 let g:netrw_banner = 0
@@ -292,7 +207,7 @@ augroup netrw_maps
   autocmd filetype netrw call NetrwKeyMaps()
 augroup END
 
-function NetrwKeyMaps()
+function! NetrwKeyMaps()
   nmap <buffer> h -
   nmap <buffer> l <ENTER>
   nmap <buffer> J %
