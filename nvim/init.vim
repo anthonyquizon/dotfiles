@@ -6,7 +6,7 @@ call plug#begin()
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'benmills/vimux'
-Plug 'vim-scripts/paredit.vim'
+Plug 'kovisoft/paredit'
 Plug 'itchyny/lightline.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'luochen1990/rainbow'
@@ -118,6 +118,13 @@ function! VisualSelectionLines()
   return lines
 endfunction
 
+function! NetrwKeyMaps()
+  nmap <buffer> h -
+  nmap <buffer> l <ENTER>
+  nmap <buffer> J %
+  nmap <buffer> K d
+endfunction
+
 "stay selected when visual mode indenting
 vmap < <gv
 vmap > >gv
@@ -193,6 +200,7 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
+
 let g:ale_linters = {'javascript': ['eslint', 'flow']}
 
 autocmd BufRead,BufNewFile *.pl set filetype=prolog
@@ -206,13 +214,6 @@ augroup netrw_maps
   autocmd!
   autocmd filetype netrw call NetrwKeyMaps()
 augroup END
-
-function! NetrwKeyMaps()
-  nmap <buffer> h -
-  nmap <buffer> l <ENTER>
-  nmap <buffer> J %
-  nmap <buffer> K d
-endfunction
 
 nmap <silent> <leader>> :ALENextWrap<cr>
 nmap <silent> <leader>< :ALEPreviousWrap<cr>

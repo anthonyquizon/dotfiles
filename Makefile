@@ -21,3 +21,4 @@ install:
 
 	ln -sFf $(nvim)/*.vim $(HOME)/.config/nvim
 	ln -sFf $(nvim)/ftplugin/*.vim $(HOME)/.config/nvim/ftplugin
+
