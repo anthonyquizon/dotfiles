@@ -57,6 +57,9 @@ let g:deoplete#enable_at_startup = 1
 let g:surround_no_mappings = 0
 let g:netrw_localrmdir='rm -r'
 let g:Lf_CommandMap = {'<C-K>': ['<C-P>'], '<C-J>': ['<C-N>']}
+let g:Lf_UseCache = 0 
+let g:Lf_UseMemoryCache = 0
+let g:Lf_UseVersionControlTool = 0
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
