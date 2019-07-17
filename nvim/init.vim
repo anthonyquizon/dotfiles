@@ -119,12 +119,19 @@ function! VisualSelectionLines()
   return lines
 endfunction
 
+" ===== NETRW ======
 function! NetrwKeyMaps()
   nmap <buffer> h -
   nmap <buffer> l <ENTER>
-  nmap <buffer> J %
-  nmap <buffer> K d
 endfunction
+
+let g:netrw_banner = 0
+
+augroup netrw_maps
+  autocmd!
+  autocmd filetype netrw call NetrwKeyMaps()
+augroup END
+"==================
 
 "stay selected when visual mode indenting
 vmap < <gv
@@ -193,6 +200,8 @@ noremap <leader><leader> :Leaderf file<CR>
 :command! FormatJson %!python -m json.tool
 :command! LightTheme colorscheme shine
 
+inoremap <C-i> <C-k>
+
 " shuffle line one up or down
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
@@ -208,13 +217,6 @@ autocmd BufRead,BufNewFile *.pl set filetype=prolog
 autocmd BufRead,BufNewFile *.rkt set filetype=racket
 autocmd BufRead,BufNewFile *.lfe set filetype=lisp
 
-
-let g:netrw_banner = 0
-
-augroup netrw_maps
-  autocmd!
-  autocmd filetype netrw call NetrwKeyMaps()
-augroup END
 
 nmap <silent> <leader>> :ALENextWrap<cr>
 nmap <silent> <leader>< :ALEPreviousWrap<cr>
