@@ -14,7 +14,6 @@ Plug 'mattn/emmet-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
-Plug 'takac/vim-hardtime'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
@@ -29,6 +28,7 @@ filetype plugin indent on
 
 set relativenumber
 set nu
+set nopaste
 set nowrap
 set expandtab
 set tabstop=2
@@ -51,11 +51,12 @@ augroup BgHighlight
     au WinLeave * set nocul
 augroup END
 
+au filetype make setlocal noexpandtab
+
 let g:deoplete#enable_at_startup = 1
 let g:surround_no_mappings = 0
 let g:netrw_localrmdir='rm -r'
-
-au filetype make setlocal noexpandtab
+let g:Lf_CommandMap = {'<C-K>': ['<C-P>'], '<C-J>': ['<C-N>']}
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
