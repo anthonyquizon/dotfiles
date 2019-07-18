@@ -203,7 +203,8 @@ noremap <leader><leader> :Leaderf file<CR>
 :command! FormatJson %!python -m json.tool
 :command! LightTheme colorscheme shine
 
-inoremap <C-i> <C-k>
+inoremap <C-o> <C-k>
+
 
 " shuffle line one up or down
 nnoremap <C-j> :m .+1<CR>==
