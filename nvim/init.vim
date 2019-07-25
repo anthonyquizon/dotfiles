@@ -6,7 +6,7 @@ call plug#begin()
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'benmills/vimux'
-Plug 'kovisoft/paredit'
+Plug 'aqui18/paredit'
 Plug 'itchyny/lightline.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'luochen1990/rainbow'
