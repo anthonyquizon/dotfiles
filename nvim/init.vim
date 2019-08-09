@@ -7,6 +7,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'benmills/vimux'
 Plug 'aqui18/paredit'
+Plug 'aqui18/coquille'
+Plug 'derekelkins/agda-vim'
+Plug 'let-def/vimbufsync' "Dependency of coquille
 Plug 'itchyny/lightline.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'luochen1990/rainbow'
@@ -19,7 +22,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'w0rp/ale'
 Plug 'jparise/vim-graphql'
-Plug 'rust-lang/rust.vim'
 call plug#end()
 
 syntax on
@@ -56,6 +58,7 @@ au filetype make setlocal noexpandtab
 let g:deoplete#enable_at_startup = 1
 let g:surround_no_mappings = 0
 let g:netrw_localrmdir='rm -r'
+let g:netrw_list_hide= '.*\.swp$,.stack-work'
 let g:Lf_CommandMap = {'<C-K>': ['<C-P>'], '<C-J>': ['<C-N>']}
 let g:Lf_UseCache = 0 
 let g:Lf_UseMemoryCache = 0
@@ -123,12 +126,12 @@ function! VisualSelectionLines()
 endfunction
 
 " ===== NETRW ======
+let g:netrw_banner = 0
+
 function! NetrwKeyMaps()
   nmap <buffer> h -
   nmap <buffer> l <ENTER>
 endfunction
-
-let g:netrw_banner = 0
 
 augroup netrw_maps
   autocmd!
@@ -191,10 +194,10 @@ nnoremap <leader>g :Gstatus<CR>
 noremap -- :call VimuxOpenRunner()<CR>
 noremap -_ :VimuxPromptCommand<CR>
 noremap __ :VimuxPromptCommand<CR>
-noremap <leader>- :call VimuxSendText(getline('.') . "\n")<CR>
-noremap <leader>_ :call VimuxSendText(getline('.')) . "\n"<CR>
-vnoremap <leader>- :call VimuxSendVisualText()<CR>
-vmap <leader>_ <leader>-
+noremap -<leader> :call VimuxSendText(getline('.') . "\n")<CR>
+noremap _<leader> :call VimuxSendText(getline('.')) . "\n"<CR>
+vnoremap -<leader> :call VimuxSendVisualText()<CR>
+vmap _<leader> -<leader>
 
 noremap <silent> <leader>/ :Leaderf rg<CR>
 noremap <silent> <leader>. :Leaderf mru<CR>
@@ -218,6 +221,7 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 let g:ale_linters = {'javascript': ['eslint', 'flow']}
 
 autocmd BufRead,BufNewFile *.pl set filetype=prolog
+autocmd BufRead,BufNewFile *.v set filetype=coq
 autocmd BufRead,BufNewFile *.rkt set filetype=racket
 autocmd BufRead,BufNewFile *.lfe set filetype=lisp
 
