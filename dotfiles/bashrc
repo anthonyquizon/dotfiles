@@ -34,8 +34,9 @@ function search_replace () {
   ag -0 -l $1 | xargs -0 sed -i -e "s/$2/$3/g" 
 }
 
-LANG="en_AU.UTF-8"
-LANGUAGE="en_AU:en"
+export LANG=en_AU.UTF-8
+export LANGUAGE=en_AU:en
+export LC_CTYPE=en_AU.UTF-8
 
 # TMUX
 if which tmux >/dev/null 2>&1; then

@@ -7,9 +7,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'benmills/vimux'
 Plug 'aqui18/paredit'
-Plug 'aqui18/coquille'
 Plug 'derekelkins/agda-vim'
-Plug 'let-def/vimbufsync' "Dependency of coquille
 Plug 'itchyny/lightline.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'luochen1990/rainbow'
@@ -22,6 +20,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'w0rp/ale'
 Plug 'jparise/vim-graphql'
+"Plug 'parsonsmatt/intero-neovim'
 call plug#end()
 
 syntax on
@@ -57,12 +56,7 @@ au filetype make setlocal noexpandtab
 
 let g:deoplete#enable_at_startup = 1
 let g:surround_no_mappings = 0
-let g:netrw_localrmdir='rm -r'
-let g:netrw_list_hide= '.*\.swp$,.stack-work'
 let g:Lf_CommandMap = {'<C-K>': ['<C-P>'], '<C-J>': ['<C-N>']}
-let g:Lf_UseCache = 0 
-let g:Lf_UseMemoryCache = 0
-let g:Lf_UseVersionControlTool = 0
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
@@ -128,6 +122,9 @@ endfunction
 " ===== NETRW ======
 let g:netrw_banner = 0
 
+let g:netrw_localrmdir='rm -r'
+let g:netrw_list_hide= '.*\.swp$,.stack-work,elm-stuff,dist,dist-newstyle,.ghc*'
+
 function! NetrwKeyMaps()
   nmap <buffer> h -
   nmap <buffer> l <ENTER>
@@ -144,7 +141,8 @@ vmap < <gv
 vmap > >gv
 
 vnoremap <leader>s "vy :%s/<C-R>v//g<Left><Left>
-nnoremap <leader>s :%s/<C-R><C-W>//g<Left><Left>
+nnoremap <leader>s :%sno/<C-R><C-W>//g<Left><Left>
+nnoremap <leader>S :%s/<C-R><C-W>//g<Left><Left>
 
 "tabs
 nnoremap <C-w>t :tabe<CR>
@@ -169,6 +167,7 @@ omap T <Plug>Sneak_T
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
 nnoremap ` :set relativenumber!<CR>
+nnoremap ~ :set nonumber!<CR>
 nnoremap <leader>ht <Esc>:call HardTimeToggle()<CR>
 
 command! Qa qa
@@ -228,4 +227,6 @@ autocmd BufRead,BufNewFile *.lfe set filetype=lisp
 
 nmap <silent> <leader>> :ALENextWrap<cr>
 nmap <silent> <leader>< :ALEPreviousWrap<cr>
+
+set pastetoggle=<F3>
 
