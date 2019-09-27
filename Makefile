@@ -14,7 +14,6 @@ install:
 	ln -sFf $(dotfiles)/nethackrc $(HOME)/.nethackrc
 	ln -sFf $(dotfiles)/pythonrc $(HOME)/.pythonrc
 	ln -sFf $(dotfiles)/tmux.conf $(HOME)/.tmux.conf
-	ln -sFf $(dotfiles)/zshrc $(HOME)/.zshrc
 	ln -sFf $(dotfiles)/npmrc $(HOME)/.npmrc
 	ln -sFf $(dotfiles)/tigrc $(HOME)/.tigrc
 

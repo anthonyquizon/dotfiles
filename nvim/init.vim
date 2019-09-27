@@ -3,7 +3,6 @@ function! DoRemote(arg)
 endfunction
 
 call plug#begin()
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'benmills/vimux'
 Plug 'aqui18/paredit'
@@ -20,7 +19,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'w0rp/ale'
 Plug 'jparise/vim-graphql'
-"Plug 'parsonsmatt/intero-neovim'
 call plug#end()
 
 syntax on
@@ -123,7 +121,7 @@ endfunction
 let g:netrw_banner = 0
 
 let g:netrw_localrmdir='rm -r'
-let g:netrw_list_hide= '.*\.swp$,.stack-work,elm-stuff,dist,dist-newstyle,.ghc*'
+let g:netrw_list_hide= '.*\.swp$,.stack-work,elm-stuff,dist-newstyle,.ghc*'
 
 function! NetrwKeyMaps()
   nmap <buffer> h -
@@ -223,7 +221,6 @@ autocmd BufRead,BufNewFile *.pl set filetype=prolog
 autocmd BufRead,BufNewFile *.v set filetype=coq
 autocmd BufRead,BufNewFile *.rkt set filetype=racket
 autocmd BufRead,BufNewFile *.lfe set filetype=lisp
-
 
 nmap <silent> <leader>> :ALENextWrap<cr>
 nmap <silent> <leader>< :ALEPreviousWrap<cr>
