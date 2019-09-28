@@ -1,7 +1,25 @@
+export OSH=/home/anthony/.oh-my-bash
+OSH_THEME="font"
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+completions=(
+  git
+)
+
+aliases=(
+  general
+)
+
+plugins=(
+  git
+  bashmarks
+)
+
+source $OSH/oh-my-bash.sh
+
+export LANG=en_AU.UTF-8
 
 NIX_LINK=~/.nix-profile
-
-OSH_THEME="powerline"
 
 export PYTHONSTARTUP=~/.pythonrc
 export EDITOR=nvim
@@ -31,7 +49,7 @@ alias rash='racket -l rash/repl --'
 alias racket-err='racket -l errortrace -i'
 
 alias devbox='mosh dev'
-alias ls='ls --color'
+alias ls='ls --color=auto'
 
 function search_replace () { 
   ag -0 -l $1 | xargs -0 sed -i -e "s/$2/$3/g" 
