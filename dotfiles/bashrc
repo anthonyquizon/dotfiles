@@ -35,9 +35,6 @@ export PATH=$PATH:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sb
 export TERM=screen-256color-bce
 alias vim=nvim
 
-#git 
-alias git_remove_feature='git branch | grep "feature/" | xargs -I {} git branch -D {}'
-
 alias lisp='rlwrap sbcl'
 alias cljslein='rlwrap lein'
 alias smlr='rlwrap sml'
@@ -61,3 +58,5 @@ if which tmux >/dev/null 2>&1; then
   [[ -z "$TMUX" ]] && exec tmux attach -d
 fi
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

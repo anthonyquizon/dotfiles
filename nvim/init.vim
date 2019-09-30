@@ -3,7 +3,8 @@ function! DoRemote(arg)
 endfunction
 
 call plug#begin()
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'benmills/vimux'
 Plug 'aqui18/paredit'
 Plug 'derekelkins/agda-vim'
@@ -18,7 +19,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'w0rp/ale'
-Plug 'jparise/vim-graphql'
 call plug#end()
 
 syntax on
@@ -196,9 +196,8 @@ noremap _<leader> :call VimuxSendText(getline('.')) . "\n"<CR>
 vnoremap -<leader> :call VimuxSendVisualText()<CR>
 vmap _<leader> -<leader>
 
-noremap <silent> <leader>/ :Leaderf rg<CR>
-noremap <silent> <leader>. :Leaderf mru<CR>
-noremap <leader><leader> :Leaderf file<CR>
+noremap <silent> <leader>/ :Rg<CR>
+noremap <leader><leader> :GFiles<CR>
 
 :command! FormatJson %!python -m json.tool
 :command! LightTheme colorscheme shine
