@@ -196,8 +196,12 @@ noremap _<leader> :call VimuxSendText(getline('.')) . "\n"<CR>
 vnoremap -<leader> :call VimuxSendVisualText()<CR>
 vmap _<leader> -<leader>
 
+command! CustomGitFiles call fzf#run(fzf#wrap({ 
+      \ 'source': 'git ls-files --exclude-standard --cached --others' 
+      \ }))
+
 noremap <silent> <leader>/ :Rg<CR>
-noremap <leader><leader> :GFiles<CR>
+noremap <leader><leader> :CustomGitFiles<CR>
 
 :command! FormatJson %!python -m json.tool
 :command! LightTheme colorscheme shine
