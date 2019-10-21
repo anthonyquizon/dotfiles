@@ -202,6 +202,7 @@ command! CustomGitFiles call fzf#run(fzf#wrap({
 
 noremap <silent> <leader>/ :Rg<CR>
 noremap <leader><leader> :CustomGitFiles<CR>
+noremap <leader>b :Buffers<CR>
 
 :command! FormatJson %!python -m json.tool
 :command! LightTheme colorscheme shine
