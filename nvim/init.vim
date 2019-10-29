@@ -22,7 +22,6 @@ Plug 'w0rp/ale'
 call plug#end()
 
 syntax on
-filetype on
 filetype plugin indent on
 
 set relativenumber
@@ -207,6 +206,8 @@ noremap <leader>b :Buffers<CR>
 :command! FormatJson %!python -m json.tool
 :command! LightTheme colorscheme shine
 
+" Reference: http://www.alecjacobson.com/weblog/?p=443
+" Enter Digraph
 inoremap <C-o> <C-k>
 
 
@@ -221,13 +222,39 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 let g:ale_linters = {'javascript': ['eslint', 'flow']}
 
-autocmd BufRead,BufNewFile *.pl set filetype=prolog
-autocmd BufRead,BufNewFile *.v set filetype=coq
-autocmd BufRead,BufNewFile *.rkt set filetype=racket
-autocmd BufRead,BufNewFile *.lfe set filetype=lisp
+"autocmd BufRead,BufNewFile *.pl set filetype=prolog
+"autocmd BufRead,BufNewFile *.v set filetype=coq
+"autocmd BufRead,BufNewFile *.rkt set filetype=racket
+"autocmd BufRead,BufNewFile *.lfe set filetype=lisp
 
 nmap <silent> <leader>> :ALENextWrap<cr>
 nmap <silent> <leader>< :ALEPreviousWrap<cr>
 
 set pastetoggle=<F3>
 
+
+noremap -<leader> :call VimuxSendText(getline('.') . "\n,bt\n")<CR>
+noremap _<leader> :call VimuxSendText(getline('.')) . "\n,bt\n"<CR>
+
+" racket
+autocmd FileType racket nnoremap <silent> -r :call VimuxRunCommand(",rr " . fnamemodify(expand("%"), ":~:."))<cr>
+autocmd FileType racket nnoremap <silent> -R :call VimuxRunCommand("(require \"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
+autocmd FileType racket nnoremap <silent> -e :call VimuxRunCommand(",en " . fnamemodify(expand("%"), ":~:."))<cr>
+autocmd FileType racket nnoremap <silent> -t :call VimuxRunCommand("(require (submod \"" . fnamemodify(expand("%"), ":~:.") . "\" test))")<cr>
+autocmd FileType racket vnoremap <silent> -r "vy :call VimuxRunCommand(@v)<CR>
+
+" julia
+autocmd FileType julia nnoremap <silent> -R :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
+autocmd FileType julia nnoremap <silent> -r :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
+autocmd FileType julia nnoremap <silent> -e :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
+autocmd FileType julia nnoremap <silent> -E :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
+autocmd FileType julia vnoremap <silent> -r "vy :call VimuxRunCommand(@v)<CR>
+
+" haskell 
+autocmd FileType haskell nnoremap <silent> -r :call VimuxRunCommand(":r")<cr>
+autocmd FileType haskell nnoremap <silent> -R :call VimuxRunCommand(":r")<cr>
+autocmd FileType haskell nnoremap <silent> -e :call VimuxRunCommand(":l " . fnamemodify(expand("%"), ":~:."))<cr>
+autocmd FileType haskell vnoremap <silent> -r "vy :call VimuxRunCommand(@v)<CR>
+
+"python 
+autocmd FileType python nnoremap <silent> -e :call VimuxRunCommand("exec(open(\"" . fnamemodify(expand("%"), ":~:.") . "\").read())")<cr>
