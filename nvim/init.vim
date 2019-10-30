@@ -222,16 +222,10 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 let g:ale_linters = {'javascript': ['eslint', 'flow']}
 
-"autocmd BufRead,BufNewFile *.pl set filetype=prolog
-"autocmd BufRead,BufNewFile *.v set filetype=coq
-"autocmd BufRead,BufNewFile *.rkt set filetype=racket
-"autocmd BufRead,BufNewFile *.lfe set filetype=lisp
-
 nmap <silent> <leader>> :ALENextWrap<cr>
 nmap <silent> <leader>< :ALEPreviousWrap<cr>
 
 set pastetoggle=<F3>
-
 
 noremap -<leader> :call VimuxSendText(getline('.') . "\n,bt\n")<CR>
 noremap _<leader> :call VimuxSendText(getline('.')) . "\n,bt\n"<CR>
@@ -244,6 +238,11 @@ autocmd FileType racket nnoremap <silent> -t :call VimuxRunCommand("(require (su
 autocmd FileType racket vnoremap <silent> -r "vy :call VimuxRunCommand(@v)<CR>
 
 " julia
+" NOTE: fixes and issue with paredit.vim loading
+autocmd BufRead,BufNewFile *.jl
+      \ let g:paredit_mode = 0 |
+      \ call PareditInitBuffer()
+
 autocmd FileType julia nnoremap <silent> -R :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
 autocmd FileType julia nnoremap <silent> -r :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
 autocmd FileType julia nnoremap <silent> -e :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
