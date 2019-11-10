@@ -239,16 +239,6 @@ autocmd FileType racket vnoremap <silent> -r "vy :call VimuxRunCommand(@v)<CR>
 "autocmd BufRead,BufEnter,BufNewFile *.rkt set filetype=racket
 
 " julia
-" NOTE: fixes and issue with paredit.vim loading
-autocmd BufRead,BufNewFile *.jl
-      \ let g:paredit_mode = 0 |
-      \ call PareditInitBuffer()
-
-" NOTE: restores paredit on leaving js buffer
-autocmd BufLeave *.jl
-      \ let g:paredit_mode = 1 |
-      \ call PareditInitBuffer()
-
 autocmd FileType julia nnoremap <silent> -R :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
 autocmd FileType julia nnoremap <silent> -r :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
 autocmd FileType julia nnoremap <silent> -e :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>

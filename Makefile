@@ -3,6 +3,7 @@ nvim=$(PWD)/nvim
 
 install:
 	mkdir -p $(HOME)/.config/nvim
+	mkdir -p $(HOME)/.config/nvim/ftdetect
 
 	ln -sFf $(dotfiles)/bash_profile $(HOME)/.bash_profile
 	ln -sFf $(dotfiles)/bashrc $(HOME)/.bashrc
@@ -16,4 +17,5 @@ install:
 	ln -sFf $(dotfiles)/tigrc $(HOME)/.tigrc
 
 	ln -sFf $(nvim)/*.vim $(HOME)/.config/nvim
+	ln -sFf $(nvim)/ftdetect/*.vim $(HOME)/.config/nvim/ftdetect
 
