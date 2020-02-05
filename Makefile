@@ -1,5 +1,6 @@
 dotfiles=$(PWD)/dotfiles
 nvim=$(PWD)/nvim
+nixos=$(PWD)/nixos
 
 install:
 	mkdir -p $(HOME)/.config/nvim
@@ -21,3 +22,4 @@ install:
 	ln -sFf $(nvim)/*.vim $(HOME)/.config/nvim
 	ln -sFf $(nvim)/ftdetect/*.vim $(HOME)/.config/nvim/ftdetect
 
+	ln -sFf $(nixos)/configuration.nix /etc/nixos/configuration.nix
