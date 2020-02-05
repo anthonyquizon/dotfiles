@@ -174,6 +174,8 @@ command! W w
 command! Q q
 nnoremap Q <nop>
 
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0) 
+
 noremap <silent> <BS> :Explore<CR>
 vmap U <Nop>
 vmap u <Nop>
@@ -236,7 +238,7 @@ autocmd FileType racket nnoremap <silent> -R :call VimuxRunCommand("(require \""
 autocmd FileType racket nnoremap <silent> -e :call VimuxRunCommand(",en " . fnamemodify(expand("%"), ":~:."))<cr>
 autocmd FileType racket nnoremap <silent> -t :call VimuxRunCommand("(require (submod \"" . fnamemodify(expand("%"), ":~:.") . "\" test))")<cr>
 autocmd FileType racket vnoremap <silent> -r "vy :call VimuxRunCommand(@v)<CR>
-"autocmd BufRead,BufEnter,BufNewFile *.rkt set filetype=racket
+autocmd BufRead,BufEnter,BufNewFile *.rkt set filetype=racket
 
 " julia
 autocmd FileType julia nnoremap <silent> -R :call VimuxRunCommand("include(\"" . fnamemodify(expand("%"), ":~:.") . "\")")<cr>
@@ -253,3 +255,6 @@ autocmd FileType haskell vnoremap <silent> -r "vy :call VimuxRunCommand(@v)<CR>
 
 "python 
 autocmd FileType python nnoremap <silent> -e :call VimuxRunCommand("exec(open(\"" . fnamemodify(expand("%"), ":~:.") . "\").read())")<cr>
+
+"reason
+autocmd FileType reason setlocal shiftwidth=2 tabstop=2

@@ -4,6 +4,7 @@ nvim=$(PWD)/nvim
 install:
 	mkdir -p $(HOME)/.config/nvim
 	mkdir -p $(HOME)/.config/nvim/ftdetect
+	mkdir -p $(HOME)/.cabal/
 
 	ln -sFf $(dotfiles)/bash_profile $(HOME)/.bash_profile
 	ln -sFf $(dotfiles)/bashrc $(HOME)/.bashrc
@@ -15,6 +16,7 @@ install:
 	ln -sFf $(dotfiles)/tmux.conf $(HOME)/.tmux.conf
 	ln -sFf $(dotfiles)/npmrc $(HOME)/.npmrc
 	ln -sFf $(dotfiles)/tigrc $(HOME)/.tigrc
+	ln -sFf $(dotfiles)/cabal_config $(HOME)/.cabal/config
 
 	ln -sFf $(nvim)/*.vim $(HOME)/.config/nvim
 	ln -sFf $(nvim)/ftdetect/*.vim $(HOME)/.config/nvim/ftdetect

@@ -33,6 +33,7 @@ export LD_LIBRARY_PATH=$NIX_LINK/lib
 export PATH=$PATH:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PYTHON3_PATH:$PYTHON2_PATH:$YARN_PATH:$NPM_PATH
 
 export TERM=screen-256color-bce
+export OPENFAAS_PREFIX="anthoq88"
 alias vim=nvim
 
 alias lisp='rlwrap sbcl'
