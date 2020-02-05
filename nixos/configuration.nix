@@ -55,6 +55,7 @@
     gnumake
     git
     python3
+    docker
     docker-compose
   ];
 
