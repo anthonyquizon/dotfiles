@@ -46,8 +46,8 @@ alias prolog='swipl'
 alias rash='racket -l rash/repl --'
 alias racket-err='racket -l errortrace -i'
 
-alias devbox='mosh dev'
 alias ls='ls --color=auto'
+alias configuration.nix='sudo nvim /etc/nixos/configuration.nix'
 
 function search_replace () { 
   ag -0 -l $1 | xargs -0 sed -i -e "s/$2/$3/g" 
