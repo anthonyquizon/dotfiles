@@ -1,3 +1,6 @@
+HOME=/home/anthony
+PWD=/home/anthony/dotfiles
+
 dotfiles=$(PWD)/dotfiles
 nvim=$(PWD)/nvim
 nixos=$(PWD)/nixos

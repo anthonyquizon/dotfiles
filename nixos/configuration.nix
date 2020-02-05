@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -55,6 +55,7 @@
     gnumake
     git
     python3
+    docker-compose
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -67,6 +68,8 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   programs.mosh.enable = true;
+
+  virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -96,7 +99,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.anthony= {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
   };
 
   # This value determines the NixOS release with which your system is to be
