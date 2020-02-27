@@ -57,7 +57,7 @@
     python3
     ripgrep
     docker
-    docker-compose
+    postgresql_11
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -69,13 +69,26 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_11;
+    enableTCPIP = true;
+    authentication = pkgs.lib.mkOverride 10 ''
+      local all all trust
+      host all all ::1/128 trust
+    '';
+  };
+  
+
   programs.mosh.enable = true;
 
   virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 
-    { from = 5000; to = 9999; }
+  networking.firewall.allowedTCPPortRanges = [ 
+    { from = 3000; to = 9999; }
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
@@ -86,7 +99,7 @@
 
   # Enable sound.
   # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
@@ -103,7 +116,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.anthony= {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "users" ];
   };
 
   # This value determines the NixOS release with which your system is to be
