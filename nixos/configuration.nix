@@ -58,6 +58,7 @@
     ripgrep
     docker
     postgresql_11
+    racket
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -99,7 +100,7 @@
 
   # Enable sound.
   # sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  #hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
