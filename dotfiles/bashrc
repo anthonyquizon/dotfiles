@@ -1,8 +1,11 @@
 source /home/anthony/.nix-profile/etc/profile.d/nix.sh
 
 export EDITOR=nvim
-
+export LANG=en_AU.UTF-8
 export OSH=/home/anthony/.oh-my-bash
+
+## ls colouring for nix shell
+alias ls='ls --color=auto'
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
