@@ -2,5 +2,25 @@ source /home/anthony/.nix-profile/etc/profile.d/nix.sh
 
 export EDITOR=nvim
 
-[[ $TERM != "screen" ]] && exec tmux attach -d
+export OSH=/home/anthony/.oh-my-bash
 
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+OSH_THEME="font"
+
+completions=(
+  git
+)
+
+aliases=(
+  general
+)
+
+plugins=(
+  git
+  bashmarks
+)
+
+source $OSH/oh-my-bash.sh
+
+[[ $TERM != "screen" ]] && exec tmux attach -d
