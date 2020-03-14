@@ -1,63 +1,6 @@
-export OSH=/home/anthony/.oh-my-bash
-OSH_THEME="font"
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-completions=(
-  git
-)
+source /home/anthony/.nix-profile/etc/profile.d/nix.sh
 
-aliases=(
-  general
-)
-
-plugins=(
-  git
-  bashmarks
-)
-
-source $OSH/oh-my-bash.sh
-
-export LANG=en_AU.UTF-8
-
-NIX_LINK=~/.nix-profile
-
-export PYTHONSTARTUP=~/.pythonrc
 export EDITOR=nvim
-export DEVELOPMENT=$HOME/Development
-export NPM_PATH=$HOME/.npm-packages/bin
 
-export PYTHON2_PATH=$(python3 -m site --user-base)/bin
-export PYTHON3_PATH=$(python3 -m site --user-base)/bin
-export YARN_PATH=$HOME/.config/yarn/global/node_modules/.bin
-export LD_LIBRARY_PATH=$NIX_LINK/lib
-export PATH=$PATH:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PYTHON3_PATH:$PYTHON2_PATH:$YARN_PATH:$NPM_PATH
+[[ $TERM != "screen" ]] && exec tmux attach -d
 
-export TERM=screen-256color-bce
-export OPENFAAS_PREFIX="anthoq88"
-alias vim=nvim
-
-alias lisp='rlwrap sbcl'
-alias cljslein='rlwrap lein'
-alias smlr='rlwrap sml'
-alias racketrl='rlwrap racket'
-alias schemerl='rlwrap scheme'
-alias ocamlrl='rlwrap ocaml'
-alias prolog='swipl'
-alias rash='racket -l rash/repl --'
-alias racket-err='racket -l errortrace -i'
-
-alias ls='ls --color=auto'
-alias configuration.nix='sudo nvim /etc/nixos/configuration.nix'
-
-function search_replace () { 
-  ag -0 -l $1 | xargs -0 sed -i -e "s/$2/$3/g" 
-}
-
-# TMUX
-if which tmux >/dev/null 2>&1; then
-  [[ $- != *i* ]] && return
-  [[ -z "$TMUX" ]] && exec tmux attach -d
-fi
-
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -5,24 +5,32 @@ dotfiles=$(PWD)/dotfiles
 nvim=$(PWD)/nvim
 nixos=$(PWD)/nixos
 
-install:
+setup:
 	mkdir -p $(HOME)/.config/nvim
 	mkdir -p $(HOME)/.config/nvim/ftdetect
 	mkdir -p $(HOME)/.cabal/
 
-	ln -sFf $(dotfiles)/bash_profile $(HOME)/.bash_profile
-	ln -sFf $(dotfiles)/bashrc $(HOME)/.bashrc
-	ln -sFf $(dotfiles)/eslintrc $(HOME)/.eslintrc
-	ln -sFf $(dotfiles)/gitconfig $(HOME)/.gitconfig
-	ln -sFf $(dotfiles)/jshintrc $(HOME)/.jshintrc
-	ln -sFf $(dotfiles)/nethackrc $(HOME)/.nethackrc
-	ln -sFf $(dotfiles)/pythonrc $(HOME)/.pythonrc
-	ln -sFf $(dotfiles)/tmux.conf $(HOME)/.tmux.conf
-	ln -sFf $(dotfiles)/npmrc $(HOME)/.npmrc
-	ln -sFf $(dotfiles)/tigrc $(HOME)/.tigrc
-	ln -sFf $(dotfiles)/cabal_config $(HOME)/.cabal/config
+	ln -sf $(dotfiles)/bashrc $(HOME)/.bash_profile
+	ln -sf $(dotfiles)/bashrc $(HOME)/.profile
+	ln -sf $(dotfiles)/bashrc $(HOME)/.bashrc
+	ln -sf $(dotfiles)/zshrc $(HOME)/.zshrc
+	ln -sf $(dotfiles)/gitconfig $(HOME)/.gitconfig
+	ln -sf $(dotfiles)/tmux.conf $(HOME)/.tmux.conf
 
-	ln -sFf $(nvim)/*.vim $(HOME)/.config/nvim
-	ln -sFf $(nvim)/ftdetect/*.vim $(HOME)/.config/nvim/ftdetect
+	ln -sf $(nvim)/*.vim $(HOME)/.config/nvim
 
-	ln -sFf $(nixos)/configuration.nix /etc/nixos/configuration.nix
+install:
+	# nix
+	nix-env -i git gnumake tmux wget curl neovim ripgrep fzf zsh
+
+	# neovim plug
+	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+	# oh my zsh
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+	#tmux theme
+	git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
+
+	make setup
+
