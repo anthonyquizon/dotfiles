@@ -1,2 +1,2 @@
 source /home/anthony/.nix-profile/etc/profile.d/nix.sh
-[[ $TERM != "screen" ]] && exec tmux attach -d
+[[ $TERM != "screen" ]] && exec tmux -u attach -d
