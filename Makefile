@@ -19,17 +19,10 @@ setup:
 	ln -sf $(nvim)/*.vim $(HOME)/.config/nvim
 
 install:
-	# nix
-	nix-env -i git gnumake tmux wget curl neovim ripgrep fzf zsh
-
-	# neovim plug
-	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-	# oh my bash
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
-
-	#tmux theme
-	git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
-
+	./install/bash.sh
+	./install/iptables.sh
+	./install/nix.sh
+	./install/nvim.sh
+	./install/tmux.sh
 	make setup
 
