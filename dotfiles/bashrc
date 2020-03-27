@@ -1,11 +1,18 @@
-source /home/anthony/.nix-profile/etc/profile.d/nix.sh
-
-export EDITOR=nvim
+export EDITOR=vim
 export LANG=en_AU.UTF-8
 export OSH=/home/anthony/.oh-my-bash
 
-## ls colouring for nix shell
-alias ls='ls --color=auto'
+export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+export PATH="/home/anthony/.config/guix/current/bin${PATH:+:}$PATH"
+export GUIX_PROFILE="/home/anthony/.guix-profile"
+. "$GUIX_PROFILE/etc/profile"
+
+alias guile="rlwrap guile"
+
+if [ -n "$GUIX_ENVIRONMENT" ]
+then
+    export PS1="\u@\h \w [dev]\$ "
+fi
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"

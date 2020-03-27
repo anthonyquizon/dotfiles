@@ -1,0 +1,56 @@
+inoremap jk <esc>
+filetype indent plugin on
+syntax on
+
+set relativenumber
+set nu
+set nopaste
+set nowrap
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set nohlsearch
+set ignorecase
+set smartcase
+set cursorline
+set noswapfile
+set undofile
+set undodir=~/.nvim/undodir
+set nobackup
+set hlsearch
+
+"colorscheme jellybeans
+
+let mapleader = "\<Space>"
+let maplocalleader = ","
+
+" ===== NETRW ======
+let g:netrw_banner = 0
+let g:netrw_localrmdir='rm -r'
+let g:netrw_list_hide= '.*\.swp$,.stack-work,elm-stuff,dist-newstyle,.ghc*'
+"==================
+
+"stay selected when visual mode indenting
+vmap < <gv
+vmap > >gv
+
+command! Qa qa
+command! WQ wq
+command! Wq wq
+command! W w
+command! Q q
+nnoremap Q <nop>
+
+" Reference: http://www.alecjacobson.com/weblog/?p=443
+" Enter Digraph
+inoremap <C-o> <C-k>
+
+" shuffle line one up or down
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
