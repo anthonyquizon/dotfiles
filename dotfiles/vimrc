@@ -1,3 +1,22 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'unblevable/quick-scope'
+Plug 'luochen1990/rainbow'
+Plug 'mattn/emmet-vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
+Plug 'w0rp/ale'
+call plug#end()
+
+
 inoremap jk <esc>
 filetype indent plugin on
 syntax on
@@ -20,7 +39,7 @@ set undodir=~/.nvim/undodir
 set nobackup
 set hlsearch
 
-"colorscheme jellybeans
+colorscheme jellybeans
 
 let mapleader = "\<Space>"
 let maplocalleader = ","
@@ -54,3 +73,38 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
+
+"===== FZF ======
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+command! CustomGitFiles call fzf#run(fzf#wrap({
+      \ 'source': 'git ls-files --exclude-standard --cached --others'
+      \ }))
+
+noremap <silent> <leader>/ :Rg<CR>
+noremap <leader><leader> :CustomGitFiles<CR>
+noremap <leader>b :Buffers<CR>
+
+"======= Rainbow Parens =======
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+            \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+            \   'ctermfgs': ['darkblue', 'darkgreen', 'darkcyan', 'darkmagenta'],
+            \   'operators': '_,_',
+            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \   'separately': {
+            \       '*': {},
+            \       'tex': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+            \       },
+            \       'vim': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \       },
+            \       'html': {
+            \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \       },
+            \       'css': 0,
+            \   }
+            \}
+
+" ==== NERD Commenter ===
+noremap <leader>; :call NERDComment(1, 'toggle')<CR>

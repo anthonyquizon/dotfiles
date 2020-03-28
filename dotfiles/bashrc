@@ -33,4 +33,4 @@ plugins=(
 
 source $OSH/oh-my-bash.sh
 
-[[ $TERM != "screen" ]] && exec tmux -u attach -d
+#[[ $TERM != "screen" ]] && exec tmux -u attach -d
