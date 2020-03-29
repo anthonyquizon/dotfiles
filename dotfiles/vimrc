@@ -20,6 +20,7 @@ inoremap jk <esc>
 filetype indent plugin on
 syntax on
 
+set laststatus=2
 set relativenumber
 set nu
 set nopaste

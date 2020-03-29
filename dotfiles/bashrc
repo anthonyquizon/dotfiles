@@ -2,10 +2,12 @@ export EDITOR=vim
 export LANG=en_AU.UTF-8
 export OSH=/home/anthony/.oh-my-bash
 
+#export TERM=screen-256color
+#export TERM=xterm-256color
 export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 export PATH="/home/anthony/.config/guix/current/bin${PATH:+:}$PATH"
 export GUIX_PROFILE="/home/anthony/.guix-profile"
-. "$GUIX_PROFILE/etc/profile"
+source "$GUIX_PROFILE/etc/profile"
 
 alias guile="rlwrap guile"
 
@@ -33,4 +35,4 @@ plugins=(
 
 source $OSH/oh-my-bash.sh
 
-#[[ $TERM != "screen" ]] && exec tmux -u attach -d
+[[ $TERM != "screen" ]] && exec tmux -u attach -d
