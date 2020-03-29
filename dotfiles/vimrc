@@ -12,6 +12,7 @@ Plug 'luochen1990/rainbow'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
+Plug 'kovisoft/paredit'
 Plug 'w0rp/ale'
 call plug#end()
 
