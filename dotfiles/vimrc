@@ -45,6 +45,11 @@ colorscheme jellybeans
 let mapleader = "\<Space>"
 let maplocalleader = ","
 
+vmap <silent> <leader>y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/.vim/reg<CR>
+nmap <silent> <leader>y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/.vim/reg<CR>
+map <silent> <leader>p :sview ~/.vim/reg<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
+map <silent> <leader>P :sview ~/.vim/reg<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
+
 " ===== NETRW ======
 let g:netrw_banner = 0
 let g:netrw_localrmdir='rm -r'
