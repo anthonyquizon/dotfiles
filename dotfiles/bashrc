@@ -45,7 +45,7 @@ plugins=(
 
 source $OSH/oh-my-bash.sh
 
-if [ -z "$GUIX_ENVIRONMENT" ]; then
+if [[ -z "$GUIX_ENVIRONMENT" && $- == *i* ]]; then
   [[ $TERM != "screen" ]] && exec tmux -u attach -d
 fi
 
