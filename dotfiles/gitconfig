@@ -22,5 +22,3 @@
 	default = simple
 [core]
 	excludesfile = ~/.gitignore
-[http]
-	sslCAinfo = /etc/ssl/certs/ca-certificates.crt

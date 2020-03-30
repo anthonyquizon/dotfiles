@@ -1,12 +1,18 @@
 export EDITOR=vim
 export LANG=en_AU.UTF-8
 export OSH=/home/anthony/.oh-my-bash
-
 #====== GUIX ======
 export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 export PATH="/home/anthony/.config/guix/current/bin${PATH:+:}$PATH"
 export GUIX_PROFILE="/home/anthony/.guix-profile"
 source "$GUIX_PROFILE/etc/profile"
+
+export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
+export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+export CURL_CA_BUNDLE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+export GIT_SSL_CAINFO="$SSL_CERT_FILE"
+
+export CARGO_HTTP_CAINFO="$SSL_CERT_FILE" #TODO contribute to guix rust:cargo package
 
 alias guile="rlwrap guile"
 

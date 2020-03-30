@@ -1,1 +1,1 @@
-guix install tmux make git guile ripgrep iptables
+guix install tmux make git guile ripgrep iptables nss-certs
