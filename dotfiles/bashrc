@@ -1,10 +1,13 @@
 export EDITOR=vim
 export LANG=en_AU.UTF-8
 export OSH=$HOME/.oh-my-bash
-#====== GUIX ======
+##====== GUIX ======
 export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 export GUIX_PATH="$HOME/.config/guix/current/bin"
 export GUIX_PROFILE="$HOME/.guix-profile"
+export GUIX_INCLUDE_PATH="$HOME/.guix-profile/lib/locale"
+export GUIX_LIBRARY_PATH="$HOME/.guix-profile/lib"
+
 source "$GUIX_PROFILE/etc/profile"
 
 export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
@@ -12,18 +15,16 @@ export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
 export CURL_CA_BUNDLE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
 export GIT_SSL_CAINFO="$SSL_CERT_FILE"
 
-export CARGO_HTTP_CAINFO="$SSL_CERT_FILE" #TODO contribute to guix rust:cargo package
+export NPM_PATH="${HOME}/.npm-packages/bin"
 
-export VENDOR_PATH="$HOME/vendor/bin"
-
-
-export PATH="$GUIX_PATH:$VENDOR_PATH:$PATH"
+export PATH="$GUIX_PATH:$NPM_PATH:$PATH"
+export INFOPATH="$HOME/.config/guix/current/share/info:$INFOPATH"
 
 alias guile="rlwrap guile"
 
 if [ -n "$GUIX_ENVIRONMENT" ]
 then
-    export PS1="\u@\h \w [dev]\$ "
+    export PS1="\u@\h \w [guix-env]\$ "
 fi
 
 ENABLE_CORRECTION="true"
