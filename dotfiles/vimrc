@@ -23,6 +23,7 @@ inoremap jk <esc>
 filetype indent plugin on
 syntax on
 
+set autoindent
 set laststatus=2
 set relativenumber
 set nu
@@ -62,7 +63,7 @@ nnoremap <leader>S :%s/<C-R><C-W>//g<Left><Left>
 " ===== NETRW ======
 let g:netrw_banner = 0
 let g:netrw_localrmdir='rm -r'
-let g:netrw_list_hide= '.*\.swp$,.stack-work,elm-stuff,dist-newstyle,.ghc*,.go,.agdai,.agda.vim,.o,.hi'
+let g:netrw_list_hide= '.*\.swp$,.stack-work,elm-stuff,dist-newstyle,.ghc*,.*\.go,.*\.agdai,.*\.agda.vim'
 "==================
 
 "stay selected when visual mode indenting
@@ -126,25 +127,3 @@ let g:rainbow_conf = {
 
 " ==== NERD Commenter ===
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
-
-" ==== Agda ===
-autocmd FileType agda map <localleader>r :call AgdaReload()<CR> 
-
-function! AgdaReload()
-    let current_buf=bufname('%')
-    let filename = expand("%:p")
-    let filename_vim = expand("%:p:h") . "/." . expand("%:t") . ".vim"
-
-    echo "Running .... using vim syntax: " . filename_vim
-
-    call asyncrun#run("", {}, "agda " . filename . " && agda --vim " . filename)
-
-    if filereadable(filename_vim)
-        exec "source " . filename_vim
-    endif 
-
-    exec "copen"
-
-    "return to buffer
-    exec bufwinnr(current_buf) . 'wincmd w'
-endfunction
