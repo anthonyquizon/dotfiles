@@ -55,6 +55,10 @@ nmap <silent> <leader>y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/.
 map <silent> <leader>p :sview ~/.vim/reg<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
 map <silent> <leader>P :sview ~/.vim/reg<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
 
+" disable lower case mapping
+xnoremap u <nop>
+xnoremap K <nop>
+
 " ===== Search and Replace =====
 vnoremap <leader>s "vy :%s/<C-R>v//g<Left><Left>
 nnoremap <leader>s :%sno/<C-R><C-W>//g<Left><Left>
@@ -102,6 +106,7 @@ noremap <silent> <leader>/ :Rg<CR>
 noremap <leader><leader> :CustomGitFiles<CR>
 noremap <leader>b :Buffers<CR>
 noremap <leader>` :set number! relativenumber!<CR>
+noremap ` :set relativenumber!<CR>
 
 "======= Rainbow Parens =======
 let g:rainbow_active = 1
@@ -127,3 +132,4 @@ let g:rainbow_conf = {
 
 " ==== NERD Commenter ===
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
+
