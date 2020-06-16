@@ -18,5 +18,6 @@ install:
 	./install/guix.sh
 	./install/bash.sh
 	./install/tmux.sh
+	./install/ufw.sh
 	make setup
 
