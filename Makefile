@@ -10,12 +10,13 @@ setup:
 	ln -sf $(dotfiles)/vimrc $(HOME)/.vimrc
 	ln -sf $(dotfiles)/gitconfig $(HOME)/.gitconfig
 	ln -sf $(dotfiles)/tmux.conf $(HOME)/.tmux.conf
+	ln -sf $(dotfiles)/guile.scm $(HOME)/.guile
+	ln -sf $(dotfiles)/gdbinit $(HOME)/.gdbinit
 
 .PHONY: install
 install:
 	./install/guix.sh
 	./install/bash.sh
-#	./install/iptables.sh
 	./install/tmux.sh
 	make setup
 

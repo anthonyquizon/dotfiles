@@ -55,12 +55,6 @@ nmap <silent> <leader>y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/.
 map <silent> <leader>p :sview ~/.vim/reg<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
 map <silent> <leader>P :sview ~/.vim/reg<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
 
-" stop C-S from freezing terminal
-" https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s
-noremap <silent> <C-S>  :update<CR>
-vnoremap <silent> <C-S>  <C-C>:update<CR>
-inoremap <silent> <C-S>  <C-O>:update<CR>
-
 " disable lower case mapping
 xnoremap u <nop>
 xnoremap K <nop>
