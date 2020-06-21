@@ -12,6 +12,7 @@ setup:
 	ln -sf $(dotfiles)/tmux.conf $(HOME)/.tmux.conf
 	ln -sf $(dotfiles)/guile.scm $(HOME)/.guile
 	ln -sf $(dotfiles)/gdbinit $(HOME)/.gdbinit
+	ln -sf $(dotfiles)/channels.scm $(HOME)/.config/guix/channels.scm
 
 .PHONY: install
 install:
@@ -20,4 +21,3 @@ install:
 	./install/tmux.sh
 	./install/ufw.sh
 	make setup
-

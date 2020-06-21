@@ -1,3 +1,6 @@
+
+sudo -p "password: " whoami 1>/dev/null
+
 read -p "What's your ip address?" ipaddress
 sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install ufw
