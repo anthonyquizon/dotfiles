@@ -21,15 +21,17 @@ export PATH="$GUIX_PATH:$NPM_PATH:$PATH"
 export INFOPATH="$HOME/.config/guix/current/share/info:$INFOPATH"
 
 alias guile="rlwrap guile"
-
-if [ -n "$GUIX_ENVIRONMENT" ]
-then
-    export PS1="\u@\h \w [guix-env]\$ "
-fi
+alias guix-env="guix environment -m manifest.scm"
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 OSH_THEME="font"
+
+
+if [ -n "$GUIX_ENVIRONMENT" ]
+then
+    OSH_THEME="simple"
+fi
 
 completions=(
   git
