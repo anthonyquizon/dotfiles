@@ -20,4 +20,5 @@ install:
 	./install/bash.sh
 	./install/tmux.sh
 	./install/ufw.sh
+	./install/vim.sh
 	make setup
