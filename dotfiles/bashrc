@@ -20,6 +20,8 @@ export NPM_PATH="${HOME}/.npm-packages/bin"
 export PATH="$GUIX_PATH:$NPM_PATH:$PATH"
 export INFOPATH="$HOME/.config/guix/current/share/info:$INFOPATH"
 
+export CC=gcc # WORKAROUND dmd doesn't work if this isn't set
+
 alias guile="rlwrap guile"
 alias guix-env="guix environment -m manifest.scm"
 
