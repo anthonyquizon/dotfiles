@@ -31,6 +31,13 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 OSH_THEME="font"
 
+kill_port() {
+    kill $(lsof -t -i:$1)
+}
+
+ls_port() {
+    lsof -i:$1
+}
 
 if [ -n "$GUIX_ENVIRONMENT" ]
 then
