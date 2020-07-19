@@ -24,6 +24,8 @@ export CC=gcc # WORKAROUND dmd doesn't work if this isn't set
 
 alias guile="rlwrap guile"
 alias guix-env="guix environment -m manifest.scm"
+alias guix-container="guix environment -m manifest.scm --container"
+alias guix-pure="guix environment -m manifest.scm --pure"
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
