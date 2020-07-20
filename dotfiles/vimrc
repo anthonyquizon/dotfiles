@@ -134,8 +134,8 @@ let g:rainbow_conf = {
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
 " === ALE ====
-nmap <silent> <leader>n :ALENext<cr>
-nmap <silent> <leader>p :ALEPrevious<cr>
+nmap <silent> <leader>n :ALENextWrap<cr>
+nmap <silent> <leader>N :ALEPreviousWrap<cr>
 
 
 " === JSON ====
