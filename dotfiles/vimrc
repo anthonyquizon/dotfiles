@@ -16,6 +16,7 @@ Plug 'kovisoft/paredit'
 Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'chrisbra/unicode.vim'
+Plug 'bohlender/vim-smt2'
 call plug#end()
 
 
@@ -23,7 +24,7 @@ inoremap jk <esc>
 filetype indent plugin on
 syntax on
 
-"set autoindent
+set autoindent
 set laststatus=2
 set relativenumber
 set nu
@@ -34,7 +35,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set nohlsearch
-set ignorecase
 set smartcase
 set cursorline
 set noswapfile
@@ -63,6 +63,9 @@ xnoremap K <nop>
 vnoremap <leader>s "vy :%s/<C-R>v//g<Left><Left>
 nnoremap <leader>s :%sno/<C-R><C-W>//g<Left><Left>
 nnoremap <leader>S :%s/<C-R><C-W>//g<Left><Left>
+
+" === Search Highlight ===
+nnoremap <leader>l :noh<CR>
 
 " ===== NETRW ======
 let g:netrw_banner = 0
@@ -141,3 +144,5 @@ nmap <silent> <leader>N :ALEPreviousWrap<cr>
 " === JSON ====
 noremap <leader>json :%!python3 -m json.tool<CR>
 
+" ==== Paredit =====
+ au FileType smt2 call PareditInitBuffer()
