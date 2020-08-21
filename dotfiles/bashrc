@@ -57,6 +57,8 @@ plugins=(
   bashmarks
 )
 
+alias make="make -j"
+
 source $OSH/oh-my-bash.sh
 
 if [[ -z "$GUIX_ENVIRONMENT" && $- == *i* ]]; then
