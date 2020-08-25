@@ -17,6 +17,7 @@ Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'chrisbra/unicode.vim'
 Plug 'bohlender/vim-smt2'
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 
@@ -105,9 +106,14 @@ command! CustomGitFiles call fzf#run(fzf#wrap({
       \ 'source': 'git ls-files --exclude-standard --cached --others'
       \ }))
 
+command! Directories call fzf#run(fzf#wrap({
+      \ 'source': 'find . -type d -not -path *.git*'
+      \ }))
+
 noremap <silent> <leader>/ :Rg<CR>
 noremap <leader><leader> :CustomGitFiles<CR>
 noremap <leader>b :Buffers<CR>
+noremap <leader>d :Directories<CR>
 noremap <leader>` :set number! relativenumber!<CR>
 noremap ` :set relativenumber!<CR>
 
@@ -139,7 +145,6 @@ noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 " === ALE ====
 nmap <silent> <leader>n :ALENextWrap<cr>
 nmap <silent> <leader>N :ALEPreviousWrap<cr>
-
 
 " === JSON ====
 noremap <leader>json :%!python3 -m json.tool<CR>

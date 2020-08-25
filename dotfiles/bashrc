@@ -27,6 +27,8 @@ alias guix-env="guix environment -m manifest.scm"
 alias guix-container="guix environment -m manifest.scm --container"
 alias guix-pure="guix environment -m manifest.scm --pure"
 
+alias python=python3
+
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 OSH_THEME="font"
