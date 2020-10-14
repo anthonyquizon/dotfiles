@@ -8,6 +8,7 @@ guix install \
     iptables \
     nss-certs \
     readline \
+    universal-ctags \
     guile \
     guile-readline
 

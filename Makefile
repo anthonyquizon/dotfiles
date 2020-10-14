@@ -17,6 +17,7 @@ setup:
 
 .PHONY: install
 install:
+	./install/apt.sh
 	./install/guix.sh
 	./install/bash.sh
 	./install/tmux.sh
