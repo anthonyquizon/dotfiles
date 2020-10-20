@@ -1,9 +1,8 @@
 guix pull
 guix install \
-    tmux \
-    make \
     git \
     guile \
+    rlwrap \
     ripgrep \
     iptables \
     nss-certs \

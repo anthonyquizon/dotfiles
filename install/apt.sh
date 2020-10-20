@@ -1,3 +1,5 @@
 
 sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install ufw
+sudo apt-get install \
+    ufw \
+    tmux
