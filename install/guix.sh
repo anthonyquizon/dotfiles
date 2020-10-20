@@ -9,7 +9,8 @@ guix install \
     readline \
     universal-ctags \
     guile \
-    guile-readline
+    guile-readline \
+    glibc-locales 
 
 git clone git@github.com:anthonyquizon/guix-channel.git $HOME/guix-channel
 
