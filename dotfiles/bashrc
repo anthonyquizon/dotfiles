@@ -63,9 +63,9 @@ alias make="make -j"
 
 source $OSH/oh-my-bash.sh
 
-if [[ -z "$GUIX_ENVIRONMENT" && $- == *i* ]]; then
-  [[ $TERM != "screen" ]] && exec tmux -u attach -d
-fi
+#if [[ -z "$GUIX_ENVIRONMENT" && $- == *i* ]]; then
+#  [[ $TERM != "screen" ]] && exec tmux -u attach -d
+#fi
 
 if [ "$TERM" = "screen" ]; then
     export TERM=xterm-256color
