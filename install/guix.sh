@@ -1,5 +1,6 @@
 guix pull
 guix install \
+    vim \
     git \
     guile \
     rlwrap \

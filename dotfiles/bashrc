@@ -41,8 +41,7 @@ ls_port() {
     lsof -i:$1
 }
 
-if [ -n "$GUIX_ENVIRONMENT" ]
-then
+if [ -n "$GUIX_ENVIRONMENT" ]; then
     OSH_THEME="simple"
 fi
 
