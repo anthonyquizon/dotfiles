@@ -34,15 +34,17 @@ COMPLETION_WAITING_DOTS="true"
 OSH_THEME="font"
 
 kill_port() {
-    kill $(lsof -t -i:$1)
+  kill $(lsof -t -i:$1)
 }
 
 ls_port() {
-    lsof -i:$1
+  lsof -i:$1
 }
 
 if [ -n "$GUIX_ENVIRONMENT" ]; then
-    OSH_THEME="simple"
+  #export LD_LIBRARY_PATH=$GUIX_ENVIRONMENT/lib
+
+  OSH_THEME="simple"
 fi
 
 completions=(
@@ -67,5 +69,5 @@ if [[ -z "$GUIX_ENVIRONMENT" && $- == *i* ]]; then
 fi
 
 if [ "$TERM" = "screen" ]; then
-    export TERM=xterm-256color
+  export TERM=xterm-256color
 fi
