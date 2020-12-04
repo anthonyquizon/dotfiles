@@ -13,10 +13,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'kovisoft/paredit'
-Plug 'w0rp/ale'
-Plug 'skywind3000/asyncrun.vim'
 Plug 'chrisbra/unicode.vim'
-Plug 'bohlender/vim-smt2'
 Plug 'mattn/emmet-vim'
 call plug#end()
 
@@ -71,7 +68,7 @@ nnoremap <leader>l :noh<CR>
 " ===== NETRW ======
 let g:netrw_banner = 0
 let g:netrw_rmdir_cmd='rm -r'
-let g:netrw_list_hide= '.*\.swp$,.stack-work,elm-stuff,dist-newstyle,.ghc*,.*\.go,.*\.agdai,.*\.agda.vim'
+let g:netrw_list_hide= '.*\.swp$,.stack-work,elm-stuff,dist-newstyle,.ghc*,*\.agdai,.*\.agda.vim'
 "==================
 
 "stay selected when visual mode indenting
@@ -101,19 +98,14 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 
 "===== FZF ======
-"command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-command! CustomGitFiles call fzf#run(fzf#wrap({
-      \ 'source': 'git ls-files --exclude-standard --cached --others'
-      \ }))
-
-command! Directories call fzf#run(fzf#wrap({
-      \ 'source': 'find . -type d -not -path *.git*'
-      \ }))
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+command! -bang -nargs=* RgFull call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {}, <bang>0)
 
 noremap <silent> <leader>/ :Rg<CR>
-noremap <leader><leader> :CustomGitFiles<CR>
-noremap <leader>b :Buffers<CR>
-noremap <leader>d :Directories<CR>
+noremap <silent> <leader>. :RgFull<CR>
+noremap <leader><leader> :Files<CR>
+noremap <leader>n :Buffers<CR>
+
 noremap <leader>` :set number! relativenumber!<CR>
 noremap ` :set relativenumber!<CR>
 
@@ -141,10 +133,6 @@ let g:rainbow_conf = {
 
 " ==== NERD Commenter ===
 noremap <leader>; :call NERDComment(1, 'toggle')<CR>
-
-" === ALE ====
-nmap <silent> <leader>n :ALENextWrap<cr>
-nmap <silent> <leader>N :ALEPreviousWrap<cr>
 
 " === JSON ====
 noremap <leader>json :%!python3 -m json.tool<CR>
