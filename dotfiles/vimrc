@@ -15,6 +15,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'kovisoft/paredit'
 Plug 'chrisbra/unicode.vim'
 Plug 'mattn/emmet-vim'
+Plug 'mbbill/undotree'
+Plug 'dense-analysis/ale'
 call plug#end()
 
 
@@ -104,7 +106,7 @@ command! -bang -nargs=* RgFull call fzf#vim#grep("rg --column --line-number --no
 noremap <silent> <leader>/ :Rg<CR>
 noremap <silent> <leader>. :RgFull<CR>
 noremap <leader><leader> :Files<CR>
-noremap <leader>n :Buffers<CR>
+noremap <leader>b :Buffers<CR>
 
 noremap <leader>` :set number! relativenumber!<CR>
 noremap ` :set relativenumber!<CR>
@@ -136,6 +138,10 @@ noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
 " === JSON ====
 noremap <leader>json :%!python3 -m json.tool<CR>
+
+" === ALE ====
+nmap <silent> <leader>n :ALENextWrap<cr>
+nmap <silent> <leader>N :ALEPreviousWrap<cr>
 
 " ==== Paredit =====
  au FileType smt2 call PareditInitBuffer()

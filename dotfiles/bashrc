@@ -1,6 +1,5 @@
 export EDITOR=vim
 #export LANG=en_AU.UTF-8
-export OSH=$HOME/.oh-my-bash
 ##====== GUIX ======
 export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 export GUIX_PATH="$HOME/.config/guix/current/bin"
@@ -33,45 +32,42 @@ alias guix-pure="guix environment -m manifest.scm --pure"
 
 alias python=python3
 
+export COLOR_NC='\e[0m' # No Color
+export COLOR_BLACK='\e[0;30m'
+export COLOR_GRAY='\e[1;30m'
+export COLOR_RED='\e[0;31m'
+export COLOR_LIGHT_RED='\e[1;31m'
+export COLOR_GREEN='\e[0;32m'
+export COLOR_LIGHT_GREEN='\e[1;32m'
+export COLOR_BROWN='\e[0;33m'
+export COLOR_YELLOW='\e[1;33m'
+export COLOR_BLUE='\e[0;34m'
+export COLOR_LIGHT_BLUE='\e[1;34m'
+export COLOR_PURPLE='\e[0;35m'
+export COLOR_LIGHT_PURPLE='\e[1;35m'
+export COLOR_CYAN='\e[0;36m'
+export COLOR_LIGHT_CYAN='\e[1;36m'
+export COLOR_LIGHT_GRAY='\e[0;37m'
+export COLOR_WHITE='\e[1;37m'
+
+
+alias ls='ls --color=auto'
+alias grep=grep --color=auto
+
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
-OSH_THEME="font"
 
-kill_port() {
-  kill $(lsof -t -i:$1)
-}
-
-ls_port() {
-  lsof -i:$1
-}
+PS1="\[${COLOR_RED}\]\u \[${COLOR_LIGHT_BLUE}\]\${PWD} \[${COLOR_BLACK}\]\[${COLOR_LIGHT_GREEN}\]→\[${COLOR_NC}\] "
 
 if [ -n "$GUIX_ENVIRONMENT" ]; then
-  #export LD_LIBRARY_PATH=$GUIX_ENVIRONMENT/lib
-
-  OSH_THEME="simple"
+    PS1="\[${COLOR_YELLOW}\]\u \[${COLOR_LIGHT_BLUE}\]\${PWD} \[${COLOR_BLACK}\]\[${COLOR_LIGHT_GREEN}\]→\[${COLOR_NC}\] "
 fi
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
 fi
 
-
-completions=(
-  git
-)
-
-aliases=(
-  general
-)
-
-plugins=(
-  git
-  bashmarks
-)
-
 alias make="make -j"
-
-source $OSH/oh-my-bash.sh
 
 if [[ -z "$GUIX_ENVIRONMENT" && $- == *i* ]]; then
   [[ $TERM != "screen" ]] && exec tmux -u attach -d
