@@ -57,7 +57,8 @@ alias grep=grep --color=auto
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
-PS1="\[${COLOR_RED}\]\u \[${COLOR_LIGHT_BLUE}\]\${PWD} \[${COLOR_BLACK}\]\[${COLOR_LIGHT_GREEN}\]→\[${COLOR_NC}\] "
+GIT_BRANCH=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
+PS1="\[${COLOR_RED}\]\u \[${COLOR_LIGHT_BLUE}\]\${PWD} \[${COLOR_BLACK}\]\[${COLOR_LIGHT_GREEN}\]${GIT_BRANCH} →\[${COLOR_NC}\] "
 
 if [ -n "$GUIX_ENVIRONMENT" ]; then
     PS1="\[${COLOR_YELLOW}\]\u \[${COLOR_LIGHT_BLUE}\]\${PWD} \[${COLOR_BLACK}\]\[${COLOR_LIGHT_GREEN}\]→\[${COLOR_NC}\] "
