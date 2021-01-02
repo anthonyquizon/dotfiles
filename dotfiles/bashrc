@@ -57,11 +57,20 @@ alias grep=grep --color=auto
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
-GIT_BRANCH=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
-PS1="\[${COLOR_RED}\]\u \[${COLOR_LIGHT_BLUE}\]\${PWD} \[${COLOR_BLACK}\]\[${COLOR_LIGHT_GREEN}\]${GIT_BRANCH} →\[${COLOR_NC}\] "
+git_branch() {
+    if [ -d .git ]; then
+        git branch 2>/dev/null | grep '^*' | colrm 1 2
+    fi
+}
+
+ps1() {
+    export PS1="\[$1\]\u \[${COLOR_LIGHT_BLUE}\]\\w:\$(git_branch) →\[${COLOR_NC}\] ";
+}
 
 if [ -n "$GUIX_ENVIRONMENT" ]; then
-    PS1="\[${COLOR_YELLOW}\]\u \[${COLOR_LIGHT_BLUE}\]\${PWD} \[${COLOR_BLACK}\]\[${COLOR_LIGHT_GREEN}\]→\[${COLOR_NC}\] "
+    ps1 ${COLOR_YELLOW};
+else
+    ps1 ${COLOR_RED};
 fi
 
 if type rg &> /dev/null; then
