@@ -15,12 +15,9 @@ export CURL_CA_BUNDLE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
 export GIT_SSL_CAINFO="$SSL_CERT_FILE"
 
 export NPM_PATH="${HOME}/.npm-packages/bin"
-export GO_PATH="${HOME}/go/bin"
-
-export VENDOR_NODE_PATH="${HOME}/vendor/node/bin"
 
 export LOCAL_PATH="${HOME}/.bin":"$HOME/.local/bin"
-export PATH="$GUIX_PATH:$NPM_PATH:$PATH:$LOCAL_PATH:$GO_PATH:$VENDOR_NODE_PATH"
+export PATH="$GUIX_PATH:$NPM_PATH:$PATH:$LOCAL_PATH"
 export INFOPATH="$HOME/.config/guix/current/share/info:$INFOPATH"
 
 export CC=gcc # WORKAROUND dmd doesn't work if this isn't set
@@ -77,10 +74,12 @@ fi
 
 alias make="make -j"
 
-if [[ -z "$GUIX_ENVIRONMENT" && $- == *i* ]]; then
+if [[ -z "$GUIX_ENVIRONMENT" && -z "$IN_NIX_SHELL" && $- == *i* ]]; then
   [[ $TERM != "screen" ]] && exec tmux -u attach -d
 fi
 
 if [ "$TERM" = "screen" ]; then
   export TERM=xterm-256color
 fi
+
+if [ -e /home/anthony/.nix-profile/etc/profile.d/nix.sh ]; then . /home/anthony/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
