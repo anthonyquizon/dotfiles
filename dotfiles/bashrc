@@ -28,6 +28,7 @@ alias guix-container="guix environment -m manifest.scm --container"
 alias guix-pure="guix environment -m manifest.scm --pure"
 
 alias python=python3
+alias firefox=icecat
 
 export COLOR_NC='\e[0m' # No Color
 export COLOR_BLACK='\e[0;30m'

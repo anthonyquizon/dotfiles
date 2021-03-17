@@ -13,7 +13,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'kovisoft/paredit'
 Plug 'chrisbra/unicode.vim'
-Plug 'mattn/emmet-vim'
+Plug 'jparise/vim-graphql'
 call plug#end()
 
 
@@ -66,11 +66,9 @@ nnoremap <leader>l :noh<CR>
 
 " ===== NETRW ======
 let g:netrw_banner = 0
-let g:netrw_rmdir_cmd='rm -r'
-let g:netrw_list_hide= '.*\.swp$,.stack-work,elm-stuff,dist-newstyle,.ghc*,*\.agdai,.*\.agda.vim'
 "==================
 
-"stay selected when visual mode indenting
+" stay selected when visual mode indenting
 vmap < <gv
 vmap > >gv
 
