@@ -13,7 +13,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'kovisoft/paredit'
 Plug 'chrisbra/unicode.vim'
+Plug 'mattn/emmet-vim'
 Plug 'jparise/vim-graphql'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 
