@@ -12,10 +12,10 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'kovisoft/paredit'
-Plug 'chrisbra/unicode.vim'
 Plug 'mattn/emmet-vim'
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
+Plug 'derekelkins/agda-vim'
 call plug#end()
 
 
@@ -95,15 +95,17 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-
 "===== FZF ======
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-command! -bang -nargs=* RgFull call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {}, <bang>0)
+let unicode = { 
+    \ 'subset equal': '⊆',
+    \ 'subset': '⊂'
+    \ }
 
 noremap <silent> <leader>/ :Rg<CR>
-noremap <silent> <leader>. :RgFull<CR>
 noremap <leader><leader> :Files<CR>
 noremap <leader>b :Buffers<CR>
+
+noremap <silent> <leader>! :Gstatus<CR>
 
 noremap <leader>` :set number! relativenumber!<CR>
 noremap ` :set relativenumber!<CR>

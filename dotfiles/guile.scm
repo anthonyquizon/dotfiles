@@ -3,3 +3,5 @@
   (ice-9 format)
   (ice-9 pretty-print))
 (activate-readline)
+
+(add-to-load-path ".")
