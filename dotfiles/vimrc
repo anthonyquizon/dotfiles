@@ -12,7 +12,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'kovisoft/paredit'
-Plug 'mattn/emmet-vim'
+Plug 'SirVer/ultisnips'
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
 Plug 'derekelkins/agda-vim'
@@ -66,6 +66,9 @@ nnoremap <leader>S :%s/<C-R><C-W>//g<Left><Left>
 " === Search Highlight ===
 nnoremap <leader>l :noh<CR>
 
+" === Scroll reset
+nnoremap <leader>0 :set scroll=0<CR>
+
 " ===== NETRW ======
 let g:netrw_banner = 0
 "==================
@@ -101,9 +104,13 @@ let unicode = {
     \ 'subset': '⊂'
     \ }
 
-noremap <silent> <leader>/ :Rg<CR>
-noremap <leader><leader> :Files<CR>
+noremap <leader>/ :Rg<CR>
+noremap <leader>c :Commands<CR>
 noremap <leader>b :Buffers<CR>
+noremap <leader>m :History<CR>
+noremap <leader>a :Maps<CR>
+noremap <leader>f :BLines<CR>
+noremap <leader><leader> :Files<CR>
 
 noremap <silent> <leader>! :Gstatus<CR>
 
