@@ -74,9 +74,9 @@ else
     ps1 "\[${COLOR_RED}\] ";
 fi
 
-#if type rg &> /dev/null; then
-  #export FZF_DEFAULT_COMMAND='rg --files'
-#fi
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+fi
 
 alias make="make -j"
 

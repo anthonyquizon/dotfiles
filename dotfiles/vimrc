@@ -104,13 +104,16 @@ let unicode = {
     \ 'subset': '⊂'
     \ }
 
+"ignore filenames in rg search
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 noremap <leader>/ :Rg<CR>
 noremap <leader>c :Commands<CR>
 noremap <leader>b :Buffers<CR>
 noremap <leader>m :History<CR>
 noremap <leader>a :Maps<CR>
 noremap <leader>f :BLines<CR>
-noremap <leader><leader> :Files<CR>
+noremap <leader><leader> :GFiles<CR>
 
 noremap <silent> <leader>! :Gstatus<CR>
 
