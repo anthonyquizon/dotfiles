@@ -1,6 +1,7 @@
 dotfiles=$HOME/dotfiles
 
 mkdir -p $HOME/.config/nvim/
+mkdir -p $HOME/.config/guix/channels.scm
 
 ln -sf $dotfiles/bashrc $HOME/.bash_profile
 ln -sf $dotfiles/bashrc $HOME/.bashrc
