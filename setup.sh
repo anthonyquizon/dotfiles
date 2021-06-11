@@ -1,9 +1,9 @@
-dotfiles=$HOME/dotfiles
+dotfiles=$HOME/dotfiles/dotfiles
 
 mkdir -p $HOME/.config/nvim/
 mkdir -p $HOME/.config/guix/channels.scm
 
-ln -sf $dotfiles/bashrc $HOME/.bash_profile
+ln -sf $dotfiles/bashrc $($HOME)/.bash_profile
 ln -sf $dotfiles/bashrc $HOME/.bashrc
 ln -sf $dotfiles/vimrc $HOME/.vimrc
 ln -sf $dotfiles/vimrc $HOME/.config/nvim/init.vim
