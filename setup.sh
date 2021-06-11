@@ -1,7 +1,4 @@
-HOME=/home/anthony
-PWD=/home/anthony/dotfiles
-
-dotfiles=$PWD/dotfiles
+dotfiles=$HOME/dotfiles
 
 ln -sf $dotfiles/bashrc $HOME/.bash_profile
 ln -sf $dotfiles/bashrc $HOME/.bashrc
