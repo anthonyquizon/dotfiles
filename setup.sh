@@ -1,5 +1,7 @@
 dotfiles=$HOME/dotfiles
 
+mkdir -p $HOME/.config/nvim/
+
 ln -sf $dotfiles/bashrc $HOME/.bash_profile
 ln -sf $dotfiles/bashrc $HOME/.bashrc
 ln -sf $dotfiles/vimrc $HOME/.vimrc
