@@ -7,6 +7,5 @@ dotfiles=$PWD/dotfiles
 ./install/guix.sh
 ./install/bash.sh
 ./install/tmux.sh
-./install/ufw.sh
 ./install/vim.sh
 ./setup.sh
