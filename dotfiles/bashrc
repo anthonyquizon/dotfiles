@@ -80,7 +80,7 @@ fi
 
 alias make="make -j"
 
-if ! command -v tmux &> /dev/null
+if command -v tmux &> /dev/null
 then
     if [[ -z "$GUIX_ENVIRONMENT" && -z "$IN_NIX_SHELL" && $- == *i* ]]; then
       [[ $TERM != "screen" ]] && exec tmux -u attach -d
