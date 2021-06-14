@@ -80,6 +80,11 @@ fi
 
 alias make="make -j"
 
+if [[ -z "$GUIX_ENVIRONMENT" && -z "$IN_NIX_SHELL" && $- == *i* ]]; then
+  [[ $TERM != "screen" ]] && exec tmux -u attach -d
+fi
+
+
 if [ "$TERM" = "screen" ]; then
   export TERM=xterm-256color
 fi
