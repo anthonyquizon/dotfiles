@@ -15,7 +15,10 @@ Plug 'kovisoft/paredit'
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
 Plug 'derekelkins/agda-vim'
+Plug 'mbbill/undotree'
+Plug 'mattn/emmet-vim'
 call plug#end()
+
 
 
 inoremap jk <esc>
@@ -117,6 +120,7 @@ noremap <leader>b :Buffers<CR>
 noremap <leader>m :History<CR>
 noremap <leader>a :Maps<CR>
 noremap <leader>f :BLines<CR>
+noremap <leader>u :UndotreeToggle<CR>
 noremap <leader><leader> :CustomGitFiles<CR>
 
 noremap <silent> <leader>! :Gstatus<CR>
@@ -157,4 +161,27 @@ nmap <silent> <leader>n :ALENextWrap<cr>
 nmap <silent> <leader>N :ALEPreviousWrap<cr>
 
 " ==== Paredit =====
- au FileType smt2 call PareditInitBuffer()
+au FileType smt2 call PareditInitBuffer()
+
+"let b:keymap_name=expand('<sfile>:t:r')
+
+""let a ='`1234567890-= ~!@#$%^&*()_+'
+""let a.='qwertyuiop[]  QWERTYUIOP{} '
+""let a.='asdfghjkl;''\ ASDFGHJKL:"| '
+""let a.='zxcvbnm,./    ZXCVBNM<>?   '
+
+""let b ='⋄¨¯<≤=≥>≠∨∧×÷ ⌺⌶⍫⍒⍋⌽⍉⊖⍟⍱⍲!⌹'
+""let b.='?⍵∊⍴~↑↓⍳○*←→  ?⍵⍷⍴⍨↑↓⍸⍥⍣⍞⍬ '
+""let b.='⍺⌈⌊∥∇∆∘''⎕⍎⍕⊢ ⍺⌈⌊⊚∇∆⍤⌸⌷≡≢⊣ '
+""let b.='⊂⊃∩∪⊥⊤|⍝⍀⌿    ⊆⊃∩∪⊥⊤|⍪⍙⍠   '
+
+""let p=exists('g:apl_prefix_key')?g:apl_prefix_key:'`'
+""exe 'lno<buffer> '.p.'<space> '.p
+""exe 'cno<buffer> '.p.'<space> '.p
+""let[A,B]=map([a,b],"split(v:val,'\\zs *')")
+""for i in range(len(A))|exe escape('lno<buffer>'.p.A[i].' '.B[i],'|')|endfor
+""for i in range(len(A))|exe escape('cno<buffer>'.p.A[i].' '.B[i],'|')|endfor
+""unl a b A B i p
+
+"imap `i ⍳
+"
