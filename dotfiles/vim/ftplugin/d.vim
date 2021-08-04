@@ -14,15 +14,24 @@ imap `e ε
 imap `w ω
 imap `G Γ
 imap `g γ
+imap `P Π
+imap `p π
 imap `S Σ
 imap `s σ
 imap `xs σ
 imap `Z ℤ
 
+imap `Bo ㄩ
 imap `Ro ロ
 imap `Ha ㄖ
+imap `[] ロ
 imap `Ku く
 imap `gu ㄍ
+imap ` ㄍ
+
+imap `Re ℝ
+imap `bot 丄
+imap `top 丅
 
 imap `x- ẋ
 imap `x-- ẍ
@@ -45,7 +54,8 @@ imap `x-- ẍ
 "・
 "ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦㄧㄨㄩㄪㄫ
 
-
+"℘ℙℚℛℜ
+"ℝ
 
 ""let a ='`1234567890-= ~!@#$%^&*()_+'
 ""let a.='qwertyuiop[]  QWERTYUIOP{} '

@@ -62,6 +62,8 @@ xnoremap K <nop>
 
 " ===== Search and Replace =====
 vnoremap <leader>s "vy :%s/<C-R>v//g<Left><Left>
+vnoremap <leader>S "vy :%s//<C-R>v/g<C-b><Right><Right><Right>
+
 nnoremap <leader>s :%sno/<C-R><C-W>//g<Left><Left>
 nnoremap <leader>S :%sno//<C-R><C-W>/g<C-b><Right><Right><Right><Right><Right>
 
