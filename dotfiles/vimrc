@@ -165,3 +165,46 @@ nmap <silent> <leader>N :ALEPreviousWrap<cr>
 " ==== Paredit =====
 au FileType smt2 call PareditInitBuffer()
 
+" === Unicode Input ===
+let unimap = [
+    \["a",   "α"],
+    \["a'",  "ά"],
+    \["b",   "β"],
+    \["i",   "ι"],
+    \["r",   "ρ"],
+    \["c",   "୦"],
+    \["d",   "Δ"],
+    \["e",   "ε"],
+    \["w",   "ω"],
+    \["G",   "Γ"],
+    \["g",   "γ"],
+    \["Pi",  "Π"],
+    \["pi",  "π"],
+    \["Ph",  "ϕ"],
+    \["ph",  "Φ"],
+    \["S",   "Σ"],
+    \["s",   "σ"],
+    \["xs",  "σ"],
+    \["Z",   "ℤ"],
+    \["co",  "ㄩ"],
+    \["cir", "໐"],
+    \["un",  "ㄇ"],
+    \["ro",  "ロ"],
+    \["[]",  "ロ"],
+    \["ku",  "く"],
+    \["gu",  "ㄍ"],
+    \["ts",  "つ"],
+    \["map", "コ"],
+    \["'",   "०"],
+    \["Re",  "ℝ"],
+    \["bot", "丄"],
+    \["top", "丅"],
+\]
+let uniprefix = '`'
+
+for i in range(len(unimap))
+    exe 'lmap ' . uniprefix . unimap[i][0] . ' ' . unimap[i][1]
+    exe 'imap ' . uniprefix . unimap[i][0] . ' ' . unimap[i][1]
+    exe 'tmap ' . uniprefix . unimap[i][0] . ' ' . unimap[i][1]
+    exe 'cmap ' . uniprefix . unimap[i][0] . ' ' . unimap[i][1]
+endfor
