@@ -1,19 +1,19 @@
 export EDITOR=nvim
 #export LANG=en_AU.UTF-8
 ##====== GUIX ======
-export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
-export GUIX_PATH="$HOME/.config/guix/current/bin"
-export GUIX_PROFILE="$HOME/.guix-profile"
-export GUIX_INCLUDE_PATH="$HOME/.guix-profile/lib/locale"
-export GUIX_LIBRARY_PATH="$HOME/.guix-profile/lib"
+#export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+#export GUIX_PATH="$HOME/.config/guix/current/bin"
+#export GUIX_PROFILE="$HOME/.guix-profile"
+#export GUIX_INCLUDE_PATH="$HOME/.guix-profile/lib/locale"
+#export GUIX_LIBRARY_PATH="$HOME/.guix-profile/lib"
 
-source "$GUIX_PROFILE/etc/profile"
+#source "$GUIX_PROFILE/etc/profile"
 
-export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
-export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
-export CURL_CA_BUNDLE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
-export GIT_SSL_CAINFO="$SSL_CERT_FILE"
-export GUILE_AUTO_COMPILE=0
+#export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
+#export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+#export CURL_CA_BUNDLE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+#export GIT_SSL_CAINFO="$SSL_CERT_FILE"
+#export GUILE_AUTO_COMPILE=0
 
 export NPM_PATH="${HOME}/.npm-packages/bin"
 export YARN_PATH="${HOME}/.yarn/bin"
