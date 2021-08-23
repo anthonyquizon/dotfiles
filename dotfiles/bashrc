@@ -52,8 +52,6 @@ export COLOR_WHITE='\e[1;37m'
 
 
 alias vim=nvim
-alias ls='ls --color=auto'
-alias grep=grep --color=auto
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
@@ -80,7 +78,7 @@ fi
 
 alias make="make -j"
 
-if [[ -z "$GUIX_ENVIRONMENT" && -z "$IN_NIX_SHELL" && $- == *i* ]]; then
+if [[command -v tmux && -z "$GUIX_ENVIRONMENT" && -z "$IN_NIX_SHELL" && $- == *i* ]]; then
   [[ $TERM != "screen" ]] && exec tmux -u attach -d
 fi
 
