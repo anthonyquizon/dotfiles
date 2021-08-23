@@ -41,6 +41,7 @@ set cursorline
 set noswapfile
 set undofile
 set undodir=~/.vim/undodir
+set backupcopy=yes
 set nobackup
 set backspace=indent,eol,start
 set hlsearch
@@ -216,6 +217,7 @@ let unimap = [
     \["no", "の"],
     \["hi", "ひ"],
     \["bo", "ろ"],
+    \["vo",  "ʘ"],
 \]
 
 "스
