@@ -52,6 +52,7 @@ export COLOR_WHITE='\e[1;37m'
 
 
 alias vim=nvim
+alias ls='ls -G'
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
