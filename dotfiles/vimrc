@@ -17,6 +17,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'derekelkins/agda-vim'
 Plug 'mbbill/undotree'
 Plug 'mattn/emmet-vim'
+Plug 'rescript-lang/vim-rescript'
 call plug#end()
 
 
@@ -208,8 +209,8 @@ let unimap = [
     \["map", "コ"],
     \["red", "コ"],
     \["fol", "コ"],
-    \["<", "く"],
-    \["-<", "ぐ"],
+    \["[[", "く"],
+    \["['", "ぐ"],
     \["Re",  "ℝ"],
     \["bot", "丄"],
     \["top", "丅"],
@@ -225,7 +226,8 @@ let unimap = [
     \["ub", "ㄅ"],
     \["vo",  "ʘ"],
     \[".",   "・"],
-    \["com",   "叵"],
+    \["com", "叵"],
+    \["in", "ㄙ"],
 \]
 
 "스
