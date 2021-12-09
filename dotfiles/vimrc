@@ -10,7 +10,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'luochen1990/rainbow'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 Plug 'kovisoft/paredit'
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
@@ -40,12 +40,14 @@ set nohlsearch
 set smartcase
 set cursorline
 set noswapfile
+set nobackup nowritebackup
 set undofile
 set undodir=~/.vim/undodir
 set backupcopy=yes
 set nobackup
 set backspace=indent,eol,start
 set hlsearch
+
 
 colorscheme jellybeans
 
@@ -171,6 +173,7 @@ au FileType smt2 call PareditInitBuffer()
 " === Unicode Input ===
 let unimap = [
     \["a",   "α"],
+    \["aa",  "α"],
     \["a'",  "ά"],
     \["b",   "β"],
     \["bi",  "ʘ"],
@@ -179,10 +182,15 @@ let unimap = [
     \["r",   "ρ"],
     \["o",   "୦"],
     \["j",   "०"],
+    \["jj",   "०"],
     \["del", "Δ"],
-    \["tr", "Δ"],
+    \["tri", "Δ"],
+    \["tru", "匕"],
+    \["fa", "厅"],
     \["th", "θ"],
     \["e",   "ε"],
+    \["ee",   "ε"],
+    \["em",   "Ø"],
     \["w",   "ω"],
     \["O",   "Ω"],
     \["G",   "Γ"],
@@ -208,6 +216,9 @@ let unimap = [
     \["st",  "つ"],
     \["]",   "コ"],
     \["]]",  "コ"],
+    \["}}",  "カ"],
+    \["}",   "カ"],
+    \["}'",  "ガ"],
     \["]'", "ゴ"],
     \["[[", "く"],
     \["['", "ぐ"],
@@ -226,11 +237,18 @@ let unimap = [
     \["ub", "ㄅ"],
     \["vo",  "ʘ"],
     \[".",   "・"],
-    \["/'", "叵"],
+    \["?", "叵"],
     \["in", "ㄙ"],
-    \["ta", "〆"],
+    \["ul", "〆"],
+    \["mu", "ㄓ"],
+    \["'", "ʽ"],
+    \["cm", "०"],
+    \["js", "专"],
+    \["ha", "伧"],
+    \["ma", "公"],
 \]
 
+"巛
 "스
 "요
 "느

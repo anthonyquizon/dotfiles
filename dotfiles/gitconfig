@@ -22,3 +22,9 @@
 	default = simple
 [core]
 	excludesfile = ~/.gitignore
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[difftool]
+	prompt = false
