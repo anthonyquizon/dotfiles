@@ -259,6 +259,7 @@ let unimap = [
 "느
 "드
 "冂冃冄内円
+
 let uniprefix = '`'
 
 for i in range(len(unimap))
