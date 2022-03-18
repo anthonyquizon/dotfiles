@@ -65,6 +65,8 @@ xnoremap u <nop>
 xnoremap K <nop>
 
 " ===== Search and Replace =====
+" TODO put into command line window
+" TODO escape slashes or use '|' instead?
 vnoremap <leader>s "vy :%s/<C-R>v//g<Left><Left>
 vnoremap <leader>S "vy :%s//<C-R>v/g<C-b><Right><Right><Right>
 
@@ -181,9 +183,9 @@ let unimap = [
     \["ii",  "ι"],
     \["r",   "ρ"],
     \["o",   "୦"],
+    \["oo",   "୦"],
     \["j",   "०"],
-    \["jj",  "へ"],
-    \["j'",  "べ"],
+    \["jj",  "०"],
     \["del", "Δ"],
     \["tri", "Δ"],
     \["tru", "匕"],
