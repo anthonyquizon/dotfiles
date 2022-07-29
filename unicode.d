@@ -240,6 +240,8 @@ static immutable wchar[2][] ALPHA_TABLE =
         [0x212A, 0x2131],
         [0x2133, 0x2138],
         [0x2160, 0x2182],
+        [0x2200, 0x22FF], //! AQ: unicode math
+        [0x2300, 0x23FF], //! AQ: unicode technical
         [0x3005, 0x3007],
         [0x3021, 0x3029],
         [0x3041, 0x3093],
@@ -249,6 +251,8 @@ static immutable wchar[2][] ALPHA_TABLE =
         [0x3105, 0x312C],
         [0x4E00, 0x9FA5],
         [0xAC00, 0xD7A3]
+
+
     ];
     
 void main() {                                                                                                                              

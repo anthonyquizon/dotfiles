@@ -14,10 +14,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'kovisoft/paredit'
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
-Plug 'derekelkins/agda-vim'
 Plug 'mbbill/undotree'
 Plug 'mattn/emmet-vim'
-Plug 'rescript-lang/vim-rescript'
 call plug#end()
 
 
@@ -115,15 +113,20 @@ let unicode = {
     \ }
 
 " ignore filenames in rg search
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+command! -bang -nargs=* RgNoFilename call fzf#vim#grep(
+            \ "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 
+            \ 1, 
+            \ fzf#vim#with_preview({ 'options': '--delimiter : --nth 4..' }),
+            \ 0)
 
 " show unregistered Git files in search
-command! CustomGitFiles call fzf#run(fzf#wrap({
-      \ 'source': 'git ls-files --exclude-standard --cached --others'
-      \ }))
+command! CustomGitFiles call fzf#run(fzf#wrap(fzf#vim#with_preview({
+            \ 'source': 'git ls-files --exclude-standard --cached --others',
+            \ })))
 
 
-noremap <leader>/ :Rg<CR>
+noremap <leader>/ :RgNoFilename<CR>
+noremap <leader>. :Rg<CR>
 noremap <leader>x :Commands<CR>
 noremap <leader>b :Buffers<CR>
 noremap <leader>m :History<CR>
@@ -179,6 +182,9 @@ let unimap = [
     \["i",   "ι"],
     \["ii",  "ι"],
     \["r",   "ρ"],
+    \["Ps",   "Ψ"],
+    \["PS",   "Ψ"],
+    \["ps",   "φ"],
     \["o",   "୦"],
     \["oo",   "୦"],
     \["j",   "०"],
@@ -248,30 +254,25 @@ let unimap = [
     \["..,",   "・"],
     \["?",  "叵"],
     \["in", "ㄙ"],
+    \["uu", "ㄋ"],
     \["ul", "〆"],
     \["mu", "ㄓ"],
     \["'", "ʽ"],
     \["''", "ʽ"],
     \["cm", "०"],
-    \["se", "公"],
     \["d", "δ"],
     \["dd", "δ"],
     \["jss", "ち"], 
     \["js", "ち"], 
     \["js'", "ぢ"], 
-    \["at", "요"], 
-    \["ca", "드"], 
-    \["ha", "仚"],
-    \["as", "亽"],
-    \["jo", "て"],
-    \["joo", "て"],
-    \["jo'", "で"],
-    \["g", "∇"],
-    \["ne", "≠"],
+    \["ha", "サ"],
+    \["haa", "サ"],
+    \["ha'", "ザ"],
+    \["fi", "冋"],
 \]
 
 "冎
-"巛
+"
 "스
 "느
 "巨
@@ -285,3 +286,4 @@ for i in range(len(unimap))
     exe 'tmap ' . uniprefix . unimap[i][0] . ' ' . unimap[i][1]
     exe 'cmap ' . uniprefix . unimap[i][0] . ' ' . unimap[i][1]
 endfor
+

@@ -31,6 +31,8 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 alias vim=nvim
 alias ls='ls -G'
 
+alias clojure='rlwrap clojure'
+
 git_branch() {
     git branch 2>/dev/null | grep '^*' | colrm 1 2
 }
