@@ -1,3 +1,12 @@
+"
+" Tips: 
+"   command window: run q:
+"   quicklist: open fzf, select all (<ctrl-a>), enter, :copen
+"   quicklist: :cn and :cp
+"
+
+
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -72,7 +81,7 @@ nnoremap <leader>s :%sno/<C-R><C-W>//g<Left><Left>
 nnoremap <leader>S :%sno//<C-R><C-W>/g<C-b><Right><Right><Right><Right><Right>
 
 " === Search Highlight ===
-nnoremap <leader>l :noh<CR>
+nnoremap <leader>z :noh<CR>
 
 " === Scroll reset
 nnoremap <leader>0 :set scroll=0<CR>
@@ -112,6 +121,8 @@ let unicode = {
     \ 'subset': '⊂'
     \ }
 
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all,ctrl-d:deselect-all'
+
 " ignore filenames in rg search
 command! -bang -nargs=* RgNoFilename call fzf#vim#grep(
             \ "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 
@@ -129,11 +140,11 @@ let g:fzf_history_dir = '~/.fzf-history'
 
 noremap <leader>/ :RgNoFilename<CR>
 noremap <leader>. :Rg<CR>
-noremap <leader>x :Commands<CR>
+noremap <leader>c :Commands<CR>
 noremap <leader>b :Buffers<CR>
-noremap <leader>m :History<CR>
+noremap <leader>h :History<CR>
 noremap <leader>a :Maps<CR>
-noremap <leader>f :BLines<CR>
+noremap <leader>l :BLines<CR>
 noremap <leader>u :UndotreeToggle<CR>
 noremap <leader><leader> :CustomGitFiles<CR>
 noremap <leader>? :GFiles?<CR>
