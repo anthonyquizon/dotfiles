@@ -120,10 +120,12 @@ command! -bang -nargs=* RgNoFilename call fzf#vim#grep(
             \ 0)
 
 " show unregistered Git files in search
-command! CustomGitFiles call fzf#run(fzf#wrap(fzf#vim#with_preview({
-            \ 'source': 'git ls-files --exclude-standard --cached --others',
-            \ })))
+command! CustomGitFiles call fzf#vim#gitfiles(
+            \'--cached --others', 
+            \ fzf#vim#with_preview({}),
+            \ 0)
 
+let g:fzf_history_dir = '~/.fzf-history'
 
 noremap <leader>/ :RgNoFilename<CR>
 noremap <leader>. :Rg<CR>
@@ -134,8 +136,7 @@ noremap <leader>a :Maps<CR>
 noremap <leader>f :BLines<CR>
 noremap <leader>u :UndotreeToggle<CR>
 noremap <leader><leader> :CustomGitFiles<CR>
-
-noremap <silent> <leader>! :Gstatus<CR>
+noremap <leader>? :GFiles?<CR>
 
 noremap <leader>` :set number! relativenumber!<CR>
 noremap ` :set relativenumber!<CR>
