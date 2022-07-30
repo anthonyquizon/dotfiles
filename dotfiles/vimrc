@@ -138,8 +138,8 @@ noremap <leader>u :UndotreeToggle<CR>
 noremap <leader><leader> :CustomGitFiles<CR>
 noremap <leader>? :GFiles?<CR>
 
-noremap <leader>` :set number! relativenumber!<CR>
-noremap ` :set relativenumber!<CR>
+noremap <leader>n :set relativenumber!<CR>
+noremap <leader>N :set number! relativenumber!<CR>
 
 "======= Rainbow Parens =======
 let g:rainbow_active = 1
@@ -168,10 +168,6 @@ noremap <leader>; :call NERDComment(1, 'toggle')<CR>
 
 " === JSON ====
 noremap <leader>json :%!python3 -m json.tool<CR>
-
-" === ALE ====
-nmap <silent> <leader>n :ALENextWrap<cr>
-nmap <silent> <leader>N :ALEPreviousWrap<cr>
 
 " === Unicode Input ===
 let unimap = [
