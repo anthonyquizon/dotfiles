@@ -121,7 +121,7 @@ command! -bang -nargs=* RgNoFilename call fzf#vim#grep(
 
 " show unregistered Git files in search
 command! CustomGitFiles call fzf#vim#gitfiles(
-            \'--cached --others', 
+            \'--cached --others --exclude-standard', 
             \ fzf#vim#with_preview({}),
             \ 0)
 
