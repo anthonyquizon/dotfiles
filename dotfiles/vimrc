@@ -16,6 +16,7 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-sneak'
 Plug 'luochen1990/rainbow'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -25,6 +26,7 @@ Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
 Plug 'mbbill/undotree'
 Plug 'mattn/emmet-vim'
+Plug 'takac/vim-hardtime'
 call plug#end()
 
 
@@ -60,7 +62,10 @@ colorscheme jellybeans
 
 let mapleader = "\<Space>"
 let maplocalleader = ","
+let g:hardtime_default_on = 1
 
+" set grep to ripgrep
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 
 vmap <silent> <leader>y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/.vim/reg<CR>
 nmap <silent> <leader>y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/.vim/reg<CR>
@@ -97,6 +102,7 @@ vmap > >gv
 " Force override ambiguous commands (eg. elm-make)
 command! E Explore
 command! Qa qa
+command! QA qa
 command! WQ wq
 command! Wq wq
 command! W w
@@ -185,7 +191,7 @@ let unimap = [
     \["a",   "α"],
     \["aa",  "α"],
     \["a'",  "ά"],
-    \["b",   "β"],
+    \["B",   "β"],
     \["bi",  "ʘ"],
     \["i",   "ι"],
     \["ii",  "ι"],
@@ -199,6 +205,7 @@ let unimap = [
     \["jj",  "०"],
     \["del", "Δ"],
     \["tri", "Δ"],
+    \["tt", "Δ"],
     \["tru", "匕"],
     \["fa",  "厅"],
     \["th",  "θ"],
@@ -277,10 +284,16 @@ let unimap = [
     \["haa", "サ"],
     \["ha'", "ザ"],
     \["fi", "冋"],
+    \["Q", "ℚ"],
+    \["fl", "て"],
+    \["fll", "て"],
+    \["fl'", "で"],
+    \["R", "ℝ"],
+    \["A", "回"],
 \]
 
 "冎
-"
+"巛
 "스
 "느
 "巨

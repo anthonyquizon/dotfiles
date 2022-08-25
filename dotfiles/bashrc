@@ -5,7 +5,8 @@ export NPM_PATH="${HOME}/.npm-packages/bin"
 export YARN_PATH="${HOME}/.yarn/bin"
 
 export LOCAL_PATH="${HOME}/.bin":"$HOME/.local/bin"
-export PATH="$GUIX_PATH:$NPM_PATH:$YARN_PATH:$PATH:$LOCAL_PATH"
+export PYTHON_PATH="${HOME}/Library/Python/3.9"
+export PATH="$GUIX_PATH:$NPM_PATH:$YARN_PATH:$PATH:$LOCAL_PATH:$PYTHON_PATH"
 
 export CC=gcc # WORKAROUND dmd doesn't work if this isn't set
 
