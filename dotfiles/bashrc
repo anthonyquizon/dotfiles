@@ -1,12 +1,13 @@
 source ~/.profile
 export EDITOR=nvim
 
+export BQN_PATH="${HOME}/Development/vendor/CBQN"
 export NPM_PATH="${HOME}/.npm-packages/bin"
 export YARN_PATH="${HOME}/.yarn/bin"
 
 export LOCAL_PATH="${HOME}/.bin":"$HOME/.local/bin"
 export PYTHON_PATH="${HOME}/Library/Python/3.9"
-export PATH="$GUIX_PATH:$NPM_PATH:$YARN_PATH:$PATH:$LOCAL_PATH:$PYTHON_PATH"
+export PATH="$GUIX_PATH:$NPM_PATH:$YARN_PATH:$PATH:$LOCAL_PATH:$PYTHON_PATH:${BQN_PATH}"
 
 export CC=gcc # WORKAROUND dmd doesn't work if this isn't set
 
@@ -33,6 +34,10 @@ alias vim=nvim
 alias ls='ls -G'
 
 alias clojure='rlwrap clojure'
+alias bqn='rlwrap BQN'
+
+# mac
+alias ctags="`brew --prefix`/bin/ctags"
 
 git_branch() {
     git branch 2>/dev/null | grep '^*' | colrm 1 2

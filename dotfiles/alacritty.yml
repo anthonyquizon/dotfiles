@@ -1,5 +1,20 @@
 font:
-  size: 16
+  size: 18
+  normal:
+    family: juliamono
+    style: Regular
+
+  bold:
+    family: juliamono
+    style: Bold
+
+  italic:
+    family: juliamono
+    style: Italic
+
+  bold_italic:
+    family: juliamono
+    style: Bold Italic
 
 key_bindings:
   - { key: Left,     mods: Alt,     chars: "\x1bb"                       } # one word left

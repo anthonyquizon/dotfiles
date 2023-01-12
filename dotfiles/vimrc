@@ -27,6 +27,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'mbbill/undotree'
 Plug 'mattn/emmet-vim'
 Plug 'takac/vim-hardtime'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
 call plug#end()
 
 
@@ -62,7 +64,7 @@ colorscheme jellybeans
 
 let mapleader = "\<Space>"
 let maplocalleader = ","
-let g:hardtime_default_on = 1
+"let g:hardtime_default_on = 1
 
 " set grep to ripgrep
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
@@ -180,124 +182,18 @@ let g:rainbow_conf = {
             \   }
             \}
 
+let g:ycm_language_server = [
+            \ {
+            \     'name': 'd',
+            \     'cmdline': ['anthonyandkathleen/Development/vendor/serve-d/serve-d'],
+            \     'filetypes': ['d'],
+            \ }]
+
 " ==== NERD Commenter ===
 noremap <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>
 
 " === JSON ====
 noremap <leader>json :%!python3 -m json.tool<CR>
-
-" === Unicode Input ===
-let unimap = [
-    \["a",   "α"],
-    \["aa",  "α"],
-    \["a'",  "ά"],
-    \["B",   "β"],
-    \["bi",  "ʘ"],
-    \["i",   "ι"],
-    \["ii",  "ι"],
-    \["r",   "ρ"],
-    \["Ps",   "Ψ"],
-    \["PS",   "Ψ"],
-    \["ps",   "φ"],
-    \["o",   "୦"],
-    \["oo",   "୦"],
-    \["j",   "०"],
-    \["jj",  "०"],
-    \["del", "Δ"],
-    \["tri", "Δ"],
-    \["tt", "Δ"],
-    \["tru", "匕"],
-    \["fa",  "厅"],
-    \["th",  "θ"],
-    \["e",   "ε"],
-    \["ee",  "ε"],
-    \["em",  "Ø"],
-    \["w",   "ω"],
-    \["ww",  "ω"],
-    \["O",   "Ω"],
-    \["G",   "Γ"],
-    \["g",   "γ"],
-    \["y",   "γ"],
-    \["Pi",  "Π"],
-    \["pi",  "π"],
-    \["Ph",  "ϕ"],
-    \["ph",  "Φ"],
-    \["S",   "Σ"],
-    \["s",   "σ"],
-    \["ss",  "σ"],
-    \["so",  "σ"],
-    \["xs",  "σ"],
-    \["Z",   "ℤ"],
-    \["U",   "ㄩ"],
-    \["N",  "ㄇ"],
-    \["/",   "ㄖ"],
-    \["//",  "ㄖ"],
-    \["ro",  "ロ"],
-    \["[]",  "ロ"],
-    \["sq",  "ロ"],
-    \["<<",  "ㄍ"],
-    \["st",  "つ"],
-    \["stt",  "つ"],
-    \["st'",  "づ"],
-    \["]",   "コ"],
-    \["]]",  "コ"],
-    \["}}",  "カ"],
-    \["co",  "カ"],
-    \["}",   "カ"],
-    \["}'",  "ガ"],
-    \["]'",  "ゴ"],
-    \[",,",  "く"],
-    \[",'",  "ぐ"],
-    \["Re",  "ℝ"],
-    \["bt",  "丄"],
-    \["tp",  "丅"],
-    \["ex",  "ヨ"],
-    \["li",  "一"],
-    \["-",   "一"],
-    \["--",  "一"],
-    \["en",  "三"],
-    \["sm",  "シ"],
-    \["si",  "し"],
-    \["sii",  "し"],
-    \["si'",  "じ"],
-    \["ch",  "の"],
-    \["do",  "ひ"],
-    \["bo",  "ろ"],
-    \["ub",  "ㄅ"],
-    \["vo",  "ʘ"],
-    \[".",   "・"],
-    \["..,",   "・"],
-    \["?",  "叵"],
-    \["in", "ㄙ"],
-    \["uu", "ㄋ"],
-    \["ul", "〆"],
-    \["mu", "ㄓ"],
-    \["'", "ʽ"],
-    \["''", "ʽ"],
-    \["cm", "०"],
-    \["d", "δ"],
-    \["dd", "δ"],
-    \["jss", "ち"], 
-    \["js", "ち"], 
-    \["js'", "ぢ"], 
-    \["ha", "サ"],
-    \["haa", "サ"],
-    \["ha'", "ザ"],
-    \["fi", "冋"],
-    \["Q", "ℚ"],
-    \["fl", "て"],
-    \["fll", "て"],
-    \["fl'", "で"],
-    \["R", "ℝ"],
-    \["A", "回"],
-\]
-
-"冎
-"巛
-"스
-"느
-"巨
-"冂冃冄内円
 
 let uniprefix = '`'
 
