@@ -194,13 +194,3 @@ noremap <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>
 
 " === JSON ====
 noremap <leader>json :%!python3 -m json.tool<CR>
-
-let uniprefix = '`'
-
-for i in range(len(unimap))
-    exe 'lmap ' . uniprefix . unimap[i][0] . ' ' . unimap[i][1]
-    exe 'imap ' . uniprefix . unimap[i][0] . ' ' . unimap[i][1]
-    exe 'tmap ' . uniprefix . unimap[i][0] . ' ' . unimap[i][1]
-    exe 'cmap ' . uniprefix . unimap[i][0] . ' ' . unimap[i][1]
-endfor
-
