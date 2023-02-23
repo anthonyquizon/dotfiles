@@ -1,13 +1,12 @@
 source ~/.profile
 export EDITOR=nvim
 
-export BQN_PATH="${HOME}/Development/vendor/CBQN"
 export NPM_PATH="${HOME}/.npm-packages/bin"
 export YARN_PATH="${HOME}/.yarn/bin"
 
 export LOCAL_PATH="${HOME}/.bin":"$HOME/.local/bin"
 export PYTHON_PATH="${HOME}/Library/Python/3.9"
-export PATH="$GUIX_PATH:$NPM_PATH:$YARN_PATH:$PATH:$LOCAL_PATH:$PYTHON_PATH:${BQN_PATH}"
+export PATH="$GUIX_PATH:$NPM_PATH:$YARN_PATH:$PATH:$LOCAL_PATH:$PYTHON_PATH"
 
 export CC=gcc # WORKAROUND dmd doesn't work if this isn't set
 
@@ -34,10 +33,12 @@ alias vim=nvim
 alias ls='ls -G'
 
 alias clojure='rlwrap clojure'
-alias bqn='rlwrap BQN'
+alias bqn='BQN'
 
 # mac
 alias ctags="`brew --prefix`/bin/ctags"
+
+ulimit -n 10240
 
 git_branch() {
     git branch 2>/dev/null | grep '^*' | colrm 1 2
@@ -68,3 +69,7 @@ alias make="make -j"
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
