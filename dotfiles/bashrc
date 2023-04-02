@@ -1,6 +1,3 @@
-source ~/.profile
-export EDITOR=nvim
-
 export NPM_PATH="${HOME}/.npm-packages/bin"
 export YARN_PATH="${HOME}/.yarn/bin"
 
@@ -29,14 +26,10 @@ export COLOR_LIGHT_GRAY='\e[0;37m'
 export COLOR_WHITE='\e[1;37m'
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
-alias vim=nvim
 alias ls='ls -G'
 
 alias clojure='rlwrap clojure'
 alias bqn='BQN'
-
-# mac
-alias ctags="`brew --prefix`/bin/ctags"
 
 ulimit -n 10240
 
