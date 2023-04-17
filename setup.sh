@@ -8,6 +8,10 @@ fi
 #vim
 mkdir -p $HOME/.vim/undodir
 
+# install plug in neovim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 ln -sf $dotfiles/bashrc $HOME/.zprofile
 ln -sf $dotfiles/bashrc $HOME/.bash_profile
 ln -sf $dotfiles/bashrc $HOME/.bashrc

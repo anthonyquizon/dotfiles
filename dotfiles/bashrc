@@ -6,6 +6,7 @@ export PYTHON_PATH="${HOME}/Library/Python/3.9"
 export PATH="$GUIX_PATH:$NPM_PATH:$YARN_PATH:$PATH:$LOCAL_PATH:$PYTHON_PATH"
 
 export CC=gcc # WORKAROUND dmd doesn't work if this isn't set
+alias vim=nvim
 
 export COLOR_NC='\e[0m' # No Color
 export COLOR_BLACK='\e[0;30m'
@@ -29,7 +30,6 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 alias ls='ls -G'
 
 alias clojure='rlwrap clojure'
-alias bqn='BQN'
 
 ulimit -n 10240
 
