@@ -2,7 +2,19 @@ set nocompatible autoindent laststatus=2 relativenumber nu
 set nopaste nowrap expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set smartcase noswapfile nobackup nowritebackup undofile undodir=~/.vim/undodir
 set backspace=indent,eol,start hlsearch path+=** wildmenu
-let g:netrw_banner = 0
-inoremap jk <esc>
-filetype indent plugin on
-syntax on
+let g:netrw_banner = 0 | let mapleader = "\<Space>"
+filetype indent plugin on | syntax on | inoremap jk <esc>
+vmap < <gv | vmap > >gv                                                         " visual mode indenting
+vnoremap <leader>s "vy :%s/<C-R>v//g<Left><Left>|                               " search visual
+vnoremap <leader>S "vy :%s//<C-R>v/g<C-b><Right><Right><Right>|                 " search visual
+nnoremap <leader>s :%sno/<C-R><C-W>//g<Left><Left>|                             " search
+nnoremap <leader>S :%sno//<C-R><C-W>/g<C-b><Right><Right><Right><Right><Right>| " search 
+nnoremap <leader>z :noh<CR>                                                     " search  highlight
+nnoremap <leader>0 :set scroll=0<CR>                                            " scroll reset
+autocmd VimEnter * nnoremap <C-j> :m .+1<CR>==                                  " shuffle line one up or down: autocmd to force override plugin mappings
+autocmd VimEnter * nnoremap <C-k> :m .-2<CR>==
+autocmd VimEnter * inoremap <C-j> <Esc>:m .+1<CR>==gi
+autocmd VimEnter * inoremap <C-k> <Esc>:m .-2<CR>==gi
+autocmd VimEnter * vnoremap <C-j> :m '>+1<CR>gv=gv
+autocmd VimEnter * vnoremap <C-k> :m '<-2<CR>gv=gv
+
