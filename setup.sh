@@ -1,5 +1,4 @@
-dotfiles=$HOME/dotfiles/dotfiles
+cd "$(dirname "$0")"
 
-#vim
-mkdir -p $HOME/.vim/undodir
-ln -sf $dotfiles/vimrc $HOME/.vimrc
+mkdir -pv $HOME/.vim/undodir
+ln -svf $PWD/dotfiles/vimrc $HOME/.vimrc

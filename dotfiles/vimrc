@@ -1,27 +1,7 @@
-set nocompatible
-set autoindent
-set laststatus=2
-set relativenumber
-set nu
-set nopaste
-set nowrap
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set nohlsearch
-set smartcase
-set cursorline
-set noswapfile
-set nobackup nowritebackup
-set undofile
-set undodir=~/.vim/undodir
-set backupcopy=yes
-set nobackup
-set backspace=indent,eol,start
-set hlsearch
-set path+=**
-set wildmenu
+set nocompatible autoindent laststatus=2 relativenumber nu
+set nopaste nowrap expandtab tabstop=4 shiftwidth=4 softtabstop=4
+set smartcase noswapfile nobackup nowritebackup undofile undodir=~/.vim/undodir
+set backspace=indent,eol,start hlsearch path+=** wildmenu
 let g:netrw_banner = 0
 inoremap jk <esc>
 filetype indent plugin on
