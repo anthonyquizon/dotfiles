@@ -1,26 +1,22 @@
-set nocompatible autoindent laststatus=2 relativenumber nu smartcase
-set nopaste nowrap expandtab tabstop=4 shiftwidth=4 softtabstop=4 
-set noswapfile nobackup nowritebackup undofile undodir=~/.vim/undodir
-set backspace=indent,eol,start hlsearch path+=** wildmenu
+set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab 
+set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is
+set backspace=indent,eol,start hlsearch path+=** wildmenu undofile undodir=~/.vim/undodir 
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
 filetype indent plugin on | syntax on | ino jk <esc>
-com! Qa qa | com! QA qa | com! Q q|                                       " typo friendly commands. 'w' commands are separate lines (not |) Parser treats | as filename
+com! Qa qa | com! QA qa | com! Q q|                                                             " typo friendly commands. 'w' commands are separate lines (not |) Parser treats | as filename
 com! WQ wq
 com! Wq wq
 com! W w
-vmap < <gv | vmap > >gv                                                   " visual mode indenting
-vn <leader>s "vy :%s/<C-R>v//g<Left><Left>|                               " search visual
-vn <leader>S "vy :%s//<C-R>v/g<C-b><Right><Right><Right>|                 " search visual
-nn <leader>s :%sno/<C-R><C-W>//g<Left><Left>|                             " search
-nn <leader>S :%sno//<C-R><C-W>/g<C-b><Right><Right><Right><Right><Right>| " search 
-nn <leader>z :noh<CR>                                                     " search  highlight
-nn <leader>0 :set scroll=0<CR>                                            " scroll reset
-au VimEnter * nn <C-j> :m .+1<CR>==|                                      " shuffle line one up or down: au to force override plugin mappings
-au VimEnter * nn <C-k> :m .-2<CR>==|
-au VimEnter * ino <C-j> <Esc>:m .+1<CR>==gi|
-au VimEnter * ino <C-k> <Esc>:m .-2<CR>==gi|
-au VimEnter * vn <C-j> :m '>+1<CR>gv=gv|
-au VimEnter * vn <C-k> :m '<-2<CR>gv=gv|
+vmap < <gv | vmap > >gv                                                                         " visual mode indenting
+vn <leader>s "vy :%s/<C-R>v//g<Left><Left>|                                                     " search visual
+vn <leader>S "vy :%s//<C-R>v/g<C-b><Right><Right><Right>|                                       " search visual
+nn <leader>s :%sno/<C-R><C-W>//g<Left><Left>|                                                   " search
+nn <leader>S :%sno//<C-R><C-W>/g<C-b><Right><Right><Right><Right><Right>|                       " search 
+nn <leader>z :noh<CR>                                                                           " search  highlight
+nn <leader>0 :set scroll=0<CR>                                                                  " scroll reset
+nn <C-j> :m .+1<CR>==| nn <C-k> :m .-2<CR>==|                                                   " shuffle line one up or down Normal mode
+ino <C-j> <Esc>:m .+1<CR>==gi| ino <C-k> <Esc>:m .-2<CR>==gi|                                   " shuffle line one up or down Insert mode
+vn <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                                           " shuffle line one up or down Visual mode
 " BQN mappings
 scripte utf-8 
 imap\` ˜| imap \1 ˘| imap\2 ¨| imap\3 ⁼| imap\4 ⌜| imap\5 ´| imap\6 ˝| imap\7 7| imap\8 ∞| imap\9 ¯| imap\0 •| imap\- ÷| imap\= ×| imap\~ ¬| imap\! ⎉| imap\@ ⚇| imap\# ⍟| imap\$ ◶| imap\% ⊘| imap\^ ⎊| imap\& ⍎
@@ -33,3 +29,40 @@ imap\y y| imap\u ⊔| imap\i ⊏| imap\o ⊐| imap\p π| imap\[ ←| imap\] →|
 imap\d ↕| imap\f 𝕗| imap\g 𝕘| imap\h ⊸| imap\j ∘| imap\k ○| imap\l ⟜| imap\; ⋄| imap\' ↩| imap\\ \| imap\A ↖| imap\S 𝕊| imap\D D| imap\F 𝔽| imap\G 𝔾| imap\H «| imap\J J| imap\K ⌾| imap\L »| imap\: ·| imap\" ˙
 imap\\| \|| imap\z ⥊| imap\x 𝕩| imap\c ↓| imap\v ∨| imap\b ⌊| imap\n n| imap\m ≡| imap\, ∾| imap\. ≍| imap\/ ≠| imap\Z ⋈| imap\X 𝕏| imap\C C| imap\V ⍒| imap\B ⌈| imap\N N| imap\M ≢| imap\< ≤| imap\> ≥| imap\? ⇐
 imap\<space> ‿
+
+
+function! CommentToggle(type, ...)
+  " Get the list of comment-markers
+  let cmt_markers = split(substitute(substitute(&commentstring, '\S\zs%s', ' %s', ''), '%s\ze\S', '%s ', ''), '%s', 1)
+
+  " Get space-trimmed LHS and RHS comment-markers
+  let lhs_cmt_marker = escape(substitute(cmt_markers[0], ' ', '', ''), '*')
+  let rhs_cmt_marker = escape(substitute(cmt_markers[1], ' ', '', ''), '*')
+
+  " Check if the first line is commented
+  if match(getline('.'), lhs_cmt_marker) == 0
+    " Yes ==> uncomment
+    if a:0
+      " Visual mode
+      silent exe "normal! :'<,'>s]^" . lhs_cmt_marker . "]\<CR>`<" | silent exe "normal! :'<,'>s]" . rhs_cmt_marker . "$]]\<CR>`<"
+    else
+      " Normal mode
+      silent exe "normal! :'[,']s]^" . lhs_cmt_marker . "]\<CR>`[" | silent exe "normal! :'[,']s]" . rhs_cmt_marker . "$]]\<CR>`["
+    endif
+  else
+    " No ==> comment
+    if a:0
+      " Visual mode
+      silent exe "normal! :'<,'>s]^]" . lhs_cmt_marker . "\<CR>`<" | silent exe "normal! :'<,'>s]$]" . rhs_cmt_marker . "\<CR>`<"
+    else
+      " Normal mode
+      silent exe "normal! :'[,']s]^]" . lhs_cmt_marker . "\<CR>`[" | silent exe "normal! :'[,']s]$]" . rhs_cmt_marker . "\<CR>`["
+    endif
+  endif
+endfunction
+
+noremap <leader>; :<C-u>set opfunc=CommentToggle<bar>execute "normal! " . v:count1 . "g@_"<CR>
+xnoremap <leader>; :<C-u>call CommentToggle(visualmode(), 1)<CR>
+
+" References
+" https://gist.github.com/VonHeikemen/b4b07c77995b52bfb22793df58a44ce3
