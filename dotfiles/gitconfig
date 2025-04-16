@@ -1,0 +1,30 @@
+[user]
+	name = Anthony Quizon
+	email = anthony@email.com
+[alias]
+	ch = checkout
+	b = branch
+	s = status
+	f = fetch
+	cm = commit -m
+	unstage = reset HEAD --
+	ai = add -i
+	pu = push
+	c = commit
+	cht = checkout --track -b
+	ca = commit --amend
+	cam = !git add -A && git commit -m
+	cad = add -A
+	aA = add -A
+	mr = merge
+	push-up = push --set-upstream origin
+[push]
+	default = simple
+[core]
+	excludesfile = ~/.gitignore
+[diff]
+	tool = vimdiff
+[difftool "vimdiff"]
+    cmd = "vim -d \"$LOCAL\" \"$REMOTE\""
+[difftool]
+	prompt = false
