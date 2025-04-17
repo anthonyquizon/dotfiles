@@ -48,13 +48,8 @@ function! Fzy(choice_command, vim_command)
   endif
 endf
 
-nnoremap <leader>e :call Fzy("find . -type f", ":e")<cr>
-nnoremap <leader>v :call Fzy("find . -type f", ":vs")<cr>
-nnoremap <leader>s :call Fzy("find . -type f", ":sp")<cr>
-
-nnoremap <leader>e :call FzyCommand("ag . --silent -l -g ''", ":e")<cr>
-nnoremap <leader>v :call FzyCommand("ag . --silent -l -g ''", ":vs")<cr>
-nnoremap <leader>s :call FzyCommand("ag . --silent -l -g ''", ":sp")<cr>
+nn <leader><leader> :call Fzy("find . -type f", ":e")<cr>
+nn <leader>/ :call Fzy("ag . --silent -l -g ''", ":e")<cr>
 
 function! CM(type, ...) "comment toggle
   let ms=split(substitute(substitute(&cms,'\S\zs%s',' %s',''),'%s\ze\S','%s ',''),'%s',1)|         " Get the list of comment-markers
