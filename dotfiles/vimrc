@@ -24,7 +24,7 @@ au BufRead,BufNewFile *.bqn setf bqn
 au BufRead,BufNewFile *.bqn setlocal commentstring=#%s
 au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
 
-function! Fzy(choice_command, vim_command)
+function! FzyFiles(choice_command, vim_command)
   try
     let output = system(a:choice_command . " | fzy ")
   catch /Vim:Interrupt/
@@ -36,9 +36,23 @@ function! Fzy(choice_command, vim_command)
   endif
 endf
 
-nn <leader><leader> :call Fzy("ag . --silent -l -g ''", ":e")<cr>
+function! FzyLines(choice_command, vim_command)
+  try
+    let output = system(a:choice_command . " | fzy ")
+  catch /Vim:Interrupt/
+    " Swallow errors from ^C, allow redraw! below
+  endtry
+  redraw!
+  if v:shell_error == 0 && !empty(output)
+    let parts = split(split(output, '\n')[0], ':')
+    exec a:vim_command . ' ' . parts[0]
+  endif
+endf
 
-function! CM(type, ...) "comment toggle
+nn <leader><leader> :call FzyFiles("ag . --silent -l -g ''", ":e")<cr>
+nn <leader>/ :call FzyLines("ag . --silent", ":e")<cr>
+
+function! Comment(type, ...) "comment toggle
   let ms=split(substitute(substitute(&cms,'\S\zs%s',' %s',''),'%s\ze\S','%s ',''),'%s',1)|         " Get the list of comment-markers
   let lhs=escape(substitute(ms[0],' ','',''),'*')|let rhs=escape(substitute(ms[1],' ','',''),'*')| " Get space-trimmed LHS and RHS comment-markers
   " Check if the first line is commented
@@ -56,8 +70,8 @@ function! CM(type, ...) "comment toggle
     endif
   endif
 endf
-noremap <leader>; :<C-u>set opfunc=CM<bar>execute "norm! " . v:count1 . "g@_"<CR>
-xnoremap <leader>; :<C-u>call CM(visualmode(), 1)<CR>
+noremap <leader>; :<C-u>set opfunc=Comment<bar>execute "norm! " . v:count1 . "g@_"<CR>
+xnoremap <leader>; :<C-u>call Comment(visualmode(), 1)<CR>
 
 " BQN mappings
 scripte utf-8 
