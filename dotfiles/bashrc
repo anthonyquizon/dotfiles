@@ -7,4 +7,6 @@ git_branch() {
 }
 
 export PS1="\[${COLOR_RED}\]\u \[${COLOR_LIGHT_BLUE}\]\\W\[${COLOR_CYAN}\] \$(git_branch) \[${COLOR_LIGHT_BLUE}\]→\[${COLOR_NC}\] ";
+export EDITOR='vim'
+export VISUAL='vim'
 alias ls='ls -G'

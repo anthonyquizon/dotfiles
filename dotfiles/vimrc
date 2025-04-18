@@ -18,11 +18,11 @@ nn  <C-j> :m .+1<CR>==| nn <C-k> :m .-2<CR>==|                                  
 ino <C-j> <Esc>:m .+1<CR>==gi| ino <C-k> <Esc>:m .-2<CR>==gi|                                   " shuffle line one up or down Insert mode
 vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                                           " shuffle line one up or down Visual mode
 
+au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
+au BufRead,BufNewFile *.bqn setlocal commentstring=#%s
+au BufRead,BufNewFile *.bqn setf bqn
 au BufRead,BufNewFile *.bqn syn match bqncom "#.*$"
 au BufRead,BufNewFile *.bqn hi link bqncom comment
-au BufRead,BufNewFile *.bqn setf bqn
-au BufRead,BufNewFile *.bqn setlocal commentstring=#%s
-au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
 
 function! Fzy(cmd, act)
   try | let o = system(a:cmd . " | fzy ") | catch /Vim:Interrupt/ | endtry| " Swallow errors from ^C, allow redraw! below
@@ -57,3 +57,22 @@ imap\y y| imap\u ⊔| imap\i ⊏| imap\o ⊐| imap\p π| imap\[ ←| imap\] →|
 imap\d ↕| imap\f 𝕗| imap\g 𝕘| imap\h ⊸| imap\j ∘| imap\k ○| imap\l ⟜| imap\; ⋄| imap\' ↩| imap\\ \| imap\A ↖| imap\S 𝕊| imap\D D| imap\F 𝔽| imap\G 𝔾| imap\H «| imap\J J| imap\K ⌾| imap\L »| imap\: ·| imap\" ˙
 imap\\| \|| imap\z ⥊| imap\x 𝕩| imap\c ↓| imap\v ∨| imap\b ⌊| imap\n n| imap\m ≡| imap\, ∾| imap\. ≍| imap\/ ≠| imap\Z ⋈| imap\X 𝕏| imap\C C| imap\V ⍒| imap\B ⌈| imap\N N| imap\M ≢| imap\< ≤| imap\> ≥| imap\? ⇐
 imap\<space> ‿
+
+"let a ='`1234567890-= ~!@#$%^&*()_+'
+"let a.='qwertyuiop[]  QWERTYUIOP{} '
+"let a.='asdfghjkl;''\ ASDFGHJKL:"| '
+"let a.='zxcvbnm,./    ZXCVBNM<>?   '
+"
+"let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆'
+"let b.='⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ '
+"let b.='⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| '
+"let b.='⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
+"
+"let[a,b]=map([a,b],{i,x->split(x,'\zs *')})
+"let a+=['<space>']|let b+=['‿']
+"for l in ['l','c']
+" for i in range(len(a))
+"  exe escape(l.'no'.'\'.a[i].' '.b[i],'|')
+" endfor
+"endfor
+"unl a b l i
