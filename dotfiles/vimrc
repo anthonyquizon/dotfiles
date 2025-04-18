@@ -29,8 +29,8 @@ function! Fzy(cmd, act)
   redraw!
   if v:shell_error == 0 && !empty(o) | exec a:act . ' ' . split(split(o, '\n')[0], ':')[0] | endif
 endf
-nn <leader><leader> :call Fzy("ag . --silent -l -g ''", ":e")<cr>
-nn <leader>/ :call Fzy("ag . --silent", ":e")<cr>
+nn <leader><leader> :call Fzy("rg . -l", ":e")<cr>
+nn <leader>/ :call Fzy("rg .", ":e")<cr>
 
 function! Comment(type, ...)
   let ms=split(substitute(substitute(&cms,'\S\zs%s',' %s',''),'%s\ze\S','%s ',''),'%s',1)
