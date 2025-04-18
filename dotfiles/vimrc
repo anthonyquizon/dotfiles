@@ -24,54 +24,26 @@ au BufRead,BufNewFile *.bqn setf bqn
 au BufRead,BufNewFile *.bqn setlocal commentstring=#%s
 au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
 
-function! FzyFiles(choice_command, vim_command)
-  try
-    let output = system(a:choice_command . " | fzy ")
-  catch /Vim:Interrupt/
-    " Swallow errors from ^C, allow redraw! below
-  endtry
+function! Fzy(cmd, act)
+  try | let o = system(a:cmd . " | fzy ") | catch /Vim:Interrupt/ | endtry| " Swallow errors from ^C, allow redraw! below
   redraw!
-  if v:shell_error == 0 && !empty(output)
-    exec a:vim_command . ' ' . output
+  if v:shell_error == 0 && !empty(o) | exec a:act . ' ' . split(split(o, '\n')[0], ':')[0] | endif
+endf
+nn <leader><leader> :call Fzy("ag . --silent -l -g ''", ":e")<cr>
+nn <leader>/ :call Fzy("ag . --silent", ":e")<cr>
+
+function! Comment(type, ...)
+  let ms=split(substitute(substitute(&cms,'\S\zs%s',' %s',''),'%s\ze\S','%s ',''),'%s',1)
+  let lhs=escape(substitute(ms[0],' ','',''),'*')|let rhs=escape(substitute(ms[1],' ','',''),'*')
+  let r = a:0 ? "'<,'>" : "'[,']"
+  if match(getline('.'), lhs) == 0
+    exe "norm! :".r."s]^".lhs."]\<CR>`".(a:0?'<':'[') | exe "norm! :".r."s]".rhs."$]]\<CR>`".(a:0?'<':'[')
+  else
+    exe "norm! :".r."s]^]".lhs."\<CR>`".(a:0?'<':'[') | exe "norm! :".r."s]$]".rhs."\<CR>`".(a:0?'<':'[')
   endif
 endf
-
-function! FzyLines(choice_command, vim_command)
-  try
-    let output = system(a:choice_command . " | fzy ")
-  catch /Vim:Interrupt/
-    " Swallow errors from ^C, allow redraw! below
-  endtry
-  redraw!
-  if v:shell_error == 0 && !empty(output)
-    let parts = split(split(output, '\n')[0], ':')
-    exec a:vim_command . ' ' . parts[0]
-  endif
-endf
-
-nn <leader><leader> :call FzyFiles("ag . --silent -l -g ''", ":e")<cr>
-nn <leader>/ :call FzyLines("ag . --silent", ":e")<cr>
-
-function! Comment(type, ...) "comment toggle
-  let ms=split(substitute(substitute(&cms,'\S\zs%s',' %s',''),'%s\ze\S','%s ',''),'%s',1)|         " Get the list of comment-markers
-  let lhs=escape(substitute(ms[0],' ','',''),'*')|let rhs=escape(substitute(ms[1],' ','',''),'*')| " Get space-trimmed LHS and RHS comment-markers
-  " Check if the first line is commented
-  if match(getline('.'), lhs) == 0 " Yes ==> uncomment
-    if a:0 " Visual mode
-      silent exe "norm! :'<,'>s]^" . lhs . "]\<CR>`<" | silent exe "norm! :'<,'>s]" . rhs . "$]]\<CR>`<"
-    else " Normal mode
-      silent exe "norm! :'[,']s]^" . lhs . "]\<CR>`[" | silent exe "norm! :'[,']s]" . rhs . "$]]\<CR>`["
-    endif
-  else " No ==> comment
-    if a:0 " Visual mode
-      silent exe "norm! :'<,'>s]^]" . lhs . "\<CR>`<" | silent exe "norm! :'<,'>s]$]" . rhs . "\<CR>`<"
-    else " Normal mode
-      silent exe "norm! :'[,']s]^]" . lhs . "\<CR>`[" | silent exe "norm! :'[,']s]$]" . rhs . "\<CR>`["
-    endif
-  endif
-endf
-noremap <leader>; :<C-u>set opfunc=Comment<bar>execute "norm! " . v:count1 . "g@_"<CR>
-xnoremap <leader>; :<C-u>call Comment(visualmode(), 1)<CR>
+no <leader>; :<C-u>set opfunc=Comment<bar>execute "norm! " . v:count1 . "g@_"<CR>
+xn <leader>; :<C-u>call Comment(visualmode(), 1)<CR>
 
 " BQN mappings
 scripte utf-8 
@@ -85,6 +57,3 @@ imap\y y| imap\u ⊔| imap\i ⊏| imap\o ⊐| imap\p π| imap\[ ←| imap\] →|
 imap\d ↕| imap\f 𝕗| imap\g 𝕘| imap\h ⊸| imap\j ∘| imap\k ○| imap\l ⟜| imap\; ⋄| imap\' ↩| imap\\ \| imap\A ↖| imap\S 𝕊| imap\D D| imap\F 𝔽| imap\G 𝔾| imap\H «| imap\J J| imap\K ⌾| imap\L »| imap\: ·| imap\" ˙
 imap\\| \|| imap\z ⥊| imap\x 𝕩| imap\c ↓| imap\v ∨| imap\b ⌊| imap\n n| imap\m ≡| imap\, ∾| imap\. ≍| imap\/ ≠| imap\Z ⋈| imap\X 𝕏| imap\C C| imap\V ⍒| imap\B ⌈| imap\N N| imap\M ≢| imap\< ≤| imap\> ≥| imap\? ⇐
 imap\<space> ‿
-
-" References
-" https://gist.github.com/VonHeikemen/b4b07c77995b52bfb22793df58a44ce3
