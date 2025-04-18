@@ -47,32 +47,10 @@ xn <leader>; :<C-u>call Comment(visualmode(), 1)<CR>
 
 " BQN mappings
 scripte utf-8 
-imap\` ˜| imap \1 ˘| imap\2 ¨| imap\3 ⁼| imap\4 ⌜| imap\5 ´| imap\6 ˝| imap\7 7| imap\8 ∞| imap\9 ¯| imap\0 •| imap\- ÷| imap\= ×| imap\~ ¬| imap\! ⎉| imap\@ ⚇| imap\# ⍟| imap\$ ◶| imap\% ⊘| imap\^ ⎊| imap\& ⍎
-imap\* ⍕| imap\( ⟨| imap\) ⟩| imap\_ √| imap\+ ⋆| imap\q ⌽| imap\w 𝕨| imap\e ∊| imap\r ↑| imap\t ∧| imap\y y| imap\u ⊔| imap\i ⊏| imap\o ⊐| imap\p π| imap\[ ←| imap\] →| imap\Q ↙| imap\W 𝕎| imap\E ⍷| imap\R 𝕣
-imap\T ⍋| imap\Y Y| imap\U U| imap\I ⊑| imap\O ⊒| imap\P ⍳| imap\{ ⊣| imap\} ⊢| imap\a ⍉| imap\s 𝕤| imap\d ↕| imap\f 𝕗| imap\g 𝕘| imap\h ⊸| imap\j ∘| imap\k ○| imap\l ⟜| imap\; ⋄| imap\' ↩| imap\\ \| imap\A ↖
-imap\S 𝕊| imap\D D| imap\F 𝔽| imap\G 𝔾| imap\H «| imap\J J| imap\K ⌾| imap\L »| imap\: ·| imap\" ˙| imap\\| \|| imap\z ⥊| imap\x 𝕩| imap\c ↓| imap\v ∨| imap\b ⌊| imap\n n| imap\m ≡| imap\, ∾| imap\. ≍| imap\/ ≠
-imap\Z ⋈| imap\X 𝕏| imap\C C| imap\V ⍒| imap\B ⌈| imap\N N| imap\M ≢| imap\< ≤| imap\> ≥| imap\? ⇐| imap\<space> ‿| imap\` ˜| imap\1 ˘| imap\2 ¨| imap\3 ⁼| imap\4 ⌜| imap\5 ´| imap\6 ˝| imap\7 7| imap\8 ∞| imap\9 ¯
-imap\0 •| imap\- ÷| imap\= ×| imap\~ ¬| imap\! ⎉| imap\@ ⚇| imap\# ⍟| imap\$ ◶| imap\% ⊘| imap\^ ⎊| imap\& ⍎| imap\* ⍕| imap\( ⟨| imap\) ⟩| imap\_ √| imap\+ ⋆| imap\q ⌽| imap\w 𝕨| imap\e ∊| imap\r ↑| imap\t ∧
-imap\y y| imap\u ⊔| imap\i ⊏| imap\o ⊐| imap\p π| imap\[ ←| imap\] →| imap\Q ↙| imap\W 𝕎| imap\E ⍷| imap\R 𝕣| imap\T ⍋| imap\Y Y| imap\U U| imap\I ⊑| imap\O ⊒| imap\P ⍳| imap\{ ⊣| imap\} ⊢| imap\a ⍉| imap\s 𝕤
-imap\d ↕| imap\f 𝕗| imap\g 𝕘| imap\h ⊸| imap\j ∘| imap\k ○| imap\l ⟜| imap\; ⋄| imap\' ↩| imap\\ \| imap\A ↖| imap\S 𝕊| imap\D D| imap\F 𝔽| imap\G 𝔾| imap\H «| imap\J J| imap\K ⌾| imap\L »| imap\: ·| imap\" ˙
-imap\\| \|| imap\z ⥊| imap\x 𝕩| imap\c ↓| imap\v ∨| imap\b ⌊| imap\n n| imap\m ≡| imap\, ∾| imap\. ≍| imap\/ ≠| imap\Z ⋈| imap\X 𝕏| imap\C C| imap\V ⍒| imap\B ⌈| imap\N N| imap\M ≢| imap\< ≤| imap\> ≥| imap\? ⇐
-imap\<space> ‿
+imap\` ˜| imap \1 ˘| imap\2 ¨| imap\3 ⁼| imap\4 ⌜| imap\5 ´| imap\6 ˝| imap\7 7| imap\8 ∞| imap\9 ¯| imap\0 •| imap\- ÷| imap\= ×| imap\~ ¬| imap\! ⎉| imap\@ ⚇| imap\# ⍟| imap\$ ◶| imap\% ⊘| imap\^ ⎊| imap\& ⍎| imap\* ⍕| imap\( ⟨| imap\) ⟩| imap\_ √| imap\+ ⋆| imap\q ⌽| imap\w 𝕨| imap\e ∊| imap\r ↑| imap\t ∧| imap\y y| imap\u ⊔| imap\i ⊏| imap\o ⊐| imap\p π| imap\[ ←| imap\] →| imap\Q ↙| imap\W 𝕎| imap\E ⍷| imap\R 𝕣| imap\T ⍋| imap\Y Y| imap\U U| imap\I ⊑| imap\O ⊒| imap\P ⍳| imap\{ ⊣| imap\} ⊢| imap\a ⍉| imap\s 𝕤| imap\d ↕| imap\f 𝕗| imap\g 𝕘| imap\h ⊸| imap\j ∘| imap\k ○| imap\l ⟜| imap\; ⋄| imap\' ↩| imap\\ \| imap\A ↖| imap\S 𝕊| imap\D D| imap\F 𝔽| imap\G 𝔾| imap\H «| imap\J J| imap\K ⌾| imap\L »| imap\: ·| imap\" ˙| imap\\| \|| imap\z ⥊| imap\x 𝕩| imap\c ↓| imap\v ∨| imap\b ⌊| imap\n n| imap\m ≡| imap\, ∾| imap\. ≍| imap\/ ≠
+imap\Z ⋈| imap\X 𝕏| imap\C C| imap\V ⍒| imap\B ⌈| imap\N N| imap\M ≢| imap\< ≤| imap\> ≥| imap\? ⇐| imap\<space> ‿| imap\` ˜| imap\1 ˘| imap\2 ¨| imap\3 ⁼| imap\4 ⌜| imap\5 ´| imap\6 ˝| imap\7 7| imap\8 ∞| imap\9 ¯| imap\0 •| imap\- ÷| imap\= ×| imap\~ ¬| imap\! ⎉| imap\@ ⚇| imap\# ⍟| imap\$ ◶| imap\% ⊘| imap\^ ⎊| imap\& ⍎| imap\* ⍕| imap\( ⟨| imap\) ⟩| imap\_ √| imap\+ ⋆| imap\q ⌽| imap\w 𝕨| imap\e ∊| imap\r ↑| imap\t ∧| imap\y y| imap\u ⊔| imap\i ⊏| imap\o ⊐| imap\p π| imap\[ ←| imap\] →| imap\Q ↙| imap\W 𝕎| imap\E ⍷| imap\R 𝕣| imap\T ⍋| imap\Y Y| imap\U U| imap\I ⊑| imap\O ⊒| imap\P ⍳| imap\{ ⊣| imap\} ⊢| imap\a ⍉| imap\s 𝕤| imap\d ↕| imap\f 𝕗| imap\g 𝕘| imap\h ⊸| imap\j ∘| imap\k ○| imap\l ⟜| imap\; ⋄| imap\' ↩| imap\\ \| imap\A ↖| imap\S 𝕊| imap\D D| imap\F 𝔽| imap\G 𝔾| imap\H «| imap\J J| imap\K ⌾| imap\L »| imap\: ·| imap\" ˙
+imap\\| \|| imap\z ⥊| imap\x 𝕩| imap\c ↓| imap\v ∨| imap\b ⌊| imap\n n| imap\m ≡| imap\, ∾| imap\. ≍| imap\/ ≠| imap\Z ⋈| imap\X 𝕏| imap\C C| imap\V ⍒| imap\B ⌈| imap\N N| imap\M ≢| imap\< ≤| imap\> ≥| imap\? ⇐| imap\<space> ‿
+cmap\` ˜| cmap \1 ˘| cmap\2 ¨| cmap\3 ⁼| cmap\4 ⌜| cmap\5 ´| cmap\6 ˝| cmap\7 7| cmap\8 ∞| cmap\9 ¯| cmap\0 •| cmap\- ÷| cmap\= ×| cmap\~ ¬| cmap\! ⎉| cmap\@ ⚇| cmap\# ⍟| cmap\$ ◶| cmap\% ⊘| cmap\^ ⎊| cmap\& ⍎| cmap\* ⍕| cmap\( ⟨| cmap\) ⟩| cmap\_ √| cmap\+ ⋆| cmap\q ⌽| cmap\w 𝕨| cmap\e ∊| cmap\r ↑| cmap\t ∧| cmap\y y| cmap\u ⊔| cmap\i ⊏| cmap\o ⊐| cmap\p π| cmap\[ ←| cmap\] →| cmap\Q ↙| cmap\W 𝕎| cmap\E ⍷| cmap\R 𝕣| cmap\T ⍋| cmap\Y Y| cmap\U U| cmap\I ⊑| cmap\O ⊒| cmap\P ⍳| cmap\{ ⊣| cmap\} ⊢| cmap\a ⍉| cmap\s 𝕤| cmap\d ↕| cmap\f 𝕗| cmap\g 𝕘| cmap\h ⊸| cmap\j ∘| cmap\k ○| cmap\l ⟜| cmap\; ⋄| cmap\' ↩| cmap\\ \| cmap\A ↖| cmap\S 𝕊| cmap\D D| cmap\F 𝔽| cmap\G 𝔾| cmap\H «| cmap\J J| cmap\K ⌾| cmap\L »| cmap\: ·| cmap\" ˙| cmap\\| \|| cmap\z ⥊| cmap\x 𝕩| cmap\c ↓| cmap\v ∨| cmap\b ⌊| cmap\n n| cmap\m ≡| cmap\, ∾| cmap\. ≍| cmap\/ ≠
+cmap\Z ⋈| cmap\X 𝕏| cmap\C C| cmap\V ⍒| cmap\B ⌈| cmap\N N| cmap\M ≢| cmap\< ≤| cmap\> ≥| cmap\? ⇐| cmap\<space> ‿| cmap\` ˜| cmap\1 ˘| cmap\2 ¨| cmap\3 ⁼| cmap\4 ⌜| cmap\5 ´| cmap\6 ˝| cmap\7 7| cmap\8 ∞| cmap\9 ¯| cmap\0 •| cmap\- ÷| cmap\= ×| cmap\~ ¬| cmap\! ⎉| cmap\@ ⚇| cmap\# ⍟| cmap\$ ◶| cmap\% ⊘| cmap\^ ⎊| cmap\& ⍎| cmap\* ⍕| cmap\( ⟨| cmap\) ⟩| cmap\_ √| cmap\+ ⋆| cmap\q ⌽| cmap\w 𝕨| cmap\e ∊| cmap\r ↑| cmap\t ∧| cmap\y y| cmap\u ⊔| cmap\i ⊏| cmap\o ⊐| cmap\p π| cmap\[ ←| cmap\] →| cmap\Q ↙| cmap\W 𝕎| cmap\E ⍷| cmap\R 𝕣| cmap\T ⍋| cmap\Y Y| cmap\U U| cmap\I ⊑| cmap\O ⊒| cmap\P ⍳| cmap\{ ⊣| cmap\} ⊢| cmap\a ⍉| cmap\s 𝕤| cmap\d ↕| cmap\f 𝕗| cmap\g 𝕘| cmap\h ⊸| cmap\j ∘| cmap\k ○| cmap\l ⟜| cmap\; ⋄| cmap\' ↩| cmap\\ \| cmap\A ↖| cmap\S 𝕊| cmap\D D| cmap\F 𝔽| cmap\G 𝔾| cmap\H «| cmap\J J| cmap\K ⌾| cmap\L »| cmap\: ·| cmap\" ˙
+cmap\\| \|| cmap\z ⥊| cmap\x 𝕩| cmap\c ↓| cmap\v ∨| cmap\b ⌊| cmap\n n| cmap\m ≡| cmap\, ∾| cmap\. ≍| cmap\/ ≠| cmap\Z ⋈| cmap\X 𝕏| cmap\C C| cmap\V ⍒| cmap\B ⌈| cmap\N N| cmap\M ≢| cmap\< ≤| cmap\> ≥| cmap\? ⇐| cmap\<space> ‿
 
-"let a ='`1234567890-= ~!@#$%^&*()_+'
-"let a.='qwertyuiop[]  QWERTYUIOP{} '
-"let a.='asdfghjkl;''\ ASDFGHJKL:"| '
-"let a.='zxcvbnm,./    ZXCVBNM<>?   '
-"
-"let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆'
-"let b.='⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ '
-"let b.='⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| '
-"let b.='⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
-"
-"let[a,b]=map([a,b],{i,x->split(x,'\zs *')})
-"let a+=['<space>']|let b+=['‿']
-"for l in ['l','c']
-" for i in range(len(a))
-"  exe escape(l.'no'.'\'.a[i].' '.b[i],'|')
-" endfor
-"endfor
-"unl a b l i
