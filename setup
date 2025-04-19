@@ -1,13 +1,14 @@
 cd "$(dirname "$0")"
 
-# bash/zsh
-ln -sf $PWD/dotfiles/bashrc $HOME/.zprofile
-ln -sf $PWD/dotfiles/bashrc $HOME/.bash_profile
-ln -sf $PWD/dotfiles/bashrc $HOME/.bashrc
+# bash
+ln -svf $PWD/dotfiles/bashrc $HOME/.bash_profile
+ln -svf $PWD/dotfiles/bashrc $HOME/.bashrc
 
 # vim
 mkdir -pv $HOME/.vim/undodir
+mkdir -pv $HOME/.config/nvim/
 ln -svf $PWD/dotfiles/vimrc $HOME/.vimrc
+ln -svf $PWD/dotfiles/vimrc $HOME/.config/nvim/init.vim
 
 # git
 ln -sf $PWD/dotfiles/gitconfig $HOME/.gitconfig
