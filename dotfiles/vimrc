@@ -50,7 +50,6 @@ cmap\\| \|| cmap\z ⥊| cmap\x 𝕩| cmap\c ↓| cmap\v ∨| cmap\b ⌊| cmap\n 
 au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
 au BufRead,BufNewFile *.bqn setlocal commentstring=#%s
 au BufRead,BufNewFile *.bqn setf bqn
-au BufRead,BufNewFile *.bqn call BQNMapping()
 au BufRead,BufNewFile *.bqn syn match bqncom "#.*$"
 au BufRead,BufNewFile *.bqn hi link bqncom comment
 
