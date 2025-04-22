@@ -1,5 +1,5 @@
 set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab 
-set noswapfile nobackup nowritebackup shiftwidth=2 softtabstop=2 tabstop=2 is
+set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
 set backspace=indent,eol,start hlsearch path+=** wildmenu undofile undodir=~/.vim/undodir 
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
 filetype indent plugin on | syntax on | ino jk <esc>
@@ -21,10 +21,12 @@ vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                          
 function! Fzy(cmd, act)
   try | let o = system(a:cmd . " | fzy ") | catch /Vim:Interrupt/ | endtry| " Swallow errors from ^C, allow redraw! below
   redraw!
-  if v:shell_error == 0 && !empty(o) | exec a:act . ' ' . split(split(o, '\n')[0], ':')[0] | endif
+  if v:shell_error == 0 && !empty(o) 
+    let l=split(split(o, '\n')[0], ':') | exec  a:act . ' ' . (len(l) > 1 ? '+'. l[1] : '') . ' ' . l[0]
+  endif
 endf
-nn <leader><leader> :call Fzy("rg . -l  2>/dev/null", ":e")<cr>                                 " rg list files, suppress errors so that it doesn't mess up return value
-nn <leader>/ :call Fzy("rg .", ":e")<cr>
+nn <leader><leader> :call Fzy("rg . -l --hidden 2>/dev/null", ":e")<cr>                                 " rg list files, suppress errors so that it doesn't mess up return value
+nn <leader>/ :call Fzy("rg -n --hidden . 2>/dev/null", ":e")<cr>                                         " rg list lines, suppress errors
 
 function! Comment(type, ...)
   let ms=split(substitute(substitute(&cms,'\S\zs%s',' %s',''),'%s\ze\S','%s ',''),'%s',1)
