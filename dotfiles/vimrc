@@ -2,7 +2,7 @@ set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste now
 set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
 set backspace=indent,eol,start hlsearch path+=** wildmenu undofile undodir=~/.vim/undodir 
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
-filetype indent plugin on | syntax on | ino jk <esc>
+filetype indent plugin on | syntax on | ino jk <esc> | nn K <nop> | nn U <nop>
 com! Qa qa | com! QA qa | com! Q q|                                                             " typo friendly commands. 'w' commands are separate lines (not |) Parser treats | as filename
 com! WQ wq
 com! Wq wq
@@ -45,9 +45,8 @@ xn <leader>; :<C-u>call Comment(visualmode(), 1)<CR>
 scripte utf-8 
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
-let[a,b]=map([a,b],{i,x->split(x,'\zs *')})
-let a+=['<space>']|let b+=['‿']
-for l in ['i','c']| for i in range(len(a))
+let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
+for l in ['i','c']| for i in range(len(a)) |
     exe escape(l.'no'.'\'.a[i].' '.b[i],'|')
 endfor |endfor
 unl a b l i
