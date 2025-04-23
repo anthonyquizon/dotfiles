@@ -2,7 +2,7 @@ set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste now
 set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
 set backspace=indent,eol,start hlsearch path+=** wildmenu undofile undodir=~/.vim/undodir 
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
-filetype indent plugin on | syntax on | ino jk <esc> | nn K <nop> | nn U <nop>
+filetype indent plugin on | syntax on | ino jk <esc>| nn K <nop>| nn U <nop>
 com! Qa qa | com! QA qa | com! Q q|                                                             " typo friendly commands. 'w' commands are separate lines (not |) Parser treats | as filename
 com! WQ wq
 com! Wq wq
