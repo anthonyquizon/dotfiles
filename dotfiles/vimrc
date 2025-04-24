@@ -25,8 +25,8 @@ function! Fzy(cmd, act)
     let l=split(split(o, '\n')[0], ':') | exec  a:act . ' ' . (len(l) > 1 ? '+'. l[1] : '') . ' ' . l[0]
   endif
 endf
-nn <leader><leader> :call Fzy("rg . -l --hidden 2>/dev/null", ":e")<cr>                                 " rg list files, suppress errors so that it doesn't mess up return value
-nn <leader>/ :call Fzy("rg -n --hidden . 2>/dev/null", ":e")<cr>                                         " rg list lines, suppress errors
+nn <leader><leader> :call Fzy("rg . -g '!.git/' -l --hidden 2>/dev/null", ":e")<cr>                                 " rg list files, suppress errors so that it doesn't mess up return value
+nn <leader>/ :call Fzy("rg -n -g '!.git/' --hidden . 2>/dev/null", ":e")<cr>                                         " rg list lines, suppress errors
 
 function! Comment(type, ...)
   let ms=split(substitute(substitute(&cms,'\S\zs%s',' %s',''),'%s\ze\S','%s ',''),'%s',1)
