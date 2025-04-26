@@ -3,6 +3,9 @@ cd "$(dirname "$0")"
 # bash
 ln -svf $PWD/dotfiles/bashrc $HOME/.bash_profile
 ln -svf $PWD/dotfiles/bashrc $HOME/.bashrc
+ln -svf $PWD/dotfiles/bashrc $HOME/.zprofile
+ln -svf $PWD/dotfiles/bashrc $HOME/.zshrc
+ln -svf $PWD/dotfiles/bashrc $HOME/.zlogin              # needed for mac
 ln -svf $PWD/dotfiles/inputrc $HOME/.inputrc
 
 # vim
