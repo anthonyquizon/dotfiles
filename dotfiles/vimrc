@@ -2,7 +2,8 @@ set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste now
 set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
 set backspace=indent,eol,start hlsearch path+=** wildmenu undofile undodir=~/.vim/undodir 
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
-filetype indent plugin on | syntax on | ino jk <esc>| nn K <nop>| nn U <nop>
+filetype indent on | syntax on 
+ino jk <esc>| nn K <nop>| nn U <nop>
 com! Qa qa | com! QA qa | com! Q q|                                                             " typo friendly commands. 'w' commands are separate lines (not |) Parser treats | as filename
 com! WQ wq
 com! Wq wq
@@ -19,11 +20,16 @@ ino <C-j> <Esc>:m .+1<CR>==gi| ino <C-k> <Esc>:m .-2<CR>==gi|                   
 vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                                          " shuffle line one up or down Visual mode
 
 function! Fzy(cmd, act)
-  try | let o = system(a:cmd . " | fzy ") | catch /Vim:Interrupt/ | endtry| " Swallow errors from ^C, allow redraw! below
-  redraw!
-  if v:shell_error == 0 && !empty(o) 
-    let l=split(split(o, '\n')[0], ':') | exec  a:act . ' ' . (len(l) > 1 ? '+'. l[1] : '') . ' ' . l[0]
-  endif
+    system(a:cmd . " | fzy ")
+"  try | let o = system(a:cmd . " | fzy ") | catch /Vim:Interrupt/ | endtry| " Swallow errors from ^C, allow redraw! below
+"  redraw!
+"    echo  v:shell_error
+"  if v:shell_error == 0 && !empty(o) 
+"    let l=split(split(o, '\n')[0], ':') | 
+"    echom  a:act . ' ' . (len(l) > 1 ? '+'. l[1] : '') . ' ' . l[0]
+"    echo  a:act . ' ' . (len(l) > 1 ? '+'. l[1] : '') . ' ' . l[0]
+""    exec  a:act . ' ' . (len(l) > 1 ? '+'. l[1] : '') . ' ' . l[0]
+"  endif
 endf
 nn <leader><leader> :call Fzy("rg . -g '!.git/' -l --hidden 2>/dev/null", ":e")<cr>                                 " rg list files, suppress errors so that it doesn't mess up return value
 nn <leader>/ :call Fzy("rg -n -g '!.git/' --hidden . 2>/dev/null", ":e")<cr>                                         " rg list lines, suppress errors
@@ -53,7 +59,8 @@ unl a b l i
 
 au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
 au BufRead,BufNewFile *.bqn setf bqn
-au BufRead,BufNewFile *.bqn syn match bqncom "#.*$"
-au BufRead,BufNewFile *.bqn hi link bqncom comment
+
+au FileType bqn syn match bqncom "#.*$"
+au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab commentstring=#%s
 

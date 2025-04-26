@@ -3,7 +3,6 @@ cd "$(dirname "$0")"
 # bash
 ln -svf $PWD/dotfiles/bashrc $HOME/.bash_profile
 ln -svf $PWD/dotfiles/bashrc $HOME/.bashrc
-ln -svf $PWD/dotfiles/bashrc $HOME/.zshrc
 
 # vim
 mkdir -pv $HOME/.vim/undodir
