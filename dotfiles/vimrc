@@ -63,4 +63,4 @@ au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab comments
 nn  <leader>i ebi•Show <esc>| " BQN debug helper - add show
 nn  <leader>I bevF•dx|        " BQN debug helper - remove show
 vn  <leader>i I•Show <esc>|   " BQN debug helper - add show to all highlighted 
-vn  <leader>I :s/•Show//g|    " BQN debug helper - remove show from highlighted
+vn  <leader>I :s/•Show //g<cr>|    " BQN debug helper - remove show from highlighted
