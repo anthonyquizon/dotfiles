@@ -60,4 +60,7 @@ au BufRead,BufNewFile *.bqn setf bqn
 au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab commentstring=#%s
-
+nn  <leader>i ebi•Show <esc>| " BQN debug helper - add show
+nn  <leader>I bevF•dx|        " BQN debug helper - remove show
+vn  <leader>i I•Show <esc>|   " BQN debug helper - add show to all highlighted 
+vn  <leader>I :s/•Show//g|    " BQN debug helper - remove show from highlighted
