@@ -45,6 +45,11 @@ endf
 no <leader>; :<C-u>set opfunc=Comment<bar>execute "norm! " . v:count1 . "g@_"<CR>
 xn <leader>; :<C-u>call Comment(visualmode(), 1)<CR>
 
+" misc syntax
+au FileType vim setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms="%s
+au FileType yaml setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms=#%s
+au FileType handlebars setlocal cms=#%s
+
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
@@ -59,7 +64,7 @@ au BufRead,BufNewFile *.bqn setf bqn
 
 au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
-au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab commentstring=#%s
+au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
 ino <C-i> •Show |                                   " BQN debug helper - add show
 nn  <leader>? /•Show<cr>|                           " BQN debug helper - find show
 nn  <leader>i ebi•Show <esc>|                       " BQN debug helper - add show
@@ -68,8 +73,7 @@ vn  <leader>i I•Show <esc>|                         " BQN debug helper - add s
 vn  <leader>I :s/•Show//g<cr>|                      " BQN debug helper - remove show from highlighted
 
 fu! BQN_Exp(l)
-  let t=substitute(a:l, "`", "\\\\`", "g") "escape backtick
-  echo system('be ' . '"'.t.'"')
+  echo system('be ' . '"'.escape(a:l, "`\"'").'"')
 endf
 vn <leader>e "vy :call BQN_Exp(@v)<cr>
 nn <leader>e :call BQN_Exp(getline('.'))<cr>

@@ -9,6 +9,7 @@ git_branch() {
 EDITOR='vim'
 VISUAL='vim'
 alias ls='ls -G'
+alias git='noglob git'
 alias gti=git
 
 precmd() {
