@@ -11,13 +11,9 @@ VISUAL='vim'
 alias ls='ls -G'
 alias gti=git
 
-PROMPT="%F{red}%n%F{blue} %1d%f %F{cyan}$(git_branch)%f %F{blue}→%f "
-
-autoload -Uz +X compinit && compinit
-
-## case insensitive path-completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-zstyle ':completion:*' menu select
+precmd() {
+    PROMPT="%F{red}%n%F{blue} %1d%f %F{cyan}$(git_branch)%f %F{blue}→%f "
+}
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word

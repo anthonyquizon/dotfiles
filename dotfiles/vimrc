@@ -1,3 +1,4 @@
+scripte utf-8 
 set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab 
 set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
 set backspace=indent,eol,start hlsearch path+=** wildmenu undofile undodir=~/.vim/undodir 
@@ -44,16 +45,7 @@ endf
 no <leader>; :<C-u>set opfunc=Comment<bar>execute "norm! " . v:count1 . "g@_"<CR>
 xn <leader>; :<C-u>call Comment(visualmode(), 1)<CR>
 
-function! s:vis_sel()
-  let [lnum1, col1] = getpos("'<")[1:2] | let [lnum2, col2] = getpos("'>")[1:2]
-  let lines = getline(lnum1, lnum2)
-  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
-  let lines[0] = lines[0][col1 - 1:]
-  return join(lines, "\n")
-endfunction
-
 " BQN
-scripte utf-8 
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
 let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
@@ -68,18 +60,17 @@ au BufRead,BufNewFile *.bqn setf bqn
 au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab commentstring=#%s
-ino <C-i> •Show |             " BQN debug helper - add show
-nn  <leader>? /•Show<cr>|     " BQN debug helper - find show
-nn  <leader>i ebi•Show <esc>| " BQN debug helper - add show
-nn  <leader>I bevF•dx|        " BQN debug helper - remove show
-vn  <leader>i I•Show <esc>|   " BQN debug helper - add show to all highlighted 
-vn  <leader>I :s/•Show//g<cr>|    " BQN debug helper - remove show from highlighted
+ino <C-i> •Show |                                   " BQN debug helper - add show
+nn  <leader>? /•Show<cr>|                           " BQN debug helper - find show
+nn  <leader>i ebi•Show <esc>|                       " BQN debug helper - add show
+nn  <leader>I bevF•dx|                              " BQN debug helper - remove show
+vn  <leader>i I•Show <esc>|                         " BQN debug helper - add show to all highlighted 
+vn  <leader>I :s/•Show//g<cr>|                      " BQN debug helper - remove show from highlighted
 
-function! BQN_Exp()
-    echo s:vis_sel()
-endfunction
+fu! BQN_Exp(l)
+  let t=substitute(a:l, "`", "\\\\`", "g") "escape backtick
+  echo system('be ' . '"'.t.'"')
+endf
+vn <leader>e "vy :call BQN_Exp(@v)<cr>
+nn <leader>e :call BQN_Exp(getline('.'))<cr>
 
-"Uncomment autocmd to trigger function before saving buffer for .bqn files
-"autocmd BufWritePre *.bqn call FormatBQN()
-
-command! BE call BQN_Exp()
