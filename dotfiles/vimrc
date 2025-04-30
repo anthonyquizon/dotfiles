@@ -33,14 +33,7 @@ nn <leader><leader> :call Fzy("rg . -g '!.git/' -l --hidden 2>/dev/null", ":e")<
 nn <leader>/ :call Fzy("rg -n -g '!.git/' --hidden . 2>/dev/null", ":e")<cr>                                         " rg list lines, suppress errors
 
 function! Comment(type, ...)
-  let ms=split(substitute(substitute(&cms,'\S\zs%s',' %s',''),'%s\ze\S','%s ',''),'%s',1)
-  let lhs=escape(substitute(ms[0],' ','',''),'*')|let rhs=escape(substitute(ms[1],' ','',''),'*')
-  let r = a:0 ? "'<,'>" : "'[,']"
-  if match(getline('.'), lhs) == 0
-    exe "norm! :".r."s]^".lhs."]\<CR>`".(a:0?'<':'[') | exe "norm! :".r."s]".rhs."$]]\<CR>`".(a:0?'<':'[')
-  else
-    exe "norm! :".r."s]^]".lhs."\<CR>`".(a:0?'<':'[') | exe "norm! :".r."s]$]".rhs."\<CR>`".(a:0?'<':'[')
-  endif
+  echo system('bqn ~/.vim.bqn comment ')
 endf
 no <leader>; :<C-u>set opfunc=Comment<bar>execute "norm! " . v:count1 . "g@_"<CR>
 xn <leader>; :<C-u>call Comment(visualmode(), 1)<CR>

@@ -8,8 +8,9 @@ ln -svf $PWD/dotfiles/zshrc $HOME/.zlogin              # needed for mac
 # vim
 mkdir -pv $HOME/.vim/undodir
 mkdir -pv $HOME/.config/nvim/
-ln -svf $PWD/dotfiles/vimrc $HOME/.vimrc
-ln -svf $PWD/dotfiles/vimrc $HOME/.config/nvim/init.vim
+ln -svf $PWD/dotfiles/vimrc   $HOME/.vimrc
+ln -svf $PWD/dotfiles/vimrc   $HOME/.config/nvim/init.vim
+ln -svf $PWD/dotfiles/vim.bqn $HOME/.vim.bqn
 
 # git
 ln -sf $PWD/dotfiles/gitconfig $HOME/.gitconfig
