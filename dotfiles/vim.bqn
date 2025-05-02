@@ -8,7 +8,7 @@ Comment⇐{ 𝕨 𝕊 in:
   t←{c≡(≠c)↑1⊑𝕩}˘g # mark toggle values
   f←(1=⊑t)⊑(c⊸∾)‿(1⊸↓) # pick toggle function 
   v←F¨⌾(((⊣=⊑)t)⊸/) 1⊏⍉g # apply toggle 
-  ∾¯1↓∾⟜lf¨⊏⍉g∾¨v 
+  •Show ∾¯1↓∾⟜lf¨v∾˜¨⊏⍉g
 }
 
 
