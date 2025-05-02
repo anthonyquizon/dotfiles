@@ -1,25 +1,24 @@
-Comment⇐{
-  # TODO get nearest non whitespace
-  # TODO assert
+lf←@+10
+ws←' '∾@+9
+
+Comment⇐{ 𝕨 𝕊 in:
   c←{𝕩/˜¬((⊢∨»)≠∘⊢↑"%s"⊸⍷)𝕩}⊑𝕨
-  a‿b←2↑((c∾' ')⊸∾)⌾(1⊸⊑)(⌈`' '⊸≠)⊸⊔𝕩
-  #⍟c≤○≠◶0‿(⊣≡≠⊸↑)𝕩
+  l←1⊸↓¨(⊣⊔˜·+`lf⊸⍷)in # split into lines
+  g←>(2⊸↑(⌈`' '⊸≠)⊸⊔)¨l # split into table of leading whitespace and non-whitespace
+  t←{c≡(≠c)↑1⊑𝕩}˘g # mark toggle values
+  f←(1=⊑t)⊑(c⊸∾)‿(1⊸↓) # pick toggle function 
+  v←F¨⌾(((⊣=⊑)t)⊸/) 1⊏⍉g # apply toggle 
+  ∾¯1↓∾⟜lf¨⊏⍉g∾¨v 
 }
 
-Foo⇐{ •Show 𝕩
-}
 
 # main
 t←>⟨
-  ⟨"comment", "foo"⟩
-  ⟨Comment,    Foo ⟩
+  ⟨"comment", ⟩
+  ⟨Comment,   ⟩
 ⟩
 
-Main⇐{
-  •Show "--"
-  f←(1⊏t)⊑˜⟨⊑𝕨⟩⊐˜⊏t
-  (1↓𝕨) F 𝕩
-}
+Main⇐{f←(1⊏t)⊑˜⟨⊑𝕨⟩⊐˜⊏t⋄(1↓𝕨)F𝕩}
 
 # TODO read from stdin and print •Out
 Main⍟(0⊸<≠) •args
