@@ -12,5 +12,9 @@ ln -svf $PWD/dotfiles/vimrc   $HOME/.vimrc
 ln -svf $PWD/dotfiles/vimrc   $HOME/.config/nvim/init.vim
 ln -svf $PWD/dotfiles/vim.bqn $HOME/.vim.bqn
 
+# kakoune
+mkdir -pv $HOME/.config/kak/
+ln -svf $PWD/dotfiles/kakrc   $HOME/.config/kak/kakrc
+
 # git
 ln -sf $PWD/dotfiles/gitconfig $HOME/.gitconfig

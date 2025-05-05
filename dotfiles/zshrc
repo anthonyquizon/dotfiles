@@ -1,3 +1,4 @@
+
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
@@ -12,6 +13,12 @@ alias ls='ls -G'
 alias git='noglob git'
 alias gti=git
 
+# open up kakoune with client/server depending on git root folder. Use `cut` because kak errors if the id is too long
+function e() {
+    id=$(git rev-parse --show-toplevel | md5 | cut -c 1-12)
+    kak -c "$id" $@ || kak -s "$id" $@
+}
+ 
 PATH=$PATH:/Users/anthonyquizon/.docker/bin/
 
 precmd() {
