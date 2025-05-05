@@ -15,8 +15,8 @@ alias gti=git
 
 # open up kakoune with client/server depending on git root folder. Use `cut` because kak errors if the id is too long
 function e() {
-    id=$(git rev-parse --show-toplevel | md5 | cut -c 1-12)
-    kak -c "$id" $@ || kak -s "$id" $@
+    args=$([ $# -eq 0 ] && cat /tmp/e 2>/dev/null || echo "$@")
+    kak -c "default" $args || kak -s "default" $args
 }
  
 PATH=$PATH:/Users/anthonyquizon/.docker/bin/
