@@ -2,4 +2,9 @@
 set-option global ui_options terminal_assistant=none
 
 # write to /tmp/e so that zsh can open it
-hook global WinDisplay .* %{nop %sh{ echo $kak_buffile > /tmp/e }}
+hook global FocusIn    .* %{nop %sh{ echo $kak_buffile > "/tmp/$kak_session" }} # doesn't work in ghostty?
+hook global WinDisplay .* %{nop %sh{ echo $kak_buffile > "/tmp/$kak_session" }}
+hook global ModeChange .* %{nop %sh{ echo $kak_buffile > "/tmp/$kak_session" }}
+
+#hook global WinDisplay .* %{evaluate-commands %sh{ printf "echo %s" "$kak_session" }}
+
