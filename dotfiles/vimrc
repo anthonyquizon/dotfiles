@@ -1,7 +1,8 @@
 scripte utf-8 
+set shell=/bin/bash
 set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab 
 set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
-set backspace=indent,eol,start hlsearch path+=** wildmenu undofile undodir=~/.vim/undodir 
+set backspace=indent,eol,start hlsearch path+=** wildmenu autoread undofile undodir=~/.vim/undodir 
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
 filetype indent on | syntax on 
 ino jk <esc>| nn K <nop>| nn U <nop>
@@ -20,29 +21,60 @@ vn  <C-y> "*y                                                                   
 nn  <C-j> :m .+1<CR>==| nn <C-k> :m .-2<CR>==|                                                  " shuffle line one up or down Normal mode
 ino <C-j> <Esc>:m .+1<CR>==gi| ino <C-k> <Esc>:m .-2<CR>==gi|                                   " shuffle line one up or down Insert mode
 vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                                          " shuffle line one up or down Visual mode
+nn <leader>v :so $MYVIMRC<CR>
+nn <C-w>v :echo "woo"<CR>
+nn <C-w>s :echo "woo"<CR>
 
-function! Fzy(cmd, act)
-  try | let o = system(a:cmd . " | fzy ") | catch /Vim:Interrupt/ | endtry| " Swallow errors from ^C, allow redraw! below
+function! FzFind(cmd, act)
+  try | let o = system(a:cmd . " | zf ") | catch /Vim:Interrupt/ | endtry| " Swallow errors from ^C, allow redraw! below
   redraw!
   if v:shell_error == 0 && !empty(o) 
     let l=split(split(o, '\n')[0], ':') | 
     exec  a:act . ' ' . (len(l) > 1 ? '+'. l[1] : '') . ' ' . l[0]
   endif
 endf
-nn <leader><leader> :call Fzy("rg . -g '!.git/' -l --hidden 2>/dev/null", ":e")<cr>                                 " rg list files, suppress errors so that it doesn't mess up return value
-nn <leader>/ :call Fzy("rg -n -g '!.git/' --hidden . 2>/dev/null", ":e")<cr>                                         " rg list lines, suppress errors
+nn <leader><leader> :call FzFind("rg . -g '!.git/' -l --hidden 2>/dev/null", ":e")<cr>                                 " rg list files, suppress errors so that it doesn't mess up return value
+nn <leader>/ :call FzFind("rg -n -g '!.git/' --hidden . 2>/dev/null", ":e")<cr>                                         " rg list lines, suppress errors
 
-function! Comment(type, ...)
-  echo system('bqn ~/.vim.bqn comment ')
+"function! Comment(type, ...)
+"  echo system('bqn ~/.vim.bqn ' . '"'.escape(a:l, "`\"'").'"')
+"  let ms=split(substitute(substitute(&cms,'\S\zs%s',' %s',''),'%s\ze\S','%s ',''),'%s',1)
+"  let lhs=escape(substitute(ms[0],' ','',''),'*')|let rhs=escape(substitute(ms[1],' ','',''),'*')
+"  let r = a:0 ? "'<,'>" : "'[,']"
+"  if match(getline('.'), lhs) == 0
+"    exe "norm! :".r."s]^".lhs."]\<CR>`".(a:0?'<':'[') | exe "norm! :".r."s]".rhs."$]]\<CR>`".(a:0?'<':'[')
+"  else
+"    exe "norm! :".r."s]^]".lhs."\<CR>`".(a:0?'<':'[') | exe "norm! :".r."s]$]".rhs."\<CR>`".(a:0?'<':'[')
+"  endif
+"endf
+
+function! Comment(v)
+  echom &cms
+  echom 'bqn ~/.vim.bqn comment ' . &cms . ' ' . a:v
+  let l:out=system('bqn ~/.vim.bqn comment ' . shellescape(&cms), a:v)
+  echo l:out
+  " TODO escape a:v
+  " exec "'<,'> s/".escape(a:v,'/')."/foo/"
 endf
-no <leader>; :<C-u>set opfunc=Comment<bar>execute "norm! " . v:count1 . "g@_"<CR>
-xn <leader>; :<C-u>call Comment(visualmode(), 1)<CR>
+vn <leader>; "vy :call Comment(@v)<cr>
 
 " misc syntax
 au FileType vim setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms="%s
 au FileType yaml setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms=#%s
 au FileType python setlocal noexpandtab softtabstop=4 tabstop=4 shiftwidth=4 cms=#%s
 au FileType handlebars setlocal cms=#%s
+
+function! WritePathToTmp()
+  let l:filepath = expand('%:p')
+  let l:git_root = system('git rev-parse --show-toplevel | md5')
+  let l:git_root = substitute(l:git_root, '\n', '', 'g')
+  let l:tmpfile = '/tmp/' . l:git_root
+  call writefile([l:filepath], l:tmpfile)
+  " echom "Path written to " . l:tmpfile
+endfunction
+
+au FocusGained * :call WritePathToTmp()
+au BufRead * :call WritePathToTmp()
 
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '

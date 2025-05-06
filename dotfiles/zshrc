@@ -13,12 +13,10 @@ alias ls='ls -G'
 alias git='noglob git'
 alias gti=git
 
-# open up kakoune with client/server depending on git root folder. Use `cut` because kak errors if the id is too long
-
 function e() {
-    id=$(git rev-parse --show-toplevel | md5 | cut -c 1-12)
+    id=$(git rev-parse --show-toplevel | md5)
     args=$([ $# -eq 0 ] && cat "/tmp/$id" 2>/dev/null || echo "$@")
-    kak -c "$id" $args || kak -s "$id" $args
+    vim $args
 }
  
 PATH=$PATH:/Users/anthonyquizon/.docker/bin/

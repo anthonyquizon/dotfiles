@@ -11,14 +11,20 @@ Comment⇐{ 𝕨 𝕊 in:
   •Show ∾¯1↓∾⟜lf¨v∾˜¨⊏⍉g
 }
 
+# TODO BF
+
 
 # main
 t←>⟨
-  ⟨"comment", ⟩
-  ⟨Comment,   ⟩
+  ⟨"comment"⟩
+  ⟨Comment  ⟩
 ⟩
 
-Main⇐{f←(1⊏t)⊑˜⟨⊑𝕨⟩⊐˜⊏t⋄(1↓𝕨)F𝕩}
+Main⇐{
+  •Show 𝕩
+  •SHow •FLines "/dev/stdin"
+  #f←(1⊏t)⊑˜⟨⊑𝕨⟩⊐˜⊏t⋄(1↓𝕨)F𝕩
+}
 
 # TODO read from stdin and print •Out
 Main⍟(0⊸<≠) •args

@@ -1,10 +1,24 @@
+colorscheme lucius
 
 set-option global ui_options terminal_assistant=none
+add-highlighter global/ number-lines -relative -separator ' '
 
 # write to /tmp/e so that zsh can open it
 hook global FocusIn    .* %{nop %sh{ echo $kak_buffile > "/tmp/$kak_session" }} # doesn't work in ghostty?
-hook global WinDisplay .* %{nop %sh{ echo $kak_buffile > "/tmp/$kak_session" }}
-hook global ModeChange .* %{nop %sh{ echo $kak_buffile > "/tmp/$kak_session" }}
 
-#hook global WinDisplay .* %{evaluate-commands %sh{ printf "echo %s" "$kak_session" }}
+map global user <semicolon> -docstring 'comment lines' :comment-line<ret>
 
+hook global InsertChar k %{ try %{
+  exec -draft hH <a-k>jk<ret> d
+  exec -with-hooks <esc>
+}}
+
+def find-files %{evaluate-commands %sh{
+        output=$(mktemp -d -t kak-temp-XXXXXXXX)/fifo
+     	mkfifo ${output}
+     	{ rg -n -g '!.git/' --hidden .  | zf > ${output} } > /dev/null 2>&1 < /dev/null &
+     	echo "edit! -fifo ${output} *buffer-name*
+           hook buffer BufClose .* %{ nop %sh{ rm -r $(dirname ${output})} }"
+}}
+
+map global user <space> -docstring 'find files' :find-files<ret>
