@@ -48,7 +48,7 @@ function! WriteTmpPath()
   call writefile([expand('%:p')], '/tmp/' . l:dir)
 endf
 
-au CursorMoved,BufNewFile,BufRead,ModeChanged,FocusGained * :call WriteTmpPath()
+au BufNewFile,BufRead,ModeChanged,FocusGained * :call WriteTmpPath()
 
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
