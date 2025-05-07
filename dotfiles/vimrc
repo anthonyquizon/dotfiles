@@ -42,17 +42,14 @@ au FileType yaml setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms=#%s
 au FileType python setlocal noexpandtab softtabstop=4 tabstop=4 shiftwidth=4 cms=#%s
 au FileType handlebars setlocal cms=#%s
 
-function! WritePathToTmp()
-  let l:filepath = expand('%:p')
-  let l:git_root = system('git rev-parse --show-toplevel | md5')
-  let l:git_root = substitute(l:git_root, '\n', '', 'g')
-  let l:tmpfile = '/tmp/' . l:git_root
-  call writefile([l:filepath], l:tmpfile)
-  " echom "Path written to " . l:tmpfile
-endfunction
+function! WriteTmpPath()
+  let l:dir = system('git rev-parse --show-toplevel | md5')
+  let l:dir = substitute(l:dir, '\n', '', 'g')
+  call writefile([expand('%:p')], '/tmp/' . l:dir)
+endf
 
-au FocusGained * :call WritePathToTmp()
-au BufRead * :call WritePathToTmp()
+au FocusGained * :call WriteTmpPath()
+au BufRead * :call WriteTmpPath()
 
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
