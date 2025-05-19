@@ -6,7 +6,7 @@ set backspace=indent,eol,start hlsearch path+=** wildmenu autoread undofile undo
 set grepprg=rg\ --vimgrep
 set grepformat^=%f:%l:%c:%m
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
-filetype indent on | syntax on 
+filetype indent on | syntax on | filetype plugin on
 ino jk <esc>| nn K <nop>| nn U <nop>
 com! Qa qa | com! QA qa | com! Q q|                                                             " typo friendly commands. 'w' commands are separate lines (not |) Parser treats | as filename
 com! WQ wq
@@ -26,9 +26,10 @@ vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                          
 nn <leader>v :so $MYVIMRC<CR>
 nn <C-w>v :echo "disabled"<CR>
 nn <C-w>s :echo "disabled"<CR>
+nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
 
 function! FzFind(cmd, act)
-  try | let o = system(a:cmd . " | zf ") | catch /Vim:Interrupt/ | endtry| " Swallow errors from ^C, allow redraw! below
+  try | let o = system(a:cmd . " | fzy ") | catch /Vim:Interrupt/ | endtry| " Swallow errors from ^C, allow redraw! below
   redraw!
   if v:shell_error == 0 && !empty(o) 
     let l=split(split(o, '\n')[0], ':') | 

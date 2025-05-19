@@ -11,6 +11,12 @@ mkdir -pv $HOME/.config/nvim/
 ln -svf $PWD/dotfiles/vimrc   $HOME/.vimrc
 ln -svf $PWD/dotfiles/vimrc   $HOME/.config/nvim/init.vim
 
+# vim NERD commenter
+curl -fLo ~/.vim/plugin/nerdcommenter.vim --create-dirs \
+  https://raw.githubusercontent.com/preservim/nerdcommenter/master/plugin/nerdcommenter.vim
+curl -fLo ~/.vim/autoload/nerdcommenter.vim --create-dirs \
+  https://raw.githubusercontent.com/preservim/nerdcommenter/master/autoload/nerdcommenter.vim
+
 # kakoune
 mkdir -pv $HOME/.config/kak/
 ln -svf $PWD/dotfiles/kakrc   $HOME/.config/kak/kakrc
