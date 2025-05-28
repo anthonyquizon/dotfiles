@@ -1,3 +1,0 @@
-#! /usr/bin/env bash
-find . -name '*.bqn' | entr bqn dotfiles/vim.test.bqn $@
-
