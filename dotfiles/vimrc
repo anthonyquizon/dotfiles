@@ -27,18 +27,8 @@ nn <leader>v :so $MYVIMRC<CR>
 nn <C-w>v :echo "disabled"<CR>
 nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
-
-function! FzFind(cmd, act)
-  try | let o = system(a:cmd . " | fzy ") | catch /Vim:Interrupt/ | endtry| " Swallow errors from ^C, allow redraw! below
-  redraw!
-  if v:shell_error == 0 && !empty(o) 
-    let l=split(split(o, '\n')[0], ':') | 
-    exec  a:act . ' ' . (len(l) > 1 ? '+'. l[1] : '') . ' ' . l[0]
-  endif
-endf
-nn <leader><leader> :call FzFind("rg . -g '!.git/' -l --hidden 2>/dev/null", ":e")<cr>                                 " rg list files, suppress errors so that it doesn't mess up return value
-nn <leader>/ :call FzFind("rg -n -g '!.git/' --hidden . 2>/dev/null", ":e")<cr>                                         " rg list lines, suppress errors
-
+nn <leader><leader> :FuzzyFiles<CR>                               " rg list files, suppress errors so that it doesn't mess up return value
+nn <leader>/ :FuzzyGrep<CR> 
 " misc syntax
 au FileType vim setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms="%s
 au FileType yaml setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms=#%s
