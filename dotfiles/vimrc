@@ -5,6 +5,7 @@ set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is tt
 set backspace=indent,eol,start hlsearch path+=** wildmenu autoread undofile undodir=~/.vim/undodir 
 set grepprg=rg\ --vimgrep
 set grepformat^=%f:%l:%c:%m
+au FileType python setlocal noexpandtab softtabstop=4 tabstop=4 shiftwidth=4 cms=#%s
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
 filetype indent on | syntax on | filetype plugin on
 ino jk <esc>| nn K <nop>| nn U <nop>
@@ -29,12 +30,6 @@ nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
 nn <leader><leader> :FuzzyGitFiles<CR>|                              
 nn <leader>/ :FuzzyGrep<CR>|
-" misc syntax
-au FileType vim setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms="%s
-au FileType yaml setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms=#%s
-au FileType python setlocal noexpandtab softtabstop=4 tabstop=4 shiftwidth=4 cms=#%s
-au FileType handlebars setlocal cms=#%s
-
 function! SetRoot()
   let l:dir = system('git rev-parse --show-toplevel 2>/dev/null || echo "."')
   let l:dir = substitute(l:dir, '\n', '', 'g')
