@@ -1,6 +1,6 @@
 scripte utf-8 
 set shell=/bin/bash
-set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab 
+set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab hidden
 set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
 set backspace=indent,eol,start hlsearch path+=** wildmenu autoread undofile undodir=~/.vim/undodir 
 set grepprg=rg\ --vimgrep
