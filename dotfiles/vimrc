@@ -13,6 +13,7 @@ com! Qa qa | com! QA qa | com! Q q|                                             
 com! WQ wq
 com! Wq wq
 com! W w
+com! E Explore|                                                                                 " Enforce Explore shorthand command (in case of ambiguity eg. Emmet)
 vm < <gv | vm > >gv|                                                                            " visual mode indenting
 vn <leader>s "vy :%s/<C-R>v//g<Left><Left>|                                                     " search visual
 vn <leader>S "vy :%s//<C-R>v/g<C-b><Right><Right><Right>|                                       " search visual
@@ -28,20 +29,15 @@ nn <leader>v :so $MYVIMRC<CR>
 nn <C-w>v :echo "disabled"<CR>
 nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
-nn <leader><leader> :FuzzyGitFiles<CR>|                              
+nn <leader><leader> :FuzzyFilesRoot<CR>|                              
 nn <leader>/ :FuzzyGrep<CR>|
-function! SetRoot()
-  let l:dir = system('git rev-parse --show-toplevel 2>/dev/null || echo "."')
-  let l:dir = substitute(l:dir, '\n', '', 'g')
-  exe 'cd '.l:dir
-endf
+nn <leader>j :FuzzyMruRoot<CR>|
 function! WriteTmpPath()
   let l:dir = system('git rev-parse --show-toplevel | md5')
   let l:dir = substitute(l:dir, '\n', '', 'g')
   call writefile([expand('%:p')], '/tmp/' . l:dir)
 endf
 au BufNewFile,BufRead,ModeChanged,FocusGained * :call WriteTmpPath()
-au BufRead,BufNewFile * :call SetRoot()
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '

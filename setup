@@ -14,6 +14,7 @@ ln -svf $PWD/dotfiles/vimrc   $HOME/.config/nvim/init.vim
 # vim plugins
 git clone https://github.com/preservim/nerdcommenter.git ~/.vim/pack/vendor/start/nerdcommenter
 git clone https://github.com/Donaldttt/fuzzyy ~/.vim/pack/Donaldttt/start/fuzzyy
+git clone https://github.com/mattn/emmet-vim.git ~/.vim/pack/mattn/start/emmet-vim
 
 # git
 ln -sf $PWD/dotfiles/gitconfig $HOME/.gitconfig
