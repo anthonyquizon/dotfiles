@@ -27,22 +27,26 @@ nn <leader>v :so $MYVIMRC<CR>
 nn <C-w>v :echo "disabled"<CR>
 nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
-nn <leader><leader> :FuzzyFiles<CR>                               " rg list files, suppress errors so that it doesn't mess up return value
-nn <leader>/ :FuzzyGrep<CR> 
+nn <leader><leader> :FuzzyGitFiles<CR>|                              
+nn <leader>/ :FuzzyGrep<CR>|
 " misc syntax
 au FileType vim setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms="%s
 au FileType yaml setlocal softtabstop=2 tabstop=2 shiftwidth=2 cms=#%s
 au FileType python setlocal noexpandtab softtabstop=4 tabstop=4 shiftwidth=4 cms=#%s
 au FileType handlebars setlocal cms=#%s
 
+function! SetRoot()
+  let l:dir = system('git rev-parse --show-toplevel 2>/dev/null || echo "."')
+  let l:dir = substitute(l:dir, '\n', '', 'g')
+  exe 'cd '.l:dir
+endf
 function! WriteTmpPath()
   let l:dir = system('git rev-parse --show-toplevel | md5')
   let l:dir = substitute(l:dir, '\n', '', 'g')
   call writefile([expand('%:p')], '/tmp/' . l:dir)
 endf
-
 au BufNewFile,BufRead,ModeChanged,FocusGained * :call WriteTmpPath()
-
+au BufRead,BufNewFile * :call SetRoot()
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
@@ -51,17 +55,13 @@ for l in ['i','c']| for i in range(len(a)) |
     exe escape(l.'no'.'\'.a[i].' '.b[i],'|')
 endfor |endfor
 unl a b l i
-
 au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
 au BufRead,BufNewFile *.bqn setf bqn
-
 au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
-
 fu! BQN_Exp(l)
   echo system('be ' . '"'.escape(a:l, "`\"'").'"')
 endf
 vn <leader>e "vy :call BQN_Exp(@v)<cr>
 nn <leader>e :call BQN_Exp(getline('.'))<cr>
-
