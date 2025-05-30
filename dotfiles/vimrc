@@ -31,7 +31,7 @@ nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                     
 nn <leader><leader> :FuzzyFilesRoot<CR>|                              
 nn <leader>/ :FuzzyGrep<CR>|
 nn <leader>j :FuzzyMruRoot<CR>|
-function! WriteTmpPath()
+fu! WriteTmpPath()
   let l:dir = system('git rev-parse --show-toplevel | md5')
   let l:dir = substitute(l:dir, '\n', '', 'g')
   call writefile([expand('%:p')], '/tmp/' . l:dir)
