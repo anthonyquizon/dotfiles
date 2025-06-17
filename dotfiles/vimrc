@@ -7,6 +7,7 @@ set grepprg=rg\ --vimgrep|set complete= |set grepformat^=%f:%l:%c:%m
 au FileType python setlocal noexpandtab softtabstop=4 tabstop=4 shiftwidth=4
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
 filetype indent on | syntax on | filetype plugin on
+au FileType yaml setlocal ai< ci< si< 
 ino jk <esc>| nn K <nop>| nn U <nop>
 com! Qa qa | com! QA qa | com! Q q|                                                             " typo friendly commands. 'w' commands are separate lines (not |) Parser treats | as filename
 com! WQ wq
@@ -37,6 +38,14 @@ fu! WriteTmpPath()
   call writefile([expand('%:p')], '/tmp/' . l:dir)
 endf
 au BufNewFile,BufRead,ModeChanged,FocusGained * :call WriteTmpPath()
+fu! OnFocus() 
+    execute 'rv /tmp/viminfo'
+endf
+au VimEnter,FocusGained * :call OnFocus()
+fu! OnBlur() 
+    execute 'wv /tmp/viminfo'
+endf
+au VimLeave,FocusLost * :call OnBlur()
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
