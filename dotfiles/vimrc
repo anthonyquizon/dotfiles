@@ -32,6 +32,21 @@ nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                     
 nn <leader><leader> :FuzzyFilesRoot<CR>|                              
 nn <leader>/ :FuzzyGrep<CR>|
 nn <leader>m :FuzzyMruRoot<CR>|
+let g:fuzzyy_keymaps = {
+  \ 'menu_up': ["\<c-p>", "\<Up>"],
+  \ 'menu_down': ["\<c-n>", "\<Down>"],
+  \ 'menu_select': ["\<CR>"],
+  \ 'preview_up': ["\<c-i>"],
+  \ 'preview_down': ["\<c-f>"],
+  \ 'preview_up_half_page': [],
+  \ 'preview_down_half_page': [],
+  \ 'cursor_begining': ["\<c-a>"],        
+  \ 'cursor_end': ["\<c-e>"],              
+  \ 'backspace': ["\<bs>"],
+  \ 'delete_all': ["\<c-u>"],               
+  \ 'delete_prefix': [],                   
+  \ 'exit': ["\<Esc>", "\<c-c>", "\<c-[>"], 
+  \ }
 fu! WriteTmpPath()
   let l:dir = system('git rev-parse --show-toplevel | md5')
   let l:dir = substitute(l:dir, '\n', '', 'g')
