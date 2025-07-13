@@ -52,8 +52,8 @@ au VimLeave,FocusLost * :call OnBlur()
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
-let c ='abcde'
-let d ="■□◀◁○"
+let c ='abcdenN0123)!@#*'
+let d ="■□◀◁○ₙⁿ₀₁₂₃⁰¹²³꘎"
 let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
 for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|')|endfor|endfor
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor

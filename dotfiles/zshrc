@@ -3,7 +3,9 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
-git_branch() {
+autoload -Uz +X compinit && compinit
+
+git_b() {
     git branch 2>/dev/null | grep '^*' | colrm 1 2
 }
 
@@ -18,19 +20,28 @@ e() {
     args=$([ $# -eq 0 ] && cat "/tmp/$id" 2>/dev/null || echo "$@")
     vim $args
 }
+
+# watch command with find and entr
+w(){
+    find . -type f \
+        -not -path "*/node_modules/*" \
+        -not -path "*/.git/*" \
+        -not -path "*/dist/*" \
+        -not -path "*/_site/*" \
+        | entr -r $@
+}
+compdef '_files -/' w
  
 PATH=$PATH:/Users/anthonyquizon/.docker/bin/
 
 precmd() {
-    PROMPT="%F{red}%n%F{blue} %1d%f %F{cyan}$(git_branch)%f %F{blue}→%f "
+    PROMPT="%F{red}%n%F{blue} %1d%f %F{cyan}$(git_b)%f %F{blue}→%f "
 }
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey ";6;13~" forward-word
 bindkey ";5;13~" backward-word
-
-autoload -Uz +X compinit && compinit
 
 ## case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
