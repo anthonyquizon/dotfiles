@@ -9,7 +9,6 @@ ln -svf $PWD/dotfiles/zshrc $HOME/.zlogin              # needed for mac
 mkdir -pv $HOME/.vim/undodir
 mkdir -pv $HOME/.config/nvim/
 ln -svf $PWD/dotfiles/vimrc   $HOME/.vimrc
-ln -svf $PWD/dotfiles/vimrc   $HOME/.config/nvim/init.vim
 
 # vim plugins
 git clone https://github.com/preservim/nerdcommenter.git ~/.vim/pack/vendor/start/nerdcommenter
