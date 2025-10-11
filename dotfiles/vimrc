@@ -77,5 +77,6 @@ EOF
     call writefile(f, t)
     let o = system('bqn '. t, c)
     call setbufline('%', 1, split(o, "\n"))
+    call delete(t)
 endf
-command! Bf call FmtBQN()
+nor <leader>ff :call FmtBQN()<CR>
