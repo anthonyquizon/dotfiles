@@ -32,6 +32,8 @@ nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
 nn <leader><leader> :FuzzyFilesRoot<CR>|                              
 nn <leader>/ :FuzzyGrep<CR>|
+nn <leader>c :FuzzyCommandHistory<CR>|
+nn <leader>? :FuzzyInBuffer<CR>|
 nn <leader>m :FuzzyMruRoot<CR>|
 cno <C-a> <Home>
 cno <C-e> <End>
