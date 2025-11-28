@@ -33,24 +33,37 @@ nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                     
 nn <leader><leader> :FuzzyFilesRoot<CR>|                              
 nn <leader>/ :FuzzyGrep<CR>|
 nn <leader>c :FuzzyCommandHistory<CR>|
-nn <leader>? :FuzzyInBuffer<CR>|
+nn <leader>. :FuzzyInBuffer<CR>|
 nn <leader>m :FuzzyMruRoot<CR>|
 cno <C-a> <Home>
 cno <C-e> <End>
 let g:fuzzyy_keymaps = {'preview_up_half_page':[], 'delete_all': ["\<c-u>"]}
-fu! WriteTmpPath()
-  let dir = system('git rev-parse --show-toplevel | md5')
-  let dir = substitute(l:dir, '\n', '', 'g')
-  call writefile([expand('%:p')], '/tmp/' . dir)
+" git directory aware vim contexts. Preserves viminfo and jumps in each git repro
+fu! GitPath() " Get git file path and hash it to map filenames to repros
+  let dir = trim(system('git rev-parse --show-toplevel 2>/dev/null'))
+  return v:shell_error ? 'global' : trim(system('echo ' . dir . ' | md5'))
 endf
-au BufNewFile,BufRead,ModeChanged,FocusGained * :call WriteTmpPath()
-au VimEnter,FocusGained * rviminfo!
-au VimLeave,FocusLost * wviminfo
+fu! OnBlur() " write git repo aware viminfo
+  let f='/tmp/'.GitPath().'.viminfo' | exec 'wviminfo! '.f
+endf
+fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
+  let f='/tmp/' . GitPath() | let r=f.'.viminfo'
+  call writefile([expand('%:p')], f.'.file') 
+  sil! exec 'rviminfo!'.r  " Silent exe to not flood message window
+endf
+fu! OnEnter() " open last opened file in repo and restore git aware viminfo
+  let f='/tmp/'.GitPath() | let r=f.'.viminfo'
+  if argc() == 0 | sil! exe 'e '.readfile(f.'.file')[0] | filetype detect | endif
+  sil! exe 'rviminfo!'.r " Silent exe to not flood message window
+endf
+au VimLeave,FocusLost * call OnBlur()
+au BufNewFile,BufRead,FocusGained * call OnFocus()
+au VimEnter * call OnEnter()
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
-let c ='SsTtonkNyr0123)!@#*'
-let d ="■□◀◁○ₙ✓ⁿ☺↺₀₁₂₃⁰¹²³꘎"
+let c ='AESsTtoNkyRrij0123)!@#*-_'
+let d ="∀∃■□◀◁○ℕ✓☺ℝ↺ᵢⱼ₀₁₂₃⁰¹²³꘎ⁿₙ"
 let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
 for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|')|endfor|endfor
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
@@ -64,11 +77,12 @@ fu FmtBQN()
     let c=join(getline(1, '$'), "\n")
     let t=tempname()
     let f=<<EOF 
-    [a,b]←⍉>{2↑𝕩⊔˜1⌊+`'#'=𝕩}¨•FLines "/dev/stdin" # separate code (a) and comments (b)
-    m←{¬∧´' '⊸=𝕩}¨a                               # remove tail whitespace from code
+    c←•FLines "/dev/stdin"
+    [a,b]←⍉>2⊸↑¨c⊔˜¨1⌊+`¨('#'=c)∧¬≠`⊸>¨'"'=c  # separate code (a) and comments (b). Avoid # characters in strings
+    m←{¬∧´' '⊸=𝕩}¨a                           # remove tail whitespace from code
     a↩{⌽(∨`' '⊸≠)⊸/⌽𝕩}¨⌾(m⊸/)a
-    s←' '¨¨↕¨(m∧(0≠≠¨b)∧0≠≠¨a)×1+(⌈´≠¨a)-≠¨a      # calculate comment prefix whitespace 
-    •Out 1↓∾∾(@+10)⊸∾¨<˘⍉[a,s∾¨b]                 # prepend whitespace and recombine code and comments
+    s←' '¨¨↕¨(m∧(0≠≠¨b)∧0≠≠¨a)×1+(⌈´≠¨a)-≠¨a  # calculate comment prefix whitespace 
+    •Out 1↓∾∾(@+10)⊸∾¨<˘⍉[a,s∾¨b]             # prepend whitespace and recombine code and comments
 EOF
     call writefile(f, t)
     let o = system('bqn '. t, c)

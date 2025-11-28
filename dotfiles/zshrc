@@ -14,12 +14,7 @@ VISUAL='vim'
 alias ls='ls -G'
 alias git='noglob git'
 alias gti=git
-
-e() {
-    id=$(git rev-parse --show-toplevel | md5)
-    args=$([ $# -eq 0 ] && cat "/tmp/$id" 2>/dev/null || echo "$@")
-    vim $args
-}
+alias e='$EDITOR'
 
 # watch command with find and entr
 w(){
