@@ -41,23 +41,26 @@ let g:fuzzyy_keymaps = {'preview_up_half_page':[], 'delete_all': ["\<c-u>"]}
 " git directory aware vim contexts. Preserves viminfo and jumps in each git repro
 fu! GitPath() " Get git file path and hash it to map filenames to repros
   let dir = trim(system('git rev-parse --show-toplevel 2>/dev/null'))
-  return v:shell_error ? 'global' : trim(system('echo ' . dir . ' | md5'))
+  return '/tmp/'.(v:shell_error ? 'global' : trim(system('echo ' . dir . ' | md5')))
 endf
 fu! OnBlur() " write git repo aware viminfo
-  let f='/tmp/'.GitPath().'.viminfo' | exec 'wviminfo! '.f
+  exe 'wviminfo! '.GitPath().'.viminfo'
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
-  let f='/tmp/' . GitPath() | let r=f.'.viminfo'
-  call writefile([expand('%:p')], f.'.file') 
-  sil! exec 'rviminfo!'.r  " Silent exe to not flood message window
+  let f=GitPath()
+  sil! exe 'rviminfo! '.f.'.viminfo'  " Silent exe to not flood message window
+  call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnEnter() " open last opened file in repo and restore git aware viminfo
-  let f='/tmp/'.GitPath() | let r=f.'.viminfo'
-  if argc() == 0 | sil! exe 'e '.readfile(f.'.file')[0] | filetype detect | endif
-  sil! exe 'rviminfo!'.r " Silent exe to not flood message window
+  let f=GitPath() 
+  if argc() == 0 && filereadable(f.'.file') 
+      let [p, l] = split(readfile(f.'.file')[0], ':')
+      exe 'e '.p | call cursor(l, 0) | filetype detect
+  endif
+  sil! exe 'rviminfo! '.f.'.viminfo' " Silent exe to not flood message window
 endf
 au VimLeave,FocusLost * call OnBlur()
-au BufNewFile,BufRead,FocusGained * call OnFocus()
+au ModeChanged,BufNewFile,BufRead,FocusGained * call OnFocus()
 au VimEnter * call OnEnter()
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
