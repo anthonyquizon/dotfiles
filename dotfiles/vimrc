@@ -47,11 +47,14 @@ fu! OnBlur() " write git repo aware viminfo
   let f='/tmp/'.GitPath().'.viminfo' | exec 'wviminfo! '.f
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
-  sil! exec 'rviminfo!'.'/tmp/'.GitPath().'.viminfo'  " Silent exe to not flood message window
+  let f='/tmp/' . GitPath() | let r=f.'.viminfo'
+  call writefile([expand('%:p')], f.'.file') 
+  sil! exec 'rviminfo!'.r  " Silent exe to not flood message window
 endf
 fu! OnEnter() " open last opened file in repo and restore git aware viminfo
-  sil! exe 'rviminfo!'.'/tmp/'.GitPath().'.viminfo'" Silent exe to not flood message window
-  if argc()==0|exe "normal! 2\<C-o>"|filetype detect|endif
+  let f='/tmp/'.GitPath() | let r=f.'.viminfo'
+  if argc() == 0 | sil! exe 'e '.readfile(f.'.file')[0] | filetype detect | endif
+  sil! exe 'rviminfo!'.r " Silent exe to not flood message window
 endf
 au VimLeave,FocusLost * call OnBlur()
 au BufNewFile,BufRead,FocusGained * call OnFocus()
@@ -71,7 +74,8 @@ au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
 fu FmtBQN() 
-    let c=join(getline(1, '$'), "\n") | let t=tempname()
+    let c=join(getline(1, '$'), "\n")
+    let t=tempname()
     let f=<<EOF 
     c←•FLines "/dev/stdin"
     [a,b]←⍉>2⊸↑¨c⊔˜¨1⌊+`¨('#'=c)∧¬≠`⊸>¨'"'=c  # separate code (a) and comments (b). Avoid # characters in strings

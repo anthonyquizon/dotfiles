@@ -14,8 +14,7 @@ VISUAL='vim'
 alias ls='ls -G'
 alias git='noglob git'
 alias gti=git
-alias e='vim'
-alias E='vim -c Explore'
+alias e='$EDITOR'
 
 # watch command with find and entr
 w(){
