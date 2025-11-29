@@ -44,24 +44,24 @@ fu! GitPath() " Get git file path and hash it to map filenames to repros
   return '/tmp/'.(v:shell_error ? 'global' : trim(system('echo ' . dir . ' | md5')))
 endf
 fu! OnBlur() " write git repo aware viminfo
-  exe 'wviminfo! '.GitPath().'.viminfo'
+  let f=GitPath()
+  exe 'wviminfo! '.f.'.viminfo'
+  call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
-  let f=GitPath()
-  sil! exe 'rviminfo! '.f.'.viminfo'  " Silent exe to not flood message window
-  call writefile([expand('%:p').":".line('.')], f.'.file') 
+  sil! exe 'rviminfo! '.GitPath().'.viminfo'  " Silent exe to not flood message window
 endf
 fu! OnEnter() " open last opened file in repo and restore git aware viminfo
   let f=GitPath() 
-  if argc() == 0 && filereadable(f.'.file') 
+  if get(argv(), 0) == 'restore' && filereadable(f.'.file') 
       let [p, l] = split(readfile(f.'.file')[0], ':')
       exe 'e '.p | call cursor(l, 0) | filetype detect
   endif
   sil! exe 'rviminfo! '.f.'.viminfo' " Silent exe to not flood message window
 endf
-au VimLeave,FocusLost * call OnBlur()
-au ModeChanged,BufNewFile,BufRead,FocusGained * call OnFocus()
 au VimEnter * call OnEnter()
+au VimLeave,FocusLost * call OnBlur()
+au FocusGained * call OnFocus()
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
