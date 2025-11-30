@@ -59,7 +59,7 @@ fu! OnEnter() " open last opened file in repo and restore git aware viminfo
   endif
   sil! exe 'rviminfo! '.f.'.viminfo'  
 endf
-au VimLeave,FocusLost * call OnBlur()
+au TextYankPost,VimLeave,FocusLost * call OnBlur()
 au FocusGained * call OnFocus()
 au VimEnter * call OnEnter()
 " BQN
