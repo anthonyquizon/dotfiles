@@ -49,7 +49,7 @@ fu! OnBlur() " write git repo aware viminfo
   call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
-  sil! exe 'rviminfo! '.GitPath().'.viminfo'  " Silent exe to not flood message window
+  sil! exe 'rviminfo! '.GitPath().'.viminfo'  
 endf
 fu! OnEnter() " open last opened file in repo and restore git aware viminfo
   let f=GitPath() 
@@ -57,11 +57,11 @@ fu! OnEnter() " open last opened file in repo and restore git aware viminfo
       let [p, l] = split(readfile(f.'.file')[0], ':')
       exe 'e '.p | call cursor(l, 0) | filetype detect
   endif
-  sil! exe 'rviminfo! '.f.'.viminfo' " Silent exe to not flood message window
+  sil! exe 'rviminfo! '.f.'.viminfo'  
 endf
-au VimEnter * call OnEnter()
 au VimLeave,FocusLost * call OnBlur()
 au FocusGained * call OnFocus()
+au VimEnter * call OnEnter()
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
