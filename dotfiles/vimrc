@@ -32,9 +32,7 @@ nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
 nn <leader><leader> :FuzzyFilesRoot<CR>|                              
 nn <leader>/ :FuzzyGrep<CR>|
-nn <leader>c :FuzzyCommandHistory<CR>|
 nn <leader>. :FuzzyInBuffer<CR>|
-nn <leader>m :FuzzyMruRoot<CR>|
 cno <C-a> <Home>
 cno <C-e> <End>
 let g:fuzzyy_keymaps = {'preview_up_half_page':[], 'delete_all': ["\<c-u>"]}
@@ -49,14 +47,13 @@ fu! OnBlur() " write git repo aware viminfo
   call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
-  sil! exe 'rviminfo! '.GitPath().'.viminfo'  
+  sil! exe 'rviminfo! '.GitPath().'.viminfo' | redraw! | " redraw to clear any focus ansi glitches
 endf
 fu! OnEnter() " open last opened file in repo and restore git aware viminfo
   let f=GitPath() 
   if get(argv(), 0, '') == 'restore' && filereadable(f.'.file') 
       let [p, l] = split(readfile(f.'.file')[0], ':')
       exe 'e '.p | call cursor(l, 0) | filetype detect
-      echom get(argv(), 0)
   endif
   sil! exe 'rviminfo! '.f.'.viminfo'
 endf
