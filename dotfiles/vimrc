@@ -47,13 +47,13 @@ fu! OnBlur() " write git repo aware viminfo
   call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
-  sil! exe 'rviminfo! '.GitPath().'.viminfo' | redraw! | " redraw to clear any focus ansi glitches
+  sil! exe 'rviminfo! '.GitPath().'.viminfo' | redraw! | noh | " redraw to clear any focus ansi glitches. disable current highlight due to glitches with newlines being selected on focus
 endf
 fu! OnEnter() " open last opened file in repo and restore git aware viminfo
   let f=GitPath() 
   if get(argv(), 0, '') == 'restore' && filereadable(f.'.file') 
-      let [p, l] = split(readfile(f.'.file')[0], ':')
-      exe 'e '.p | call cursor(l, 0) | filetype detect
+    let b = split(get(readfile(f.'.file'), 0, ':'), ':')
+    if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | noh | endif
   endif
   sil! exe 'rviminfo! '.f.'.viminfo'
 endf
