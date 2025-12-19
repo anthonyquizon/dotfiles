@@ -35,6 +35,7 @@ nn <leader>/ :FuzzyGrep<CR>|
 nn <leader>. :FuzzyInBuffer<CR>|
 cno <C-a> <Home>
 cno <C-e> <End>
+nnor // <Nop>
 let g:fuzzyy_keymaps = {'preview_up_half_page':[], 'delete_all': ["\<c-u>"]}
 " git directory aware vim contexts. Preserves viminfo and jumps in each git repro
 fu! GitPath() " Get git file path and hash it to map filenames to repros
