@@ -451,6 +451,7 @@ Explain ← {
 {𝕊:•Out "Usage: bqe [string]"⋄•Exit 0}⍟(0⊸=)≠•args
 
 Catch←{ 𝕊:
+  •Show •CurrentError@
   •Out "Could not parse"
   •Exit 1
 }
