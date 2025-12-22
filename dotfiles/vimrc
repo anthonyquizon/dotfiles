@@ -35,7 +35,6 @@ nn <leader>/ :FuzzyGrep<CR>|
 nn <leader>. :FuzzyInBuffer<CR>|
 cno <C-a> <Home>
 cno <C-e> <End>
-nnor // <Nop>
 let g:fuzzyy_keymaps = {'preview_up_half_page':[], 'delete_all': ["\<c-u>"]}
 " git directory aware vim contexts. Preserves viminfo and jumps in each git repro
 fu! GitPath() " Get git file path and hash it to map filenames to repros
@@ -71,6 +70,7 @@ for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
 unl a b c d l i
 au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
+au BufRead,BufNewFile *.shape set filetype=bqn
 au BufRead,BufNewFile *.bqn setf bqn
 au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
