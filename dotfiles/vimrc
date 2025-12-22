@@ -92,3 +92,8 @@ EOF
     call delete(t)
 endf
 nor <leader>ff :call FmtBQN()<CR>
+fu! ExpBQN(l)
+  echo system('bqe ' . '"'.escape(a:l, "`\"'").'"')
+endf
+vn <leader>e "vy :call ExpBQN(@v)<cr>
+nn <leader>e :call ExpBQN(getline('.'))<cr>

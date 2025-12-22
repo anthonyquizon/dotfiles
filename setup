@@ -17,3 +17,6 @@ git clone https://github.com/mattn/emmet-vim.git ~/.vim/pack/mattn/start/emmet-v
 
 # git
 ln -sf $PWD/dotfiles/gitconfig $HOME/.gitconfig
+
+# bqe
+sudo ln -sf $PWD/bqe /usr/local/bin
