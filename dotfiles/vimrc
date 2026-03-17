@@ -33,6 +33,7 @@ nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                     
 nn <leader><leader> :FuzzyFilesRoot<CR>|                              
 nn <leader>/ :FuzzyGrep<CR>|
 nn <leader>. :FuzzyInBuffer<CR>|
+nn <leader>b :FuzzyBuffers<CR>|
 cno <C-a> <Home>
 cno <C-e> <End>
 let g:fuzzyy_keymaps = {'preview_up_half_page':[], 'delete_all': ["\<c-u>"]}
