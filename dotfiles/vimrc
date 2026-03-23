@@ -9,7 +9,7 @@ au FileType c setlocal noexpandtab softtabstop=2 tabstop=2 shiftwidth=2
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
 filetype indent on | syntax on | filetype plugin on
 au FileType yaml setlocal ai< ci< si< 
-ino jk <esc>| nn K <nop>| nn U <nop>
+ino jk <esc>| nn K <nop>| nn U <nop> | nn Q <nop>
 com! Qa qa | com! QA qa | com! Q q|                                                             " typo friendly commands. 'w' commands are separate lines (not |) Parser treats | as filename
 com! WQ wq
 com! Wq wq
@@ -33,7 +33,7 @@ nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                     
 nn <leader><leader> :FuzzyFilesRoot<CR>|                              
 nn <leader>/ :FuzzyGrep<CR>|
 nn <leader>. :FuzzyInBuffer<CR>|
-nn <leader>b :FuzzyBuffers<CR>|
+nn <leader>m :FuzzyMRU<CR>|
 cno <C-a> <Home>
 cno <C-e> <End>
 let g:fuzzyy_keymaps = {'preview_up_half_page':[], 'delete_all': ["\<c-u>"]}
