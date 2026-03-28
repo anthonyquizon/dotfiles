@@ -48,7 +48,7 @@ fu! OnBlur() " write git repo aware viminfo
   call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
-  sil! exe 'rviminfo! '.GitPath().'.viminfo' | noh | redraw! " redraw to clear any focus ansi glitches. disable current highlight due to glitches with newlines being selected on focus
+  sil! exe 'rviminfo! '.GitPath().'.viminfo' " redraw to clear any focus ansi glitches. disable current highlight due to glitches with newlines being selected on focus
 endf
 fu! OnEnter() " open last opened file in repo and restore git aware viminfo
   let f=GitPath() 
@@ -57,12 +57,12 @@ fu! OnEnter() " open last opened file in repo and restore git aware viminfo
     if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
   endif
   sil! exe 'rviminfo! '.f.'.viminfo'
-  noh | redraw!
 endf
 cno <expr> <CR> getcmdtype() =~ '[/?]' && getcmdline() =~ '^\\^\\$$\|^$' ? '<Esc>' : '<CR>' | "omit search for empty lines
 au TextYankPost,VimLeave,FocusLost * call OnBlur()
 au FocusGained * call OnFocus()
 au VimEnter * nested call OnEnter() | "nested to allow filetype detect to work
+au VimEnter,FocusGained,BufEnter * let @/ = ""
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
