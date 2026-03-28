@@ -3,7 +3,7 @@ set shell=/bin/bash
 set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab hidden
 set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
 set backspace=indent,eol,start hlsearch path+=** wildmenu autoread undofile undodir=~/.vim/undodir 
-set grepprg=rg\ --vimgrep|set complete= |set grepformat^=%f:%l:%c:%m|set viminfo='0,<5000,s100  " increase vim register limit so that we can copy more data between instances 
+set grepprg=rg\ --vimgrep|set complete= |set grepformat^=%f:%l:%c:%m|set viminfo='50,<5000,s100  " increase vim register limit so that we can copy more data between instances 
 au FileType python setlocal noexpandtab softtabstop=4 tabstop=4 shiftwidth=4
 au FileType c setlocal noexpandtab softtabstop=2 tabstop=2 shiftwidth=2
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
@@ -48,16 +48,18 @@ fu! OnBlur() " write git repo aware viminfo
   call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
-  sil! exe 'rviminfo! '.GitPath().'.viminfo' | redraw! | noh | " redraw to clear any focus ansi glitches. disable current highlight due to glitches with newlines being selected on focus
+  sil! exe 'rviminfo! '.GitPath().'.viminfo' | noh | redraw! " redraw to clear any focus ansi glitches. disable current highlight due to glitches with newlines being selected on focus
 endf
 fu! OnEnter() " open last opened file in repo and restore git aware viminfo
   let f=GitPath() 
   if get(argv(), 0, '') == 'restore' && filereadable(f.'.file') 
     let b = split(get(readfile(f.'.file'), 0, ':'), ':')
-    if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | noh | endif
+    if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
   endif
   sil! exe 'rviminfo! '.f.'.viminfo'
+  noh | redraw!
 endf
+cno <expr> <CR> getcmdtype() =~ '[/?]' && getcmdline() =~ '^\\^\\$$\|^$' ? '<Esc>' : '<CR>' | "omit search for empty lines
 au TextYankPost,VimLeave,FocusLost * call OnBlur()
 au FocusGained * call OnFocus()
 au VimEnter * nested call OnEnter() | "nested to allow filetype detect to work
