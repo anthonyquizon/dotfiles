@@ -72,8 +72,8 @@ au VimEnter,FocusGained,BufEnter * let @/ = "" | " disable current highlight due
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
-let c ='AESsTtoONkyRrij0123)!@#*-_|'
-let d ="∀∃■□◀◁○⬤ℕ✓☺ℝ↺ᵢⱼ₀₁₂₃⁰¹²³꘎ⁿₙ|"
+let c ='AESsTtoONkyRrQqij0123)!@#*-_|'
+let d ="∀∃■□◀◁○⬤ℕ✓☺ℝ↺▯▫ᵢⱼ₀₁₂₃⁰¹²³꘎ⁿₙ|"
 let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
 for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|')|endfor|endfor
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
@@ -85,13 +85,15 @@ au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
 fu! SendToSocket(host, port) range
   let tmp = tempname()
-  call writefile([a:firstline.':'.a:lastline] + getline(1, '$'), tmp)
+  call writefile([a:firstline.':'.a:lastline] + getline(1, '$'), tmp, 'b')
+  call writefile([a:firstline.':'.a:lastline] + getline(1, '$'), "/Users/anthonyquizon/test", 'b')
   call system('nc -c -w0 ' . a:host . ' ' . a:port . ' < ' . tmp . ' &')
   call delete(tmp)
 endf
-nn <leader>w :call SendToSocket('localhost', 8080)<CR>
-vn <leader>w :call SendToSocket('localhost', 8080)<CR>
+nn <leader>d :call SendToSocket('localhost', 8080)<CR>
+vn <leader>d :call SendToSocket('localhost', 8080)<CR>
 nn <leader>r :source $MYVIMRC<CR>
+nn <leader>q i▯<Esc>
 fu FmtBQN() 
     let c=join(getline(1, '$'), "\n")
     let t=tempname()
