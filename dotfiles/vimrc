@@ -75,6 +75,16 @@ au BufRead,BufNewFile *.bqn setf bqn
 au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
+fu! SendToSocket(host, port) range
+  let tmp = tempname()
+  call writefile([a:firstline.':'.a:lastline] + getline(1, '$'), tmp)
+  call system('nc -c -w0 ' . a:host . ' ' . a:port . ' < ' . tmp . ' &')
+  call delete(tmp)
+endf
+nn <leader>w :call SendToSocket('localhost', 8080)<CR>
+vn <leader>w :call SendToSocket('localhost', 8080)<CR>
+nn <leader>r :source $MYVIMRC<CR>
+
 fu FmtBQN() 
     let c=join(getline(1, '$'), "\n")
     let t=tempname()
