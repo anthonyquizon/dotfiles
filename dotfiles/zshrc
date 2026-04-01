@@ -28,7 +28,7 @@ w(){
 }
 compdef '_files -/' w
  
-PATH=$PATH:/Users/anthonyquizon/.docker/bin/
+PATH=$PATH:/Users/anthonyquizon/.docker/bin/:/Users/anthonyquizon/.bin/
 
 precmd() {
     PROMPT="%F{red}%n%F{blue} %1d%f %F{cyan}$(git_b)%f %F{blue}→%f "

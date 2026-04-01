@@ -42,13 +42,19 @@ fu! GitPath() " Get git file path and hash it to map filenames to repros
   let dir = trim(system('git rev-parse --show-toplevel 2>/dev/null'))
   return '/tmp/'.(v:shell_error ? 'global' : trim(system('echo ' . dir . ' | md5')))
 endf
+fu! RestoreCopy()
+  let f = '/tmp/vimcopy.txt'
+  if filereadable(f) | let @" = join(readfile(f), "\n") | endif
+endf
 fu! OnBlur() " write git repo aware viminfo
   let f=GitPath()
   exe 'wviminfo! '.f.'.viminfo'
+  call writefile([@"], '/tmp/vimcopy.txt')
   call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
   sil! exe 'rviminfo! '.GitPath().'.viminfo' | redraw! " redraw to clear any focus ansi glitches. 
+  call RestoreCopy()
 endf
 fu! OnEnter() " open last opened file in repo and restore git aware viminfo
   let f=GitPath() 
@@ -57,6 +63,7 @@ fu! OnEnter() " open last opened file in repo and restore git aware viminfo
     if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
   endif
   sil! exe 'rviminfo! '.f.'.viminfo'
+  call RestoreCopy()
 endf
 au TextYankPost,VimLeave,FocusLost * call OnBlur()
 au FocusGained * call OnFocus()
@@ -72,7 +79,6 @@ for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
 unl a b c d l i
 au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
-au BufRead,BufNewFile *.shape set filetype=bqn
 au BufRead,BufNewFile *.bqn setf bqn
 au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
@@ -86,7 +92,6 @@ endf
 nn <leader>w :call SendToSocket('localhost', 8080)<CR>
 vn <leader>w :call SendToSocket('localhost', 8080)<CR>
 nn <leader>r :source $MYVIMRC<CR>
-
 fu FmtBQN() 
     let c=join(getline(1, '$'), "\n")
     let t=tempname()
