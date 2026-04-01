@@ -9,7 +9,7 @@ au FileType c setlocal noexpandtab softtabstop=2 tabstop=2 shiftwidth=2
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
 filetype indent on | syntax on | filetype plugin on
 au FileType yaml setlocal ai< ci< si< 
-ino jk <esc>| nn K <nop>| nn U <nop>
+ino jk <esc>| nn K <nop>| nn U <nop> | nn Q <nop>
 com! Qa qa | com! QA qa | com! Q q|                                                             " typo friendly commands. 'w' commands are separate lines (not |) Parser treats | as filename
 com! WQ wq
 com! Wq wq
@@ -33,6 +33,7 @@ nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                     
 nn <leader><leader> :FuzzyFilesRoot<CR>|                              
 nn <leader>/ :FuzzyGrep<CR>|
 nn <leader>. :FuzzyInBuffer<CR>|
+nn <leader>m :FuzzyMRU<CR>|
 cno <C-a> <Home>
 cno <C-e> <End>
 let g:fuzzyy_keymaps = {'preview_up_half_page':[], 'delete_all': ["\<c-u>"]}
@@ -47,24 +48,25 @@ fu! OnBlur() " write git repo aware viminfo
   call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
-  sil! exe 'rviminfo! '.GitPath().'.viminfo' | redraw! | noh | " redraw to clear any focus ansi glitches. disable current highlight due to glitches with newlines being selected on focus
+  sil! exe 'rviminfo! '.GitPath().'.viminfo' | redraw! " redraw to clear any focus ansi glitches. 
 endf
 fu! OnEnter() " open last opened file in repo and restore git aware viminfo
   let f=GitPath() 
   if get(argv(), 0, '') == 'restore' && filereadable(f.'.file') 
     let b = split(get(readfile(f.'.file'), 0, ':'), ':')
-    if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | noh | endif
+    if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
   endif
   sil! exe 'rviminfo! '.f.'.viminfo'
 endf
 au TextYankPost,VimLeave,FocusLost * call OnBlur()
 au FocusGained * call OnFocus()
 au VimEnter * nested call OnEnter() | "nested to allow filetype detect to work
+au VimEnter,FocusGained,BufEnter * let @/ = "" | " disable current highlight due to glitches with newlines being selected on focus
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
-let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧y⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋YU⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«J⌾»·˙| ⥊𝕩↓∨⌊n≡∾≍≠    ⋈𝕏C⍒⌈N≢≤≥⇐   '
-let c ='AESsTtoNkyRrij0123)!@#*-_|'
-let d ="∀∃■□◀◁○ℕ✓☺ℝ↺ᵢⱼ₀₁₂₃⁰¹²³꘎ⁿₙ|"
+let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
+let c ='AESsTtoONkyRrij0123)!@#*-_|'
+let d ="∀∃■□◀◁○⬤ℕ✓☺ℝ↺ᵢⱼ₀₁₂₃⁰¹²³꘎ⁿₙ|"
 let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
 for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|')|endfor|endfor
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
