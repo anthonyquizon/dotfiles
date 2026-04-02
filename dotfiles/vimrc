@@ -85,14 +85,14 @@ au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
 fu! SendToSocket(host, port) range
   let tmp = tempname()
-  call writefile([a:firstline.':'.a:lastline] + getline(1, '$'), tmp, 'b')
-  call writefile([a:firstline.':'.a:lastline] + getline(1, '$'), "/Users/anthonyquizon/test", 'b')
+  call writefile([expand('%:p')] + [a:firstline.':'.a:lastline] + getline(1, '$'), tmp, 'b')
   call system('nc -c -w0 ' . a:host . ' ' . a:port . ' < ' . tmp . ' &')
   call delete(tmp)
 endf
-nn <leader>d :call SendToSocket('localhost', 8080)<CR>
-vn <leader>d :call SendToSocket('localhost', 8080)<CR>
+nn <leader>w :call SendToSocket('localhost', 8080)<CR>
+vn <leader>w :call SendToSocket('localhost', 8080)<CR>
 nn <leader>r :source $MYVIMRC<CR>
+vn <leader>q I▯<Esc>
 nn <leader>q i▯<Esc>
 fu FmtBQN() 
     let c=join(getline(1, '$'), "\n")
@@ -102,7 +102,7 @@ fu FmtBQN()
     [a,b]←⍉>2⊸↑¨c⊔˜¨1⌊+`¨('#'=c)∧¬≠`⊸>¨('''⊸=∨=⟜'"')c  # separate code (a) and comments (b). Avoid # characters in strings
     m←{¬∧´' '⊸=𝕩}¨a                                    # remove tail whitespace from code
     a↩{⌽(∨`' '⊸≠)⊸/⌽𝕩}¨⌾(m⊸/)a
-    s←' '¨¨↕¨(m∧(0≠≠¨b)∧0≠≠¨a)×1+(⌈´≠¨a)-≠¨a           # calculate comment prefix whitespace 
+    s←' '¨¨↕¨(m∧(0≠≠¨b)∧0≠≠¨a)×1+(50⌊⌈´≠¨a)-≠¨a        # calculate comment prefix whitespace (max 50 char offset)
     •Out 1↓∾∾(@+10)⊸∾¨<˘⍉[a,s∾¨b]                      # prepend whitespace and recombine code and comments
 EOF
     call writefile(f, t)
