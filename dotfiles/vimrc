@@ -94,8 +94,18 @@ endf
 nn <leader>w :call SendToSocket()<CR>
 vn <leader>w :call SendToSocket()<CR>
 nn <leader>r :source $MYVIMRC<CR>
-vn <leader>q I▯<Esc>
+
+nn <leader>t i•SHOW <Esc>
+nn <leader>T :%s/•SHOW //g<CR>
+vn <leader>t :s/^/•SHOW /<CR>:noh<CR>
+vn <leader>T :s/•SHOW //<CR>:noh<CR>
+
 nn <leader>q i▯<Esc>
+nn <leader>Q :%s/▯//g<CR>
+vn <leader>q I▯<Esc>
+"vn <leader>q :s/^/▯/<CR>:noh<CR>
+vn <leader>Q :s/▯//<CR>:noh<CR>
+
 fu FmtBQN() 
     let c=join(getline(1, '$'), "\n")
     let t=tempname()
