@@ -44,7 +44,10 @@ fu! GitPath() " Get git file path and hash it to map filenames to repros
 endf
 fu! RestoreCopy()
   let f = '/tmp/vimcopy.txt'
-  if filereadable(f) | let @" = join(readfile(f), "\n") | endif
+  sleep 50m
+  if filereadable(f) | 
+      let @" = join(readfile(f), "\n") | 
+  endif
 endf
 fu! OnBlur() " write git repo aware viminfo
   let f=GitPath()
@@ -53,6 +56,7 @@ fu! OnBlur() " write git repo aware viminfo
   call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
+  sleep 10m
   sil! exe 'rviminfo! '.GitPath().'.viminfo' | redraw! " redraw to clear any focus ansi glitches. 
   call RestoreCopy()
 endf
@@ -62,6 +66,7 @@ fu! OnEnter() " open last opened file in repo and restore git aware viminfo
     let b = split(get(readfile(f.'.file'), 0, ':'), ':')
     if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
   endif
+  sleep 10m
   sil! exe 'rviminfo! '.f.'.viminfo'
   call RestoreCopy()
 endf
