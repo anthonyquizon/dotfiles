@@ -44,12 +44,15 @@ fu! GitPath() " Get git file path and hash it to map filenames to repros
 endf
 fu! RestoreCopy()
   let f = '/tmp/vimcopy.txt'
+  echom "restore copy"
+  echom filereadable(f)
+  echom readfile(f)
   if filereadable(f) | let @" = join(readfile(f), "\n") | endif
 endf
 fu! OnBlur() " write git repo aware viminfo
   let f=GitPath()
   exe 'wviminfo! '.f.'.viminfo'
-  call writefile([@"], '/tmp/vimcopy.txt')
+  if @" != '' | call writefile([@"], '/tmp/vimcopy.txt') | endif
   call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
 fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
