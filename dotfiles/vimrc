@@ -44,9 +44,6 @@ fu! GitPath() " Get git file path and hash it to map filenames to repros
 endf
 fu! RestoreCopy()
   let f = '/tmp/vimcopy.txt'
-  echom "restore copy"
-  echom filereadable(f)
-  echom readfile(f)
   if filereadable(f) | let @" = join(readfile(f), "\n") | endif
 endf
 fu! OnBlur() " write git repo aware viminfo
