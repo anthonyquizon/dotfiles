@@ -29,6 +29,7 @@ w(){
 compdef '_files -/' w
  
 PATH=$PATH:/$HOME/.local/bin
+PATH=$PATH:/$HOME/go/bin
 
 precmd() {
     PROMPT="%F{red}%n%F{blue} %1d%f %F{cyan}$(git_b)%f %F{blue}→%f "
