@@ -85,22 +85,14 @@ for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchst
 unl a b c d l i
 au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
 au BufRead,BufNewFile *.bqn setf bqn
+au BufNewFile,BufRead *.arr set ft=bqn
 au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
-fu! SendToSocket() range
-  let host = 'localhost'
-  let port = '8080'
-  let tmp = tempname()
-  call writefile([expand('%:p')] + [a:firstline.':'.a:lastline] + getline(1, '$'), tmp, 'b')
-  call system('nc -c -w0 ' . host . ' ' . port . ' < ' . tmp . ' &')
-  call delete(tmp)
-endf
-nn <leader>w :call SendToSocket()<CR>
-vn <leader>w :call SendToSocket()<CR>
 nn <leader>r :source $MYVIMRC<CR>
-nn <leader>d i▯<Esc>
-vn <leader>d I▯<Esc>
+nn <leader>D :%s/•Show //g<CR>
+nn <leader>d i•Show <Esc>
+vn <leader>d I•Show <Esc>
 fu FmtBQN() 
     let c=join(getline(1, '$'), "\n")
     let t=tempname()
