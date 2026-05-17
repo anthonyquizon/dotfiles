@@ -11,10 +11,11 @@ mkdir -pv $HOME/.config/nvim/
 ln -svf $PWD/dotfiles/vimrc   $HOME/.vimrc
 
 # vim plugins
-rm -r ~/.vim/pack
-git clone https://github.com/preservim/nerdcommenter.git ~/.vim/pack/vendor/start/nerdcommenter
-git clone https://github.com/vim-fuzzbox/fuzzbox.vim ~/.vim/pack/plugins/start/fuzzbox
-git clone https://github.com/mattn/emmet-vim.git ~/.vim/pack/mattn/start/emmet-vim
+rm -rf ~/.vim/pack
+git clone --depth 1 https://github.com/preservim/nerdcommenter.git ~/.vim/pack/vendor/start/nerdcommenter
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.vim/pack/plugins/start/fzf
+git clone --depth 1 https://github.com/junegunn/fzf.vim.git ~/.vim/pack/plugins/start/fzf.vim
+git clone --depth 1 https://github.com/mattn/emmet-vim.git ~/.vim/pack/mattn/start/emmet-vim
 
 # git
 ln -sf $PWD/dotfiles/gitconfig $HOME/.gitconfig

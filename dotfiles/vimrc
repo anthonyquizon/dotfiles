@@ -31,14 +31,12 @@ vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                          
 nn <C-w>v :echo "disabled"<CR>
 nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
-nn <leader><leader> :FuzzyFilesRoot<CR>|                              
-nn <leader>/ :FuzzyGrep<CR>|
-nn <leader>. :FuzzyInBuffer<CR>|
-nn <leader>m :FuzzyMRU<CR>|
+nn <leader><leader> :Files<CR>|                              
+nn <leader>/ :Rg<CR>|
+nn <leader>. :BLines<CR>|
+nn <leader>m :History<CR>|
 cno <C-a> <Home>
 cno <C-e> <End>
-let g:fuzzbox_keymaps = {'preview_up_half_page':[], 'delete_all': ["\<c-u>"]}
-let g:fuzzbox_ripgrep_options = [ "--no-fixed-strings" ]
 " git directory aware vim contexts. Preserves viminfo and jumps in each git repro
 fu! GitPath() " Get git file path and hash it to map filenames to repros
   let dir = trim(system('git rev-parse --show-toplevel 2>/dev/null'))
