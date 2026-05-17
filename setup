@@ -11,8 +11,9 @@ mkdir -pv $HOME/.config/nvim/
 ln -svf $PWD/dotfiles/vimrc   $HOME/.vimrc
 
 # vim plugins
+rm -r ~/.vim/pack
 git clone https://github.com/preservim/nerdcommenter.git ~/.vim/pack/vendor/start/nerdcommenter
-git clone https://github.com/Donaldttt/fuzzyy ~/.vim/pack/Donaldttt/start/fuzzyy
+git clone https://github.com/vim-fuzzbox/fuzzbox.vim ~/.vim/pack/plugins/start/fuzzbox
 git clone https://github.com/mattn/emmet-vim.git ~/.vim/pack/mattn/start/emmet-vim
 
 # git
