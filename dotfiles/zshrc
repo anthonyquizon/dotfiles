@@ -44,6 +44,7 @@ bindkey ";5;13~" backward-word
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
 
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!{.git,node_modules,_archived,_coding,.env,.venv}/*"'
 
 # helpers functions
 rename_prefix() {
