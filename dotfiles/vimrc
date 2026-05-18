@@ -31,7 +31,7 @@ vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                          
 nn <C-w>v :echo "disabled"<CR>
 nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
-nn <leader><leader> :Files<CR>|                              
+nn <leader><leader> :Files<CR>|                                                                 " FZF stuff
 nn <leader>/ :Rg<CR>|
 nn <leader>. :BLines<CR>|
 nn <leader>m :History<CR>|
@@ -88,9 +88,10 @@ au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
 nn <leader>r :source $MYVIMRC<CR>
-nn <leader>D :%s/•Show //gi<CR><C-o>
-nn <leader>d i•Show <Esc>
-vn <leader>d I•Show <Esc>
+nn <leader>G :%s/•Show //gi<CR><C-o>
+vn <leader>G :s/\%V•Show //gi<CR><ESC>
+nn <leader>g i•Show <Esc>
+vn <leader>g I•Show <Esc>
 fu! FmtBQN(l)
   let c=join(getline(1, '$'), "\n")
   let o=system('bqf', c)
