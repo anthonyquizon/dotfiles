@@ -31,7 +31,7 @@ vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                          
 nn <C-w>v :echo "disabled"<CR>
 nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
-nn <leader><leader> :GitFiles<CR>|                                                                 " FZF stuff
+nn <leader><leader> :Files<CR>|                                                                 " FZF stuff
 nn <leader>/ :Rg<CR>|
 nn <leader>. :BLines<CR>|
 nn <leader>m :History<CR>|
@@ -72,6 +72,13 @@ au TextYankPost,VimLeave,FocusLost * call OnBlur()
 au FocusGained * call OnFocus()
 au VimEnter * nested call OnEnter() | "nested to allow filetype detect to work
 au VimEnter,FocusGained,BufEnter * let @/ = "" | " disable current highlight due to glitches with newlines being selected on focus
+function! s:cd_git_root()
+  let root = system('git rev-parse --show-toplevel 2>/dev/null')
+  if v:shell_error == 0
+    execute 'cd' trim(root)
+  endif
+endfunction
+autocmd VimEnter * call s:cd_git_root()
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
