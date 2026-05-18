@@ -76,7 +76,7 @@ au VimEnter,FocusGained,BufEnter * let @/ = "" | " disable current highlight due
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
 let c ='AdDESsTtoONkyRrQqZij0123)!@#*-_|'
-let d ="∀ΔΔ∃■□◀◁○⬤ℕ✓☺ℝ↺▫▯Σᵢⱼ₀₁₂₃⁰¹²³꘎ⁿₙ|"
+let d ="∀ΔΔ∃■□◀◁○⬤ℕ✓☺ℝ↺▫▯Σᵢⱼ₀₁₂₃⁰¹²³꘎ⁿₙ|" | " g used for •Show
 let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
 for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|')|endfor|endfor
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
@@ -88,7 +88,8 @@ au FileType bqn syn match bqncom "#.*$"
 au FileType bqn hi link bqncom comment
 au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
 nn <leader>r :source $MYVIMRC<CR>
-nn <leader>G :%s/•Show //gi<CR><C-o>
+nn <leader>G mm:%s/•Show //g<CR>`m
+ino <Bar>g •Show 
 vn <leader>G :s/\%V•Show //gi<CR><ESC>
 nn <leader>g i•Show <Esc>
 vn <leader>g I•Show <Esc>
