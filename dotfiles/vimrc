@@ -31,7 +31,7 @@ vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                          
 nn <C-w>v :echo "disabled"<CR>
 nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
-nn <leader><leader> :Files<CR>|                                                                 " FZF stuff
+nn <leader><leader> :GitFiles<CR>|                                                                 " FZF stuff
 nn <leader>/ :Rg<CR>|
 nn <leader>. :BLines<CR>|
 nn <leader>m :History<CR>|
