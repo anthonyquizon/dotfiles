@@ -28,8 +28,7 @@ vn  <C-p> "*p                                                                   
 nn  <C-j> :m .+1<CR>==| nn <C-k> :m .-2<CR>==|                                                  " shuffle line one up or down Normal mode
 ino <C-j> <Esc>:m .+1<CR>==gi| ino <C-k> <Esc>:m .-2<CR>==gi|                                   " shuffle line one up or down Insert mode
 vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                                          " shuffle line one up or down Visual mode
-nn <C-w>v :echo "disabled"<CR>
-nn <C-w>s :echo "disabled"<CR>
+nn <C-w>v :echo "disabled"<CR> | nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right,50%,<50(hidden)', 'ctrl-/']
@@ -63,13 +62,6 @@ fu! RestoreCopy()
   let f = '/tmp/vimcopy.txt'
   if filereadable(f) | let @" = join(readfile(f), "\n") | endif
 endf
-au InsertLeave,TextChanged    * if GitRoot() != '' | sil! w | endif
-au VimEnter                   * let r=GitRoot() | if r!='' | exe 'cd' r | endif
-au VimEnter                   * nested call RestoreCopy()
-au TextYankPost,VimLeave,FocusLost * call OnBlur()
-au FocusGained                * call RestoreCopy()
-au VimEnter,FocusGained,BufEnter * let @/ = ''
-" BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
 let c ='AdDESsTtoONkyRrQqZij0123)!@#*-_|'
@@ -78,12 +70,6 @@ let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
 for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|')|endfor|endfor
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
 unl a b c d l i
-au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
-au BufRead,BufNewFile *.bqn setf bqn
-au BufNewFile,BufRead *.arr set ft=bqn
-au FileType bqn syn match bqncom "#.*$"
-au FileType bqn hi link bqncom comment
-au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
 nn <leader>r :source $MYVIMRC<CR>
 nn <leader>G mm:%s/•Show //g<CR>`m
 ino <Bar>g •Show 
@@ -101,3 +87,18 @@ fu! ExpBQN(l)
 endf
 vn <leader>e "vy :call ExpBQN(@v)<cr>
 nn <leader>e :call ExpBQN(getline('.'))<cr>
+augroup Vimrc
+  au!
+  au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
+  au BufRead,BufNewFile *.bqn setf bqn
+  au BufNewFile,BufRead *.arr set ft=bqn
+  au FileType bqn syn match bqncom "#.*$"
+  au FileType bqn hi link bqncom comment
+  au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
+  au InsertLeave,TextChanged    * if GitRoot() != '' | sil! w | endif
+  au VimEnter                   * let r=GitRoot() | if r!='' | exe 'cd' r | endif
+  au VimEnter                   * nested call RestoreCopy()
+  au TextYankPost,VimLeave,FocusLost * call OnBlur()
+  au FocusGained                * call RestoreCopy()
+  au VimEnter,FocusGained,BufEnter * let @/ = ''
+augroup END
