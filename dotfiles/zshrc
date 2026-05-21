@@ -9,13 +9,14 @@ git_b() {
     git branch 2>/dev/null | grep '^*' | colrm 1 2
 }
 
-EDITOR='vim'
-VISUAL='vim'
+EDITOR='nvim'
+VISUAL='nvim'
 alias ls='ls -G'
 alias git='noglob git'
 alias gti=git
-alias e='vim -c "call Restore()"'
-alias E='vim -c "Explore"'
+alias vim='nvim'
+alias e='nvim -c "call Restore()"'
+alias E='nvim -c "Explore"'
 
 # watch command with find and entr
 w(){

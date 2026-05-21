@@ -19,6 +19,13 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.vim/pack/plugins/star
 git clone --depth 1 https://github.com/junegunn/fzf.vim.git ~/.vim/pack/plugins/start/fzf.vim
 git clone --depth 1 https://github.com/mattn/emmet-vim.git ~/.vim/pack/mattn/start/emmet-vim
 
+# neovim plugins (native)
+rm -rf ~/.config/nvim/pack
+git clone --depth 1 https://github.com/preservim/nerdcommenter.git ~/.config/nvim/pack/vendor/start/nerdcommenter
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/nvim/pack/plugins/start/fzf
+git clone --depth 1 https://github.com/junegunn/fzf.vim.git ~/.config/nvim/pack/plugins/start/fzf.vim
+git clone --depth 1 https://github.com/mattn/emmet-vim.git ~/.config/nvim/pack/mattn/start/emmet-vim
+
 # git
 ln -sf $PWD/dotfiles/gitconfig $HOME/.gitconfig
 
