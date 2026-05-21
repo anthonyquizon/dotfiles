@@ -7,8 +7,10 @@ ln -svf $PWD/dotfiles/zshrc $HOME/.zlogin              # needed for mac
 
 # vim
 mkdir -pv $HOME/.vim/undodir
+mkdir -pv $HOME/.nvim/undodir
 mkdir -pv $HOME/.config/nvim/
 ln -svf $PWD/dotfiles/vimrc   $HOME/.vimrc
+ln -svf $PWD/dotfiles/init.vim   $HOME/.config/nvim/init.vim
 
 # vim plugins
 rm -rf ~/.vim/pack
@@ -21,5 +23,6 @@ git clone --depth 1 https://github.com/mattn/emmet-vim.git ~/.vim/pack/mattn/sta
 ln -sf $PWD/dotfiles/gitconfig $HOME/.gitconfig
 
 # bqn stuff
-sudo ln -sf $PWD/bqe /usr/local/bin
-sudo ln -sf $PWD/bqf /usr/local/bin
+mkdir -pv $HOME/.local/bin
+ln -sf $PWD/bqe $HOME/.local/bin
+ln -sf $PWD/bqf $HOME/.local/bin
