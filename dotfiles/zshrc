@@ -14,7 +14,7 @@ VISUAL='vim'
 alias ls='ls -G'
 alias git='noglob git'
 alias gti=git
-alias e='vim restore'
+alias e='vim -c "call Restore()"'
 alias E='vim -c "Explore"'
 
 # watch command with find and entr

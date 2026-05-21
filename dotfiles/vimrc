@@ -55,32 +55,23 @@ fu! OnBlur() " write git repo aware viminfo
   if @" != '' | call writefile([@"], '/tmp/vimcopy.txt') | endif
   call writefile([expand('%:p').":".line('.')], f.'.file') 
 endf
-fu! OnFocus() " write last opened file in repo and restore git aware viminfo. 
-  sleep 10m
-  sil! exe 'rviminfo! '.GitPath().'.viminfo' | redraw! " redraw to clear any focus ansi glitches. 
-  call RestoreCopy()
-endf
-fu! OnEnter() " open last opened file in repo and restore git aware viminfo
-  let f=GitPath() 
-  if get(argv(), 0, '') == 'restore' && filereadable(f.'.file') 
+fu! Restore()
+  let f=GitPath()
+  if filereadable(f.'.file') 
     let b = split(get(readfile(f.'.file'), 0, ':'), ':')
     if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
+    sil! exe 'rviminfo! '.f.'.viminfo'
   endif
-  sleep 10m
-  sil! exe 'rviminfo! '.f.'.viminfo'
-  call RestoreCopy()
 endf
-au TextYankPost,VimLeave,FocusLost * call OnBlur()
-au FocusGained * call OnFocus()
-au VimEnter * nested call OnEnter() | "nested to allow filetype detect to work
-au VimEnter,FocusGained,BufEnter * let @/ = "" | " disable current highlight due to glitches with newlines being selected on focus
-function! s:cd_git_root()
+fu! s:cd_git_root()
   let root = system('git rev-parse --show-toplevel 2>/dev/null')
-  if v:shell_error == 0
-    execute 'cd' trim(root)
-  endif
-endfunction
+  if v:shell_error == 0 | execute 'cd' trim(root) | endif
+endf
 autocmd VimEnter * call s:cd_git_root()
+au TextYankPost,VimLeave,FocusLost * call OnBlur()
+au FocusGained * call RestoreCopy()
+au VimEnter * call RestoreCopy() | "nested to allow filetype detect to work
+au VimEnter,FocusGained,BufEnter * let @/ = "" | " disable current highlight due to glitches with newlines being selected on focus
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
