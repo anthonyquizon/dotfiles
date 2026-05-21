@@ -67,7 +67,12 @@ fu! s:cd_git_root()
   let root = system('git rev-parse --show-toplevel 2>/dev/null')
   if v:shell_error == 0 | execute 'cd' trim(root) | endif
 endf
-autocmd VimEnter * call s:cd_git_root()
+fu! InGitRepo()
+  return system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse') == ''
+endf
+au InsertLeave,TextChanged * silent! write
+"au FocusGained,BufEnter * if InGitRepo() | checktime | endif
+au VimEnter * call s:cd_git_root()
 au TextYankPost,VimLeave,FocusLost * call OnBlur()
 au FocusGained * call RestoreCopy()
 au VimEnter * call RestoreCopy() | "nested to allow filetype detect to work
