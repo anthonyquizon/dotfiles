@@ -39,44 +39,36 @@ nn <leader>. :BLines<CR>|
 nn <leader>m :History<CR>|
 cno <C-a> <Home>
 cno <C-e> <End>
-" git directory aware vim contexts. Preserves viminfo and jumps in each git repro
-fu! GitPath() " Get git file path and hash it to map filenames to repros
-  let dir = trim(system('git rev-parse --show-toplevel 2>/dev/null'))
-  return '/tmp/'.(v:shell_error ? 'global' : trim(system('echo ' . dir . ' | md5')))
+fu! GitRoot()
+  let r = trim(system('git rev-parse --show-toplevel 2>/dev/null')) | return v:shell_error ? '' : r
 endf
-fu! RestoreCopy()
-  let f = '/tmp/vimcopy.txt'
-  sleep 50m
-  if filereadable(f) | let @" = join(readfile(f), "\n") | endif
+fu! GitPath()
+  let r = GitRoot() | return '/tmp/'.(r == '' ? 'global' : trim(system('echo '.r.' | md5')))
 endf
-fu! OnBlur() " write git repo aware viminfo
-  let f=GitPath()
+fu! OnBlur()
+  let f = GitPath()
   exe 'wviminfo! '.f.'.viminfo'
   if @" != '' | call writefile([@"], '/tmp/vimcopy.txt') | endif
-  call writefile([expand('%:p').":".line('.')], f.'.file') 
+  call writefile([expand('%:p').':'.line('.')], f.'.file')
 endf
 fu! Restore()
-  let f=GitPath()
-  if filereadable(f.'.file') 
-    let b = split(get(readfile(f.'.file'), 0, ':'), ':')
-    if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
-    sil! exe 'rviminfo! '.f.'.viminfo'
-  endif
+  let f = GitPath()
+  if !filereadable(f.'.file') | return | endif
+  let b = split(get(readfile(f.'.file'), 0, ''), ':')
+  if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
+  sil! exe 'rviminfo! '.f.'.viminfo'
 endf
-fu! s:cd_git_root()
-  let root = system('git rev-parse --show-toplevel 2>/dev/null')
-  if v:shell_error == 0 | execute 'cd' trim(root) | endif
+fu! RestoreCopy()
+  sleep 50m
+  let f = '/tmp/vimcopy.txt'
+  if filereadable(f) | let @" = join(readfile(f), "\n") | endif
 endf
-fu! InGitRepo()
-  return system('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse') == ''
-endf
-au InsertLeave,TextChanged * silent! write
-"au FocusGained,BufEnter * if InGitRepo() | checktime | endif
-au VimEnter * call s:cd_git_root()
+au InsertLeave,TextChanged    * if GitRoot() != '' | sil! w | endif
+au VimEnter                   * let r=GitRoot() | if r!='' | exe 'cd' r | endif
+au VimEnter                   * nested call RestoreCopy()
 au TextYankPost,VimLeave,FocusLost * call OnBlur()
-au FocusGained * call RestoreCopy()
-au VimEnter * call RestoreCopy() | "nested to allow filetype detect to work
-au VimEnter,FocusGained,BufEnter * let @/ = "" | " disable current highlight due to glitches with newlines being selected on focus
+au FocusGained                * call RestoreCopy()
+au VimEnter,FocusGained,BufEnter * let @/ = ''
 " BQN
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
