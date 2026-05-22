@@ -64,8 +64,8 @@ fu! RestoreCopy()
 endf
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
-let c ='AdDESsTtoONkyRrQqZij0123)!@#*-_|'
-let d ="∀ΔΔ∃■□◀◁○⬤ℕ✓☺ℝ↺▫▯Σᵢⱼ₀₁₂₃⁰¹²³꘎ⁿₙ|" | " g used for •Show
+let c ='AdDESsTtoONkyRrQqZij01234)!@#*-_|'
+let d ="∀ΔΔ∃■□◀◁○⬤ℕ✓☺ℝ↺▫▯Σᵢⱼ₀₁₂₃₄⁰¹²³꘎ⁿₙ|" | " g used for •Show
 let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
 for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|')|endfor|endfor
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
