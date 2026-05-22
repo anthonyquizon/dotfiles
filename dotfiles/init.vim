@@ -76,7 +76,7 @@ ino <Bar>g •Show
 vn <leader>G :s/\%V•Show //gi<CR><ESC>
 nn <leader>g i•Show <Esc>
 vn <leader>g I•Show <Esc>
-fu! FmtBQN(l)
+fu! FmtBQN()
   let c=join(getline(1, '$'), "\n")
   let o=system('bqf', c)
   call setline(1, split(o, "\n",1))
