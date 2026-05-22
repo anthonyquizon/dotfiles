@@ -71,10 +71,13 @@ for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
 unl a b c d l i
 nn <leader>r :source $MYVIMRC<CR>
-nn <leader>G mm:%s/•Show //g<CR>`m
+nn <leader>Q mm:%s/•Show //g<CR>`m
+nn <leader>q :s/•Show //g<CR>
 ino <Bar>g •Show 
-vn <leader>G :s/\%V•Show //gi<CR><ESC>
+ino <Bar>G •Show 
+vn <leader>q :s/\%V•Show //gi<CR><ESC>
 nn <leader>g i•Show <Esc>
+nn <leader>G I•Show <Esc>
 vn <leader>g I•Show <Esc>
 fu! FmtBQN(l)
   let c=join(getline(1, '$'), "\n")
