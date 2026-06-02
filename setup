@@ -6,18 +6,9 @@ ln -svf $PWD/dotfiles/zshrc $HOME/.zshrc
 ln -svf $PWD/dotfiles/zshrc $HOME/.zlogin              # needed for mac
 
 # vim
-mkdir -pv $HOME/.vim/undodir
 mkdir -pv $HOME/.nvim/undodir
 mkdir -pv $HOME/.config/nvim/
-ln -svf $PWD/dotfiles/vimrc   $HOME/.vimrc
 ln -svf $PWD/dotfiles/init.vim   $HOME/.config/nvim/init.vim
-
-# vim plugins
-rm -rf ~/.vim/pack
-git clone --depth 1 https://github.com/preservim/nerdcommenter.git ~/.vim/pack/vendor/start/nerdcommenter
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.vim/pack/plugins/start/fzf
-git clone --depth 1 https://github.com/junegunn/fzf.vim.git ~/.vim/pack/plugins/start/fzf.vim
-git clone --depth 1 https://github.com/mattn/emmet-vim.git ~/.vim/pack/mattn/start/emmet-vim
 
 # neovim plugins (native)
 rm -rf ~/.config/nvim/pack
