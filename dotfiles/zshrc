@@ -25,6 +25,7 @@ w(){
         -not -path "*/.git/*" \
         -not -path "*/dist/*" \
         -not -path "*/_site/*" \
+        -not -path "*/_out/*" \
         | entr -r $@
 }
 compdef '_files -/' w
@@ -65,4 +66,3 @@ search_replace() {
             -exec sed -i '' "s/$2/$3/g" {} +;
     fi
 }
-

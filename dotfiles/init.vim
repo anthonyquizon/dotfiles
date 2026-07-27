@@ -92,11 +92,10 @@ augroup Vimrc
   au!
   au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
   au BufRead,BufNewFile *.bqn setf bqn
-  au BufNewFile,BufRead *.arr set ft=bqn
   au FileType bqn syn match bqncom "#.*$"
   au FileType bqn hi link bqncom comment
   au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
-  au InsertLeave,TextChanged    * if GitRoot() != '' | sil! w | endif
+  au InsertLeave,TextChanged    * sil! w
   au VimEnter                   * let r=GitRoot() | if r!='' | exe 'cd' r | endif
   au VimEnter                   * nested call RestoreCopy()
   au TextYankPost,VimLeave,FocusLost * call OnBlur()
