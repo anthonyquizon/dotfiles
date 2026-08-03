@@ -48,16 +48,22 @@ fu! OnBlur()
   if @" != '' | call writefile([@"], '/tmp/vimcopy.txt') | endif
   call writefile([expand('%:p').':'.line('.')], f.'.file')
 endf
-" called externally on 'e'
+" called externally on 'e'. Restore cusor at last position and file in git project
 fu! Restore()
-  " restore viminfo data
   let f = GitPath()
-  if !filereadable(f.'.file') | return | endif
-  let b = split(get(readfile(f.'.file'), 0, ''), ':')
-  if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
+  if filereadable(f.'.file') 
+      let b = split(get(readfile(f.'.file'), 0, ''), ':')
+      if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
+  endif
+  call RestoreFocus()
+endf
+fu! RestoreFocus()
+  " avoid race conditions between vim instances
+  sleep 50m
+  " restore git specific viminfo data
+  let f = GitPath()
   sil! exe 'rviminfo! '.f.'.viminfo'
-
-  " restore copy data
+  " restore copy data. copy data is shared between all instances
   let f = '/tmp/vimcopy.txt'
   if filereadable(f) | let @" = join(readfile(f), "\n") | endif
 endf
@@ -98,8 +104,8 @@ augroup Vimrc
   au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
   au InsertLeave,TextChanged    * sil! w
   au VimEnter                   * let r=GitRoot() | if r!='' | exe 'cd' r | endif
-  au VimEnter                   * nested call Restore()
+  au VimEnter                   * nested call RestoreFocus()
   au TextYankPost,VimLeave,FocusLost * call OnBlur()
-  au FocusGained                * call Restore()
+  au FocusGained                * call RestoreFocus()
   au VimEnter,FocusGained,BufEnter * let @/ = ''
 augroup END
