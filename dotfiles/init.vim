@@ -48,15 +48,16 @@ fu! OnBlur()
   if @" != '' | call writefile([@"], '/tmp/vimcopy.txt') | endif
   call writefile([expand('%:p').':'.line('.')], f.'.file')
 endf
+" called externally on 'e'
 fu! Restore()
+  " restore viminfo data
   let f = GitPath()
   if !filereadable(f.'.file') | return | endif
   let b = split(get(readfile(f.'.file'), 0, ''), ':')
   if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
   sil! exe 'rviminfo! '.f.'.viminfo'
-endf
-fu! RestoreCopy()
-  sleep 50m
+
+  " restore copy data
   let f = '/tmp/vimcopy.txt'
   if filereadable(f) | let @" = join(readfile(f), "\n") | endif
 endf
@@ -97,8 +98,8 @@ augroup Vimrc
   au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
   au InsertLeave,TextChanged    * sil! w
   au VimEnter                   * let r=GitRoot() | if r!='' | exe 'cd' r | endif
-  au VimEnter                   * nested call RestoreCopy()
+  au VimEnter                   * nested call Restore()
   au TextYankPost,VimLeave,FocusLost * call OnBlur()
-  au FocusGained                * call RestoreCopy()
+  au FocusGained                * call Restore()
   au VimEnter,FocusGained,BufEnter * let @/ = ''
 augroup END
