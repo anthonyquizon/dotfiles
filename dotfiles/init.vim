@@ -59,7 +59,7 @@ fu! Restore()
 endf
 fu! RestoreFocus()
   " avoid race conditions between vim instances
-  sleep 50m
+  sleep 20m
   " restore git specific viminfo data
   let f = GitPath()
   sil! exe 'rviminfo! '.f.'.viminfo'
