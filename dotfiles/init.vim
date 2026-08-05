@@ -95,15 +95,20 @@ fu! ExpBQN(l)
 endf
 vn <leader>e "vy :call ExpBQN(@v)<cr>
 nn <leader>e :call ExpBQN(getline('.'))<cr>
-" Use Ctrl + hjkl to move around without leaving Replace / Insert mode
-ino <C-h> <C-o>h
-ino <C-j> <C-o>j
-ino <C-k> <C-o>k
-ino <C-l> <C-o>l
-ino <C-n> <C-o>l<C-o>j
-ino <C-b> <C-o>h<C-o>j
-ino <C-u> <C-o>l<C-o>k
-ino <C-y> <C-o>h<C-o>k
+" Replace mode navigation mappings
+inoremap <expr> j mode()[0] ==# 'R' ? "\<Down>" : "j"
+inoremap <expr> k mode()[0] ==# 'R' ? "\<Up>" : "k"
+inoremap <expr> h mode()[0] ==# 'R' ? "\<Left>"  : "h"
+inoremap <expr> l mode()[0] ==# 'R' ? "\<Right>" : "l"
+inoremap <expr> b mode()[0] ==# 'R' ? "\<Right><Down>" : "b"
+inoremap <expr> n mode()[0] ==# 'R' ? "\<Left><Down>" : "n"
+inoremap <expr> u mode()[0] ==# 'R' ? "\<Right><Up>" : "u"
+inoremap <expr> y mode()[0] ==# 'R' ? "\<Left><Up>" : "y"
+augroup RModeNoJK
+  autocmd!
+  autocmd ModeChanged *:R*  silent! iunmap jk
+  autocmd ModeChanged R*:*  inoremap jk <Esc>
+augroup END
 augroup Vimrc
   au!
   au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
