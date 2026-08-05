@@ -95,6 +95,15 @@ fu! ExpBQN(l)
 endf
 vn <leader>e "vy :call ExpBQN(@v)<cr>
 nn <leader>e :call ExpBQN(getline('.'))<cr>
+" Use Ctrl + hjkl to move around without leaving Replace / Insert mode
+ino <C-h> <C-o>h
+ino <C-j> <C-o>j
+ino <C-k> <C-o>k
+ino <C-l> <C-o>l
+ino <C-n> <C-o>l<C-o>j
+ino <C-b> <C-o>h<C-o>j
+ino <C-u> <C-o>l<C-o>k
+ino <C-y> <C-o>h<C-o>k
 augroup Vimrc
   au!
   au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
