@@ -1,7 +1,7 @@
 scripte utf-8 
 set shell=/bin/bash
-set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab hidden
-set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=4 tabstop=4 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
+set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab hidden virtualedit=all
+set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=2 tabstop=2 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
 set backspace=indent,eol,start hlsearch path+=** wildmenu autoread undofile undodir=~/.nvim/undodir 
 set grepprg=rg\ --vimgrep|set complete= |set grepformat^=%f:%l:%c:%m|set viminfo='50,<5000,s100  " increase vim register limit so that we can copy more data between instances 
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
@@ -70,20 +70,20 @@ endf
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
 let c ='AdDESsTtoONkyRrQqZij01234)!@#*-_|'
-let d ="∀ΔΔ∃■□◀◁○⬤ℕ✓☺ℝ↺▫▯Σᵢⱼ₀₁₂₃₄⁰¹²³꘎ⁿₙ|" | " g used for •Show
+let d ="∀ΔΔ∃■□◀◁○⬤ℕ✓☺ℝ↺▫▯Σᵢⱼ₀₁₂₃₄⁰¹²³꘎ⁿₙ|" | " g used for •SHOW
 let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
 for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|')|endfor|endfor
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
 unl a b c d l i
 nn <leader>r :source $MYVIMRC<CR>
-nn <leader>Q mm:%s/•Show //g<CR>`m
-nn <leader>q :s/•Show //g<CR>
-ino <Bar>g •Show 
-ino <Bar>G •Show 
-vn <leader>q :s/\%V•Show //gi<CR><ESC>
-nn <leader>g i•Show <Esc>
-nn <leader>G I•Show <Esc>
-vn <leader>g I•Show <Esc>
+nn <leader>Q mm:%s/•SHOW //g<CR>`m
+nn <leader>q :s/•SHOW //g<CR>
+ino <Bar>g •SHOW 
+ino <Bar>G •SHOW 
+vn <leader>q :s/\%V•SHOW //gi<CR><ESC>
+nn <leader>g i•SHOW <Esc>
+nn <leader>G I•SHOW <Esc>
+vn <leader>g I•SHOW <Esc>
 fu! FmtBQN()
   let c=join(getline(1, '$'), "\n")
   let o=system('bqf', c)
