@@ -76,11 +76,11 @@ for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
 unl a b c d l i
 nn <leader>r :source $MYVIMRC<CR>
-nn <leader>Q mm:%s/•SHOW //g<CR>`m
-nn <leader>q :s/•SHOW //g<CR>
+nn <leader>D mm:%s/•SHOW //g<CR>:noh<CR>`m
+nn <leader>d :s/•SHOW //g<CR>:noh<CR>
 ino <Bar>g •SHOW 
 ino <Bar>G •SHOW 
-vn <leader>q :s/\%V•SHOW //gi<CR><ESC>
+vn <leader>d :s/\%V•SHOW //gi<CR><ESC>
 nn <leader>g i•SHOW <Esc>
 nn <leader>G I•SHOW <Esc>
 vn <leader>g I•SHOW <Esc>
