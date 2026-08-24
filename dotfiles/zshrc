@@ -66,3 +66,6 @@ search_replace() {
             -exec sed -i '' "s/$2/$3/g" {} +;
     fi
 }
+
+# fx CLI
+export PATH="/Users/anthonyquizon/.local/bin:$PATH"

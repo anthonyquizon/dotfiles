@@ -1,6 +1,6 @@
 scripte utf-8 
 set shell=/bin/bash
-set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab hidden
+set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab hidden virtualedit=block
 set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=2 tabstop=2 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
 set backspace=indent,eol,start hlsearch path+=** wildmenu autoread undofile undodir=~/.nvim/undodir 
 set grepprg=rg\ --vimgrep|set complete= |set grepformat^=%f:%l:%c:%m|set viminfo='50,<5000,s100  " increase vim register limit so that we can copy more data between instances 
@@ -46,6 +46,8 @@ fu! OnBlur()
   let f = GitPath()
   exe 'wviminfo! '.f.'.viminfo'
   if @" != '' | call writefile([@"], '/tmp/vimcopy.txt') | endif
+  echom @/
+  if @/ != '' | call writefile([@/], '/tmp/vimsearch.txt') | endif
   call writefile([expand('%:p').':'.line('.')], f.'.file')
 endf
 " called externally on 'e'. Restore cusor at last position and file in git project
@@ -65,7 +67,13 @@ fu! RestoreFocus()
   sil! exe 'rviminfo! '.f.'.viminfo'
   " restore copy data. copy data is shared between all instances
   let f = '/tmp/vimcopy.txt'
+  let g = '/tmp/vimsearch.txt'
   if filereadable(f) | let @" = join(readfile(f), "\n") | endif
+  if filereadable(g) | let @/ = join(readfile(g), "\n") | endif
+  let @/ = "wooooo"
+  call histadd("search", @/)
+let v:hlsearch = 1
+  "echom @/
 endf
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
@@ -96,6 +104,7 @@ endf
 vn <leader>e "vy :call ExpBQN(@v)<cr>
 nn <leader>e :call ExpBQN(getline('.'))<cr>
 " Replace mode navigation mappings
+nnoremap R :set ve+=insert<CR>R
 inoremap <expr> j mode()[0] ==# 'R' ? "\<Down>" : "j"
 inoremap <expr> k mode()[0] ==# 'R' ? "\<Up>" : "k"
 inoremap <expr> h mode()[0] ==# 'R' ? "\<Left>"  : "h"
@@ -122,8 +131,5 @@ augroup Vimrc
   au TextYankPost,VimLeave,FocusLost * call OnBlur()
   au FocusGained                * call RestoreFocus()
   au VimEnter,FocusGained,BufEnter * let @/ = ''
-  au ModeChanged *:v,*:V,*:  set virtualedit=all
-  au ModeChanged *:R,*:r set virtualedit=all
-  au ModeChanged v:*,V:*, :* set virtualedit=block
-  au ModeChanged R:*,r:* set virtualedit=block
+  au InsertLeave * set ve-=insert
 augroup END
