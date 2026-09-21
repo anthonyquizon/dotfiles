@@ -25,6 +25,8 @@ w(){
         -not -path "*/.git/*" \
         -not -path "*/dist/*" \
         -not -path "*/_site/*" \
+        -not -path "*/_vendor/*" \
+        -not -path "*/vendor/*" \
         -not -path "*/_out/*" \
         | entr -r $@
 }

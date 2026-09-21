@@ -17,6 +17,8 @@
 	cad = add -A
 	aA = add -A
 	mr = merge
+	wt = worktree
+	w  = worktree
 	push-up = push --set-upstream origin
 [push]
 	default = simple
