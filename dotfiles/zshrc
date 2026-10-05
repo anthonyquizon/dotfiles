@@ -17,6 +17,7 @@ alias gti=git
 alias vim='nvim'
 alias e='nvim -c "call Restore()"'
 alias E='nvim -c "Explore"'
+alias wt='git worktree list'
 
 # watch command with find and entr
 w(){

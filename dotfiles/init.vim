@@ -1,9 +1,10 @@
 scripte utf-8 
 set shell=/bin/bash
 set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab hidden virtualedit=block
-set noswapfile nobackup nowritebackup shiftwidth=4 softtabstop=2 tabstop=2 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
+set noswapfile nobackup nowritebackup shiftwidth=2 softtabstop=2 tabstop=2 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
 set backspace=indent,eol,start hlsearch path+=** wildmenu autoread undofile undodir=~/.nvim/undodir 
 set grepprg=rg\ --vimgrep|set complete= |set grepformat^=%f:%l:%c:%m|set viminfo='50,<5000,s100  " increase vim register limit so that we can copy more data between instances 
+set tags=./tags,tags,.tags,local/tags
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
 filetype indent on | syntax on | filetype plugin on
 au FileType yaml setlocal ai< ci< si< 
@@ -30,6 +31,11 @@ nn <C-w>v :echo "disabled"<CR> | nn <C-w>s :echo "disabled"<CR>
 nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right,50%,<50(hidden)', 'ctrl-/']
+command! -bang -nargs=* Rg call fzf#vim#grep(
+  \ 'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 
+  \ 1, 
+  \ fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), 
+  \ <bang>0)
 nn <leader><leader> :Files<CR>|                                                                 " FZF stuff
 nn <leader>/ :Rg<CR>|
 nn <leader>. :BLines<CR>|
@@ -70,7 +76,6 @@ fu! RestoreFocus()
   let g = '/tmp/vimsearch.txt'
   if filereadable(f) | let @" = join(readfile(f), "\n") | endif
   if filereadable(g) | let @/ = join(readfile(g), "\n") | endif
-  let @/ = "wooooo"
   call histadd("search", @/)
 let v:hlsearch = 1
   "echom @/

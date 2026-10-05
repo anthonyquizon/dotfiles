@@ -19,6 +19,9 @@
 	mr = merge
 	wt = worktree
 	w  = worktree
+	wa  = worktree add
+	wl  = worktree list
+	ls  = worktree list
 	push-up = push --set-upstream origin
 [push]
 	default = simple
