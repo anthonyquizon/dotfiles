@@ -1,85 +1,59 @@
-scripte utf-8 
-set shell=/bin/bash
-set nocompatible autoindent laststatus=2 relativenumber nu smartcase nopaste nowrap expandtab hidden virtualedit=block
-set noswapfile nobackup nowritebackup shiftwidth=2 softtabstop=2 tabstop=2 is ttimeoutlen=100   " ttimeout to stop esc hanging on : commands
-set backspace=indent,eol,start hlsearch path+=** wildmenu autoread undofile undodir=~/.nvim/undodir 
-set grepprg=rg\ --vimgrep|set complete= |set grepformat^=%f:%l:%c:%m|set viminfo='50,<5000,s100  " increase vim register limit so that we can copy more data between instances 
-set tags=./tags,tags,.tags,local/tags
+" nvim defaults already cover: nocompatible ai ls=2 hls is wmnu bs ar hidden ttimeoutlen syntax filetype
+set shell=/bin/bash rnu nu scs nowrap et ve=block noswf nobk nowb sw=2 sts=2 ts=2 path+=** udf udir=~/.nvim/undodir
+set grepprg=rg\ --vimgrep grepformat^=%f:%l:%c:%m complete= shada='50,<5000,s100 tags=./tags,tags,.tags,local/tags  " big shada so registers survive between instances
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
-filetype indent on | syntax on | filetype plugin on
-au FileType yaml setlocal ai< ci< si< 
-set rtp+=~/.nix-profile/bin/
-ino jk <esc>| nn K <nop>| nn U <nop> | nn Q <nop>
-com! Qa qa | com! QA qa | com! Q q|                                                             " typo friendly commands. 'w' commands are separate lines (not |) Parser treats | as filename
-com! WQ wq
-com! Wq wq
-com! W w
-com! E Explore|                                                                                 " Enforce Explore shorthand command (in case of ambiguity eg. Emmet)
-vm < <gv | vm > >gv|                                                                            " visual mode indenting
-vn <leader>s "vy :%s/<C-R>v//g<Left><Left>|                                                     " search visual
-vn <leader>S "vy :%s//<C-R>v/g<C-b><Right><Right><Right>|                                       " search visual
-nn <leader>s :%sno/<C-R><C-W>//g<Left><Left>|                                                   " search
-nn <leader>S :%sno//<C-R><C-W>/g<C-b><Right><Right><Right><Right><Right>|                       " search 
-nn <leader>z :noh<CR>                                                                           " search  highlight
-nn <leader>0 :set scroll=0<CR>                                                                  " scroll reset
-vn  <C-y> "*y                                                                                   " yank into clipboard 
-vn  <C-p> "*p                                                                                   " paste from clipboard 
-nn  <C-j> :m .+1<CR>==| nn <C-k> :m .-2<CR>==|                                                  " shuffle line one up or down Normal mode
-ino <C-j> <Esc>:m .+1<CR>==gi| ino <C-k> <Esc>:m .-2<CR>==gi|                                   " shuffle line one up or down Insert mode
-vn  <C-j> :m '>+1<CR>gv=gv| vn <C-k> :m '<-2<CR>gv=gv|                                          " shuffle line one up or down Visual mode
-nn <C-w>v :echo "disabled"<CR> | nn <C-w>s :echo "disabled"<CR>
-nor <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                     " NERD commenter installed in setup.sh
-let g:fzf_vim = {}
-let g:fzf_vim.preview_window = ['right,50%,<50(hidden)', 'ctrl-/']
-command! -bang -nargs=* Rg call fzf#vim#grep(
-  \ 'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 
-  \ 1, 
-  \ fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), 
-  \ <bang>0)
-nn <leader><leader> :Files<CR>|                                                                 " FZF stuff
-nn <leader>/ :Rg<CR>|
-nn <leader>. :BLines<CR>|
-nn <leader>m :History<CR>|
-cno <C-a> <Home>
-cno <C-e> <End>
+ino jk <Esc>| nn K <Nop>| nn U <Nop>| nn Q <Nop>
+for c in ['Qa qa','QA qa','Q q','W w','WQ wq','Wq wq','E Explore'] | exe 'com! -bar' c | endfor | unl c  " typos; E beats ambiguity (eg. Emmet)
+xn < <gv| xn > >gv|                                                                             " visual mode indenting
+xn <leader>s "vy:%s/<C-R>v//g<Left><Left>|                                                      " search visual
+xn <leader>S "vy:%s//<C-R>v/g<C-b><Right><Right><Right>|
+nn <leader>s :%sno/<C-R><C-W>//g<Left><Left>|                                                   " search word
+nn <leader>S :%sno//<C-R><C-W>/g<C-b><Right><Right><Right><Right><Right>|
+nn <leader>z <Cmd>noh<CR>|                                                                      " clear search highlight
+nn <leader>0 <Cmd>set scroll=0<CR>|                                                             " scroll reset
+xn <C-y> "*y| xn <C-p> "*p|                                                                     " clipboard yank/paste
+nn <C-j> <Cmd>m .+1<CR>==| nn <C-k> <Cmd>m .-2<CR>==|                                           " shuffle line up/down
+ino <C-j> <Esc><Cmd>m .+1<CR>==gi| ino <C-k> <Esc><Cmd>m .-2<CR>==gi|
+xn <C-j> :m '>+1<CR>gv=gv| xn <C-k> :m '<-2<CR>gv=gv|
+nn <C-w>v <Cmd>echo "disabled"<CR>| nn <C-w>s <Cmd>echo "disabled"<CR>
+no <leader>; <Cmd>call nerdcommenter#Comment(1, 'toggle')<CR>|                                  " NERD commenter installed in setup
+cno <C-a> <Home>| cno <C-e> <End>
+let g:fzf_vim = #{preview_window: ['right,50%,<50(hidden)', 'ctrl-/']}
+com! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(#{options: '--delimiter : --nth 4..'}), <bang>0)
+nn <leader><leader> <Cmd>Files<CR>| nn <leader>/ <Cmd>Rg<CR>| nn <leader>. <Cmd>BLines<CR>| nn <leader>m <Cmd>History<CR>
+
+" per git project session state, shared between vim instances
 fu! GitRoot()
   let r = trim(system('git rev-parse --show-toplevel 2>/dev/null')) | return v:shell_error ? '' : r
 endf
 fu! GitPath()
-  let r = GitRoot() | return '/tmp/'.(r == '' ? 'global' : trim(system('echo '.r.' | md5')))
+  let r = GitRoot() | return '/tmp/'.(r == '' ? 'global' : sha256(r))
 endf
 fu! OnBlur()
-  let f = GitPath()
-  exe 'wviminfo! '.f.'.viminfo'
+  let f = GitPath() | exe 'wshada! '.f.'.shada'
   if @" != '' | call writefile([@"], '/tmp/vimcopy.txt') | endif
-  echom @/
   if @/ != '' | call writefile([@/], '/tmp/vimsearch.txt') | endif
   call writefile([expand('%:p').':'.line('.')], f.'.file')
 endf
-" called externally on 'e'. Restore cusor at last position and file in git project
+" called externally on 'e'. Restore cursor at last position and file in git project
 fu! Restore()
-  let f = GitPath()
-  if filereadable(f.'.file') 
-      let b = split(get(readfile(f.'.file'), 0, ''), ':')
-      if len(b) > 1 | exe 'e '.b[0] | call cursor(b[1], 0) | endif
+  let f = GitPath().'.file'
+  if filereadable(f)
+    let b = split(get(readfile(f), 0, ''), ':')
+    if len(b) > 1 | exe 'e '.fnameescape(b[0]) | call cursor(b[1], 0) | endif
   endif
   call RestoreFocus()
 endf
 fu! RestoreFocus()
-  " avoid race conditions between vim instances
-  sleep 20m
-  " restore git specific viminfo data
-  let f = GitPath()
-  sil! exe 'rviminfo! '.f.'.viminfo'
-  " restore copy data. copy data is shared between all instances
-  let f = '/tmp/vimcopy.txt'
-  let g = '/tmp/vimsearch.txt'
-  if filereadable(f) | let @" = join(readfile(f), "\n") | endif
-  if filereadable(g) | let @/ = join(readfile(g), "\n") | endif
-  call histadd("search", @/)
-let v:hlsearch = 1
-  "echom @/
+  sleep 20m                                                    " avoid races between instances
+  sil! exe 'rshada! '.GitPath().'.shada'
+  for [r, f] in [['"', '/tmp/vimcopy.txt'], ['/', '/tmp/vimsearch.txt']]
+    if filereadable(f) | call setreg(r, join(readfile(f), "\n")) | endif
+  endfor
+  call histadd('search', @/) | let v:hlsearch = 1
 endf
+
+" BQN keymap: \ prefix for glyphs, | prefix for extras
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
 let c ='AdDESsTtoONkyRrQqZij01234)!@#*-_|'
@@ -88,53 +62,42 @@ let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
 for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|')|endfor|endfor
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
 unl a b c d l i
-nn <Bar>r :source $MYVIMRC<CR>
+nn <Bar>r <Cmd>source $MYVIMRC<CR>
 nn <Bar>D mm:%s/•SHOW //g<CR>:noh<CR>`m
 nn <Bar>d :s/•SHOW //g<CR>:noh<CR>
-ino <Bar>g •SHOW 
-ino <Bar>G •SHOW 
-vn <Bar>d :s/\%V•SHOW //gi<CR><ESC>
-nn <Bar>g i•SHOW <Esc>
-nn <Bar>G I•SHOW <Esc>
-vn <Bar>g I•SHOW <Esc>
+xn <Bar>d :s/\%V•SHOW //gi<CR><Esc>
+ino <Bar>g •SHOW | ino <Bar>G •SHOW
+nn <Bar>g i•SHOW <Esc>| nn <Bar>G I•SHOW <Esc>| xn <Bar>g I•SHOW <Esc>
 fu! FmtBQN()
-  let c=join(getline(1, '$'), "\n")
-  let o=system('bqf', c)
-  call setline(1, split(o, "\n",1))
+  call setline(1, split(system('bqf', join(getline(1, '$'), "\n")), "\n", 1))
 endf
-nor <leader>ff :call FmtBQN()<CR>
 fu! ExpBQN(l)
-  echo system('bqe ' . '"'.escape(a:l, "`\"'").'"')
+  echo system('bqe '.shellescape(a:l))
 endf
-vn <leader>e "vy :call ExpBQN(@v)<cr>
-nn <leader>e :call ExpBQN(getline('.'))<cr>
-" Replace mode navigation mappings
-nnoremap R :set ve+=insert<CR>R
-inoremap <expr> j mode()[0] ==# 'R' ? "\<Down>" : "j"
-inoremap <expr> k mode()[0] ==# 'R' ? "\<Up>" : "k"
-inoremap <expr> h mode()[0] ==# 'R' ? "\<Left>"  : "h"
-inoremap <expr> l mode()[0] ==# 'R' ? "\<Right>" : "l"
-inoremap <expr> n mode()[0] ==# 'R' ? "\<Right><Down>" : "n"
-inoremap <expr> b mode()[0] ==# 'R' ? "\<Left><Down>" : "b"
-inoremap <expr> u mode()[0] ==# 'R' ? "\<Right><Up>" : "u"
-inoremap <expr> y mode()[0] ==# 'R' ? "\<Left><Up>" : "y"
-augroup RModeNoJK
-  autocmd!
-  autocmd ModeChanged *:R*  silent! iunmap jk
-  autocmd ModeChanged R*:*  inoremap jk <Esc>
-augroup END
-augroup Vimrc
+no <leader>ff <Cmd>call FmtBQN()<CR>
+xn <leader>e "vy<Cmd>call ExpBQN(@v)<CR>
+nn <leader>e <Cmd>call ExpBQN(getline('.'))<CR>
+
+" Replace mode: hjkl/yubn navigate instead of typing
+nn R <Cmd>set ve+=insert<CR>R
+for [k, v] in items(#{j:'<Down>', k:'<Up>', h:'<Left>', l:'<Right>', n:'<Right><Down>', b:'<Left><Down>', u:'<Right><Up>', y:'<Left><Up>'})
+  exe printf('ino <expr> %s mode()[0] ==# "R" ? "\%s" : "%s"', k, v, k)
+endfor | unl k v
+
+aug Vimrc
   au!
   au BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
   au BufRead,BufNewFile *.bqn setf bqn
-  au FileType bqn syn match bqncom "#.*$"
-  au FileType bqn hi link bqncom comment
-  au FileType bqn setlocal softtabstop=2 tabstop=2 shiftwidth=2 expandtab cms=#%s
-  au InsertLeave,TextChanged    * sil! w
-  au VimEnter                   * let r=GitRoot() | if r!='' | exe 'cd' r | endif
-  au VimEnter                   * nested call RestoreFocus()
-  au TextYankPost,VimLeave,FocusLost * call OnBlur()
-  au FocusGained                * call RestoreFocus()
-  au VimEnter,FocusGained,BufEnter * let @/ = ''
+  au FileType bqn syn match bqncom "#.*$" | hi link bqncom Comment
+  au FileType bqn setl sts=2 ts=2 sw=2 et cms=#%s
+  au FileType yaml setl ai< ci< si<
+  au ModeChanged *:R* sil! iunmap jk
+  au ModeChanged R*:* ino jk <Esc>
   au InsertLeave * set ve-=insert
-augroup END
+  au InsertLeave,TextChanged * sil! w
+  au VimEnter * let r=GitRoot() | if r!='' | exe 'cd' fnameescape(r) | endif
+  au VimEnter * nested call RestoreFocus()
+  au TextYankPost,VimLeave,FocusLost * call OnBlur()
+  au FocusGained * call RestoreFocus()
+  au VimEnter,FocusGained,BufEnter * let @/ = ''
+aug END
