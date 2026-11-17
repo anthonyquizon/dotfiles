@@ -20,7 +20,7 @@ no <leader>; <Cmd>call nerdcommenter#Comment(1, 'toggle')<CR>|                  
 cno <C-a> <Home>| cno <C-e> <End>
 let g:fzf_vim = #{preview_window: ['right,50%,<50(hidden)', 'ctrl-/']}
 com! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(#{options: '--delimiter : --nth 4..'}), <bang>0)
-com! -bang Dirs call fzf#run(fzf#wrap(#{source: 'fd -t d --hidden --exclude .git', sink: 'e', options: '--preview "ls -la {}"'}, <bang>0))
+com! -bang Dirs call fzf#run(fzf#wrap(#{source: 'fd -t d --hidden --no-ignore --exclude .git', sink: 'e', options: '--preview "ls -la {}"'}, <bang>0))
 nn <leader>d <Cmd>Dirs<CR>|                                                                     " fzf directories
 nn <leader><leader> <Cmd>Files<CR>| nn <leader>/ <Cmd>Rg<CR>| nn <leader>. <Cmd>BLines<CR>| nn <leader>m <Cmd>History<CR>
 
