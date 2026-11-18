@@ -1,4 +1,5 @@
-" nvim defaults already cover: nocompatible ai ls=2 hls is wmnu bs ar hidden ttimeoutlen syntax filetype
+" nvim defaults already cover: nocompatible ai ls=2 hls is wmnu bs ar hidden ttimeoutlen
+filetype plugin indent on | syntax on                                                           " explicit: nvim's defaults run after init, and its syntax load would clear our FileType syn rules
 set shell=/bin/bash rnu nu scs nowrap et ve=block noswf nobk nowb sw=2 sts=2 ts=2 path+=** udf udir=~/.nvim/undodir
 set grepprg=rg\ --vimgrep grepformat^=%f:%l:%c:%m complete= shada='50,<5000,s100 tags=./tags,tags,.tags,local/tags  " big shada so registers survive between instances
 let g:netrw_banner = 0 | let mapleader = "\<Space>"
@@ -16,7 +17,7 @@ nn <C-j> <Cmd>m .+1<CR>==| nn <C-k> <Cmd>m .-2<CR>==|                           
 ino <C-j> <Esc><Cmd>m .+1<CR>==gi| ino <C-k> <Esc><Cmd>m .-2<CR>==gi|
 xn <C-j> :m '>+1<CR>gv=gv| xn <C-k> :m '<-2<CR>gv=gv|
 nn <C-w>v <Cmd>echo "disabled"<CR>| nn <C-w>s <Cmd>echo "disabled"<CR>
-no <leader>; <Cmd>call nerdcommenter#Comment(1, 'toggle')<CR>|                                  " NERD commenter installed in setup
+no <leader>; :call nerdcommenter#Comment(1, 'toggle')<CR>|                                      " NERD commenter installed in setup. ':' not <Cmd>: needs visual/count range
 cno <C-a> <Home>| cno <C-e> <End>
 let g:fzf_vim = #{preview_window: ['right,50%,<50(hidden)', 'ctrl-/']}
 com! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(#{options: '--delimiter : --nth 4..'}), <bang>0)
@@ -68,7 +69,7 @@ nn <Bar>r <Cmd>source $MYVIMRC<CR>
 nn <Bar>D mm:%s/•SHOW //g<CR>:noh<CR>`m
 nn <Bar>d :s/•SHOW //g<CR>:noh<CR>
 xn <Bar>d :s/\%V•SHOW //gi<CR><Esc>
-ino <Bar>g •SHOW | ino <Bar>G •SHOW
+ino <Bar>g •SHOW<Space>| ino <Bar>G •SHOW<Space>
 nn <Bar>g i•SHOW <Esc>| nn <Bar>G I•SHOW <Esc>| xn <Bar>g I•SHOW <Esc>
 fu! FmtBQN()
   call setline(1, split(system('bqf', join(getline(1, '$'), "\n")), "\n", 1))
