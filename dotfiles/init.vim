@@ -32,10 +32,16 @@ endf
 fu! GitPath()
   let r = GitRoot() | return '/tmp/'.(r == '' ? 'global' : sha256(r))
 endf
+fu! SearchHist()                                               " global search history: other instances' entries, then ours (newest last)
+  let h = filter(map(range(1, histnr('search')), {_, i -> histget('search', i)}), 'v:val != ""')
+  let o = filereadable('/tmp/vimsearchhist.txt') ? readfile('/tmp/vimsearchhist.txt') : []
+  let l = filter(o, 'index(h, v:val) < 0') + h | return l[max([0, len(l) - 500]):]
+endf
 fu! OnBlur()
   let f = GitPath() | exe 'wshada! '.f.'.shada'
   if @" != '' | call writefile([@"], '/tmp/vimcopy.txt') | endif
   if @/ != '' | call writefile([@/], '/tmp/vimsearch.txt') | endif
+  call writefile(SearchHist(), '/tmp/vimsearchhist.txt')
   call writefile([expand('%:p').':'.line('.')], f.'.file')
 endf
 " called externally on 'e'. Restore cursor at last position and file in git project
@@ -53,6 +59,7 @@ fu! RestoreFocus()
   for [r, f] in [['"', '/tmp/vimcopy.txt'], ['/', '/tmp/vimsearch.txt']]
     if filereadable(f) | call setreg(r, join(readfile(f), "\n")) | endif
   endfor
+  if filereadable('/tmp/vimsearchhist.txt') | for s in readfile('/tmp/vimsearchhist.txt') | call histadd('search', s) | endfor | endif
   call histadd('search', @/) | let v:hlsearch = 1
 endf
 
@@ -60,7 +67,7 @@ endf
 let a ='`1234567890-= ~!@#$%^&*()_+ qwertyuiop[]  QWERTYUIOP{} asdfghjkl;''\ ASDFGHJKL:"| zxcvbnm,./    ZXCVBNM<>?   '
 let b ='˜˘¨⁼⌜´˝7∞¯•÷× ¬⎉⚇⍟◶⊘⎊⍎⍕⟨⟩√⋆ ⌽𝕨∊↑∧◁⊔⊏⊐π←→  ↙𝕎⍷𝕣⍋◀U⊑⊒⍳⊣⊢ ⍉𝕤↕𝕗𝕘⊸∘○⟜⋄↩\  ↖𝕊D𝔽𝔾«↺⌾»·˙| ⥊𝕩↓∨⌊□≡∾≍≠    ⋈𝕏C⍒⌈■≢≤≥⇐   '
 let c ='AdDESsTtoONkyRrQqZij01234)!@#*-_|'
-let d ="∀ΔΔ∃□□◀◁○⬤ℕ✓☺ℝ↺▫▯Σᵢⱼ₀₁₂₃₄⁰¹²³꘎ⁿₙ|" | " g used for •SHOW
+let d ="∀ΔΔ∃□□ᐪ◁○⬤ℕ✓☺ℝ↺▫▯Σᵢⱼ₀₁₂₃₄⁰¹²³꘎ⁿₙ|" | " g used for •SHOW
 let[a,b]=map([a,b],{i,x->split(x,'\zs *')}) | let a+=['<space>']|let b+=['‿']
 for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|')|endfor|endfor
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
