@@ -106,7 +106,7 @@ aug Vimrc
   au InsertLeave * set ve-=insert
   au InsertLeave,TextChanged * sil! w
   au VimEnter * let r=GitRoot() | if r!='' | exe 'cd' fnameescape(r) | endif
-  au VimEnter * nested call RestoreFocus()
+  au VimEnter * nested clearjumps | call RestoreFocus()       " drop global main.shada jumps; jumplist comes only from the project shada
   au TextYankPost,VimLeave,FocusLost * call OnBlur()
   au FocusGained * call RestoreFocus()
   au VimEnter,FocusGained,BufEnter * let @/ = ''
