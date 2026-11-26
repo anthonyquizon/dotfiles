@@ -73,11 +73,11 @@ for l in ['i','c']|for i in range(len(a))|exe escape(l.'no'.'\'.a[i].' '.b[i],'|
 for l in ['i','c']|for i in range(len(c))|exe escape(l.'no'.'|'.c[i].' '.matchstr(d,'.',0,i+1),'|')|endfor|endfor
 unl a b c d l i
 nn <Bar>r <Cmd>source $MYVIMRC<CR>
-nn <Bar>D mm:%s/•\(SHOW\<Bar>EXIT\) //g<CR>:noh<CR>`m
-nn <Bar>d :s/•\(SHOW\<Bar>EXIT\) //g<CR>:noh<CR>
-xn <Bar>d :s/\%V•\(SHOW\<Bar>EXIT\) //gi<CR><Esc>
-ino <Bar>q •EXIT<Space>| ino <Bar>Q •EXIT<Space>
-nn <Bar>q i•EXIT <Esc>| nn <Bar>Q I•EXIT <Esc>| xn <Bar>q I•EXIT <Esc>
+nn <Bar>D mm:%s/•\(SHOW\<Bar>EXIT@\) //g<CR>:noh<CR>`m
+nn <Bar>d :s/•\(SHOW\<Bar>EXIT@\) //g<CR>:noh<CR>
+xn <Bar>d :s/\%V•\(SHOW\<Bar>EXIT@\) //gi<CR><Esc>
+ino <Bar>q •EXIT@<Space>| ino <Bar>Q •EXIT@<Space>
+nn <Bar>q i•EXIT@ <Esc>| nn <Bar>Q I•EXIT@ <Esc>| xn <Bar>q I•EXIT@ <Esc>
 ino <Bar>g •SHOW<Space>| ino <Bar>G •SHOW<Space>
 nn <Bar>g i•SHOW <Esc>| nn <Bar>G I•SHOW <Esc>| xn <Bar>g I•SHOW <Esc>
 fu! FmtBQN()
